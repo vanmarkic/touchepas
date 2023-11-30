@@ -10,7 +10,8 @@
     ```shell
     npm i
     ```
-    
+
+    To run :
     ```shell
     gatsby develop
     ```
