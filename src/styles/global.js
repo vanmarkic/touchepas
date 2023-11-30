@@ -30,8 +30,6 @@ export const GlobalStyle = createGlobalStyle`
     height: var(--doc-height);
     overscroll-behavior: none; 
   }
-
-  }
 `;
 
 export default GlobalStyle;
