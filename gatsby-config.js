@@ -22,8 +22,8 @@ module.exports = {
         preconnect: [`https://fonts.googleapis.com`, `https://fonts.gstatic.com`],
         web: [
           {
-            name: `Architects Daughter`,
-            file: `https://fonts.googleapis.com/css2?family=Architects+Daughter:wght@400;600;700&display=swap`,
+            name: `Oswald`,
+            file: `https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap`,
           },
         ],
       },

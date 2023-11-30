@@ -23,7 +23,7 @@ export const GlobalStyle = createGlobalStyle`
     }
   html,
   body {
-    font-family: "Architects Daughter";
+    font-family: "Oswald";
     padding: 0;
     margin: 0;
     height: 100vh; /* fallback for Js load */
