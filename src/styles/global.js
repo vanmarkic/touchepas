@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-import reset from "styled-reset";
 
 export const px2vw = (size, width = 1440) => `${(size / width) * 100}vw`;
 
@@ -31,15 +30,6 @@ export const GlobalStyle = createGlobalStyle`
     height: var(--doc-height);
     overscroll-behavior: none; 
   }
-
-  .image {
-    /* min-width: 200px; */
-    /* flex: 0 0 calc(50%-10px); */
-    @media (min-aspect-ratio: 1/1) {
-      /* flex: 0 0 calc(50%-10px); */
-      max-width: 50% ;
-    } 
-
 
   }
 `;

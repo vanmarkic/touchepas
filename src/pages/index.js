@@ -9,6 +9,9 @@ const IndexPage = () => {
         <StyledProject>
           <div>Hello</div>
         </StyledProject>
+        <StyledProject>
+          <div>Hello 2</div>
+        </StyledProject>
       </StyledCategory>
     </Layout>
   );
@@ -18,7 +21,7 @@ export default IndexPage;
 
 export const Head = () => (
   <>
-    <title>JAJRAG</title>
+    <title>Touche pas à mon loyer</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
   </>
 );
