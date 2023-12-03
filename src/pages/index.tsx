@@ -2,7 +2,7 @@ import * as React from "react";
 import { StyledCategory, StyledProject } from "../components/bodyLayout";
 import Layout from "../components/layout";
 
-const IndexPage = () => {
+const IndexPage: React.FC<{}> = () => {
   return (
     <Layout>
       <StyledCategory>
