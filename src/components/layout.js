@@ -43,7 +43,7 @@ const StyledMenuButton = styled.button`
   z-index: 1000;
   font-weight: bold;
   font-size: 16px;
-  font-family: "Architects Daughter" !important;
+  font-family: "Oswald" !important;
   cursor: pointer;
   @media (min-aspect-ratio: 1/1) {
     display: none;
