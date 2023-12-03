@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import styled from "styled-components";
 import { MenuContent } from "./MenuContent";
 import GlobalStyle from "../styles/global";
@@ -74,7 +74,7 @@ const MobileMenuOverlay = styled.div`
   min-width: 100%;
 `;
 
-const Layout = ({ children }) => {
+const Layout: React.FC<any> = ({ children }) => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
   const { pathname } = useLocation();
 
@@ -92,8 +92,11 @@ const Layout = ({ children }) => {
     <>
       <Head />
       <GlobalStyle />
-      <StyledMenuButton onClick={() => setShowMobileMenu(true)}>MENU</StyledMenuButton>
-      <CategoryHeader>{currentRoom[currentRoom.length - 2].toUpperCase()}</CategoryHeader>
+      <StyledMenuButton onClick={() => setShowMobileMenu(true)}> MENU </StyledMenuButton>
+      <CategoryHeader>
+        {" "}
+        {currentRoom[currentRoom.length - 2].toUpperCase()}{" "}
+      </CategoryHeader>
       {showMobileMenu ? (
         <MobileMenuOverlay onClick={() => setShowMobileMenu(false)}>
           <MenuContent />
