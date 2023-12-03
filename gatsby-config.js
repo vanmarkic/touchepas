@@ -3,8 +3,8 @@
  */
 module.exports = {
   siteMetadata: {
-    title: `jajrag`,
-    siteUrl: `https://www.yourdomain.tld`,
+    title: `Touche pas à mon loyer`,
+    siteUrl: `https://www.touchepasamonloyer.be`,
   },
   plugins: [
     "gatsby-plugin-styled-components",
