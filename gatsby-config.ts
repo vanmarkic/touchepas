@@ -13,6 +13,7 @@ module.exports = {
     "gatsby-plugin-sitemap",
     // "gatsby-plugin-manifest",
     "gatsby-transformer-remark",
+    "gatsby-plugin-typescript",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     {

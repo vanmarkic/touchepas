@@ -1,7 +1,6 @@
-import * as data from './health-index.json';
-const word = data.facts[0].Month;
-console.log(word); // output 'testing'
-type Inputs = {
+import * as healthIndexData from './health-index.json';
+
+export type Inputs = {
   energyEfficiencyRating: 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'none';
   contractSignatureDate: Date;
   rentStartDate: Date;
@@ -11,97 +10,75 @@ type Inputs = {
   originalHealthIndex: number;
 }
 
-const energyEfficiencyRatios: Record<Inputs["energyEfficiencyRating"], number> = {
-  A: 0.8,
-  B: 0.9,
+export const energyEfficiencyRatios: Record<Inputs["energyEfficiencyRating"], number> = {
+  A: 1,
+  B: 1,
   C: 1,
-  D: 1.1,
-  E: 1.2,
-  F: 1.3,
-  G: 1.4,
-  none: 1
-}
+  D: .75,
+  E: .5,
+  F: 0,
+  G: 0,
+  none: 0
+} as const
 
-type Outputs = {
+export type Outputs = {
   rentIncrease: number;
   increasedRentAmount: number;
   increasePercentage: number
 }
 
-function calculateAuthorizedRentIncrease(
-  currentRent: number,
-  certificatePEB: string,
-  previousRentIndex: number,
-  currentRentIndex: number,
-  anniversaryDate: Date
-): number {
-  // Ensure that the current rent index is greater than the previous index
-  if (currentRentIndex <= previousRentIndex) {
-    throw new Error("Invalid rent indices provided.");
-  }
 
-  // Check if the anniversary date falls within the temporary measure period
-  const temporaryMeasureStartDate = new Date("2022-11-01");
-  const temporaryMeasureEndDate = new Date("2023-10-31");
-
-  if (anniversaryDate >= temporaryMeasureStartDate && anniversaryDate <= temporaryMeasureEndDate) {
-    // Temporary measure is applicable, apply exception
-    return currentRent;
-  }
-
-  // Calculate the difference in indices
-  const indexDifference = currentRentIndex - previousRentIndex;
-
-  // Define the percentage limits for different certificate PEB categories
-  let percentageLimit: number;
-  switch (certificatePEB.toUpperCase()) {
-    case "A":
-    case "B":
-    case "C":
-      percentageLimit = 100; // 100% allowed increase
-      break;
-    case "D":
-      percentageLimit = 75; // 75% allowed increase
-      break;
-    case "E":
-      percentageLimit = 50; // 50% allowed increase
-      break;
-    case "F":
-    case "G":
-    case "none":
-      percentageLimit = 0; // 0% allowed increase
-      break;
-    default:
-      throw new Error("Invalid certificate PEB category.");
-  }
-
-  // Calculate the authorized rent increase
-  const authorizedIncrease = (currentRent * indexDifference * percentageLimit) / 100;
-
-  // Calculate the new rent
-  const newRent = currentRent + authorizedIncrease;
-
-  return newRent;
+function findHealthIndex(year: number, month: string) {
+  console.log(year, month)
+  const indexEntry = healthIndexData.facts.find(entry => {
+    return entry["Year"] === year.toString() &&
+      entry["Month"] === month
+  });
+  console.log(indexEntry)
+  return indexEntry ? indexEntry['Health index'] : null;
 }
 
-// Example usage:
-const currentRent = 600; // Replace with the actual current rent amount
-const certificatePEB = "D"; // Replace with the actual certificate PEB category
-const previousRentIndex = 626.79; // Replace with the actual previous rent index
-const currentRentIndex = 703.69; // Replace with the actual current rent index
-const anniversaryDate = new Date("2022-11-15"); // Replace with the actual anniversary date
 
-const newRent = calculateAuthorizedRentIncrease(
-  currentRent,
-  certificatePEB,
-  previousRentIndex,
-  currentRentIndex,
-  anniversaryDate
-);
+export function calculateRentIndexation(
+  contractStartDate: string, agreementStartDate: string,
+  basicRent: number) {
+  const currentDate = new Date();
+  const anniversaryDate = new Date(contractStartDate);
+  anniversaryDate.setFullYear(currentDate.getFullYear(), currentDate.getMonth() - 1);
 
-console.log(`Current Rent: ${currentRent} euros`);
-console.log(`Certificate PEB: ${certificatePEB}`);
-console.log(`Previous Rent Index: ${previousRentIndex}`);
-console.log(`Current Rent Index: ${currentRentIndex}`);
-console.log(`Anniversary Date: ${anniversaryDate.toDateString()}`);
-console.log(`Authorized Rent Increase: ${newRent.toFixed(2)} euros`);
+  const anniversaryMonth = anniversaryDate.toLocaleString('en-US', { month: 'long' });
+  const anniversaryYear = anniversaryDate.getFullYear();
+  const newHealthIndex = findHealthIndex(anniversaryYear, anniversaryMonth);
+
+
+  let initialIndex;
+  if (contractStartDate < '1984-01-01') {
+    initialIndex = 82.54;
+  } else {
+    const agreementSignatureDate = new Date(agreementStartDate);
+    agreementSignatureDate.setMonth(agreementSignatureDate.getMonth() - 1);
+    const agreementSignatureMonth = agreementSignatureDate.toLocaleString('en-US', { month: 'long' });
+    const agreementSignatureYear = agreementSignatureDate.getFullYear();
+
+    if (agreementSignatureDate > anniversaryDate) {
+      console.error('Error: agreementStartDate must be on or before contractStartDate.');
+      return null;
+    }
+
+    if (agreementStartDate < '1994-02-01') {
+      initialIndex = findHealthIndex(agreementSignatureYear, agreementSignatureMonth);
+    } else {
+
+      const initialIndexDate = new Date(agreementSignatureDate);
+      initialIndexDate.setMonth(initialIndexDate.getMonth() - 1);
+      const initialIndexMonth = initialIndexDate.toLocaleString('en-US', { month: 'long' });
+      const initialIndexYear = initialIndexDate.getFullYear();
+      initialIndex = findHealthIndex(initialIndexYear, initialIndexMonth);
+    }
+  }
+
+
+  return (basicRent * newHealthIndex) / initialIndex;
+}
+
+

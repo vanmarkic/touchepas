@@ -1,6 +1,16 @@
 {
+  // "include": [
+  //   "*"
+  // ],
+  // "exclude": [
+  //   "node_modules",
+  //   "public",
+  //   ".cache"
+  // ],
   "compilerOptions": {
+    // "target": "es5",
     "jsx": "react",
+    // "allowSyntheticDefaultImports": true,
     /* Visit https://aka.ms/tsconfig to read more about this file */
     /* Projects */
     // "incremental": true,                              /* Save .tsbuildinfo files to allow for incremental compilation of projects. */
