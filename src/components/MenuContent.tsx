@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
 const SlicedMenu = styled.div`
@@ -20,14 +20,12 @@ export const MenuContent = () => {
         <Link
           to="http://www.google.com"
           style={{ flex: "1 0 29% ", position: "relative" }}
-          as="div"
         >
           <p>Hello</p>
         </Link>
         <Link
           to="http://www.google.com"
           style={{ flex: "1 0 29% ", position: "relative" }}
-          as="div"
         >
           <p>Hello</p>
         </Link>
