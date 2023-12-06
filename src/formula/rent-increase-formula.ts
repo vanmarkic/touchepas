@@ -41,7 +41,7 @@ function findHealthIndex(year: number, month: string) {
 
 export function calculateRentIndexation(
   contractStartDate: string, agreementStartDate: string,
-  basicRent: number) {
+  basicRent: number): number | null {
   const currentDate = new Date();
   const anniversaryDate = new Date(contractStartDate);
   anniversaryDate.setFullYear(currentDate.getFullYear(), currentDate.getMonth() - 1);
@@ -49,6 +49,10 @@ export function calculateRentIndexation(
   const anniversaryMonth = anniversaryDate.toLocaleString('en-US', { month: 'long' });
   const anniversaryYear = anniversaryDate.getFullYear();
   const newHealthIndex = findHealthIndex(anniversaryYear, anniversaryMonth);
+  if (!newHealthIndex) {
+    console.error('Error: Could not find health index for given date.');
+    return null;
+  }
 
 
   let initialIndex;
@@ -67,6 +71,10 @@ export function calculateRentIndexation(
 
     if (agreementStartDate < '1994-02-01') {
       initialIndex = findHealthIndex(agreementSignatureYear, agreementSignatureMonth);
+      if (!initialIndex) {
+        console.error('Error: Could not find health index for given date.');
+        return null;
+      }
     } else {
 
       const initialIndexDate = new Date(agreementSignatureDate);
@@ -74,6 +82,10 @@ export function calculateRentIndexation(
       const initialIndexMonth = initialIndexDate.toLocaleString('en-US', { month: 'long' });
       const initialIndexYear = initialIndexDate.getFullYear();
       initialIndex = findHealthIndex(initialIndexYear, initialIndexMonth);
+      if (!initialIndex) {
+        console.error('Error: Could not find health index for given date.');
+        return null;
+      }
     }
   }
 

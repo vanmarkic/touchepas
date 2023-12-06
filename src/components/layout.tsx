@@ -1,9 +1,11 @@
-import * as React from "react";
-import styled from "styled-components";
-import { MenuContent } from "./MenuContent";
-import GlobalStyle from "../styles/global";
-import { Head } from "../pages";
-import { useLocation } from "@reach/router";
+import * as React from 'react';
+import styled from 'styled-components';
+import { MenuContent } from './MenuContent';
+import GlobalStyle from '../styles/global';
+import { Head } from '../pages';
+import { useLocation } from '@reach/router';
+import RentCalculator from './RentCalculator';
+import { Reset } from 'styled-reset';
 
 const StyledLayout = styled.div`
   width: 100%;
@@ -43,7 +45,7 @@ const StyledMenuButton = styled.button`
   z-index: 1000;
   font-weight: bold;
   font-size: 16px;
-  font-family: "Oswald" !important;
+  font-family: 'Oswald' !important;
   cursor: pointer;
   @media (min-aspect-ratio: 1/1) {
     display: none;
@@ -78,38 +80,34 @@ const Layout: React.FC<any> = ({ children }) => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
   const { pathname } = useLocation();
 
-  const currentRoom = pathname.split("/");
+  const currentRoom = pathname.split('/');
   React.useEffect(() => {
     const documentHeight = () => {
       const doc = document.documentElement;
-      doc.style.setProperty("--doc-height", `${window.innerHeight}px`);
+      doc.style.setProperty('--doc-height', `${window.innerHeight}px`);
     };
-    window.addEventListener("resize", documentHeight);
+    window.addEventListener('resize', documentHeight);
     documentHeight();
   }, []);
 
   return (
     <>
       <Head />
+      {/* <Reset /> */}
       <GlobalStyle />
       <StyledMenuButton onClick={() => setShowMobileMenu(true)}> MENU </StyledMenuButton>
-      <CategoryHeader>
-        {" "}
-        {currentRoom[currentRoom.length - 2].toUpperCase()}{" "}
-      </CategoryHeader>
+      <CategoryHeader> {currentRoom[currentRoom.length - 2].toUpperCase()} </CategoryHeader>
       {showMobileMenu ? (
         <MobileMenuOverlay onClick={() => setShowMobileMenu(false)}>
           <MenuContent />
-          <StyledMenuButton onClick={() => setShowMobileMenu(false)}>
-            CLOSE
-          </StyledMenuButton>
+          <StyledMenuButton onClick={() => setShowMobileMenu(false)}>CLOSE</StyledMenuButton>
         </MobileMenuOverlay>
       ) : null}
       <StyledLayout>
-        <SideMenu>
-          <MenuContent />
-        </SideMenu>
         {children}
+        <SideMenu>
+          <RentCalculator />
+        </SideMenu>
       </StyledLayout>
     </>
   );
