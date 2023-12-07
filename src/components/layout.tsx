@@ -14,6 +14,7 @@ const StyledLayout = styled.div`
   display: flex;
   flex-direction: row;
   overflow: hidden;
+  height: calc(100vh - 60px);
 `;
 
 const SideMenu = styled.nav`

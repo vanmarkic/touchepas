@@ -15,15 +15,16 @@ export const StyledCategory = styled.div`
     width: 70vw;
   }
 `;
-export const StyledProject = styled.div`
+export const TextBlock = styled.div`
   min-height: 100vh;
   display: flex;
   row-gap: 5px;
   column-gap: 5px;
+  flex-direction: column;
   scroll-snap-align: center;
   /* min-width: 100%; */
   justify-content: center;
-  align-items: center;
+  align-items: start;
   @media (max-aspect-ratio: 1/1) {
     flex-direction: column;
     /* min-height: 100%; */
