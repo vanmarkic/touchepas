@@ -24,7 +24,7 @@ export const GlobalStyle = createGlobalStyle`
     }
   html,
   body {
-    font-family: "Oswald";
+    font-family: "Lexend";
     padding: 0;
     margin: 0;
     height: 100vh; /* fallback for Js load */
@@ -40,13 +40,13 @@ export const GlobalStyle = createGlobalStyle`
     height: 100%;
     font-size: 0.5rem;
     input {
-      font-family: "Oswald";
+      font-family: "Lexend";
       height: 1rem;
       font-size: .7rem;
       padding: 0.2rem;
     }
     button {
-      font-family: "Oswald";
+      font-family: "Lexend";
       height: 1rem;
       font-size: .7rem;
       padding: 0.2rem;

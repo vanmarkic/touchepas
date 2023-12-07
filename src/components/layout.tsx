@@ -6,6 +6,7 @@ import { Head } from '../pages';
 import { useLocation } from '@reach/router';
 import RentCalculator from './RentCalculator';
 import { Reset } from 'styled-reset';
+import { Header } from './Header';
 
 const StyledLayout = styled.div`
   width: 100%;
@@ -45,7 +46,7 @@ const StyledMenuButton = styled.button`
   z-index: 1000;
   font-weight: bold;
   font-size: 16px;
-  font-family: 'Oswald' !important;
+  font-family: 'Lexend Bold' !important;
   cursor: pointer;
   @media (min-aspect-ratio: 1/1) {
     display: none;
@@ -95,7 +96,7 @@ const Layout: React.FC<any> = ({ children }) => {
       <Head />
       {/* <Reset /> */}
       <GlobalStyle />
-      <StyledMenuButton onClick={() => setShowMobileMenu(true)}> MENU </StyledMenuButton>
+      {/* <StyledMenuButton onClick={() => setShowMobileMenu(true)}> MENU </StyledMenuButton> */}
       <CategoryHeader> {currentRoom[currentRoom.length - 2].toUpperCase()} </CategoryHeader>
       {showMobileMenu ? (
         <MobileMenuOverlay onClick={() => setShowMobileMenu(false)}>
@@ -103,6 +104,7 @@ const Layout: React.FC<any> = ({ children }) => {
           <StyledMenuButton onClick={() => setShowMobileMenu(false)}>CLOSE</StyledMenuButton>
         </MobileMenuOverlay>
       ) : null}
+      <Header />
       <StyledLayout>
         {children}
         <SideMenu>
