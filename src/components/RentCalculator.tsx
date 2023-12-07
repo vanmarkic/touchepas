@@ -5,7 +5,12 @@ import styled from 'styled-components';
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.5rem;
+`;
+const StyledNewRent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: Orem;
 `;
 
 const RentCalculator: React.FC = () => {
@@ -35,7 +40,7 @@ const RentCalculator: React.FC = () => {
 
   return (
     <StyledContainer>
-      <h1>Rent Calculator</h1>
+      <h6>Rent Calculator</h6>
       <form onSubmit={handleCalculate}>
         <label htmlFor="initialRent">Current Rent:</label>
         <input
@@ -64,8 +69,10 @@ const RentCalculator: React.FC = () => {
 
         <button type="submit">Calculate</button>
       </form>
-      New authorized rent
-      <h1>{Number(newRent).toFixed(2).toLocaleLowerCase('fr-FR')}</h1>
+      <StyledNewRent>
+        <h6>New authorized rent</h6>
+        <h4>{Number(newRent).toFixed(2).toLocaleLowerCase('fr-FR')}</h4>
+      </StyledNewRent>
     </StyledContainer>
   );
 };
