@@ -12,14 +12,14 @@ export const GlobalStyle = createGlobalStyle`
   }
   :root {
       --doc-height: 100%;
-      font-size: ${px2vw(24)};
+      font-size: ${px2vw(16)};
 
       @media (min-width: 768px) {
-        font-size: ${px2vw(30)};
+        font-size: ${px2vw(24)};
       }
 
       @media (min-width: 1024px) {
-        font-size: ${px2vw(36)};
+        font-size: ${px2vw(32)};
       }
     }
   html,
@@ -30,6 +30,9 @@ export const GlobalStyle = createGlobalStyle`
     height: 100vh; /* fallback for Js load */
     height: var(--doc-height);
     overscroll-behavior: none; 
+  }
+  p {
+    font-size: .8rem;
   }
   form {
     display: flex;
