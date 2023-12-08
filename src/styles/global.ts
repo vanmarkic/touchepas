@@ -1,7 +1,14 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, css } from "styled-components";
 import reset from 'styled-reset';
 
 export const px2vw = (size: number, width = 1440) => `${(size / width) * 100}vw`;
+
+
+export const whenVertivalAspectRatio = (cssRules: string) => css`
+  @media (max-aspect-ratio: 1/1) {
+    ${cssRules}
+  }
+`;
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -12,14 +19,14 @@ export const GlobalStyle = createGlobalStyle`
   }
   :root {
       --doc-height: 100%;
-      font-size: ${px2vw(16)};
+      font-size: ${px2vw(24, 768)};
 
       @media (min-width: 768px) {
-        font-size: ${px2vw(24)};
+        font-size: ${px2vw(18, 768)};
       }
 
       @media (min-width: 1024px) {
-        font-size: ${px2vw(32)};
+        font-size: ${px2vw(16, 1024)};
       }
     }
   html,
@@ -31,9 +38,6 @@ export const GlobalStyle = createGlobalStyle`
     height: var(--doc-height);
     overscroll-behavior: none; 
   }
-  p {
-    font-size: .8rem;
-  }
   form {
     display: flex;
     flex-direction: column;
@@ -41,11 +45,9 @@ export const GlobalStyle = createGlobalStyle`
     justify-content: start;
     gap: .2rem;
     height: 100%;
-    font-size: 0.5rem;
     input {
       font-family: "Lexend";
       height: 1rem;
-      font-size: .7rem;
       padding: 0.2rem;
     }
     button {

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { MenuContent } from './MenuContent';
-import GlobalStyle from '../styles/global';
+import GlobalStyle, { whenVertivalAspectRatio } from '../styles/global';
 import { Head } from '../pages';
 import { useLocation } from '@reach/router';
 import RentCalculator from './RentCalculator';
@@ -17,7 +17,19 @@ const StyledLayout = styled.div`
   height: calc(100vh - 60px);
 `;
 
-const SideMenu = styled.nav`
+export const hideWhenVertical = css`
+  @media (max-aspect-ratio: 1/1) {
+    display: none;
+  }
+`;
+
+export const hideWhenHorizontal = css`
+  @media (min-aspect-ratio: 1/1) {
+    display: none;
+  }
+`;
+
+const SidePanel = styled.nav`
   width: 30vw;
   max-height: 100svh;
   row-gap: 20px;
@@ -29,9 +41,7 @@ const SideMenu = styled.nav`
   padding: 48px;
   align-self: flex-end;
   margin-bottom: 30px;
-  @media (max-aspect-ratio: 1/1) {
-    display: none;
-  }
+  ${whenVertivalAspectRatio('display: none;')};
 `;
 
 const StyledMenuButton = styled.button`
@@ -49,9 +59,7 @@ const StyledMenuButton = styled.button`
   font-size: 16px;
   font-family: 'Lexend Bold' !important;
   cursor: pointer;
-  @media (min-aspect-ratio: 1/1) {
-    display: none;
-  }
+  ${hideWhenHorizontal}
 `;
 const CategoryHeader = styled.h4`
   position: fixed;
@@ -60,9 +68,7 @@ const CategoryHeader = styled.h4`
   color: #191919;
   font-size: 24px;
   z-index: 1001;
-  @media (min-aspect-ratio: 1/1) {
-    display: none;
-  }
+  ${hideWhenHorizontal}
 `;
 
 const MobileMenuOverlay = styled.div`
@@ -108,9 +114,9 @@ const Layout: React.FC<any> = ({ children }) => {
       <Header />
       <StyledLayout>
         {children}
-        <SideMenu>
+        <SidePanel>
           <RentCalculator />
-        </SideMenu>
+        </SidePanel>
       </StyledLayout>
     </>
   );
