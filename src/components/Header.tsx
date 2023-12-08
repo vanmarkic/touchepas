@@ -8,7 +8,7 @@ const StyledHeader = styled.div`
   display: flex;
   position: sticky;
   top: 0px;
-  height: 60px;
+  background-color: white;
 `;
 
 export const Header = () => {

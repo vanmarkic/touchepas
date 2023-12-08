@@ -30,7 +30,7 @@ export const TextBlock = styled.div`
     /* min-height: 100%; */
     /* min-width: auto; */
     padding: 40px 10px;
-    min-height: 100svh;
+    min-height: calc(100svh - 60px);
     align-items: center;
     justify-content: center;
   }

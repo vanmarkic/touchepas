@@ -19,7 +19,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   :root {
       --doc-height: 100%;
-      font-size: ${px2vw(24, 768)};
+      font-size: ${px2vw(14, 360)};
 
       @media (min-width: 768px) {
         font-size: ${px2vw(18, 768)};
