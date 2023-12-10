@@ -31,6 +31,8 @@ export const GlobalStyle = createGlobalStyle`
     }
   html,
   body {
+    --blue: #150d63;
+    --red: #E04843;
     font-family: "Lexend";
     padding: 0;
     margin: 0;

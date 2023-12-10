@@ -9,12 +9,19 @@ const StyledHeader = styled.div`
   position: sticky;
   top: 0px;
   background-color: white;
+  color: var(--blue);
+`;
+
+const RedSpan = styled.span`
+  color: var(--red);
 `;
 
 export const Header = () => {
   return (
     <StyledHeader>
-      <h4>TOUCHE PAS À MON LOYER</h4>
+      <h4>
+        TOUCHE <RedSpan>PAS</RedSpan> À MON LOYER
+      </h4>
     </StyledHeader>
   );
 };
