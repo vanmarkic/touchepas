@@ -31,14 +31,14 @@ export const hideWhenHorizontal = css`
 const SidePanel = styled.nav`
   width: 30vw;
   max-height: 100svh;
-  row-gap: 20px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  margin-top: 30px;
+
   padding: 48px;
-  align-self: flex-end;
+  align-self: flex-start;
   margin-bottom: 30px;
   ${whenVertivalAspectRatio('display: none;')};
 `;
@@ -47,16 +47,15 @@ const StyledMenuButton = styled.button`
   position: fixed;
   bottom: 6px;
   right: 10px;
-  color: #191919;
+  color: var(--black);
   size: 40px;
-  border: 3px solid #191919 !important;
-  border-radius: 5px !important;
-  background-color: white !important;
-  width: 100px;
+  border: 2px solid var(--black) !important;
+  background-color: var(--red);
+  width: 120px;
   z-index: 1000;
-  font-weight: bold;
+  /* font-weight: bold; */
   font-size: 16px;
-  font-family: 'Lexend Bold' !important;
+  font-family: 'Lexend' !important;
   cursor: pointer;
   ${hideWhenHorizontal}
 `;
@@ -64,7 +63,7 @@ const CategoryHeader = styled.h4`
   position: fixed;
   top: 7px;
   left: 10px;
-  color: #191919;
+  color: var(--black);
   font-size: 24px;
   z-index: 1001;
   ${hideWhenHorizontal}
@@ -75,7 +74,6 @@ const MobileMenuOverlay = styled.div`
   z-index: 1500;
   background-color: white;
   height: 100svh;
-  padding: 5vw;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -102,11 +100,12 @@ const Layout: React.FC<any> = ({ children }) => {
       <Head />
       {/* <Reset /> */}
       <GlobalStyle />
-      {/* <StyledMenuButton onClick={() => setShowMobileMenu(true)}> MENU </StyledMenuButton> */}
+      <StyledMenuButton onClick={() => setShowMobileMenu(true)}> Calculateur </StyledMenuButton>
       <CategoryHeader> {currentRoom[currentRoom.length - 2].toUpperCase()} </CategoryHeader>
       {showMobileMenu ? (
         <MobileMenuOverlay onClick={() => setShowMobileMenu(false)}>
-          <StyledMenuButton onClick={() => setShowMobileMenu(false)}>CLOSE</StyledMenuButton>
+          <RentCalculator />
+          <StyledMenuButton onClick={() => setShowMobileMenu(false)}>Fermer</StyledMenuButton>
         </MobileMenuOverlay>
       ) : null}
       <Header />

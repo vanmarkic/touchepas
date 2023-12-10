@@ -40,11 +40,22 @@ function findHealthIndex(year: number, month: string) {
 
 
 export function calculateRentIndexation(
-  contractStartDate: string, agreementStartDate: string,
-  basicRent: number): number | null {
-  const currentDate = new Date();
-  const anniversaryDate = new Date(contractStartDate);
-  anniversaryDate.setFullYear(currentDate.getFullYear(), currentDate.getMonth() - 1);
+  contractSignatureDate: Date,
+  agreementStartDate: Date,
+  initialRent: number,
+  dateOfIndexation: Date): number | null {
+
+  console.log(contractSignatureDate, "contractSignatureDate")
+
+  console.log(agreementStartDate, "agreementStartDate");
+  if (agreementStartDate < contractSignatureDate) {
+    console.error('Error: agreementStartDate must be on or after contractStartDate.');
+    return null;
+  }
+
+
+  const anniversaryDate = new Date(contractSignatureDate)
+  anniversaryDate.setFullYear(dateOfIndexation.getFullYear(), dateOfIndexation.getMonth() - 1);
 
   const anniversaryMonth = anniversaryDate.toLocaleString('en-US', { month: 'long' });
   const anniversaryYear = anniversaryDate.getFullYear();
@@ -56,20 +67,19 @@ export function calculateRentIndexation(
 
 
   let initialIndex;
-  if (contractStartDate < '1984-01-01') {
+  if (contractSignatureDate < new Date('1984-01-01')) {
     initialIndex = 82.54;
   } else {
-    const agreementSignatureDate = new Date(agreementStartDate);
-    agreementSignatureDate.setMonth(agreementSignatureDate.getMonth() - 1);
-    const agreementSignatureMonth = agreementSignatureDate.toLocaleString('en-US', { month: 'long' });
-    const agreementSignatureYear = agreementSignatureDate.getFullYear();
 
-    if (agreementSignatureDate > anniversaryDate) {
-      console.error('Error: agreementStartDate must be on or before contractStartDate.');
-      return null;
-    }
 
-    if (agreementStartDate < '1994-02-01') {
+    const agreementAnniversaireDate = new Date(agreementStartDate)
+    agreementAnniversaireDate.setMonth(agreementStartDate.getMonth() - 1);
+    const agreementSignatureMonth = agreementStartDate.toLocaleString('en-US', { month: 'long' });
+    const agreementSignatureYear = agreementStartDate.getFullYear();
+
+
+
+    if (agreementStartDate < new Date('1994-02-01')) {
       initialIndex = findHealthIndex(agreementSignatureYear, agreementSignatureMonth);
       if (!initialIndex) {
         console.error('Error: Could not find health index for given date.');
@@ -77,7 +87,7 @@ export function calculateRentIndexation(
       }
     } else {
 
-      const initialIndexDate = new Date(agreementSignatureDate);
+      const initialIndexDate = new Date(agreementStartDate);
       initialIndexDate.setMonth(initialIndexDate.getMonth() - 1);
       const initialIndexMonth = initialIndexDate.toLocaleString('en-US', { month: 'long' });
       const initialIndexYear = initialIndexDate.getFullYear();
@@ -90,7 +100,7 @@ export function calculateRentIndexation(
   }
 
 
-  return (basicRent * newHealthIndex) / initialIndex;
+  return (initialRent * newHealthIndex) / initialIndex;
 }
 
 

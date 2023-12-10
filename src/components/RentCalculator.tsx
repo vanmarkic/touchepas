@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { FormEventHandler, MouseEventHandler, useState } from 'react';
 import { calculateRentIndexation } from '../formula/rent-increase-formula';
 import styled from 'styled-components';
 
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border-radius: 10px;
 `;
 const StyledNewRent = styled.div`
   display: flex;
@@ -14,24 +17,27 @@ const StyledNewRent = styled.div`
 `;
 
 const RentCalculator: React.FC = () => {
-  const [initialRent, setInitialRent] = useState<number | null>(null);
-  const [occupationStartDate, setOccupationStartDate] = useState<string>('');
-  const [contractSignatureDate, setContractSignatureDate] = useState<string>('');
-  const [newRent, setNewRent] = useState<number>(0);
+  const [indexationDate, setIndexationDate] = useState<Date>(new Date());
+  const [initialRent, setInitialRent] = useState<number>(0);
+  const [contractSignatureDate, setContractSignatureDate] = useState<Date>(new Date());
+  const [agreementStartDate, setAgreementStartDate] = useState<Date>(new Date());
+  const [newRent, setNewRent] = useState<number | string>(0);
 
-  // useEffect(() => {
-  //   useRentFormula(occupationStartDate, contractSignatureDate, initialRent);
-  // }, [occupationStartDate, contractSignatureDate, initialRent]);
-
-  const handleCalculate = (e) => {
+  const handleCalculate = (e: any) => {
     e.preventDefault();
+    // console.log(indexationDate);
+    console.log('contractSignatureDate', contractSignatureDate);
+    console.log('agreementStartDate', agreementStartDate);
+    console.log('initialRent', initialRent);
+    console.log('indexationDate', indexationDate);
     const increasedRent = calculateRentIndexation(
-      occupationStartDate,
       contractSignatureDate,
+      agreementStartDate,
       initialRent,
+      indexationDate,
     );
     if (!increasedRent) {
-      setNewRent(37707);
+      setNewRent('something went wrong');
       return;
     }
     setNewRent(increasedRent);
@@ -40,37 +46,65 @@ const RentCalculator: React.FC = () => {
 
   return (
     <StyledContainer>
-      <h6>Rent Calculator</h6>
-      <form onSubmit={handleCalculate}>
-        <label htmlFor="initialRent">Current Rent:</label>
-        <input
-          type="number"
-          id="initialRent"
-          value={initialRent}
-          onChange={(e) => setInitialRent(Number(e.target.value))}
-        />
+      <h5>Calculateur de loyer</h5>
+      <form>
+        <label htmlFor="indexationDate">
+          Date de demande d'indexation:
+          <input
+            type="date"
+            min="2022-01-01"
+            required
+            lang="fr-FR"
+            id="indexationDate"
+            defaultValue={indexationDate.toISOString().split('T')[0]}
+            onChange={(e) => setIndexationDate(new Date(e.target.value))}
+          />
+        </label>
+        <label htmlFor="initialRent">
+          Loyer stipulé sur le bail:
+          <input
+            type="number"
+            id="initialRent"
+            defaultValue={initialRent}
+            onChange={(e) => setInitialRent(Number(e.target.value))}
+            required
+          />
+        </label>
+        <label htmlFor="contractSignatureDate">
+          Date de signature du bail:
+          <input
+            type="date"
+            min="2022-01-01"
+            max={new Date().toISOString().split('T')[0]}
+            required
+            lang="fr-FR"
+            id="contractSignatureDate"
+            onChange={(e) => setContractSignatureDate(new Date(e.target.value))}
+          />
+        </label>
+        <label htmlFor="agreementStartDate">
+          Date d'entrée en vigueur:
+          <input
+            type="date"
+            min="2022-01-01"
+            max={new Date().toISOString().split('T')[0]}
+            required
+            lang="fr-FR"
+            id="agreementStartDate"
+            onChange={(e) => setAgreementStartDate(new Date(e.target.value))}
+          />
+        </label>
+        <label htmlFor="region">
+          Région:
+          <input type="select" disabled required lang="fr-FR" id="region" defaultValue="Wallonie" />
+        </label>
 
-        <label htmlFor="contractSignatureDate">contractSignatureDate:</label>
-        <input
-          placeholder="YYYY-MM-DD"
-          type="text"
-          id="contractSignatureDate"
-          value={contractSignatureDate}
-          onChange={(e) => setContractSignatureDate(e.target.value)}
-        />
-        <label htmlFor="occupationStartDate">occupationStartDate:</label>
-        <input
-          placeholder="YYYY-MM-DD"
-          type="text"
-          id="occupationStartDate"
-          value={occupationStartDate}
-          onChange={(e) => setOccupationStartDate(e.target.value)}
-        />
-
-        <button type="submit">Calculate</button>
+        <button type="button" onClick={handleCalculate}>
+          Calculer
+        </button>
       </form>
       <StyledNewRent>
-        <h6>New authorized rent</h6>
+        <h6>Nouveau loyer autorisé</h6>
         <h4>{Number(newRent).toFixed(2).toLocaleLowerCase('fr-FR')}</h4>
       </StyledNewRent>
     </StyledContainer>

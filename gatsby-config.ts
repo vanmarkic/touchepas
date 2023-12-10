@@ -28,7 +28,7 @@ module.exports = {
           },
           {
             name: `Lexend`,
-            file: `https://fonts.googleapis.com/css2?family=Lexend:wght@400&display=swap`,
+            file: `https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&display=swap`,
           },
         ],
       },
