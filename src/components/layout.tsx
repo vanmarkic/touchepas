@@ -1,11 +1,10 @@
 import * as React from 'react';
 import styled, { css } from 'styled-components';
-import { MenuContent } from './MenuContent';
 import GlobalStyle, { whenVertivalAspectRatio } from '../styles/global';
 import { Head } from '../pages';
 import { useLocation } from '@reach/router';
 import RentCalculator from './RentCalculator';
-import { Reset } from 'styled-reset';
+// import { Reset } from 'styled-reset';
 import { Header } from './Header';
 
 const StyledLayout = styled.div`
@@ -107,7 +106,6 @@ const Layout: React.FC<any> = ({ children }) => {
       <CategoryHeader> {currentRoom[currentRoom.length - 2].toUpperCase()} </CategoryHeader>
       {showMobileMenu ? (
         <MobileMenuOverlay onClick={() => setShowMobileMenu(false)}>
-          <MenuContent />
           <StyledMenuButton onClick={() => setShowMobileMenu(false)}>CLOSE</StyledMenuButton>
         </MobileMenuOverlay>
       ) : null}
