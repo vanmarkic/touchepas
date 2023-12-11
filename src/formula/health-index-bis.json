@@ -1,0 +1,2164 @@
+{
+  "facts": [
+    {
+      "Year": "1993",
+      "Month": "December",
+      "Health index": null,
+      "Health index (moving average)": null
+    },
+    {
+      "Year": "1994",
+      "Month": "January",
+      "Health index": 69.81000000000024,
+      "Health index (moving average)": 69.81000000000024
+    },
+    {
+      "Year": "1994",
+      "Month": "February",
+      "Health index": 70.02000000000025,
+      "Health index (moving average)": 69.92000000000024
+    },
+    {
+      "Year": "1994",
+      "Month": "March",
+      "Health index": 69.97000000000024,
+      "Health index (moving average)": 69.93000000000025
+    },
+    {
+      "Year": "1994",
+      "Month": "April",
+      "Health index": 70.08000000000025,
+      "Health index (moving average)": 69.97000000000024
+    },
+    {
+      "Year": "1994",
+      "Month": "May",
+      "Health index": 70.28000000000026,
+      "Health index (moving average)": 70.09000000000026
+    },
+    {
+      "Year": "1994",
+      "Month": "June",
+      "Health index": 70.41000000000025,
+      "Health index (moving average)": 70.19000000000025
+    },
+    {
+      "Year": "1994",
+      "Month": "July",
+      "Health index": 70.89000000000026,
+      "Health index (moving average)": 70.42000000000026
+    },
+    {
+      "Year": "1994",
+      "Month": "August",
+      "Health index": 70.97000000000025,
+      "Health index (moving average)": 70.64000000000026
+    },
+    {
+      "Year": "1994",
+      "Month": "September",
+      "Health index": 70.88000000000025,
+      "Health index (moving average)": 70.79000000000026
+    },
+    {
+      "Year": "1994",
+      "Month": "October",
+      "Health index": 70.77000000000025,
+      "Health index (moving average)": 70.89000000000026
+    },
+    {
+      "Year": "1994",
+      "Month": "November",
+      "Health index": 70.77000000000025,
+      "Health index (moving average)": 70.85000000000025
+    },
+    {
+      "Year": "1994",
+      "Month": "December",
+      "Health index": 70.80000000000025,
+      "Health index (moving average)": 70.81000000000026
+    },
+    {
+      "Year": "1995",
+      "Month": "January",
+      "Health index": 71.12000000000026,
+      "Health index (moving average)": 70.87000000000026
+    },
+    {
+      "Year": "1995",
+      "Month": "February",
+      "Health index": 71.36000000000026,
+      "Health index (moving average)": 71.02000000000025
+    },
+    {
+      "Year": "1995",
+      "Month": "March",
+      "Health index": 71.29000000000026,
+      "Health index (moving average)": 71.14000000000026
+    },
+    {
+      "Year": "1995",
+      "Month": "April",
+      "Health index": 71.36000000000026,
+      "Health index (moving average)": 71.28000000000026
+    },
+    {
+      "Year": "1995",
+      "Month": "May",
+      "Health index": 71.32000000000025,
+      "Health index (moving average)": 71.33000000000025
+    },
+    {
+      "Year": "1995",
+      "Month": "June",
+      "Health index": 71.36000000000026,
+      "Health index (moving average)": 71.33000000000025
+    },
+    {
+      "Year": "1995",
+      "Month": "July",
+      "Health index": 71.85000000000025,
+      "Health index (moving average)": 71.47000000000025
+    },
+    {
+      "Year": "1995",
+      "Month": "August",
+      "Health index": 72.06000000000026,
+      "Health index (moving average)": 71.65000000000026
+    },
+    {
+      "Year": "1995",
+      "Month": "September",
+      "Health index": 71.81000000000026,
+      "Health index (moving average)": 71.77000000000025
+    },
+    {
+      "Year": "1995",
+      "Month": "October",
+      "Health index": 71.70000000000026,
+      "Health index (moving average)": 71.85000000000025
+    },
+    {
+      "Year": "1995",
+      "Month": "November",
+      "Health index": 71.81000000000026,
+      "Health index (moving average)": 71.85000000000025
+    },
+    {
+      "Year": "1995",
+      "Month": "December",
+      "Health index": 71.79000000000026,
+      "Health index (moving average)": 71.78000000000026
+    },
+    {
+      "Year": "1996",
+      "Month": "January",
+      "Health index": 72.35000000000025,
+      "Health index (moving average)": 71.91000000000025
+    },
+    {
+      "Year": "1996",
+      "Month": "February",
+      "Health index": 72.49000000000025,
+      "Health index (moving average)": 72.11000000000026
+    },
+    {
+      "Year": "1996",
+      "Month": "March",
+      "Health index": 72.51000000000026,
+      "Health index (moving average)": 72.28000000000026
+    },
+    {
+      "Year": "1996",
+      "Month": "April",
+      "Health index": 72.52000000000025,
+      "Health index (moving average)": 72.47000000000025
+    },
+    {
+      "Year": "1996",
+      "Month": "May",
+      "Health index": 72.37000000000026,
+      "Health index (moving average)": 72.47000000000025
+    },
+    {
+      "Year": "1996",
+      "Month": "June",
+      "Health index": 72.43000000000026,
+      "Health index (moving average)": 72.46000000000025
+    },
+    {
+      "Year": "1996",
+      "Month": "July",
+      "Health index": 72.94000000000025,
+      "Health index (moving average)": 72.57000000000025
+    },
+    {
+      "Year": "1996",
+      "Month": "August",
+      "Health index": 73.14000000000026,
+      "Health index (moving average)": 72.72000000000025
+    },
+    {
+      "Year": "1996",
+      "Month": "September",
+      "Health index": 72.92000000000026,
+      "Health index (moving average)": 72.86000000000026
+    },
+    {
+      "Year": "1996",
+      "Month": "October",
+      "Health index": 73.04000000000026,
+      "Health index (moving average)": 73.01000000000026
+    },
+    {
+      "Year": "1996",
+      "Month": "November",
+      "Health index": 73.11000000000026,
+      "Health index (moving average)": 73.05000000000025
+    },
+    {
+      "Year": "1996",
+      "Month": "December",
+      "Health index": 73.21000000000025,
+      "Health index (moving average)": 73.07000000000025
+    },
+    {
+      "Year": "1997",
+      "Month": "January",
+      "Health index": 73.69000000000025,
+      "Health index (moving average)": 73.26000000000026
+    },
+    {
+      "Year": "1997",
+      "Month": "February",
+      "Health index": 73.57000000000025,
+      "Health index (moving average)": 73.39000000000026
+    },
+    {
+      "Year": "1997",
+      "Month": "March",
+      "Health index": 73.22000000000025,
+      "Health index (moving average)": 73.43000000000026
+    },
+    {
+      "Year": "1997",
+      "Month": "April",
+      "Health index": 73.23000000000026,
+      "Health index (moving average)": 73.43000000000026
+    },
+    {
+      "Year": "1997",
+      "Month": "May",
+      "Health index": 73.31000000000026,
+      "Health index (moving average)": 73.34000000000026
+    },
+    {
+      "Year": "1997",
+      "Month": "June",
+      "Health index": 73.44000000000025,
+      "Health index (moving average)": 73.30000000000025
+    },
+    {
+      "Year": "1997",
+      "Month": "July",
+      "Health index": 74.11000000000027,
+      "Health index (moving average)": 73.53000000000026
+    },
+    {
+      "Year": "1997",
+      "Month": "August",
+      "Health index": 74.15000000000028,
+      "Health index (moving average)": 73.76000000000026
+    },
+    {
+      "Year": "1997",
+      "Month": "September",
+      "Health index": 73.84000000000026,
+      "Health index (moving average)": 73.89000000000026
+    },
+    {
+      "Year": "1997",
+      "Month": "October",
+      "Health index": 73.86000000000026,
+      "Health index (moving average)": 74.0
+    },
+    {
+      "Year": "1997",
+      "Month": "November",
+      "Health index": 74.07000000000026,
+      "Health index (moving average)": 73.98000000000026
+    },
+    {
+      "Year": "1997",
+      "Month": "December",
+      "Health index": 74.05000000000027,
+      "Health index (moving average)": 73.96000000000025
+    },
+    {
+      "Year": "1998",
+      "Month": "January",
+      "Health index": 74.11000000000027,
+      "Health index (moving average)": 74.02000000000027
+    },
+    {
+      "Year": "1998",
+      "Month": "February",
+      "Health index": 74.29000000000028,
+      "Health index (moving average)": 74.13000000000027
+    },
+    {
+      "Year": "1998",
+      "Month": "March",
+      "Health index": 74.20000000000027,
+      "Health index (moving average)": 74.16000000000027
+    },
+    {
+      "Year": "1998",
+      "Month": "April",
+      "Health index": 74.56000000000027,
+      "Health index (moving average)": 74.29000000000028
+    },
+    {
+      "Year": "1998",
+      "Month": "May",
+      "Health index": 74.96000000000026,
+      "Health index (moving average)": 74.50000000000027
+    },
+    {
+      "Year": "1998",
+      "Month": "June",
+      "Health index": 74.88000000000027,
+      "Health index (moving average)": 74.65000000000028
+    },
+    {
+      "Year": "1998",
+      "Month": "July",
+      "Health index": 75.07000000000026,
+      "Health index (moving average)": 74.87000000000027
+    },
+    {
+      "Year": "1998",
+      "Month": "August",
+      "Health index": 74.77000000000027,
+      "Health index (moving average)": 74.93000000000028
+    },
+    {
+      "Year": "1998",
+      "Month": "September",
+      "Health index": 74.75000000000027,
+      "Health index (moving average)": 74.87000000000027
+    },
+    {
+      "Year": "1998",
+      "Month": "October",
+      "Health index": 74.76000000000028,
+      "Health index (moving average)": 74.84000000000027
+    },
+    {
+      "Year": "1998",
+      "Month": "November",
+      "Health index": 74.75000000000027,
+      "Health index (moving average)": 74.76000000000028
+    },
+    {
+      "Year": "1998",
+      "Month": "December",
+      "Health index": 74.75000000000027,
+      "Health index (moving average)": 74.75000000000027
+    },
+    {
+      "Year": "1999",
+      "Month": "January",
+      "Health index": 75.01000000000028,
+      "Health index (moving average)": 74.82000000000026
+    },
+    {
+      "Year": "1999",
+      "Month": "February",
+      "Health index": 75.19000000000027,
+      "Health index (moving average)": 74.93000000000028
+    },
+    {
+      "Year": "1999",
+      "Month": "March",
+      "Health index": 75.20000000000027,
+      "Health index (moving average)": 75.04000000000028
+    },
+    {
+      "Year": "1999",
+      "Month": "April",
+      "Health index": 75.38000000000027,
+      "Health index (moving average)": 75.20000000000027
+    },
+    {
+      "Year": "1999",
+      "Month": "May",
+      "Health index": 75.50000000000027,
+      "Health index (moving average)": 75.32000000000026
+    },
+    {
+      "Year": "1999",
+      "Month": "June",
+      "Health index": 75.37000000000027,
+      "Health index (moving average)": 75.36000000000027
+    },
+    {
+      "Year": "1999",
+      "Month": "July",
+      "Health index": 75.39000000000027,
+      "Health index (moving average)": 75.41000000000027
+    },
+    {
+      "Year": "1999",
+      "Month": "August",
+      "Health index": 75.20000000000027,
+      "Health index (moving average)": 75.37000000000027
+    },
+    {
+      "Year": "1999",
+      "Month": "September",
+      "Health index": 75.35000000000026,
+      "Health index (moving average)": 75.33000000000027
+    },
+    {
+      "Year": "1999",
+      "Month": "October",
+      "Health index": 75.44000000000027,
+      "Health index (moving average)": 75.35000000000026
+    },
+    {
+      "Year": "1999",
+      "Month": "November",
+      "Health index": 75.57000000000026,
+      "Health index (moving average)": 75.39000000000027
+    },
+    {
+      "Year": "1999",
+      "Month": "December",
+      "Health index": 75.71000000000026,
+      "Health index (moving average)": 75.51000000000028
+    },
+    {
+      "Year": "2000",
+      "Month": "January",
+      "Health index": 75.90000000000028,
+      "Health index (moving average)": 75.65000000000028
+    },
+    {
+      "Year": "2000",
+      "Month": "February",
+      "Health index": 76.10000000000026,
+      "Health index (moving average)": 75.82000000000026
+    },
+    {
+      "Year": "2000",
+      "Month": "March",
+      "Health index": 76.27000000000027,
+      "Health index (moving average)": 75.99000000000026
+    },
+    {
+      "Year": "2000",
+      "Month": "April",
+      "Health index": 76.48000000000027,
+      "Health index (moving average)": 76.19000000000027
+    },
+    {
+      "Year": "2000",
+      "Month": "May",
+      "Health index": 76.57000000000026,
+      "Health index (moving average)": 76.36000000000027
+    },
+    {
+      "Year": "2000",
+      "Month": "June",
+      "Health index": 76.73000000000027,
+      "Health index (moving average)": 76.52000000000027
+    },
+    {
+      "Year": "2000",
+      "Month": "July",
+      "Health index": 76.92000000000027,
+      "Health index (moving average)": 76.68000000000028
+    },
+    {
+      "Year": "2000",
+      "Month": "August",
+      "Health index": 76.96000000000026,
+      "Health index (moving average)": 76.80000000000027
+    },
+    {
+      "Year": "2000",
+      "Month": "September",
+      "Health index": 77.29000000000028,
+      "Health index (moving average)": 76.98000000000027
+    },
+    {
+      "Year": "2000",
+      "Month": "October",
+      "Health index": 77.18000000000028,
+      "Health index (moving average)": 77.09000000000027
+    },
+    {
+      "Year": "2000",
+      "Month": "November",
+      "Health index": 77.47000000000027,
+      "Health index (moving average)": 77.23000000000027
+    },
+    {
+      "Year": "2000",
+      "Month": "December",
+      "Health index": 77.44000000000027,
+      "Health index (moving average)": 77.35000000000026
+    },
+    {
+      "Year": "2001",
+      "Month": "January",
+      "Health index": 77.50000000000027,
+      "Health index (moving average)": 77.40000000000028
+    },
+    {
+      "Year": "2001",
+      "Month": "February",
+      "Health index": 77.75000000000027,
+      "Health index (moving average)": 77.54000000000028
+    },
+    {
+      "Year": "2001",
+      "Month": "March",
+      "Health index": 77.98000000000027,
+      "Health index (moving average)": 77.67000000000027
+    },
+    {
+      "Year": "2001",
+      "Month": "April",
+      "Health index": 78.56000000000029,
+      "Health index (moving average)": 77.95000000000027
+    },
+    {
+      "Year": "2001",
+      "Month": "May",
+      "Health index": 78.94000000000028,
+      "Health index (moving average)": 78.31000000000029
+    },
+    {
+      "Year": "2001",
+      "Month": "June",
+      "Health index": 79.19000000000028,
+      "Health index (moving average)": 78.67000000000029
+    },
+    {
+      "Year": "2001",
+      "Month": "July",
+      "Health index": 79.27000000000028,
+      "Health index (moving average)": 78.99000000000028
+    },
+    {
+      "Year": "2001",
+      "Month": "August",
+      "Health index": 79.32000000000028,
+      "Health index (moving average)": 79.18000000000029
+    },
+    {
+      "Year": "2001",
+      "Month": "September",
+      "Health index": 79.45000000000029,
+      "Health index (moving average)": 79.31000000000029
+    },
+    {
+      "Year": "2001",
+      "Month": "October",
+      "Health index": 79.49000000000028,
+      "Health index (moving average)": 79.38000000000028
+    },
+    {
+      "Year": "2001",
+      "Month": "November",
+      "Health index": 79.64000000000028,
+      "Health index (moving average)": 79.48000000000029
+    },
+    {
+      "Year": "2001",
+      "Month": "December",
+      "Health index": 79.50000000000028,
+      "Health index (moving average)": 79.52000000000028
+    },
+    {
+      "Year": "2002",
+      "Month": "January",
+      "Health index": 80.01000000000029,
+      "Health index (moving average)": 79.66000000000028
+    },
+    {
+      "Year": "2002",
+      "Month": "February",
+      "Health index": 80.12000000000029,
+      "Health index (moving average)": 79.82000000000028
+    },
+    {
+      "Year": "2002",
+      "Month": "March",
+      "Health index": 80.30000000000028,
+      "Health index (moving average)": 79.98000000000029
+    },
+    {
+      "Year": "2002",
+      "Month": "April",
+      "Health index": 80.14000000000028,
+      "Health index (moving average)": 80.14000000000028
+    },
+    {
+      "Year": "2002",
+      "Month": "May",
+      "Health index": 80.31000000000029,
+      "Health index (moving average)": 80.22000000000028
+    },
+    {
+      "Year": "2002",
+      "Month": "June",
+      "Health index": 80.12000000000029,
+      "Health index (moving average)": 80.22000000000028
+    },
+    {
+      "Year": "2002",
+      "Month": "July",
+      "Health index": 80.38000000000028,
+      "Health index (moving average)": 80.24000000000028
+    },
+    {
+      "Year": "2002",
+      "Month": "August",
+      "Health index": 80.34000000000029,
+      "Health index (moving average)": 80.29000000000029
+    },
+    {
+      "Year": "2002",
+      "Month": "September",
+      "Health index": 80.51000000000029,
+      "Health index (moving average)": 80.34000000000029
+    },
+    {
+      "Year": "2002",
+      "Month": "October",
+      "Health index": 80.37000000000029,
+      "Health index (moving average)": 80.40000000000029
+    },
+    {
+      "Year": "2002",
+      "Month": "November",
+      "Health index": 80.39000000000028,
+      "Health index (moving average)": 80.41000000000028
+    },
+    {
+      "Year": "2002",
+      "Month": "December",
+      "Health index": 80.46000000000028,
+      "Health index (moving average)": 80.43000000000029
+    },
+    {
+      "Year": "2003",
+      "Month": "January",
+      "Health index": 80.74000000000028,
+      "Health index (moving average)": 80.49000000000028
+    },
+    {
+      "Year": "2003",
+      "Month": "February",
+      "Health index": 81.19000000000028,
+      "Health index (moving average)": 80.70000000000029
+    },
+    {
+      "Year": "2003",
+      "Month": "March",
+      "Health index": 81.38000000000028,
+      "Health index (moving average)": 80.95000000000029
+    },
+    {
+      "Year": "2003",
+      "Month": "April",
+      "Health index": 81.32000000000028,
+      "Health index (moving average)": 81.16000000000028
+    },
+    {
+      "Year": "2003",
+      "Month": "May",
+      "Health index": 81.20000000000029,
+      "Health index (moving average)": 81.28000000000029
+    },
+    {
+      "Year": "2003",
+      "Month": "June",
+      "Health index": 81.40000000000029,
+      "Health index (moving average)": 81.33000000000028
+    },
+    {
+      "Year": "2003",
+      "Month": "July",
+      "Health index": 81.56000000000029,
+      "Health index (moving average)": 81.38000000000028
+    },
+    {
+      "Year": "2003",
+      "Month": "August",
+      "Health index": 81.66000000000028,
+      "Health index (moving average)": 81.46000000000028
+    },
+    {
+      "Year": "2003",
+      "Month": "September",
+      "Health index": 81.86000000000028,
+      "Health index (moving average)": 81.62000000000029
+    },
+    {
+      "Year": "2003",
+      "Month": "October",
+      "Health index": 81.62000000000029,
+      "Health index (moving average)": 81.67000000000029
+    },
+    {
+      "Year": "2003",
+      "Month": "November",
+      "Health index": 81.78000000000029,
+      "Health index (moving average)": 81.73000000000029
+    },
+    {
+      "Year": "2003",
+      "Month": "December",
+      "Health index": 81.75000000000028,
+      "Health index (moving average)": 81.75000000000028
+    },
+    {
+      "Year": "2004",
+      "Month": "January",
+      "Health index": 82.0,
+      "Health index (moving average)": 81.79000000000029
+    },
+    {
+      "Year": "2004",
+      "Month": "February",
+      "Health index": 82.2600000000003,
+      "Health index (moving average)": 81.95000000000029
+    },
+    {
+      "Year": "2004",
+      "Month": "March",
+      "Health index": 82.2800000000003,
+      "Health index (moving average)": 82.07000000000029
+    },
+    {
+      "Year": "2004",
+      "Month": "April",
+      "Health index": 82.6100000000003,
+      "Health index (moving average)": 82.2900000000003
+    },
+    {
+      "Year": "2004",
+      "Month": "May",
+      "Health index": 82.7300000000003,
+      "Health index (moving average)": 82.4700000000003
+    },
+    {
+      "Year": "2004",
+      "Month": "June",
+      "Health index": 82.71000000000029,
+      "Health index (moving average)": 82.5800000000003
+    },
+    {
+      "Year": "2004",
+      "Month": "July",
+      "Health index": 82.9700000000003,
+      "Health index (moving average)": 82.7600000000003
+    },
+    {
+      "Year": "2004",
+      "Month": "August",
+      "Health index": 82.9900000000003,
+      "Health index (moving average)": 82.8600000000003
+    },
+    {
+      "Year": "2004",
+      "Month": "September",
+      "Health index": 83.0300000000003,
+      "Health index (moving average)": 82.9300000000003
+    },
+    {
+      "Year": "2004",
+      "Month": "October",
+      "Health index": 83.3300000000003,
+      "Health index (moving average)": 83.0800000000003
+    },
+    {
+      "Year": "2004",
+      "Month": "November",
+      "Health index": 83.32000000000029,
+      "Health index (moving average)": 83.1700000000003
+    },
+    {
+      "Year": "2004",
+      "Month": "December",
+      "Health index": 83.1500000000003,
+      "Health index (moving average)": 83.21000000000029
+    },
+    {
+      "Year": "2005",
+      "Month": "January",
+      "Health index": 83.46000000000029,
+      "Health index (moving average)": 83.32000000000029
+    },
+    {
+      "Year": "2005",
+      "Month": "February",
+      "Health index": 83.9000000000003,
+      "Health index (moving average)": 83.46000000000029
+    },
+    {
+      "Year": "2005",
+      "Month": "March",
+      "Health index": 84.35000000000029,
+      "Health index (moving average)": 83.7200000000003
+    },
+    {
+      "Year": "2005",
+      "Month": "April",
+      "Health index": 84.3300000000003,
+      "Health index (moving average)": 84.0200000000003
+    },
+    {
+      "Year": "2005",
+      "Month": "May",
+      "Health index": 84.4900000000003,
+      "Health index (moving average)": 84.2700000000003
+    },
+    {
+      "Year": "2005",
+      "Month": "June",
+      "Health index": 84.6400000000003,
+      "Health index (moving average)": 84.46000000000029
+    },
+    {
+      "Year": "2005",
+      "Month": "July",
+      "Health index": 84.9800000000003,
+      "Health index (moving average)": 84.6100000000003
+    },
+    {
+      "Year": "2005",
+      "Month": "August",
+      "Health index": 84.9900000000003,
+      "Health index (moving average)": 84.7800000000003
+    },
+    {
+      "Year": "2005",
+      "Month": "September",
+      "Health index": 84.9000000000003,
+      "Health index (moving average)": 84.8800000000003
+    },
+    {
+      "Year": "2005",
+      "Month": "October",
+      "Health index": 84.7600000000003,
+      "Health index (moving average)": 84.9100000000003
+    },
+    {
+      "Year": "2005",
+      "Month": "November",
+      "Health index": 85.0200000000003,
+      "Health index (moving average)": 84.9200000000003
+    },
+    {
+      "Year": "2005",
+      "Month": "December",
+      "Health index": 85.0900000000003,
+      "Health index (moving average)": 84.9400000000003
+    },
+    {
+      "Year": "2006",
+      "Month": "January",
+      "Health index": 85.1300000000003,
+      "Health index (moving average)": 85.0
+    },
+    {
+      "Year": "2006",
+      "Month": "February",
+      "Health index": 85.5400000000003,
+      "Health index (moving average)": 85.1900000000003
+    },
+    {
+      "Year": "2006",
+      "Month": "March",
+      "Health index": 85.4700000000003,
+      "Health index (moving average)": 85.3100000000003
+    },
+    {
+      "Year": "2006",
+      "Month": "April",
+      "Health index": 85.7800000000003,
+      "Health index (moving average)": 85.4800000000003
+    },
+    {
+      "Year": "2006",
+      "Month": "May",
+      "Health index": 86.0700000000003,
+      "Health index (moving average)": 85.71000000000029
+    },
+    {
+      "Year": "2006",
+      "Month": "June",
+      "Health index": 86.05000000000031,
+      "Health index (moving average)": 85.85000000000029
+    },
+    {
+      "Year": "2006",
+      "Month": "July",
+      "Health index": 86.3200000000003,
+      "Health index (moving average)": 86.05000000000031
+    },
+    {
+      "Year": "2006",
+      "Month": "August",
+      "Health index": 86.43000000000032,
+      "Health index (moving average)": 86.22000000000031
+    },
+    {
+      "Year": "2006",
+      "Month": "September",
+      "Health index": 86.41000000000031,
+      "Health index (moving average)": 86.30000000000031
+    },
+    {
+      "Year": "2006",
+      "Month": "October",
+      "Health index": 86.38000000000031,
+      "Health index (moving average)": 86.39000000000031
+    },
+    {
+      "Year": "2006",
+      "Month": "November",
+      "Health index": 86.59000000000032,
+      "Health index (moving average)": 86.45000000000032
+    },
+    {
+      "Year": "2006",
+      "Month": "December",
+      "Health index": 86.68000000000032,
+      "Health index (moving average)": 86.52000000000031
+    },
+    {
+      "Year": "2007",
+      "Month": "January",
+      "Health index": 86.87000000000032,
+      "Health index (moving average)": 86.63000000000031
+    },
+    {
+      "Year": "2007",
+      "Month": "February",
+      "Health index": 87.3200000000003,
+      "Health index (moving average)": 86.87000000000032
+    },
+    {
+      "Year": "2007",
+      "Month": "March",
+      "Health index": 87.13000000000031,
+      "Health index (moving average)": 87.0
+    },
+    {
+      "Year": "2007",
+      "Month": "April",
+      "Health index": 87.42000000000031,
+      "Health index (moving average)": 87.19000000000031
+    },
+    {
+      "Year": "2007",
+      "Month": "May",
+      "Health index": 87.22000000000031,
+      "Health index (moving average)": 87.27000000000031
+    },
+    {
+      "Year": "2007",
+      "Month": "June",
+      "Health index": 87.17000000000031,
+      "Health index (moving average)": 87.24000000000031
+    },
+    {
+      "Year": "2007",
+      "Month": "July",
+      "Health index": 87.52000000000031,
+      "Health index (moving average)": 87.34000000000032
+    },
+    {
+      "Year": "2007",
+      "Month": "August",
+      "Health index": 87.49000000000031,
+      "Health index (moving average)": 87.3500000000003
+    },
+    {
+      "Year": "2007",
+      "Month": "September",
+      "Health index": 87.53000000000031,
+      "Health index (moving average)": 87.43000000000032
+    },
+    {
+      "Year": "2007",
+      "Month": "October",
+      "Health index": 87.93000000000032,
+      "Health index (moving average)": 87.62000000000032
+    },
+    {
+      "Year": "2007",
+      "Month": "November",
+      "Health index": 88.54000000000032,
+      "Health index (moving average)": 87.88000000000031
+    },
+    {
+      "Year": "2007",
+      "Month": "December",
+      "Health index": 88.9600000000003,
+      "Health index (moving average)": 88.24000000000031
+    },
+    {
+      "Year": "2008",
+      "Month": "January",
+      "Health index": 89.30000000000031,
+      "Health index (moving average)": 88.68000000000032
+    },
+    {
+      "Year": "2008",
+      "Month": "February",
+      "Health index": 90.01000000000033,
+      "Health index (moving average)": 89.20000000000032
+    },
+    {
+      "Year": "2008",
+      "Month": "March",
+      "Health index": 90.52000000000032,
+      "Health index (moving average)": 89.70000000000032
+    },
+    {
+      "Year": "2008",
+      "Month": "April",
+      "Health index": 90.66000000000032,
+      "Health index (moving average)": 90.12000000000033
+    },
+    {
+      "Year": "2008",
+      "Month": "May",
+      "Health index": 91.25000000000033,
+      "Health index (moving average)": 90.61000000000033
+    },
+    {
+      "Year": "2008",
+      "Month": "June",
+      "Health index": 91.59000000000033,
+      "Health index (moving average)": 91.01000000000033
+    },
+    {
+      "Year": "2008",
+      "Month": "July",
+      "Health index": 92.09000000000033,
+      "Health index (moving average)": 91.39000000000033
+    },
+    {
+      "Year": "2008",
+      "Month": "August",
+      "Health index": 91.81000000000033,
+      "Health index (moving average)": 91.68000000000033
+    },
+    {
+      "Year": "2008",
+      "Month": "September",
+      "Health index": 92.03000000000033,
+      "Health index (moving average)": 91.88000000000032
+    },
+    {
+      "Year": "2008",
+      "Month": "October",
+      "Health index": 92.15000000000033,
+      "Health index (moving average)": 92.02000000000032
+    },
+    {
+      "Year": "2008",
+      "Month": "November",
+      "Health index": 91.98000000000033,
+      "Health index (moving average)": 91.99000000000032
+    },
+    {
+      "Year": "2008",
+      "Month": "December",
+      "Health index": 92.11000000000033,
+      "Health index (moving average)": 92.07000000000032
+    },
+    {
+      "Year": "2009",
+      "Month": "January",
+      "Health index": 92.28000000000033,
+      "Health index (moving average)": 92.13000000000032
+    },
+    {
+      "Year": "2009",
+      "Month": "February",
+      "Health index": 92.53000000000033,
+      "Health index (moving average)": 92.22000000000033
+    },
+    {
+      "Year": "2009",
+      "Month": "March",
+      "Health index": 91.97000000000033,
+      "Health index (moving average)": 92.22000000000033
+    },
+    {
+      "Year": "2009",
+      "Month": "April",
+      "Health index": 92.05000000000032,
+      "Health index (moving average)": 92.21000000000032
+    },
+    {
+      "Year": "2009",
+      "Month": "May",
+      "Health index": 91.87000000000033,
+      "Health index (moving average)": 92.11000000000033
+    },
+    {
+      "Year": "2009",
+      "Month": "June",
+      "Health index": 91.49000000000032,
+      "Health index (moving average)": 91.85000000000032
+    },
+    {
+      "Year": "2009",
+      "Month": "July",
+      "Health index": 91.48000000000033,
+      "Health index (moving average)": 91.73000000000033
+    },
+    {
+      "Year": "2009",
+      "Month": "August",
+      "Health index": 91.63000000000032,
+      "Health index (moving average)": 91.62000000000033
+    },
+    {
+      "Year": "2009",
+      "Month": "September",
+      "Health index": 91.46000000000032,
+      "Health index (moving average)": 91.52000000000032
+    },
+    {
+      "Year": "2009",
+      "Month": "October",
+      "Health index": 91.61000000000033,
+      "Health index (moving average)": 91.54000000000033
+    },
+    {
+      "Year": "2009",
+      "Month": "November",
+      "Health index": 91.70000000000033,
+      "Health index (moving average)": 91.60000000000032
+    },
+    {
+      "Year": "2009",
+      "Month": "December",
+      "Health index": 91.87000000000033,
+      "Health index (moving average)": 91.66000000000032
+    },
+    {
+      "Year": "2010",
+      "Month": "January",
+      "Health index": 92.21000000000032,
+      "Health index (moving average)": 91.85000000000032
+    },
+    {
+      "Year": "2010",
+      "Month": "February",
+      "Health index": 92.65000000000033,
+      "Health index (moving average)": 92.11000000000033
+    },
+    {
+      "Year": "2010",
+      "Month": "March",
+      "Health index": 92.83000000000033,
+      "Health index (moving average)": 92.39000000000033
+    },
+    {
+      "Year": "2010",
+      "Month": "April",
+      "Health index": 93.02000000000032,
+      "Health index (moving average)": 92.68000000000033
+    },
+    {
+      "Year": "2010",
+      "Month": "May",
+      "Health index": 93.33000000000033,
+      "Health index (moving average)": 92.96000000000032
+    },
+    {
+      "Year": "2010",
+      "Month": "June",
+      "Health index": 93.35000000000032,
+      "Health index (moving average)": 93.13000000000032
+    },
+    {
+      "Year": "2010",
+      "Month": "July",
+      "Health index": 93.45000000000033,
+      "Health index (moving average)": 93.29000000000033
+    },
+    {
+      "Year": "2010",
+      "Month": "August",
+      "Health index": 93.51000000000033,
+      "Health index (moving average)": 93.41000000000032
+    },
+    {
+      "Year": "2010",
+      "Month": "September",
+      "Health index": 93.80000000000032,
+      "Health index (moving average)": 93.53000000000033
+    },
+    {
+      "Year": "2010",
+      "Month": "October",
+      "Health index": 93.94000000000032,
+      "Health index (moving average)": 93.68000000000033
+    },
+    {
+      "Year": "2010",
+      "Month": "November",
+      "Health index": 94.02000000000034,
+      "Health index (moving average)": 93.82000000000032
+    },
+    {
+      "Year": "2010",
+      "Month": "December",
+      "Health index": 94.26000000000035,
+      "Health index (moving average)": 94.01000000000035
+    },
+    {
+      "Year": "2011",
+      "Month": "January",
+      "Health index": 94.71000000000033,
+      "Health index (moving average)": 94.23000000000035
+    },
+    {
+      "Year": "2011",
+      "Month": "February",
+      "Health index": 95.26000000000035,
+      "Health index (moving average)": 94.57000000000033
+    },
+    {
+      "Year": "2011",
+      "Month": "March",
+      "Health index": 95.54000000000035,
+      "Health index (moving average)": 94.95000000000034
+    },
+    {
+      "Year": "2011",
+      "Month": "April",
+      "Health index": 95.69000000000034,
+      "Health index (moving average)": 95.30000000000034
+    },
+    {
+      "Year": "2011",
+      "Month": "May",
+      "Health index": 96.03000000000034,
+      "Health index (moving average)": 95.63000000000034
+    },
+    {
+      "Year": "2011",
+      "Month": "June",
+      "Health index": 96.40000000000035,
+      "Health index (moving average)": 95.92000000000034
+    },
+    {
+      "Year": "2011",
+      "Month": "July",
+      "Health index": 96.55000000000034,
+      "Health index (moving average)": 96.17000000000034
+    },
+    {
+      "Year": "2011",
+      "Month": "August",
+      "Health index": 96.45000000000034,
+      "Health index (moving average)": 96.36000000000034
+    },
+    {
+      "Year": "2011",
+      "Month": "September",
+      "Health index": 96.65000000000035,
+      "Health index (moving average)": 96.52000000000034
+    },
+    {
+      "Year": "2011",
+      "Month": "October",
+      "Health index": 96.84000000000034,
+      "Health index (moving average)": 96.63000000000034
+    },
+    {
+      "Year": "2011",
+      "Month": "November",
+      "Health index": 97.21000000000033,
+      "Health index (moving average)": 96.79000000000035
+    },
+    {
+      "Year": "2011",
+      "Month": "December",
+      "Health index": 97.31000000000034,
+      "Health index (moving average)": 97.0
+    },
+    {
+      "Year": "2012",
+      "Month": "January",
+      "Health index": 97.91000000000034,
+      "Health index (moving average)": 97.31000000000034
+    },
+    {
+      "Year": "2012",
+      "Month": "February",
+      "Health index": 98.51000000000036,
+      "Health index (moving average)": 97.74000000000034
+    },
+    {
+      "Year": "2012",
+      "Month": "March",
+      "Health index": 98.54000000000036,
+      "Health index (moving average)": 98.07000000000035
+    },
+    {
+      "Year": "2012",
+      "Month": "April",
+      "Health index": 98.52000000000035,
+      "Health index (moving average)": 98.37000000000036
+    },
+    {
+      "Year": "2012",
+      "Month": "May",
+      "Health index": 98.66000000000035,
+      "Health index (moving average)": 98.56000000000036
+    },
+    {
+      "Year": "2012",
+      "Month": "June",
+      "Health index": 98.53000000000036,
+      "Health index (moving average)": 98.57000000000035
+    },
+    {
+      "Year": "2012",
+      "Month": "July",
+      "Health index": 98.71000000000035,
+      "Health index (moving average)": 98.61000000000035
+    },
+    {
+      "Year": "2012",
+      "Month": "August",
+      "Health index": 98.92000000000036,
+      "Health index (moving average)": 98.71000000000035
+    },
+    {
+      "Year": "2012",
+      "Month": "September",
+      "Health index": 98.96000000000035,
+      "Health index (moving average)": 98.78000000000036
+    },
+    {
+      "Year": "2012",
+      "Month": "October",
+      "Health index": 99.25000000000036,
+      "Health index (moving average)": 98.96000000000035
+    },
+    {
+      "Year": "2012",
+      "Month": "November",
+      "Health index": 99.32000000000035,
+      "Health index (moving average)": 99.11000000000035
+    },
+    {
+      "Year": "2012",
+      "Month": "December",
+      "Health index": 99.41000000000035,
+      "Health index (moving average)": 99.24000000000035
+    },
+    {
+      "Year": "2013",
+      "Month": "January",
+      "Health index": 99.36000000000035,
+      "Health index (moving average)": 99.34000000000036
+    },
+    {
+      "Year": "2013",
+      "Month": "February",
+      "Health index": 99.58000000000035,
+      "Health index (moving average)": 99.42000000000036
+    },
+    {
+      "Year": "2013",
+      "Month": "March",
+      "Health index": 99.77000000000035,
+      "Health index (moving average)": 99.53000000000036
+    },
+    {
+      "Year": "2013",
+      "Month": "April",
+      "Health index": 99.77000000000035,
+      "Health index (moving average)": 99.62000000000036
+    },
+    {
+      "Year": "2013",
+      "Month": "May",
+      "Health index": 100.03000000000036,
+      "Health index (moving average)": 99.79000000000036
+    },
+    {
+      "Year": "2013",
+      "Month": "June",
+      "Health index": 100.20000000000036,
+      "Health index (moving average)": 99.94000000000035
+    },
+    {
+      "Year": "2013",
+      "Month": "July",
+      "Health index": 100.24000000000035,
+      "Health index (moving average)": 100.06000000000036
+    },
+    {
+      "Year": "2013",
+      "Month": "August",
+      "Health index": 100.10000000000035,
+      "Health index (moving average)": 100.14000000000036
+    },
+    {
+      "Year": "2013",
+      "Month": "September",
+      "Health index": 100.03000000000036,
+      "Health index (moving average)": 100.14000000000036
+    },
+    {
+      "Year": "2013",
+      "Month": "October",
+      "Health index": 100.18000000000036,
+      "Health index (moving average)": 100.14000000000036
+    },
+    {
+      "Year": "2013",
+      "Month": "November",
+      "Health index": 100.29000000000036,
+      "Health index (moving average)": 100.15000000000036
+    },
+    {
+      "Year": "2013",
+      "Month": "December",
+      "Health index": 100.41000000000035,
+      "Health index (moving average)": 100.23000000000036
+    },
+    {
+      "Year": "2014",
+      "Month": "January",
+      "Health index": 100.60000000000035,
+      "Health index (moving average)": 100.37000000000036
+    },
+    {
+      "Year": "2014",
+      "Month": "February",
+      "Health index": 100.75000000000036,
+      "Health index (moving average)": 100.51000000000036
+    },
+    {
+      "Year": "2014",
+      "Month": "March",
+      "Health index": 100.79000000000036,
+      "Health index (moving average)": 100.64000000000036
+    },
+    {
+      "Year": "2014",
+      "Month": "April",
+      "Health index": 100.44000000000035,
+      "Health index (moving average)": 100.65000000000036
+    },
+    {
+      "Year": "2014",
+      "Month": "May",
+      "Health index": 100.29000000000036,
+      "Health index (moving average)": 100.57000000000035
+    },
+    {
+      "Year": "2014",
+      "Month": "June",
+      "Health index": 100.34000000000036,
+      "Health index (moving average)": 100.47000000000035
+    },
+    {
+      "Year": "2014",
+      "Month": "July",
+      "Health index": 100.46000000000035,
+      "Health index (moving average)": 100.38000000000035
+    },
+    {
+      "Year": "2014",
+      "Month": "August",
+      "Health index": 100.12000000000036,
+      "Health index (moving average)": 100.30000000000035
+    },
+    {
+      "Year": "2014",
+      "Month": "September",
+      "Health index": 100.06000000000036,
+      "Health index (moving average)": 100.25000000000036
+    },
+    {
+      "Year": "2014",
+      "Month": "October",
+      "Health index": 100.28000000000036,
+      "Health index (moving average)": 100.23000000000036
+    },
+    {
+      "Year": "2014",
+      "Month": "November",
+      "Health index": 100.28000000000036,
+      "Health index (moving average)": 100.19000000000035
+    },
+    {
+      "Year": "2014",
+      "Month": "December",
+      "Health index": 100.40000000000036,
+      "Health index (moving average)": 100.26000000000036
+    },
+    {
+      "Year": "2015",
+      "Month": "January",
+      "Health index": 100.61000000000035,
+      "Health index (moving average)": 100.39000000000036
+    },
+    {
+      "Year": "2015",
+      "Month": "February",
+      "Health index": 100.89000000000036,
+      "Health index (moving average)": 100.55000000000035
+    },
+    {
+      "Year": "2015",
+      "Month": "March",
+      "Health index": 100.73000000000036,
+      "Health index (moving average)": 100.66000000000035
+    },
+    {
+      "Year": "2015",
+      "Month": "April",
+      "Health index": 101.12000000000036,
+      "Health index (moving average)": 100.66000000000035
+    },
+    {
+      "Year": "2015",
+      "Month": "May",
+      "Health index": 101.16000000000035,
+      "Health index (moving average)": 100.66000000000035
+    },
+    {
+      "Year": "2015",
+      "Month": "June",
+      "Health index": 101.33000000000035,
+      "Health index (moving average)": 100.66000000000035
+    },
+    {
+      "Year": "2015",
+      "Month": "July",
+      "Health index": 101.37000000000036,
+      "Health index (moving average)": 100.66000000000035
+    },
+    {
+      "Year": "2015",
+      "Month": "August",
+      "Health index": 101.61000000000035,
+      "Health index (moving average)": 100.66000000000035
+    },
+    {
+      "Year": "2015",
+      "Month": "September",
+      "Health index": 101.85000000000035,
+      "Health index (moving average)": 100.66000000000035
+    },
+    {
+      "Year": "2015",
+      "Month": "October",
+      "Health index": 102.27000000000037,
+      "Health index (moving average)": 100.66000000000035
+    },
+    {
+      "Year": "2015",
+      "Month": "November",
+      "Health index": 102.28000000000037,
+      "Health index (moving average)": 100.66000000000035
+    },
+    {
+      "Year": "2015",
+      "Month": "December",
+      "Health index": 102.23000000000037,
+      "Health index (moving average)": 100.66000000000035
+    },
+    {
+      "Year": "2016",
+      "Month": "January",
+      "Health index": 102.42000000000037,
+      "Health index (moving average)": 100.66000000000035
+    },
+    {
+      "Year": "2016",
+      "Month": "February",
+      "Health index": 102.53000000000037,
+      "Health index (moving average)": 100.66000000000035
+    },
+    {
+      "Year": "2016",
+      "Month": "March",
+      "Health index": 103.47000000000037,
+      "Health index (moving average)": 100.66000000000035
+    },
+    {
+      "Year": "2016",
+      "Month": "April",
+      "Health index": 103.53000000000037,
+      "Health index (moving average)": 100.93000000000036
+    },
+    {
+      "Year": "2016",
+      "Month": "May",
+      "Health index": 103.77000000000037,
+      "Health index (moving average)": 101.26000000000036
+    },
+    {
+      "Year": "2016",
+      "Month": "June",
+      "Health index": 103.74000000000036,
+      "Health index (moving average)": 101.55000000000035
+    },
+    {
+      "Year": "2016",
+      "Month": "July",
+      "Health index": 103.93000000000038,
+      "Health index (moving average)": 101.67000000000036
+    },
+    {
+      "Year": "2016",
+      "Month": "August",
+      "Health index": 103.97000000000037,
+      "Health index (moving average)": 101.78000000000036
+    },
+    {
+      "Year": "2016",
+      "Month": "September",
+      "Health index": 103.68000000000038,
+      "Health index (moving average)": 101.75000000000036
+    },
+    {
+      "Year": "2016",
+      "Month": "October",
+      "Health index": 103.86000000000037,
+      "Health index (moving average)": 101.78000000000036
+    },
+    {
+      "Year": "2016",
+      "Month": "November",
+      "Health index": 103.97000000000037,
+      "Health index (moving average)": 101.79000000000036
+    },
+    {
+      "Year": "2016",
+      "Month": "December",
+      "Health index": 104.05000000000037,
+      "Health index (moving average)": 101.81000000000036
+    },
+    {
+      "Year": "2017",
+      "Month": "January",
+      "Health index": 104.65000000000038,
+      "Health index (moving average)": 102.05000000000037
+    },
+    {
+      "Year": "2017",
+      "Month": "February",
+      "Health index": 105.06000000000037,
+      "Health index (moving average)": 102.34000000000037
+    },
+    {
+      "Year": "2017",
+      "Month": "March",
+      "Health index": 105.32000000000036,
+      "Health index (moving average)": 102.67000000000037
+    },
+    {
+      "Year": "2017",
+      "Month": "April",
+      "Health index": 105.46000000000036,
+      "Health index (moving average)": 103.02000000000037
+    },
+    {
+      "Year": "2017",
+      "Month": "May",
+      "Health index": 105.42000000000037,
+      "Health index (moving average)": 103.21000000000036
+    },
+    {
+      "Year": "2017",
+      "Month": "June",
+      "Health index": 105.29000000000038,
+      "Health index (moving average)": 103.27000000000037
+    },
+    {
+      "Year": "2017",
+      "Month": "July",
+      "Health index": 105.63000000000036,
+      "Health index (moving average)": 103.34000000000037
+    },
+    {
+      "Year": "2017",
+      "Month": "August",
+      "Health index": 105.68000000000038,
+      "Health index (moving average)": 103.39000000000037
+    },
+    {
+      "Year": "2017",
+      "Month": "September",
+      "Health index": 105.51000000000037,
+      "Health index (moving average)": 103.42000000000037
+    },
+    {
+      "Year": "2017",
+      "Month": "October",
+      "Health index": 105.84000000000037,
+      "Health index (moving average)": 103.55000000000037
+    },
+    {
+      "Year": "2017",
+      "Month": "November",
+      "Health index": 105.85000000000036,
+      "Health index (moving average)": 103.61000000000037
+    },
+    {
+      "Year": "2017",
+      "Month": "December",
+      "Health index": 106.15000000000039,
+      "Health index (moving average)": 103.72000000000037
+    },
+    {
+      "Year": "2018",
+      "Month": "January",
+      "Health index": 106.37000000000039,
+      "Health index (moving average)": 103.93000000000038
+    },
+    {
+      "Year": "2018",
+      "Month": "February",
+      "Health index": 106.54000000000039,
+      "Health index (moving average)": 104.10000000000036
+    },
+    {
+      "Year": "2018",
+      "Month": "March",
+      "Health index": 106.71000000000038,
+      "Health index (moving average)": 104.31000000000037
+    },
+    {
+      "Year": "2018",
+      "Month": "April",
+      "Health index": 106.89000000000038,
+      "Health index (moving average)": 104.49000000000036
+    },
+    {
+      "Year": "2018",
+      "Month": "May",
+      "Health index": 106.99000000000038,
+      "Health index (moving average)": 104.65000000000038
+    },
+    {
+      "Year": "2018",
+      "Month": "June",
+      "Health index": 107.01000000000039,
+      "Health index (moving average)": 104.76000000000037
+    },
+    {
+      "Year": "2018",
+      "Month": "July",
+      "Health index": 107.44000000000038,
+      "Health index (moving average)": 104.94000000000037
+    },
+    {
+      "Year": "2018",
+      "Month": "August",
+      "Health index": 107.55000000000038,
+      "Health index (moving average)": 105.10000000000036
+    },
+    {
+      "Year": "2018",
+      "Month": "September",
+      "Health index": 107.52000000000038,
+      "Health index (moving average)": 105.23000000000037
+    },
+    {
+      "Year": "2018",
+      "Month": "October",
+      "Health index": 108.26000000000039,
+      "Health index (moving average)": 105.54000000000038
+    },
+    {
+      "Year": "2018",
+      "Month": "November",
+      "Health index": 108.48000000000039,
+      "Health index (moving average)": 105.79000000000038
+    },
+    {
+      "Year": "2018",
+      "Month": "December",
+      "Health index": 108.45000000000039,
+      "Health index (moving average)": 106.01000000000039
+    },
+    {
+      "Year": "2019",
+      "Month": "January",
+      "Health index": 108.50000000000038,
+      "Health index (moving average)": 106.25000000000038
+    },
+    {
+      "Year": "2019",
+      "Month": "February",
+      "Health index": 108.78000000000038,
+      "Health index (moving average)": 106.38000000000038
+    },
+    {
+      "Year": "2019",
+      "Month": "March",
+      "Health index": 109.04000000000039,
+      "Health index (moving average)": 106.52000000000038
+    },
+    {
+      "Year": "2019",
+      "Month": "April",
+      "Health index": 108.98000000000039,
+      "Health index (moving average)": 106.65000000000039
+    },
+    {
+      "Year": "2019",
+      "Month": "May",
+      "Health index": 108.89000000000038,
+      "Health index (moving average)": 106.74000000000038
+    },
+    {
+      "Year": "2019",
+      "Month": "June",
+      "Health index": 109.02000000000038,
+      "Health index (moving average)": 106.80000000000038
+    },
+    {
+      "Year": "2019",
+      "Month": "July",
+      "Health index": 109.07000000000038,
+      "Health index (moving average)": 106.81000000000039
+    },
+    {
+      "Year": "2019",
+      "Month": "August",
+      "Health index": 109.07000000000038,
+      "Health index (moving average)": 106.83000000000038
+    },
+    {
+      "Year": "2019",
+      "Month": "September",
+      "Health index": 108.58000000000038,
+      "Health index (moving average)": 106.76000000000039
+    },
+    {
+      "Year": "2019",
+      "Month": "October",
+      "Health index": 108.98000000000039,
+      "Health index (moving average)": 106.75000000000038
+    },
+    {
+      "Year": "2019",
+      "Month": "November",
+      "Health index": 109.0,
+      "Health index (moving average)": 106.73000000000039
+    },
+    {
+      "Year": "2019",
+      "Month": "December",
+      "Health index": 109.18000000000039,
+      "Health index (moving average)": 106.76000000000039
+    },
+    {
+      "Year": "2020",
+      "Month": "January",
+      "Health index": 109.72000000000038,
+      "Health index (moving average)": 107.04000000000039
+    },
+    {
+      "Year": "2020",
+      "Month": "February",
+      "Health index": 109.87000000000039,
+      "Health index (moving average)": 107.25000000000038
+    },
+    {
+      "Year": "2020",
+      "Month": "March",
+      "Health index": 109.96000000000038,
+      "Health index (moving average)": 107.49000000000038
+    },
+    {
+      "Year": "2020",
+      "Month": "April",
+      "Health index": 110.2200000000004,
+      "Health index (moving average)": 107.74000000000038
+    },
+    {
+      "Year": "2020",
+      "Month": "May",
+      "Health index": 110.10000000000039,
+      "Health index (moving average)": 107.84000000000039
+    },
+    {
+      "Year": "2020",
+      "Month": "June",
+      "Health index": 110.0500000000004,
+      "Health index (moving average)": 107.88000000000038
+    },
+    {
+      "Year": "2020",
+      "Month": "July",
+      "Health index": 110.1600000000004,
+      "Health index (moving average)": 107.93000000000039
+    },
+    {
+      "Year": "2020",
+      "Month": "August",
+      "Health index": 110.2000000000004,
+      "Health index (moving average)": 107.92000000000039
+    },
+    {
+      "Year": "2020",
+      "Month": "September",
+      "Health index": 109.78000000000038,
+      "Health index (moving average)": 107.85000000000038
+    },
+    {
+      "Year": "2020",
+      "Month": "October",
+      "Health index": 110.1100000000004,
+      "Health index (moving average)": 107.86000000000038
+    },
+    {
+      "Year": "2020",
+      "Month": "November",
+      "Health index": 109.91000000000038,
+      "Health index (moving average)": 107.80000000000038
+    },
+    {
+      "Year": "2020",
+      "Month": "December",
+      "Health index": 109.88000000000038,
+      "Health index (moving average)": 107.72000000000038
+    },
+    {
+      "Year": "2021",
+      "Month": "January",
+      "Health index": 110.35000000000039,
+      "Health index (moving average)": 107.86000000000038
+    },
+    {
+      "Year": "2021",
+      "Month": "February",
+      "Health index": 110.3900000000004,
+      "Health index (moving average)": 107.93000000000039
+    },
+    {
+      "Year": "2021",
+      "Month": "March",
+      "Health index": 110.5600000000004,
+      "Health index (moving average)": 108.09000000000039
+    },
+    {
+      "Year": "2021",
+      "Month": "April",
+      "Health index": 110.9300000000004,
+      "Health index (moving average)": 108.35000000000038
+    },
+    {
+      "Year": "2021",
+      "Month": "May",
+      "Health index": 110.99000000000039,
+      "Health index (moving average)": 108.50000000000038
+    },
+    {
+      "Year": "2021",
+      "Month": "June",
+      "Health index": 111.3100000000004,
+      "Health index (moving average)": 108.73000000000039
+    },
+    {
+      "Year": "2021",
+      "Month": "July",
+      "Health index": 112.1800000000004,
+      "Health index (moving average)": 109.13000000000038
+    },
+    {
+      "Year": "2021",
+      "Month": "August",
+      "Health index": 112.74000000000039,
+      "Health index (moving average)": 109.57000000000038
+    },
+    {
+      "Year": "2021",
+      "Month": "September",
+      "Health index": 112.2900000000004,
+      "Health index (moving average)": 109.89000000000038
+    },
+    {
+      "Year": "2021",
+      "Month": "October",
+      "Health index": 113.9400000000004,
+      "Health index (moving average)": 110.5300000000004
+    },
+    {
+      "Year": "2021",
+      "Month": "November",
+      "Health index": 115.20000000000041,
+      "Health index (moving average)": 111.2700000000004
+    },
+    {
+      "Year": "2021",
+      "Month": "December",
+      "Health index": 115.6000000000004,
+      "Health index (moving average)": 111.9700000000004
+    },
+    {
+      "Year": "2022",
+      "Month": "January",
+      "Health index": 118.21000000000042,
+      "Health index (moving average)": 113.4200000000004
+    },
+    {
+      "Year": "2022",
+      "Month": "February",
+      "Health index": 118.74000000000042,
+      "Health index (moving average)": 114.6000000000004
+    },
+    {
+      "Year": "2022",
+      "Month": "March",
+      "Health index": 119.05000000000042,
+      "Health index (moving average)": 115.54000000000042
+    },
+    {
+      "Year": "2022",
+      "Month": "April",
+      "Health index": 119.59000000000043,
+      "Health index (moving average)": 116.52000000000041
+    },
+    {
+      "Year": "2022",
+      "Month": "May",
+      "Health index": 120.25000000000043,
+      "Health index (moving average)": 117.02000000000041
+    },
+    {
+      "Year": "2022",
+      "Month": "June",
+      "Health index": 121.02000000000042,
+      "Health index (moving average)": 117.58000000000041
+    },
+    {
+      "Year": "2022",
+      "Month": "July",
+      "Health index": 122.35000000000043,
+      "Health index (moving average)": 118.39000000000043
+    },
+    {
+      "Year": "2022",
+      "Month": "August",
+      "Health index": 123.68000000000045,
+      "Health index (moving average)": 119.39000000000043
+    },
+    {
+      "Year": "2022",
+      "Month": "September",
+      "Health index": 124.92000000000044,
+      "Health index (moving average)": 120.53000000000043
+    },
+    {
+      "Year": "2022",
+      "Month": "October",
+      "Health index": 127.92000000000046,
+      "Health index (moving average)": 122.22000000000044
+    },
+    {
+      "Year": "2022",
+      "Month": "November",
+      "Health index": 127.44000000000045,
+      "Health index (moving average)": 123.47000000000044
+    },
+    {
+      "Year": "2022",
+      "Month": "December",
+      "Health index": 127.89000000000046,
+      "Health index (moving average)": 124.50000000000044
+    },
+    {
+      "Year": "2023",
+      "Month": "January",
+      "Health index": 128.0,
+      "Health index (moving average)": 125.26000000000045
+    },
+    {
+      "Year": "2023",
+      "Month": "February",
+      "Health index": 126.86000000000045,
+      "Health index (moving average)": 125.0
+    },
+    {
+      "Year": "2023",
+      "Month": "March",
+      "Health index": 127.80000000000045,
+      "Health index (moving average)": 125.08000000000044
+    },
+    {
+      "Year": "2023",
+      "Month": "April",
+      "Health index": 126.70000000000046,
+      "Health index (moving average)": 124.79000000000045
+    },
+    {
+      "Year": "2023",
+      "Month": "May",
+      "Health index": 127.35000000000045,
+      "Health index (moving average)": 124.63000000000044
+    },
+    {
+      "Year": "2023",
+      "Month": "June",
+      "Health index": 127.09000000000046,
+      "Health index (moving average)": 124.69000000000044
+    },
+    {
+      "Year": "2023",
+      "Month": "July",
+      "Health index": 128.22000000000045,
+      "Health index (moving average)": 124.79000000000045
+    },
+    {
+      "Year": "2023",
+      "Month": "August",
+      "Health index": 128.82000000000045,
+      "Health index (moving average)": 125.31000000000044
+    },
+    {
+      "Year": "2023",
+      "Month": "September",
+      "Health index": 127.52000000000045,
+      "Health index (moving average)": 125.35000000000043
+    },
+    {
+      "Year": "2023",
+      "Month": "October",
+      "Health index": 128.30000000000047,
+      "Health index (moving average)": 125.65000000000045
+    },
+    {
+      "Year": "2023",
+      "Month": "November",
+      "Health index": 128.55000000000047,
+      "Health index (moving average)": 125.73000000000044
+    }
+  ]
+}

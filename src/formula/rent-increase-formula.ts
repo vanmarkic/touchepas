@@ -1,4 +1,5 @@
 import * as healthIndexData from './health-index.json';
+import { subMonths, addYears } from 'date-fns'
 
 export type Inputs = {
   energyEfficiencyRating: 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'none';
@@ -27,15 +28,37 @@ export type Outputs = {
   increasePercentage: number
 }
 
+const BASE_YEARS = [
+  1988,
+  1996,
+  2004,
+  2013,
+] as const;
 
-function findHealthIndex(year: number, month: string) {
-  console.log(year, month)
+const getBaseYear = (date: Date) => {
+  let selectedIndexBaseYear: typeof BASE_YEARS[number] | 0 = 0
+
+  BASE_YEARS.forEach((year) => {
+    if (year <= date.getFullYear() && year > selectedIndexBaseYear) {
+      selectedIndexBaseYear = year;
+    }
+  })
+  return selectedIndexBaseYear
+}
+
+function findHealthIndex(year: number, month: string, baseYear: number) {
+
   const indexEntry = healthIndexData.facts.find(entry => {
     return entry["Year"] === year.toString() &&
-      entry["Month"] === month
+      entry["Month"] === month && entry["Base year"] === baseYear.toString();
   });
-  console.log(indexEntry)
+
   return indexEntry ? indexEntry['Health index'] : null;
+}
+
+const getIndexDate = (date: Date) => {
+
+  return { year: date.getFullYear(), month: date.toLocaleString('en-US', { month: 'long' }) };
 }
 
 
@@ -45,26 +68,28 @@ export function calculateRentIndexation(
   initialRent: number,
   dateOfIndexation: Date): number | null {
 
-  console.log(contractSignatureDate, "contractSignatureDate")
-
-  console.log(agreementStartDate, "agreementStartDate");
   if (agreementStartDate < contractSignatureDate) {
     console.error('Error: agreementStartDate must be on or after contractStartDate.');
     return null;
   }
 
+  const selectedIndexBaseYear = getBaseYear(contractSignatureDate);
 
-  const anniversaryDate = new Date(contractSignatureDate)
-  anniversaryDate.setFullYear(dateOfIndexation.getFullYear(), dateOfIndexation.getMonth() - 1);
+  if (!selectedIndexBaseYear) {
+    console.error('Error: Could not find base year for given date.');
+    return null;
+  }
 
-  const anniversaryMonth = anniversaryDate.toLocaleString('en-US', { month: 'long' });
-  const anniversaryYear = anniversaryDate.getFullYear();
-  const newHealthIndex = findHealthIndex(anniversaryYear, anniversaryMonth);
+
+
+  const anniversaryMonth = subMonths(agreementStartDate, 1).toLocaleString('en-US', { month: 'long' });
+
+  const newHealthIndex = findHealthIndex(anniversaryMonth === "December" ? dateOfIndexation.getFullYear() - 1 : dateOfIndexation.getFullYear(), anniversaryMonth, selectedIndexBaseYear);
+
   if (!newHealthIndex) {
     console.error('Error: Could not find health index for given date.');
     return null;
   }
-
 
   let initialIndex;
   if (contractSignatureDate < new Date('1984-01-01')) {
@@ -74,30 +99,38 @@ export function calculateRentIndexation(
 
     const agreementAnniversaireDate = new Date(agreementStartDate)
     agreementAnniversaireDate.setMonth(agreementStartDate.getMonth() - 1);
+
     const agreementSignatureMonth = agreementStartDate.toLocaleString('en-US', { month: 'long' });
+
     const agreementSignatureYear = agreementStartDate.getFullYear();
 
 
 
+
     if (agreementStartDate < new Date('1994-02-01')) {
-      initialIndex = findHealthIndex(agreementSignatureYear, agreementSignatureMonth);
+      initialIndex = findHealthIndex(agreementSignatureYear, agreementSignatureMonth, selectedIndexBaseYear);
       if (!initialIndex) {
         console.error('Error: Could not find health index for given date.');
         return null;
       }
     } else {
 
-      const initialIndexDate = new Date(agreementStartDate);
+      const initialIndexDate = new Date(contractSignatureDate);
       initialIndexDate.setMonth(initialIndexDate.getMonth() - 1);
+      console.log(initialIndexDate)
       const initialIndexMonth = initialIndexDate.toLocaleString('en-US', { month: 'long' });
+
       const initialIndexYear = initialIndexDate.getFullYear();
-      initialIndex = findHealthIndex(initialIndexYear, initialIndexMonth);
+
+      initialIndex = findHealthIndex(initialIndexYear, initialIndexMonth, selectedIndexBaseYear);
       if (!initialIndex) {
         console.error('Error: Could not find health index for given date.');
         return null;
       }
     }
   }
+
+  // Loyer de base (octobre 2022) * IS [2013] octobre 2023 / IS [2013] septembre 2022
 
 
   return (initialRent * newHealthIndex) / initialIndex;

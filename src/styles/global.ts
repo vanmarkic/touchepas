@@ -50,7 +50,7 @@ export const GlobalStyle = createGlobalStyle`
     gap: .7rem;
     height: 100%;
     label {
-      font-size: .6rem;
+      font-size: .8rem;
       height: 1rem;
       height: fit-content;
       margin: 0;

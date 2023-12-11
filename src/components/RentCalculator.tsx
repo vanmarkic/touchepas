@@ -23,9 +23,16 @@ const RentCalculator: React.FC = () => {
   const [agreementStartDate, setAgreementStartDate] = useState<Date>(new Date());
   const [newRent, setNewRent] = useState<number | string>(0);
 
+  const isValid =
+    indexationDate &&
+    initialRent &&
+    contractSignatureDate &&
+    agreementStartDate &&
+    indexationDate > agreementStartDate &&
+    agreementStartDate >= contractSignatureDate;
+
   const handleCalculate = (e: any) => {
     e.preventDefault();
-    // console.log(indexationDate);
     console.log('contractSignatureDate', contractSignatureDate);
     console.log('agreementStartDate', agreementStartDate);
     console.log('initialRent', initialRent);
@@ -46,13 +53,13 @@ const RentCalculator: React.FC = () => {
 
   return (
     <StyledContainer>
-      <h5>Calculateur de loyer</h5>
+      <h4>Calculateur de loyer</h4>
       <form>
         <label htmlFor="indexationDate">
           Date de demande d'indexation:
           <input
             type="date"
-            min="2022-01-01"
+            min="2000-01-01"
             required
             lang="fr-FR"
             id="indexationDate"
@@ -74,7 +81,7 @@ const RentCalculator: React.FC = () => {
           Date de signature du bail:
           <input
             type="date"
-            min="2022-01-01"
+            min="2000-01-01"
             max={new Date().toISOString().split('T')[0]}
             required
             lang="fr-FR"
@@ -86,7 +93,7 @@ const RentCalculator: React.FC = () => {
           Date d'entrée en vigueur:
           <input
             type="date"
-            min="2022-01-01"
+            min="2000-01-01"
             max={new Date().toISOString().split('T')[0]}
             required
             lang="fr-FR"
@@ -99,13 +106,13 @@ const RentCalculator: React.FC = () => {
           <input type="select" disabled required lang="fr-FR" id="region" defaultValue="Wallonie" />
         </label>
 
-        <button type="button" onClick={handleCalculate}>
+        <button disabled={!isValid} type="button" onClick={handleCalculate}>
           Calculer
         </button>
       </form>
       <StyledNewRent>
         <h6>Nouveau loyer autorisé</h6>
-        <h4>{Number(newRent).toFixed(2).toLocaleLowerCase('fr-FR')}</h4>
+        <h2>{Number(newRent).toFixed(2).toLocaleLowerCase('fr-FR')}€</h2>
       </StyledNewRent>
     </StyledContainer>
   );
