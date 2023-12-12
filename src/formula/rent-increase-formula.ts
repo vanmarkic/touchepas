@@ -1,65 +1,6 @@
-import * as healthIndexData from './health-index.json';
-import { subMonths, addYears } from 'date-fns'
+import healthIndexData from './health-index.json';
+import { subMonths } from 'date-fns'
 
-export type Inputs = {
-  energyEfficiencyRating: 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'none';
-  contractSignatureDate: Date;
-  rentStartDate: Date;
-  originalRentAmount: number;
-  yearOfIncrease: number;
-  currentHealthIndex: number;
-  originalHealthIndex: number;
-}
-
-export const energyEfficiencyRatios: Record<Inputs["energyEfficiencyRating"], number> = {
-  A: 1,
-  B: 1,
-  C: 1,
-  D: .75,
-  E: .5,
-  F: 0,
-  G: 0,
-  none: 0
-} as const
-
-export type Outputs = {
-  rentIncrease: number;
-  increasedRentAmount: number;
-  increasePercentage: number
-}
-
-const BASE_YEARS = [
-  1988,
-  1996,
-  2004,
-  2013,
-] as const;
-
-const getBaseYear = (date: Date) => {
-  let selectedIndexBaseYear: typeof BASE_YEARS[number] | 0 = 0
-
-  BASE_YEARS.forEach((year) => {
-    if (year <= date.getFullYear() && year > selectedIndexBaseYear) {
-      selectedIndexBaseYear = year;
-    }
-  })
-  return selectedIndexBaseYear
-}
-
-function findHealthIndex(year: number, month: string, baseYear: number) {
-
-  const indexEntry = healthIndexData.facts.find(entry => {
-    return entry["Year"] === year.toString() &&
-      entry["Month"] === month && entry["Base year"] === baseYear.toString();
-  });
-
-  return indexEntry ? indexEntry['Health index'] : null;
-}
-
-const getIndexDate = (date: Date) => {
-
-  return { year: date.getFullYear(), month: date.toLocaleString('en-US', { month: 'long' }) };
-}
 
 
 export function calculateRentIndexation(
@@ -105,8 +46,6 @@ export function calculateRentIndexation(
     const agreementSignatureYear = agreementStartDate.getFullYear();
 
 
-
-
     if (agreementStartDate < new Date('1994-02-01')) {
       initialIndex = findHealthIndex(agreementSignatureYear, agreementSignatureMonth, selectedIndexBaseYear);
       if (!initialIndex) {
@@ -137,3 +76,66 @@ export function calculateRentIndexation(
 }
 
 
+
+
+function getBaseYear(date: Date) {
+  let selectedIndexBaseYear: typeof BASE_YEARS[number] | 0 = 0
+
+  BASE_YEARS.forEach((year) => {
+    if (year <= date.getFullYear() && year > selectedIndexBaseYear) {
+      selectedIndexBaseYear = year;
+    }
+  })
+  return selectedIndexBaseYear
+}
+
+function findHealthIndex(year: number, month: string, baseYear: number) {
+
+  const indexEntry = healthIndexData.facts.find(entry => {
+    return entry["Year"] === year.toString() &&
+      entry["Month"] === month && entry["Base year"] === baseYear.toString();
+  });
+
+  return indexEntry ? indexEntry['Health index'] : null;
+}
+
+const getIndexDate = (date: Date) => {
+
+  return { year: date.getFullYear(), month: date.toLocaleString('en-US', { month: 'long' }) };
+}
+
+
+
+export type Inputs = {
+  energyEfficiencyRating: 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'none';
+  contractSignatureDate: Date;
+  rentStartDate: Date;
+  originalRentAmount: number;
+  yearOfIncrease: number;
+  currentHealthIndex: number;
+  originalHealthIndex: number;
+}
+
+export const energyEfficiencyRatios: Record<Inputs["energyEfficiencyRating"], number> = {
+  A: 1,
+  B: 1,
+  C: 1,
+  D: .75,
+  E: .5,
+  F: 0,
+  G: 0,
+  none: 0
+} as const
+
+export type Outputs = {
+  rentIncrease: number;
+  increasedRentAmount: number;
+  increasePercentage: number
+}
+
+const BASE_YEARS = [
+  1988,
+  1996,
+  2004,
+  2013,
+] as const;

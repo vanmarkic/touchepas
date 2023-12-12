@@ -33,10 +33,6 @@ const RentCalculator: React.FC = () => {
 
   const handleCalculate = (e: any) => {
     e.preventDefault();
-    console.log('contractSignatureDate', contractSignatureDate);
-    console.log('agreementStartDate', agreementStartDate);
-    console.log('initialRent', initialRent);
-    console.log('indexationDate', indexationDate);
     const increasedRent = calculateRentIndexation(
       contractSignatureDate,
       agreementStartDate,

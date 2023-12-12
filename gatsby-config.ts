@@ -6,6 +6,7 @@ module.exports = {
     title: `Touche pas à mon loyer`,
     siteUrl: `https://www.touchepasamonloyer.be`,
   },
+  pathPrefix: `/touchepas`,
   plugins: [
     "gatsby-plugin-styled-components",
     // "gatsby-plugin-google-gtag",

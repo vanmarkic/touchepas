@@ -10,7 +10,7 @@ describe('Formula', () => {
   });
   it('Test case 2', () => {
 
-    expect(calculateRentIndexation(new Date('2019-02-01'), new Date('2019-01-01'), 1000, new Date('2023-01-01'))).toEqual(1180.27);
+    expect(calculateRentIndexation(new Date('2019-02-01'), new Date('2019-03-01'), 1000, new Date('2023-01-01'))).toEqual(1180.27);
 
   });
   // Add more test cases as needed
