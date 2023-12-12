@@ -1,5 +1,4 @@
 import { createGlobalStyle, css } from "styled-components";
-import reset from 'styled-reset';
 
 export const px2vw = (size: number, width = 1440) => `${(size / width) * 100}vw`;
 
@@ -57,7 +56,7 @@ export const GlobalStyle = createGlobalStyle`
       display: flex;
       flex-direction: column;
     }
-    input {
+    input, select {
       font-family: "Lexend";
       /* height: 1rem; */
       padding: 0.2rem;
