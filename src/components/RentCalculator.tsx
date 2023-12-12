@@ -16,6 +16,8 @@ const StyledNewRent = styled.div`
   gap: Orem;
 `;
 
+const StyledButton = styled.button``;
+
 const RentCalculator: React.FC = () => {
   const [indexationDate, setIndexationDate] = useState<Date>(new Date());
   const [initialRent, setInitialRent] = useState<number>(0);
@@ -102,9 +104,9 @@ const RentCalculator: React.FC = () => {
           <input type="select" disabled required lang="fr-FR" id="region" defaultValue="Wallonie" />
         </label>
 
-        <button disabled={!isValid} type="button" onClick={handleCalculate}>
+        <StyledButton disabled={!isValid} type="button" onClick={handleCalculate}>
           Calculer
-        </button>
+        </StyledButton>
       </form>
       <StyledNewRent>
         <h6>Nouveau loyer autorisé</h6>
