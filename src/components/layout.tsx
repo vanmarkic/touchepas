@@ -103,7 +103,7 @@ const Layout: React.FC<any> = ({ children }) => {
       <StyledMenuButton onClick={() => setShowMobileMenu(true)}> Calculateur </StyledMenuButton>
       <CategoryHeader> {currentRoom[currentRoom.length - 2].toUpperCase()} </CategoryHeader>
       {showMobileMenu ? (
-        <MobileMenuOverlay onClick={() => setShowMobileMenu(false)}>
+        <MobileMenuOverlay>
           <RentCalculator />
           <StyledMenuButton onClick={() => setShowMobileMenu(false)}>Fermer</StyledMenuButton>
         </MobileMenuOverlay>
