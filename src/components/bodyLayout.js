@@ -15,7 +15,7 @@ export const StyledCategory = styled.div`
     width: 70vw;
   }
 `;
-export const StyledProject = styled.div`
+export const StyledView = styled.div`
   min-height: 100vh;
   display: flex;
   row-gap: 5px;

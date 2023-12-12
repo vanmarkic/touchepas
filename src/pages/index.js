@@ -1,17 +1,17 @@
 import * as React from "react";
-import { StyledCategory, StyledProject } from "../components/bodyLayout";
+import { StyledCategory, StyledView } from "../components/bodyLayout";
 import Layout from "../components/layout";
 
 const IndexPage = () => {
   return (
     <Layout>
       <StyledCategory>
-        <StyledProject>
+        <StyledView>
           <div>Hello</div>
-        </StyledProject>
-        <StyledProject>
+        </StyledView>
+        <StyledView>
           <div>Hello 2</div>
-        </StyledProject>
+        </StyledView>
       </StyledCategory>
     </Layout>
   );
