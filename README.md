@@ -1,3 +1,5 @@
+Currently deployed at https://vanmarkic.github.io/touchepas/
+
 1.  **Start developing.**
 
     Navigate into your new site’s directory and start it up.
