@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const StyledCategory = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 2svw;
+  padding-left: 2svw;
+  padding-right: 2svw;
   &.proximity {
     scroll-snap-type: y proximity;
   }
@@ -15,16 +16,22 @@ export const StyledCategory = styled.div`
     width: 70vw;
   }
 `;
+
 export const TextBlock = styled.div`
-  min-height: 100vh;
-  display: flex;
+ 
+
   row-gap: 5px;
+  column-count: 2px;
+  width: 100%;
   column-gap: 5px;
-  flex-direction: column;
+ 
   scroll-snap-align: center;
   /* min-width: 100%; */
-  justify-content: center;
-  align-items: start;
+  
+  columns: 2; 
+  font-size: 18px;
+  text-align: justify;
+  padding: 10px;
   @media (max-aspect-ratio: 1/1) {
     flex-direction: column;
     /* min-height: 100%; */
@@ -33,5 +40,13 @@ export const TextBlock = styled.div`
     min-height: calc(100svh - 60px);
     align-items: center;
     justify-content: center;
+    text-align: justify;
   }
+`;
+
+export const Image = styled.div`
+  height: 80vh;
+  width: 100%;
+  background-image: url('../images/logements.jpg');
+  padding: 10px;
 `;

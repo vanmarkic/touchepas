@@ -1,8 +1,7 @@
-import { createGlobalStyle, css } from "styled-components";
+import { createGlobalStyle, css } from 'styled-components';
 import reset from 'styled-reset';
 
 export const px2vw = (size: number, width = 1440) => `${(size / width) * 100}vw`;
-
 
 export const whenVertivalAspectRatio = (cssRules: string) => css`
   @media (max-aspect-ratio: 1/1) {
@@ -11,7 +10,19 @@ export const whenVertivalAspectRatio = (cssRules: string) => css`
 `;
 
 export const GlobalStyle = createGlobalStyle`
-
+h4{
+      font-family: "Lexend" !important;
+      font-size: 28px;
+      height: fit-content;
+      cursor: default;
+      color:#150D63;
+      text-transform:uppercase
+    }
+    img{
+      object-fit: contain;
+      width: 100%;
+      height: 100%;
+    }
   * {
     margin: 0;
     padding: 0;
