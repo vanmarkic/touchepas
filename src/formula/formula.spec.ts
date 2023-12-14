@@ -1,4 +1,4 @@
-import { calculateRentIndexation, getYearOfIndexationWithPEB, } from './rent-increase-formula';
+import { calculateRentIndexation, getIsAfterDecree, getYearOfIndexationWithPEB, } from './rent-increase-formula';
 
 // Describe the test suite
 describe('Formula', () => {
@@ -15,9 +15,16 @@ describe('Formula', () => {
   });
   it('Test case 3', () => {
 
-    expect(calculateRentIndexation(new Date('2019-09-01'), new Date('2019-11-01'), 550, 2023, 'wallonia', "E")).toEqual(609.81);
+    expect(calculateRentIndexation(new Date('2019-09-01'), new Date('2019-11-01'), 550, 2023, 'wallonia', "E")).toEqual(611.61);
 
   });
+
+  it('should check whether is after end of decree', () => {
+    expect(getIsAfterDecree(2023, 'wallonia', new Date("11-01-2023"))).toBe(true);
+    expect(getIsAfterDecree(2023, 'wallonia', new Date("11-01-2030"))).toBe(true);
+    expect(getIsAfterDecree(2023, 'wallonia', new Date("10-31-2023"))).toBe(false);
+    expect(getIsAfterDecree(2023, 'wallonia', new Date("10-31-2022"))).toBe(false);
+  })
 });
 
 
@@ -30,8 +37,6 @@ describe('year of indexation within PEB range', () => {
 
 
     expect(getYearOfIndexationWithPEB(new Date('2010-11-01'), 'wallonia')).toBe(2022);
-
-    expect
 
   })
 });

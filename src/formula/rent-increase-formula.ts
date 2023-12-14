@@ -39,6 +39,8 @@ export function calculateRentIndexation(
   }
   const wasIndexationRequestedBeforeStartOfEnergyRatingDecree = yearOfIndexation <= ENERGY_RATIOS[region].start.getFullYear() && agreementStartDate.getMonth() < ENERGY_RATIOS[region].start.getMonth()
 
+  const wasIndexationRequestedAfterEndOfEnergyRatioDecree = getIsAfterDecree(yearOfIndexation, region, agreementStartDate)
+
   return wasIndexationRequestedBeforeStartOfEnergyRatingDecree ? basicFormula(newHealthIndex) : formulaWithEnergyRatio()
 
 }
@@ -55,6 +57,10 @@ export const energyEfficiencyRatings = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'none
 
 export type EnergyEfficiencyRating = typeof energyEfficiencyRatings[number]
 
+
+export function getIsAfterDecree(yearOfIndexation: number, region: Regions, agreementStartDate: Date) {
+  return yearOfIndexation > ENERGY_RATIOS[region].end.getFullYear() || (yearOfIndexation === ENERGY_RATIOS[region].end.getFullYear() && agreementStartDate.getMonth() > ENERGY_RATIOS[region].end.getMonth());
+}
 
 function getInitialIndex(contractSignatureDate: Date, agreementStartDate: Date, selectedIndexBaseYear: number) {
 
