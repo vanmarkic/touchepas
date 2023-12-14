@@ -3,7 +3,7 @@ import { createGlobalStyle, css } from "styled-components";
 export const px2vw = (size: number, width = 1440) => `${(size / width) * 100}vw`;
 
 
-export const whenVertivalAspectRatio = (cssRules: string) => css`
+export const whenVerticalAspectRatio = (cssRules: string) => css`
   @media (max-aspect-ratio: 1/1) {
     ${cssRules}
   }
@@ -18,7 +18,6 @@ export const GlobalStyle = createGlobalStyle`
   }
   :root {
       --doc-height: 100%;
-      font-size: ${px2vw(10, 360)};
 
       @media (min-width: 768px) {
         font-size: ${px2vw(12, 768)};
@@ -59,8 +58,10 @@ export const GlobalStyle = createGlobalStyle`
     input, select {
       font-family: "Lexend";
       /* height: 1rem; */
+      font-size: 1rem;
       padding: 0.2rem;
       width: 200px;
+      color: var(--black);
     }
     button {
       font-family: "Lexend" !important;
