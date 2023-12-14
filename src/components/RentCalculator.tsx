@@ -85,7 +85,7 @@ const RentCalculator: React.FC = () => {
         <label htmlFor="initialRent">
           Loyer stipulé sur le bail:
           <input
-            type="number"
+            type="tel"
             id="initialRent"
             defaultValue={initialRent}
             onChange={(e) => setInitialRent(Number(e.target.value))}
