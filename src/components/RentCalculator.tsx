@@ -1,6 +1,13 @@
 import React, { FormEventHandler, MouseEventHandler, useState } from 'react';
-import { calculateRentIndexation } from '../formula/rent-increase-formula';
+import {
+  ENERGY_RATIOS,
+  EnergyEfficiencyRating,
+  Regions,
+  calculateRentIndexation,
+  energyEfficiencyRatings,
+} from '../formula/rent-increase-formula';
 import styled from 'styled-components';
+import { is } from 'date-fns/locale';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -19,34 +26,43 @@ const StyledNewRent = styled.div`
 const StyledButton = styled.button``;
 
 const RentCalculator: React.FC = () => {
-  const [indexationDate, setIndexationDate] = useState<Date>(new Date());
+  const [indexationDate, setIndexationDate] = useState<number>(2023);
   const [initialRent, setInitialRent] = useState<number>(0);
   const [contractSignatureDate, setContractSignatureDate] = useState<Date>(new Date());
   const [agreementStartDate, setAgreementStartDate] = useState<Date>(new Date());
   const [newRent, setNewRent] = useState<number | string>(0);
+  const [region, setRegion] = useState<Regions>('wallonia');
+  const [energyCertificate, setEnergyCertificate] = useState<EnergyEfficiencyRating>('none');
 
   const isValid =
     indexationDate &&
     initialRent &&
     contractSignatureDate &&
     agreementStartDate &&
-    indexationDate > agreementStartDate &&
+    indexationDate > agreementStartDate.getFullYear() &&
     agreementStartDate >= contractSignatureDate;
 
   const handleCalculate = (e: any) => {
     e.preventDefault();
-    const increasedRent = calculateRentIndexation(
-      contractSignatureDate,
-      agreementStartDate,
-      initialRent,
-      indexationDate,
-    );
-    if (!increasedRent) {
-      setNewRent('something went wrong');
-      return;
+    if (isValid) {
+      try {
+        const increasedRent = calculateRentIndexation(
+          contractSignatureDate,
+          agreementStartDate,
+          initialRent,
+          indexationDate,
+          region,
+          energyCertificate,
+        );
+        if (!increasedRent) {
+          setNewRent('something went wrong');
+          return;
+        }
+        setNewRent(increasedRent);
+      } catch (error: any) {
+        alert(error.message);
+      }
     }
-    setNewRent(increasedRent);
-    return;
   };
 
   return (
@@ -54,21 +70,22 @@ const RentCalculator: React.FC = () => {
       <h4>Calculateur de loyer</h4>
       <form>
         <label htmlFor="indexationDate">
-          Date de demande d'indexation:
+          Année de demande d'indexation:
           <input
-            type="date"
-            min="2000-01-01"
+            type="number"
+            min="1984"
+            max={new Date().getFullYear()}
             required
             lang="fr-FR"
             id="indexationDate"
-            defaultValue={indexationDate.toISOString().split('T')[0]}
-            onChange={(e) => setIndexationDate(new Date(e.target.value))}
+            defaultValue={2023}
+            onChange={(e) => setIndexationDate(Number(e.target.value))}
           />
         </label>
         <label htmlFor="initialRent">
           Loyer stipulé sur le bail:
           <input
-            type="number"
+            type="tel"
             id="initialRent"
             defaultValue={initialRent}
             onChange={(e) => setInitialRent(Number(e.target.value))}
@@ -102,6 +119,24 @@ const RentCalculator: React.FC = () => {
         <label htmlFor="region">
           Région:
           <input type="select" disabled required lang="fr-FR" id="region" defaultValue="Wallonie" />
+        </label>
+        <label htmlFor="peb">
+          Certificat PEB:
+          <select
+            disabled={
+              indexationDate < ENERGY_RATIOS[region].start.getFullYear() ||
+              (indexationDate == ENERGY_RATIOS[region].start.getFullYear() &&
+                agreementStartDate.getMonth() < ENERGY_RATIOS[region].start.getMonth())
+            }
+            name="peb"
+            id="peb"
+            defaultValue={energyCertificate}
+            onChange={(e) => setEnergyCertificate(e.target.value as EnergyEfficiencyRating)}
+          >
+            {energyEfficiencyRatings.map((rating) => (
+              <option value={rating}>{rating !== 'none' ? rating : 'pas de certificat'}</option>
+            ))}
+          </select>
         </label>
 
         <StyledButton disabled={!isValid} type="button" onClick={handleCalculate}>

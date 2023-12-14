@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled, { css } from 'styled-components';
-import GlobalStyle, { whenVertivalAspectRatio } from '../styles/global';
+import GlobalStyle, { whenVerticalAspectRatio } from '../styles/global';
 import { Head } from '../pages';
 import { useLocation } from '@reach/router';
 import RentCalculator from './RentCalculator';
@@ -17,7 +17,7 @@ const StyledLayout = styled.div`
 `;
 
 export const hideWhenVertical = css`
-  @media (max-aspect-ratio: 1/1) {
+  @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
     display: none;
   }
 `;
@@ -40,7 +40,7 @@ const SidePanel = styled.nav`
   padding: 48px;
   align-self: flex-start;
   margin-bottom: 30px;
-  ${whenVertivalAspectRatio('display: none;')};
+  ${whenVerticalAspectRatio('display: none;')};
 `;
 
 const StyledMenuButton = styled.button`
@@ -72,7 +72,7 @@ const CategoryHeader = styled.h4`
 const MobileMenuOverlay = styled.div`
   position: absolute;
   z-index: 1500;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.9);
   height: 100svh;
   display: flex;
   flex-direction: column;
@@ -100,15 +100,16 @@ const Layout: React.FC<any> = ({ children }) => {
       <Head />
       {/* <Reset /> */}
       <GlobalStyle />
+
       <StyledMenuButton onClick={() => setShowMobileMenu(true)}> Calculateur </StyledMenuButton>
-      <CategoryHeader> {currentRoom[currentRoom.length - 2].toUpperCase()} </CategoryHeader>
       {showMobileMenu ? (
-        <MobileMenuOverlay onClick={() => setShowMobileMenu(false)}>
+        <MobileMenuOverlay>
           <RentCalculator />
           <StyledMenuButton onClick={() => setShowMobileMenu(false)}>Fermer</StyledMenuButton>
         </MobileMenuOverlay>
       ) : null}
       <Header />
+
       <StyledLayout>
         {children}
         <SidePanel>
