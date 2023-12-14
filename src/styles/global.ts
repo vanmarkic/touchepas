@@ -9,7 +9,7 @@ export const whenVerticalAspectRatio = (cssRules: string) => css`
 `;
 
 export const GlobalStyle = createGlobalStyle`
-h4{
+    h4 {
       font-family: "Lexend" !important;
       font-size: 28px;
       height: fit-content;

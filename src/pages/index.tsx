@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { StyledCategory, TextBlock, Image } from '../components/bodyLayout';
 import Layout from '../components/layout';
-import Logements from "../images/logements.jpg"
+import Logements from '../images/logements.jpg';
 
 const IndexPage: React.FC<{}> = () => {
   return (
     <Layout>
       <StyledCategory>
-       <Image> 
-        <img alt='' src={Logements} />
-       </Image>
+        <Image>
+          <img alt="" src={Logements} />
+        </Image>
         <TextBlock>
-        <h4>À quelles conditions peut-on indexer mon loyer en Wallonie ?</h4>
+          <h4>À quelles conditions peut-on indexer mon loyer en Wallonie ?</h4>
           <p>
             Le loyer peut être indexé, chaque année, au plus tôt à la date anniversaire de l'entrée
             en vigueur du bail. L'indexation du loyer est toujours possible, à moins qu'elle n'ait
