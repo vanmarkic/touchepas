@@ -4,9 +4,7 @@
   "private": true,
   "description": "touchepas",
   "author": "vanmarkic",
-  "keywords": [
-    "gatsby"
-  ],
+  "keywords": [ "gatsby"],
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",

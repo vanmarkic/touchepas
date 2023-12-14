@@ -1,13 +1,17 @@
 import * as React from 'react';
-import { StyledCategory, TextBlock } from '../components/bodyLayout';
+import { StyledCategory, TextBlock, Image } from '../components/bodyLayout';
 import Layout from '../components/layout';
+import Logements from "../images/logements.jpg"
 
 const IndexPage: React.FC<{}> = () => {
   return (
     <Layout>
       <StyledCategory>
+       <Image> 
+        <img alt='' src={Logements} />
+       </Image>
         <TextBlock>
-          <h4>À quelles conditions peut-on indexer mon loyer en Wallonie ?</h4>
+        <h4>À quelles conditions peut-on indexer mon loyer en Wallonie ?</h4>
           <p>
             Le loyer peut être indexé, chaque année, au plus tôt à la date anniversaire de l'entrée
             en vigueur du bail. L'indexation du loyer est toujours possible, à moins qu'elle n'ait
@@ -18,15 +22,11 @@ const IndexPage: React.FC<{}> = () => {
             d'indexation ne doit pas nécessairement être envoyée par lettre recommandée : elle peut
             être faite par courrier normal, SMS ou e-mail.
           </p>
-        </TextBlock>
-        <TextBlock>
           <h4>Quand peut-on indexer mon loyer ?</h4>
           <p>
             L'indexation du loyer peut se faire chaque année au plus tôt à la date anniversaire de
             l'entrée en vigueur du bail.
           </p>
-        </TextBlock>
-        <TextBlock>
           <h4>Limitation de l'indexation pour les logements passoires (PEB D, E, F et G)</h4>
           <p>
             Le décret du 19 octobre 2022 a instauré une mesure visant à limiter l'indexation des
