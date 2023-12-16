@@ -88,6 +88,7 @@ const ApartmentsPicture = () => (
       layout="constrained"
       width={739}
       src={'../images/logements.jpg'}
+      loading="eager"
     />
   </StyledSection>
 );
