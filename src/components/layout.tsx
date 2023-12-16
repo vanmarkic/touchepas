@@ -56,12 +56,12 @@ const StyledMenuButton = styled.button`
   ${hideWhenHorizontal}
 `;
 
-const MobileMenuOverlay = styled.div`
+const MobileMenuOverlay = styled.div<{ showMobileMenu: boolean }>`
   position: absolute;
   z-index: 1500;
   background-color: rgba(255, 255, 255, 0.9);
   height: 100svh;
-  display: flex;
+  display: ${(props) => (props.showMobileMenu ? 'flex' : 'none')};
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
@@ -108,12 +108,11 @@ const Layout: React.FC<any> = ({ children }) => {
       <GlobalStyle />
 
       <StyledMenuButton onClick={() => setShowMobileMenu(true)}> Calculateur </StyledMenuButton>
-      {showMobileMenu ? (
-        <MobileMenuOverlay>
-          <RentCalculator />
-          <StyledMenuButton onClick={() => setShowMobileMenu(false)}>Fermer</StyledMenuButton>
-        </MobileMenuOverlay>
-      ) : null}
+
+      <MobileMenuOverlay showMobileMenu={showMobileMenu}>
+        <RentCalculator />
+        <StyledMenuButton onClick={() => setShowMobileMenu(false)}>Fermer</StyledMenuButton>
+      </MobileMenuOverlay>
 
       <Header />
 
