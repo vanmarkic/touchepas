@@ -44,13 +44,15 @@ const StyledMenuButton = styled.button`
   position: fixed;
   bottom: 6px;
   right: 10px;
-  color: var(--black);
+  color: var(--white);
   size: 40px;
-  border: 2px solid var(--black) !important;
-  background-color: var(--red);
-  width: 120px;
+  border: 2px solid var(--red) !important;
+  background-color: var(--blue);
+  /* width: 120px; */
+  border-radius: var(--radius);
+  padding: 0.2rem;
   z-index: 1000;
-  font-size: 16px;
+  font-size: 1.5rem;
   font-family: 'Lexend' !important;
   cursor: pointer;
   ${hideWhenHorizontal}
@@ -107,14 +109,13 @@ const Layout: React.FC<any> = ({ children }) => {
       <Head />
       <GlobalStyle />
 
-      <StyledMenuButton onClick={() => setShowMobileMenu(true)}> Calculateur </StyledMenuButton>
+      <Header />
 
+      <StyledMenuButton onClick={() => setShowMobileMenu(true)}> Calculateur </StyledMenuButton>
       <MobileMenuOverlay showMobileMenu={showMobileMenu}>
         <RentCalculator />
         <StyledMenuButton onClick={() => setShowMobileMenu(false)}>Fermer</StyledMenuButton>
       </MobileMenuOverlay>
-
-      <Header />
 
       <StyledLayout>
         <StyledMain>{children}</StyledMain>

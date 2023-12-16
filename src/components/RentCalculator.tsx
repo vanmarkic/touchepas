@@ -15,7 +15,7 @@ const StyledContainer = styled.div`
   gap: 1rem;
   background-color: #f5f5f5;
   padding: 2rem;
-  border-radius: 10px;
+  border-radius: var(--radius);
 `;
 const StyledNewRent = styled.div`
   display: flex;

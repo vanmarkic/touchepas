@@ -37,6 +37,8 @@ export const GlobalStyle = createGlobalStyle`
     --blue: #150d63;
     --red: #E04843;
     --black: #010101;
+    --white: #fefefe;
+    --radius: 5px;
     font-family: "Lexend";
     padding: 0;
     margin: 0;
