@@ -17,8 +17,13 @@ export default IndexPage;
 
 export const Head = () => (
   <>
+    <html lang="fr" />
     <title>Touche pas à mon loyer</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Calculateur d'indexation de loyer du Rassemblement Wallon pour le Droit à l'Habitat"
+    />
   </>
 );
 

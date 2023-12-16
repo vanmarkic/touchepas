@@ -106,7 +106,7 @@ const Layout: React.FC<any> = ({ children }) => {
 
   return (
     <>
-      <Head />
+      {/* <Head /> */}
       <GlobalStyle />
 
       <Header />
