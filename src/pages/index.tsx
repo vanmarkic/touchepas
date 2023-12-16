@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { StyledSection, Image, TwoColumns, Paragraph } from '../components/bodyLayout';
+import { StyledSection, TwoColumns, Paragraph } from '../components/bodyLayout';
 import Layout from '../components/layout';
-import Logements from '../images/logements.jpg';
-import styled from 'styled-components';
+import { StaticImage } from 'gatsby-plugin-image';
 
 const IndexPage: React.FC<{}> = () => {
   return (
@@ -81,12 +80,14 @@ const GeneralInformation = () => {
   );
 };
 
-const StyledImage = styled.img`
-  width: 100%;
-`;
-
 const ApartmentsPicture = () => (
   <StyledSection>
-    <StyledImage alt="" src={Logements} />
+    <StaticImage
+      alt="a building with apartments"
+      placeholder="blurred"
+      layout="constrained"
+      width={739}
+      src={'../images/logements.jpg'}
+    />
   </StyledSection>
 );
