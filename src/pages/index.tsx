@@ -1,16 +1,32 @@
 import * as React from 'react';
-import { StyledCategory, TextBlock, Image } from '../components/bodyLayout';
+import { StyledSection, Image, TwoColumns, Paragraph } from '../components/bodyLayout';
 import Layout from '../components/layout';
 import Logements from '../images/logements.jpg';
+import styled from 'styled-components';
 
 const IndexPage: React.FC<{}> = () => {
   return (
     <Layout>
-      <StyledCategory>
-        <Image>
-          <img alt="" src={Logements} />
-        </Image>
-        <TextBlock>
+      <ApartmentsPicture />
+      <GeneralInformation />
+    </Layout>
+  );
+};
+
+export default IndexPage;
+
+export const Head = () => (
+  <>
+    <title>Touche pas à mon loyer</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+  </>
+);
+
+const GeneralInformation = () => {
+  return (
+    <StyledSection>
+      <TwoColumns>
+        <Paragraph>
           <h4>À quelles conditions peut-on indexer mon loyer en Wallonie ?</h4>
           <p>
             Le loyer peut être indexé, chaque année, au plus tôt à la date anniversaire de l'entrée
@@ -22,11 +38,9 @@ const IndexPage: React.FC<{}> = () => {
             d'indexation ne doit pas nécessairement être envoyée par lettre recommandée : elle peut
             être faite par courrier normal, SMS ou e-mail.
           </p>
-          <h4>Quand peut-on indexer mon loyer ?</h4>
-          <p>
-            L'indexation du loyer peut se faire chaque année au plus tôt à la date anniversaire de
-            l'entrée en vigueur du bail.
-          </p>
+        </Paragraph>
+
+        <Paragraph>
           <h4>Limitation de l'indexation pour les logements passoires (PEB D, E, F et G)</h4>
           <p>
             Le décret du 19 octobre 2022 a instauré une mesure visant à limiter l'indexation des
@@ -49,17 +63,25 @@ const IndexPage: React.FC<{}> = () => {
             - PEB F ou G n'est pas possible pour les logements disposant d'un certificat; <br />-
             Aucun PEB : l'indexation n'est pas possible.
           </p>
-        </TextBlock>
-      </StyledCategory>
-    </Layout>
+        </Paragraph>
+        <Paragraph>
+          <h4>Quand peut-on indexer mon loyer ?</h4>
+          <p>
+            L'indexation du loyer peut se faire chaque année au plus tôt à la date anniversaire de
+            l'entrée en vigueur du bail.
+          </p>
+        </Paragraph>
+      </TwoColumns>
+    </StyledSection>
   );
 };
 
-export default IndexPage;
+const StyledImage = styled.img`
+  width: 100%;
+`;
 
-export const Head = () => (
-  <>
-    <title>Touche pas à mon loyer</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-  </>
+const ApartmentsPicture = () => (
+  <StyledSection>
+    <StyledImage alt="" src={Logements} />
+  </StyledSection>
 );

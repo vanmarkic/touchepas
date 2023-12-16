@@ -3,7 +3,7 @@ import { createGlobalStyle, css } from "styled-components";
 export const px2vw = (size: number, width = 1440) => `${(size / width) * 100}vw`;
 
 export const whenVerticalAspectRatio = (cssRules: string) => css`
-  @media (max-aspect-ratio: 1/1) {
+  @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
     ${cssRules}
   }
 `;
@@ -12,15 +12,9 @@ export const GlobalStyle = createGlobalStyle`
     h4 {
       font-family: "Lexend" !important;
       font-size: 28px;
-      height: fit-content;
       cursor: default;
       color:#150D63;
-      text-transform:uppercase
-    }
-    img{
-      object-fit: contain;
-      width: 100%;
-      height: 100%;
+      text-transform:uppercase;
     }
   * {
     margin: 0;

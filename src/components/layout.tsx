@@ -4,7 +4,6 @@ import GlobalStyle, { whenVerticalAspectRatio } from '../styles/global';
 import { Head } from '../pages';
 import { useLocation } from '@reach/router';
 import RentCalculator from './RentCalculator';
-// import { Reset } from 'styled-reset';
 import { Header } from './Header';
 
 const StyledLayout = styled.div`
@@ -53,19 +52,9 @@ const StyledMenuButton = styled.button`
   background-color: var(--red);
   width: 120px;
   z-index: 1000;
-  /* font-weight: bold; */
   font-size: 16px;
   font-family: 'Lexend' !important;
   cursor: pointer;
-  ${hideWhenHorizontal}
-`;
-const CategoryHeader = styled.h4`
-  position: fixed;
-  top: 7px;
-  left: 10px;
-  color: var(--black);
-  font-size: 24px;
-  z-index: 1001;
   ${hideWhenHorizontal}
 `;
 
@@ -79,6 +68,26 @@ const MobileMenuOverlay = styled.div`
   justify-content: space-evenly;
   align-items: center;
   min-width: 100%;
+`;
+
+const StyledMain = styled.main`
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  padding-left: 2svw;
+  padding-right: 2svw;
+  overflow: scroll;
+  /* scroll-snap-type: y mandatory; */
+  width: 100%;
+  @media (min-aspect-ratio: 1/1) {
+    width: 70vw;
+  }
+  h4 {
+    font-size: 1.2rem;
+  }
+  p {
+    font-size: 1rem;
+  }
 `;
 
 const Layout: React.FC<any> = ({ children }) => {
@@ -98,7 +107,6 @@ const Layout: React.FC<any> = ({ children }) => {
   return (
     <>
       <Head />
-      {/* <Reset /> */}
       <GlobalStyle />
 
       <StyledMenuButton onClick={() => setShowMobileMenu(true)}> Calculateur </StyledMenuButton>
@@ -108,10 +116,11 @@ const Layout: React.FC<any> = ({ children }) => {
           <StyledMenuButton onClick={() => setShowMobileMenu(false)}>Fermer</StyledMenuButton>
         </MobileMenuOverlay>
       ) : null}
+
       <Header />
 
       <StyledLayout>
-        {children}
+        <StyledMain>{children}</StyledMain>
         <SidePanel>
           <RentCalculator />
         </SidePanel>
