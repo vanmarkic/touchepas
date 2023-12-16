@@ -23,6 +23,10 @@ export const Head = () => (
       name="description"
       content="Calculateur d'indexation de loyer du Rassemblement Wallon pour le Droit à l'Habitat"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&display=swap"
+    />
   </>
 );
 
