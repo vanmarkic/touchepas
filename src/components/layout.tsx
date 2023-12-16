@@ -51,7 +51,7 @@ const StyledMenuButton = styled.button`
   /* width: 120px; */
   border-radius: var(--radius);
   padding: 0.2rem;
-  z-index: 1000;
+  z-index: 3;
   font-size: 1.5rem;
   font-family: 'Lexend' !important;
   cursor: pointer;
@@ -60,7 +60,7 @@ const StyledMenuButton = styled.button`
 
 const MobileMenuOverlay = styled.div<{ showMobileMenu: boolean }>`
   position: absolute;
-  z-index: 1500;
+  z-index: 2;
   background-color: rgba(255, 255, 255, 0.9);
   height: 100svh;
   display: ${(props) => (props.showMobileMenu ? 'flex' : 'none')};
@@ -111,10 +111,11 @@ const Layout: React.FC<any> = ({ children }) => {
 
       <Header />
 
-      <StyledMenuButton onClick={() => setShowMobileMenu(true)}> Calculateur </StyledMenuButton>
+      <StyledMenuButton onClick={() => setShowMobileMenu((isShown) => !isShown)}>
+        {showMobileMenu ? 'Fermer' : 'Calculateur'}
+      </StyledMenuButton>
       <MobileMenuOverlay showMobileMenu={showMobileMenu}>
         <RentCalculator />
-        <StyledMenuButton onClick={() => setShowMobileMenu(false)}>Fermer</StyledMenuButton>
       </MobileMenuOverlay>
 
       <StyledLayout>
