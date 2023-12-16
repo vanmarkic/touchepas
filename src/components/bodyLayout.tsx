@@ -7,7 +7,7 @@ export const StyledSection = styled.div`
   column-gap: 20px;
   justify-content: center;
   align-items: center;
-  padding: 40px 10px;
+  padding: 0px 10px 40px 10px;
   @media (max-aspect-ratio: 1/1) {
     flex-direction: column;
     /* min-height: 100svh; */

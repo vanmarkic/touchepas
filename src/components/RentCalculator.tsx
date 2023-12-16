@@ -14,7 +14,7 @@ const StyledContainer = styled.div`
   flex-direction: column;
   gap: 1rem;
   background-color: #f5f5f5;
-  padding: 1rem;
+  padding: 2rem;
   border-radius: 10px;
 `;
 const StyledNewRent = styled.div`
