@@ -35,7 +35,6 @@ const SidePanel = styled.nav`
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-
   padding: 48px;
   align-self: flex-start;
   margin-bottom: 30px;
