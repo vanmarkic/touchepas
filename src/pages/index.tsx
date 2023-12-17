@@ -80,8 +80,70 @@ const StyledImage = styled.img`
   width: 100%;
 `;
 
+const StyledButtonsBlue = styled.div`
+  width: 100%;
+  position: absolute;
+  bottom: 21.5%;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 10px;
+
+  @media (max-aspect-ratio: 1/1) {
+    flex-direction: column;
+    /* min-height: 100svh; */
+    align-items: center;
+    justify-content: center;
+    bottom: 17%;
+  }
+`;
+
+const StyledButtonBlue = styled.button`
+  align-items: center;
+  background-color: var(--blue);
+  border: none;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  font-size: 0.9;
+  height: 42px;
+  justify-content: center;
+  line-height: 24px;
+  min-width: 150px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7);
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0px 20px 0px 20px;
+  letter-spacing: 1.5px;
+
+  &:active {
+    background-color: white;
+    outline: 0;
+    color: var(--red);
+    border: solid 1px var(--blue);
+  }
+
+  &:hover {
+    background-color: white;
+    outline: 0;
+    border: solid 1px var(--blue);
+    color: var(--red);
+  }
+`;
 const ApartmentsPicture = () => (
   <StyledSection>
     <StyledImage alt="" src={Logements} />
+    <StyledButtonsBlue>
+      <StyledButtonBlue>Informations</StyledButtonBlue>
+      <StyledButtonBlue>Informations</StyledButtonBlue>
+      <StyledButtonBlue>Informations</StyledButtonBlue>
+    </StyledButtonsBlue>
   </StyledSection>
 );

@@ -30,11 +30,11 @@ export const hideWhenHorizontal = css`
 const SidePanel = styled.nav`
   width: 45vw;
   max-height: 100svh;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-
   padding: 0px 48px 48px 48px;
   align-self: flex-start;
   margin-bottom: 30px;

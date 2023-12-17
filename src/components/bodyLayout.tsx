@@ -3,11 +3,12 @@ import { whenVerticalAspectRatio } from '../styles/global';
 
 export const StyledSection = styled.div`
   display: flex;
+  position: relative;
   row-gap: 5px;
   column-gap: 20px;
   justify-content: center;
   align-items: center;
-  padding: 0px 10px 40px 10px;
+  padding: 0px 0px 40px 0px;
   @media (max-aspect-ratio: 1/1) {
     flex-direction: column;
     /* min-height: 100svh; */
