@@ -36,8 +36,6 @@ export const Head = () => (
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&display=swap"
-      media="print"
-      // onLoad={(this.media = 'all')}
     />
 
     <noscript>
@@ -117,7 +115,7 @@ const StyledDisplayNoneMobile = styled.div`
   display: static;
 
   @media (max-aspect-ratio: 1/1) {
-  display:none;
+    display: none;
   }
 `;
 
@@ -128,7 +126,7 @@ const StyledButtonsBlue = styled.div`
   display: flex;
   justify-content: space-evenly;
   gap: 20px;
-  margin-top:40px;
+  margin-top: 40px;
 
   @media (max-aspect-ratio: 1/1) {
     flex-direction: column;
@@ -183,14 +181,14 @@ const StyledButtonBlue = styled.button`
 const ApartmentsPicture = () => (
   <StyledSection>
     <StyledDisplayNoneMobile>
-    <StaticImage
-      alt="a building with apartments"
-      placeholder="none"
-      layout="constrained"
-      width={790}
-      src={'../images/logements.jpg'}
-      loading="eager"
-    />
+      <StaticImage
+        alt="a building with apartments"
+        placeholder="none"
+        layout="constrained"
+        width={790}
+        src={'../images/logements.jpg'}
+        loading="eager"
+      />
     </StyledDisplayNoneMobile>
     <StyledButtonsBlue>
       <StyledButtonBlue onClick={() => scrollToSection('informations')}>
@@ -199,6 +197,5 @@ const ApartmentsPicture = () => (
       <StyledButtonBlue>Informations</StyledButtonBlue>
       <StyledButtonBlue>Informations</StyledButtonBlue>
     </StyledButtonsBlue>
-    
   </StyledSection>
 );
