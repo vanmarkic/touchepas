@@ -152,6 +152,7 @@ const StyledButtonBlue = styled.button`
     outline: 0;
     color: var(--red);
     border: solid 1px var(--blue);
+   
   }
 
   &:hover {

@@ -44,7 +44,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   h4 {
     font-family: "Lexend" !important;
-    font-size: 28px;
+    font-size: 1.4rem;
     cursor: default;
     color: var(--blue);
     text-transform:uppercase;
