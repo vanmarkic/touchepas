@@ -95,6 +95,13 @@ const scrollToSection = (sectionId) => {
 const StyledImage = styled.img`
   width: 100%;
 `;
+const StyledDisplayNoneMobile = styled.div`
+  display: static;
+
+  @media (max-aspect-ratio: 1/1) {
+  display:none;
+  }
+`;
 
 const StyledButtonsBlue = styled.div`
   width: 100%;
@@ -102,14 +109,15 @@ const StyledButtonsBlue = styled.div`
   bottom: 21.5%;
   display: flex;
   justify-content: space-evenly;
-  gap: 15px;
+  gap: 20px;
+  margin-top:40px;
 
   @media (max-aspect-ratio: 1/1) {
     flex-direction: column;
     /* min-height: 100svh; */
     align-items: center;
     justify-content: center;
-    bottom: 10%;
+    position: static;
   }
 `;
 
@@ -153,16 +161,19 @@ const StyledButtonBlue = styled.button`
     color: var(--red);
   }
 `;
+
 const ApartmentsPicture = () => (
   <StyledSection>
+    <StyledDisplayNoneMobile>
     <StaticImage
       alt="a building with apartments"
       placeholder="blurred"
       layout="constrained"
-      width={739}
+      width={790}
       src={'../images/logements.jpg'}
       loading="eager"
     />
+    </StyledDisplayNoneMobile>
     <StyledButtonsBlue>
       <StyledButtonBlue onClick={() => scrollToSection('informations')}>
         Informations
@@ -170,5 +181,6 @@ const ApartmentsPicture = () => (
       <StyledButtonBlue>Informations</StyledButtonBlue>
       <StyledButtonBlue>Informations</StyledButtonBlue>
     </StyledButtonsBlue>
+    
   </StyledSection>
 );
