@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { StyledSection, Image, TwoColumns, Paragraph } from '../components/bodyLayout';
+import { StyledSection, TwoColumns, Paragraph } from '../components/bodyLayout';
 import Layout from '../components/layout';
-import Logements from '../images/logements.jpg';
+import { StaticImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 
 const IndexPage: React.FC<{}> = () => {
@@ -17,8 +17,17 @@ export default IndexPage;
 
 export const Head = () => (
   <>
+    <html lang="fr" />
     <title>Touche pas à mon loyer</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Calculateur d'indexation de loyer du Rassemblement Wallon pour le Droit à l'Habitat"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&display=swap"
+    />
   </>
 );
 
@@ -86,14 +95,14 @@ const StyledButtonsBlue = styled.div`
   bottom: 21.5%;
   display: flex;
   justify-content: space-evenly;
-  gap: 10px;
+  gap: 15px;
 
   @media (max-aspect-ratio: 1/1) {
     flex-direction: column;
     /* min-height: 100svh; */
     align-items: center;
     justify-content: center;
-    bottom: 17%;
+    bottom: 15%;
   }
 `;
 
@@ -139,11 +148,19 @@ const StyledButtonBlue = styled.button`
 `;
 const ApartmentsPicture = () => (
   <StyledSection>
-    <StyledImage alt="" src={Logements} />
+    <StaticImage
+      alt="a building with apartments"
+      placeholder="blurred"
+      layout="constrained"
+      width={739}
+      src={'../images/logements.jpg'}
+      loading="eager"
+    />
     <StyledButtonsBlue>
       <StyledButtonBlue>Informations</StyledButtonBlue>
       <StyledButtonBlue>Informations</StyledButtonBlue>
       <StyledButtonBlue>Informations</StyledButtonBlue>
     </StyledButtonsBlue>
+
   </StyledSection>
 );

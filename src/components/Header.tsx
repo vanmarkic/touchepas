@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import styled from 'styled-components';
-import Logo from '../logo/logo.png';
 import { whenVerticalAspectRatio } from '../styles/global';
+import { StaticImage } from 'gatsby-plugin-image';
 
 const StyledHeader = styled.div`
   padding: 0.7rem;
@@ -26,7 +26,7 @@ const StyledHeader = styled.div`
 `;
 
 const RedSpan = styled.span`
-  color: var(--red);
+  color: var(--dark-red);
 `;
 
 const Img = styled.img``;
@@ -37,7 +37,14 @@ export const Header = () => {
       <h4>
         TOUCHE <RedSpan> PAS </RedSpan> À MON LOYER
       </h4>
-      <img alt="Logo" src={Logo} />
+      <StaticImage
+        alt="logo"
+        placeholder="blurred"
+        layout="constrained"
+        width={50}
+        src={'../logo/logo.png'}
+        loading="eager"
+      />
     </StyledHeader>
   );
 };

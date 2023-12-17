@@ -33,5 +33,5 @@ export const Paragraph = styled.div`
 export const Image = styled.div`
   width: 100%;
   background-image: url('../images/logements.jpg');
-  padding: 10px;
+  padding: 10px ;
 `;

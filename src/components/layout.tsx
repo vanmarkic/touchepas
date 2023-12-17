@@ -30,7 +30,6 @@ export const hideWhenHorizontal = css`
 const SidePanel = styled.nav`
   width: 45vw;
   max-height: 100svh;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -45,24 +44,26 @@ const StyledMenuButton = styled.button`
   position: fixed;
   bottom: 6px;
   right: 10px;
-  color: var(--black);
+  color: var(--white);
   size: 40px;
-  border: 2px solid var(--black) !important;
-  background-color: var(--red);
-  width: 120px;
-  z-index: 1000;
-  font-size: 16px;
+  border: 2px solid var(--red) !important;
+  background-color: var(--blue);
+  /* width: 120px; */
+  border-radius: var(--radius);
+  padding: 0.2rem;
+  z-index: 3;
+  font-size: 1.5rem;
   font-family: 'Lexend' !important;
   cursor: pointer;
   ${hideWhenHorizontal}
 `;
 
-const MobileMenuOverlay = styled.div`
+const MobileMenuOverlay = styled.div<{ showMobileMenu: boolean }>`
   position: absolute;
-  z-index: 1500;
+  z-index: 2;
   background-color: rgba(255, 255, 255, 0.9);
   height: 100svh;
-  display: flex;
+  display: ${(props) => (props.showMobileMenu ? 'flex' : 'none')};
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
@@ -105,18 +106,17 @@ const Layout: React.FC<any> = ({ children }) => {
 
   return (
     <>
-      <Head />
+      {/* <Head /> */}
       <GlobalStyle />
 
-      <StyledMenuButton onClick={() => setShowMobileMenu(true)}> Calculateur </StyledMenuButton>
-      {showMobileMenu ? (
-        <MobileMenuOverlay>
-          <RentCalculator />
-          <StyledMenuButton onClick={() => setShowMobileMenu(false)}>Fermer</StyledMenuButton>
-        </MobileMenuOverlay>
-      ) : null}
-
       <Header />
+
+      <StyledMenuButton onClick={() => setShowMobileMenu((isShown) => !isShown)}>
+        {showMobileMenu ? 'Fermer' : 'Calculateur'}
+      </StyledMenuButton>
+      <MobileMenuOverlay showMobileMenu={showMobileMenu}>
+        <RentCalculator />
+      </MobileMenuOverlay>
 
       <StyledLayout>
         <StyledMain>{children}</StyledMain>

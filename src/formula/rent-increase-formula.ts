@@ -20,7 +20,7 @@ export function calculateRentIndexation(
 
   const initialIndex = getInitialIndex(contractSignatureDate, agreementStartDate, indexBaseYear)
 
-  const basicFormula = (newIndex: number): number => (initialRent * newIndex) / initialIndex;
+  const basicFormula = (newIndex: number): number => roundToTwoDecimals((initialRent * newIndex) / initialIndex)
 
   const formulaWithEnergyRatio = () => {
     const yearOfIndexationWithPEB = getYearOfIndexationWithPEB(agreementStartDate, region)
@@ -34,12 +34,19 @@ export function calculateRentIndexation(
 
     const result = previousYearIndexedRent + ((currentYearIndexedRent - previousYearIndexedRent) * ENERGY_RATIOS[region].peb[energyEfficiencyRating])
 
-    // limit decimal to 2
-    return Math.round(result * 100) / 100
+    return roundToTwoDecimals(result)
   }
+
   const wasIndexationRequestedBeforeStartOfEnergyRatingDecree = yearOfIndexation <= ENERGY_RATIOS[region].start.getFullYear() && agreementStartDate.getMonth() < ENERGY_RATIOS[region].start.getMonth()
 
-  const wasIndexationRequestedAfterEndOfEnergyRatioDecree = getIsAfterDecree(yearOfIndexation, region, agreementStartDate)
+  const isAfterDecree = getIsAfterDecree(yearOfIndexation, region, agreementStartDate)
+
+  if (isAfterDecree) {
+
+    const result = formulaWithEnergyRatio() * newHealthIndex / findHealthIndex(shouldUsePreviousYear ? yearOfIndexation - 2 : yearOfIndexation - 1, anniversaryMonth, indexBaseYear)
+    return roundToTwoDecimals(result)
+
+  }
 
   return wasIndexationRequestedBeforeStartOfEnergyRatingDecree ? basicFormula(newHealthIndex) : formulaWithEnergyRatio()
 
@@ -57,6 +64,10 @@ export const energyEfficiencyRatings = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'none
 
 export type EnergyEfficiencyRating = typeof energyEfficiencyRatings[number]
 
+
+function roundToTwoDecimals(result: number) {
+  return Math.round(result * 100) / 100;
+}
 
 export function getIsAfterDecree(yearOfIndexation: number, region: Regions, agreementStartDate: Date) {
   return yearOfIndexation > ENERGY_RATIOS[region].end.getFullYear() || (yearOfIndexation === ENERGY_RATIOS[region].end.getFullYear() && agreementStartDate.getMonth() > ENERGY_RATIOS[region].end.getMonth());
