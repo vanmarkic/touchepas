@@ -24,10 +24,28 @@ export const Head = () => (
       name="description"
       content="Calculateur d'indexation de loyer du Rassemblement Wallon pour le Droit à l'Habitat"
     />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={'anonymous'} />
+
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&display=swap"
+    />
+
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&display=swap"
+      media="print"
+      // onLoad={(this.media = 'all')}
     />
+
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&display=swap"
+      />
+    </noscript>
   </>
 );
 

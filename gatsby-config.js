@@ -30,20 +30,20 @@ module.exports = {
     'gatsby-plugin-typescript',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
-    {
-      resolve: 'gatsby-omni-font-loader',
-      options: {
-        mode: 'async',
-        enableListener: true,
-        preconnect: ['https://fonts.googleapis.com', 'https://fonts.gstatic.com'],
-        web: [
-          {
-            name: 'Lexend',
-            file: 'https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&display=swap',
-          },
-        ],
-      },
-    },
+    // {
+    //   resolve: 'gatsby-omni-font-loader',
+    //   options: {
+    //     mode: 'async',
+    //     enableListener: true,
+    //     preconnect: ['https://fonts.gstatic.com'],
+    //     web: [
+    //       {
+    //         name: 'Lexend',
+    //         file: 'https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&display=swap',
+    //       },
+    //     ],
+    //   },
+    // },
     {
       resolve: 'gatsby-plugin-image',
       options: {
