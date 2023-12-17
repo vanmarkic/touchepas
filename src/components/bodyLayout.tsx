@@ -3,18 +3,13 @@ import { whenVerticalAspectRatio } from '../styles/global';
 
 export const StyledSection = styled.div`
   display: flex;
+  flex-direction: column;
   position: relative;
   row-gap: 5px;
   column-gap: 20px;
   justify-content: center;
   align-items: center;
   padding: 0px 0px 40px 0px;
-  @media (max-aspect-ratio: 1/1) {
-    flex-direction: column;
-    /* min-height: 100svh; */
-    align-items: center;
-    justify-content: center;
-  }
 `;
 
 export const TwoColumns = styled.div`
@@ -33,5 +28,5 @@ export const Paragraph = styled.div`
 export const Image = styled.div`
   width: 100%;
   background-image: url('../images/logements.jpg');
-  padding: 10px ;
+  padding: 10px;
 `;

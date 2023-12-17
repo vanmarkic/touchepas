@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { StyledSection, TwoColumns, Paragraph } from '../components/bodyLayout';
-import Layout from '../components/layout';
+import Layout, { StyledButtonBlue } from '../components/layout';
 import { StaticImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 
 const IndexPage: React.FC<{}> = () => {
   return (
     <Layout>
-      <ApartmentsPicture />
+      <HeroSection />
       <GeneralInformation />
     </Layout>
   );
@@ -17,10 +17,11 @@ export default IndexPage;
 
 const GeneralInformation = () => {
   return (
-    <StyledSection>
-      <TwoColumns id="informations">
+    <StyledSection id="informations">
+      <h4>Informations générales</h4>
+      <TwoColumns>
         <Paragraph>
-          <h4>À quelles conditions peut-on indexer mon loyer en Wallonie ?</h4>
+          <h5>À quelles conditions peut-on indexer mon loyer en Wallonie ?</h5>
           <p>
             Le loyer peut être indexé, chaque année, au plus tôt à la date anniversaire de l'entrée
             en vigueur du bail. L'indexation du loyer est toujours possible, à moins qu'elle n'ait
@@ -34,7 +35,7 @@ const GeneralInformation = () => {
         </Paragraph>
 
         <Paragraph>
-          <h4>Limitation de l'indexation pour les logements passoires (PEB D, E, F et G)</h4>
+          <h5>Limitation de l'indexation pour les logements passoires (PEB D, E, F et G)</h5>
           <p>
             Le décret du 19 octobre 2022 a instauré une mesure visant à limiter l'indexation des
             loyers en fonction du certificat PEB qui a été d'application entre 1er novembre 2022 au
@@ -58,7 +59,7 @@ const GeneralInformation = () => {
           </p>
         </Paragraph>
         <Paragraph>
-          <h4>Quand peut-on indexer mon loyer ?</h4>
+          <h5>Quand peut-on indexer mon loyer ?</h5>
           <p>
             L'indexation du loyer peut se faire chaque année au plus tôt à la date anniversaire de
             l'entrée en vigueur du bail.
@@ -105,48 +106,7 @@ const StyledButtonsBlue = styled.div`
   }
 `;
 
-const StyledButtonBlue = styled.button`
-  align-items: center;
-  background-color: var(--blue);
-  border: none;
-  border-radius: 8px;
-  box-sizing: border-box;
-  color: white;
-  cursor: pointer;
-  display: flex;
-  font-size: 0.9;
-  height: 42px;
-  justify-content: center;
-  line-height: 24px;
-  min-width: 150px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  box-shadow: var(--shadow);
-  text-transform: uppercase;
-  font-weight: 700;
-  padding: 0px 20px 0px 20px;
-  letter-spacing: 1.5px;
-
-  &:active {
-    background-color: white;
-    outline: 0;
-    color: var(--red);
-    border: solid 1px var(--blue);
-  }
-
-  &:hover {
-    background-color: white;
-    outline: 0;
-    border: solid 1px var(--blue);
-    color: var(--red);
-  }
-`;
-
-const ApartmentsPicture = () => (
+const HeroSection = () => (
   <StyledSection>
     <StyledDisplayNoneMobile>
       <StaticImage
@@ -160,7 +120,7 @@ const ApartmentsPicture = () => (
     </StyledDisplayNoneMobile>
     <StyledButtonsBlue>
       <StyledButtonBlue onClick={() => scrollToSection('informations')}>
-        Informations
+        Informations Générales
       </StyledButtonBlue>
       <StyledButtonBlue>Informations</StyledButtonBlue>
       <StyledButtonBlue>Informations</StyledButtonBlue>

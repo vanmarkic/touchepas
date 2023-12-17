@@ -6,6 +6,47 @@ import { useLocation } from '@reach/router';
 import RentCalculator from './RentCalculator';
 import { HEADER_HEIGHT, Header } from './Header';
 
+export const StyledButtonBlue = styled.button`
+  align-items: center;
+  background-color: var(--blue);
+  border: none;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  font-size: 0.9;
+  height: 42px;
+  justify-content: center;
+  line-height: 24px;
+  min-width: 150px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  box-shadow: var(--shadow);
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0px 20px 0px 20px;
+  letter-spacing: 1.5px;
+
+  &:active {
+    background-color: white;
+    outline: 0;
+    color: var(--red);
+    border: solid 1px var(--blue);
+  }
+
+  &:hover {
+    background-color: white;
+    outline: 0;
+    border: solid 1px var(--blue);
+    color: var(--red);
+  }
+`;
+
 const StyledLayout = styled.div`
   width: 100%;
   margin: 0 auto;
@@ -16,13 +57,13 @@ const StyledLayout = styled.div`
 `;
 
 export const hideWhenVertical = css`
-  @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
+  @media (max-width: 768px) {
     display: none;
   }
 `;
 
 export const hideWhenHorizontal = css`
-  @media (min-aspect-ratio: 1/1) {
+  @media (min-width: 768px) {
     display: none;
   }
 `;
@@ -37,24 +78,15 @@ const SidePanel = styled.nav`
   padding: 0px 48px 48px 48px;
   align-self: flex-start;
   margin-bottom: 30px;
-  ${whenVerticalAspectRatio('display: none;')};
+  ${hideWhenVertical};
 `;
 
-const StyledMenuButton = styled.button`
+const StyledMenuButton = styled(StyledButtonBlue)`
   position: fixed;
   bottom: 6px;
   right: 10px;
-  color: var(--white);
   size: 40px;
-  border: 2px solid var(--red) !important;
-  background-color: var(--blue);
-  /* width: 120px; */
-  border-radius: var(--radius);
-  padding: 0.2rem;
   z-index: 3;
-  font-size: 1.5rem;
-  font-family: 'Lexend' !important;
-  cursor: pointer;
   ${hideWhenHorizontal}
 `;
 
