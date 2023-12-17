@@ -26,7 +26,7 @@ const StyledHeader = styled.div`
 `;
 
 const RedSpan = styled.span`
-  color: var(--red);
+  color: var(--dark-red);
 `;
 
 const Img = styled.img``;

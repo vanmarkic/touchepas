@@ -35,7 +35,8 @@ export const GlobalStyle = createGlobalStyle`
   html,
   body {
     --blue: #150d63;
-    --red: #E04843;
+    --red:#E04843;  
+    --dark-red:#af211d;
     --black: #010101;
     --white: #fefefe;
     --radius: 5px;
