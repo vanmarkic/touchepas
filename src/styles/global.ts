@@ -9,13 +9,6 @@ export const whenVerticalAspectRatio = (cssRules: string) => css`
 `;
 
 export const GlobalStyle = createGlobalStyle`
-    h4 {
-      font-family: "Lexend" !important;
-      font-size: 28px;
-      cursor: default;
-      color:#150D63;
-      text-transform:uppercase;
-    }
   * {
     margin: 0;
     padding: 0;
@@ -23,16 +16,16 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   :root {
-      --doc-height: 100%;
-
-      @media (min-width: 768px) {
-        font-size: ${px2vw(12, 768)};
-      }
-
-      @media (min-width: 1024px) {
-        font-size: ${px2vw(14, 1024)};
-      }
+    --doc-height: 100%;
+    
+    @media (min-width: 768px) {
+      font-size: ${px2vw(12, 768)};
     }
+    
+    @media (min-width: 1024px) {
+      font-size: ${px2vw(14, 1024)};
+    }
+  }
   html,
   body {
     --blue: #150d63;
@@ -48,6 +41,13 @@ export const GlobalStyle = createGlobalStyle`
     height: var(--doc-height);
     overscroll-behavior: none; 
     color: var(--black);
+  }
+  h4 {
+    font-family: "Lexend" !important;
+    font-size: 28px;
+    cursor: default;
+    color: var(--blue);
+    text-transform:uppercase;
   }
   form {
     display: flex;

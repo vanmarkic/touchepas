@@ -157,7 +157,7 @@ const ApartmentsPicture = () => (
   <StyledSection>
     <StaticImage
       alt="a building with apartments"
-      placeholder="blurred"
+      placeholder="none"
       layout="constrained"
       width={739}
       src={'../images/logements.jpg'}
