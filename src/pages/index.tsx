@@ -2,6 +2,7 @@ import * as React from 'react';
 import { StyledSection, TwoColumns, Paragraph } from '../components/bodyLayout';
 import Layout from '../components/layout';
 import { StaticImage } from 'gatsby-plugin-image';
+import styled from 'styled-components';
 
 const IndexPage: React.FC<{}> = () => {
   return (
@@ -84,6 +85,67 @@ const GeneralInformation = () => {
   );
 };
 
+const StyledImage = styled.img`
+  width: 100%;
+`;
+
+const StyledButtonsBlue = styled.div`
+  width: 100%;
+  position: absolute;
+  bottom: 21.5%;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 15px;
+
+  @media (max-aspect-ratio: 1/1) {
+    flex-direction: column;
+    /* min-height: 100svh; */
+    align-items: center;
+    justify-content: center;
+    bottom: 15%;
+  }
+`;
+
+const StyledButtonBlue = styled.button`
+  align-items: center;
+  background-color: var(--blue);
+  border: none;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  font-size: 0.9;
+  height: 42px;
+  justify-content: center;
+  line-height: 24px;
+  min-width: 150px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7);
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0px 20px 0px 20px;
+  letter-spacing: 1.5px;
+
+  &:active {
+    background-color: white;
+    outline: 0;
+    color: var(--red);
+    border: solid 1px var(--blue);
+  }
+
+  &:hover {
+    background-color: white;
+    outline: 0;
+    border: solid 1px var(--blue);
+    color: var(--red);
+  }
+`;
 const ApartmentsPicture = () => (
   <StyledSection>
     <StaticImage
@@ -94,5 +156,11 @@ const ApartmentsPicture = () => (
       src={'../images/logements.jpg'}
       loading="eager"
     />
+    <StyledButtonsBlue>
+      <StyledButtonBlue>Informations</StyledButtonBlue>
+      <StyledButtonBlue>Informations</StyledButtonBlue>
+      <StyledButtonBlue>Informations</StyledButtonBlue>
+    </StyledButtonsBlue>
+
   </StyledSection>
 );
