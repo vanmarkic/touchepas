@@ -34,6 +34,11 @@ export const GlobalStyle = createGlobalStyle`
     --black: #010101;
     --white: #fefefe;
     --radius: 5px;
+    --shadow: 0 1px 1px hsl(0deg 0% 0% / 0.1),
+              0 2px 2px hsl(0deg 0% 0% / 0.2),
+              0 4px 4px hsl(0deg 0% 0% / 0.1),
+              0 6px 6px hsl(0deg 0% 0% / 0.1),
+              0 12px 12px hsl(0deg 0% 0% / 0.1);
     font-family: "Lexend";
     padding: 0;
     margin: 0;
@@ -49,13 +54,15 @@ export const GlobalStyle = createGlobalStyle`
     color: var(--blue);
     text-transform:uppercase;
   }
+  button {
+    font-family: "Lexend" !important;
+  }
   form {
     display: flex;
     flex-direction: column;
     align-items: start;
     justify-content: start;
     gap: .7rem;
-    height: 100%;
     label {
       font-size: .8rem;
       height: 1rem;

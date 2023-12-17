@@ -15,38 +15,6 @@ const IndexPage: React.FC<{}> = () => {
 
 export default IndexPage;
 
-export const Head = () => (
-  <>
-    <html lang="fr" />
-    <title>Touche pas à mon loyer</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta
-      name="description"
-      content="Calculateur d'indexation de loyer du Rassemblement Wallon pour le Droit à l'Habitat"
-    />
-
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={'anonymous'} />
-
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&display=swap"
-    />
-
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&display=swap"
-    />
-
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&display=swap"
-      />
-    </noscript>
-  </>
-);
-
 const GeneralInformation = () => {
   return (
     <StyledSection>
@@ -101,7 +69,7 @@ const GeneralInformation = () => {
   );
 };
 
-const scrollToSection = (sectionId) => {
+const scrollToSection = (sectionId: string) => {
   const section = document.getElementById(sectionId);
   if (section) {
     section.scrollIntoView({ behavior: 'smooth' });
@@ -157,7 +125,7 @@ const StyledButtonBlue = styled.button`
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7);
+  box-shadow: var(--shadow);
   text-transform: uppercase;
   font-weight: 700;
   padding: 0px 20px 0px 20px;
@@ -168,7 +136,6 @@ const StyledButtonBlue = styled.button`
     outline: 0;
     color: var(--red);
     border: solid 1px var(--blue);
-   
   }
 
   &:hover {
@@ -182,14 +149,14 @@ const StyledButtonBlue = styled.button`
 const ApartmentsPicture = () => (
   <StyledSection>
     <StyledDisplayNoneMobile>
-    <StaticImage
-      alt="a building with apartments"
-      placeholder="none"
-      layout="constrained"
-      width={800}
-      src={'../images/logements.jpg'}
-      loading="eager"
-    />
+      <StaticImage
+        alt="a building with apartments"
+        placeholder="none"
+        layout="constrained"
+        width={800}
+        src={'../images/logements.jpg'}
+        loading="eager"
+      />
     </StyledDisplayNoneMobile>
     <StyledButtonsBlue>
       <StyledButtonBlue onClick={() => scrollToSection('informations')}>
@@ -199,4 +166,36 @@ const ApartmentsPicture = () => (
       <StyledButtonBlue>Informations</StyledButtonBlue>
     </StyledButtonsBlue>
   </StyledSection>
+);
+
+export const Head = () => (
+  <>
+    <html lang="fr" />
+    <title>Touche pas à mon loyer</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Calculateur d'indexation de loyer du Rassemblement Wallon pour le Droit à l'Habitat"
+    />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={'anonymous'} />
+
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&display=swap"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&display=swap"
+    />
+
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&display=swap"
+      />
+    </noscript>
+  </>
 );

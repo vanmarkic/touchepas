@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import { whenVerticalAspectRatio } from '../styles/global';
 import { StaticImage } from 'gatsby-plugin-image';
 
+export const HEADER_HEIGHT = '70px';
+
 const StyledHeader = styled.div`
   padding: 0.7rem;
   display: flex;
@@ -23,6 +25,7 @@ const StyledHeader = styled.div`
   img {
     max-height: 3rem;
   }
+  height: ${HEADER_HEIGHT};
 `;
 
 const RedSpan = styled.span`

@@ -12,40 +12,42 @@ import { is } from 'date-fns/locale';
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items:center;
-  gap: 1rem;
-  padding: 0rem 2rem;
-  border-radius: var(--radius);
   align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  /* padding: 0rem 2rem; */
+  border-radius: var(--radius);
   position: relative;
-  background-color:#ededed;
-  padding:35px;
+  background-color: #ededed;
+  width: 100%;
+  height: 100%;
+  padding: 35px;
+  margin: auto;
 `;
 const StyledContainerRow = styled.div`
   display: flex;
   align-items: end;
   justify-content: space-between;
   position: relative;
-  width:240px;
+  width: 240px;
 `;
 const StyledNewRent = styled.div`
   display: flex;
   flex-direction: column;
   gap: Orem;
-
 `;
 
 const StyledLabel = styled.label`
-color:var(--blue);
+  color: var(--blue);
 `;
 
 const StyledInput = styled.input`
   border: 1px solid grey;
   box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.1);
-  border-radius:var(--radius);
+  border-radius: var(--radius);
   background-color: #f8f8f8;
   outline: none;
-  width:240px;
+  width: 240px;
   padding: 5px;
 
   &:focus {
@@ -62,11 +64,11 @@ const StyledInput = styled.input`
 
 const StyledSelect = styled.select`
   border: 1px solid grey;
-  border-radius:var(--radius);
+  border-radius: var(--radius);
   background-color: #ffffff;
   outline: none;
-  width:240px;
-  box-shadow:1px 1px  1px grey;
+  width: 240px;
+  box-shadow: 1px 1px 1px grey;
 
   &:focus {
     border-color: 0px solid var(--blue);
@@ -81,7 +83,7 @@ const StyledButton = styled.button`
   align-items: center;
   background-color: var(--blue);
   border: none;
-  border-radius:var(--radius);
+  border-radius: var(--radius);
   box-sizing: border-box;
   color: white;
   cursor: pointer;
@@ -101,18 +103,16 @@ const StyledButton = styled.button`
   font-weight: 500;
   padding: 0px 20px 0px 20px;
   letter-spacing: 1.5px;
-  box-shadow:2px 1px  1px grey;
-
+  box-shadow: var(--shadow);
 
   &:active {
-    background-color:var(--red);
+    background-color: var(--red);
     outline: 0;
     border: solid 1px var(--red);
-    
   }
 
   &:hover {
-    background-color:var(--red);
+    background-color: var(--red);
     outline: 0;
     border: solid 1px var(--red);
   }

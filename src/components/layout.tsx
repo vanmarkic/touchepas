@@ -4,7 +4,7 @@ import GlobalStyle, { whenVerticalAspectRatio } from '../styles/global';
 import { Head } from '../pages';
 import { useLocation } from '@reach/router';
 import RentCalculator from './RentCalculator';
-import { Header } from './Header';
+import { HEADER_HEIGHT, Header } from './Header';
 
 const StyledLayout = styled.div`
   width: 100%;
@@ -12,7 +12,7 @@ const StyledLayout = styled.div`
   display: flex;
   flex-direction: row;
   overflow: hidden;
-  height: calc(100vh - 60px);
+  height: calc(100vh - ${HEADER_HEIGHT});
 `;
 
 export const hideWhenVertical = css`
@@ -62,10 +62,10 @@ const MobileMenuOverlay = styled.div<{ showMobileMenu: boolean }>`
   position: absolute;
   z-index: 2;
   background-color: rgba(255, 255, 255, 0.9);
-  height: 100svh;
+  height: calc(100svh - ${HEADER_HEIGHT});
   display: ${(props) => (props.showMobileMenu ? 'flex' : 'none')};
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   min-width: 100%;
 `;
