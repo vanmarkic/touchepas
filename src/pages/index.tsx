@@ -24,10 +24,26 @@ export const Head = () => (
       name="description"
       content="Calculateur d'indexation de loyer du Rassemblement Wallon pour le Droit à l'Habitat"
     />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={'anonymous'} />
+
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&display=swap"
+    />
+
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&display=swap"
     />
+
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&display=swap"
+      />
+    </noscript>
   </>
 );
 
@@ -99,7 +115,7 @@ const StyledDisplayNoneMobile = styled.div`
   display: static;
 
   @media (max-aspect-ratio: 1/1) {
-  display:none;
+    display: none;
   }
 `;
 
@@ -110,7 +126,7 @@ const StyledButtonsBlue = styled.div`
   display: flex;
   justify-content: space-evenly;
   gap: 20px;
-  margin-top:40px;
+  margin-top: 40px;
 
   @media (max-aspect-ratio: 1/1) {
     flex-direction: column;
@@ -182,6 +198,5 @@ const ApartmentsPicture = () => (
       <StyledButtonBlue>Informations</StyledButtonBlue>
       <StyledButtonBlue>Informations</StyledButtonBlue>
     </StyledButtonsBlue>
-    
   </StyledSection>
 );
