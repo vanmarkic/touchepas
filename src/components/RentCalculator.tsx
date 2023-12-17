@@ -12,18 +12,111 @@ import { is } from 'date-fns/locale';
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items:center;
   gap: 1rem;
-  background-color: #f5f5f5;
-  padding: 2rem;
+  padding: 0rem 2rem;
   border-radius: var(--radius);
+  align-items: center;
+  position: relative;
+  background-color:#ededed;
+  padding:35px;
+`;
+const StyledContainerRow = styled.div`
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  position: relative;
+  width:240px;
 `;
 const StyledNewRent = styled.div`
   display: flex;
   flex-direction: column;
   gap: Orem;
+
 `;
 
-const StyledButton = styled.button``;
+const StyledLabel = styled.label`
+color:var(--blue);
+`;
+
+const StyledInput = styled.input`
+  border: 1px solid grey;
+  box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.1);
+  border-radius:var(--radius);
+  background-color: #f8f8f8;
+  outline: none;
+  width:240px;
+  padding: 5px;
+
+  &:focus {
+    border-color: 2px solid var(--blue);
+    box-shadow: 0 0 0 1px var(--blue);
+    outline: none;
+  }
+  &:hover {
+    border-color: 0px solid var(--blue);
+    box-shadow: 0 0 0 1px var(--blue);
+    outline: none;
+  }
+`;
+
+const StyledSelect = styled.select`
+  border: 1px solid grey;
+  border-radius:var(--radius);
+  background-color: #ffffff;
+  outline: none;
+  width:240px;
+  box-shadow:1px 1px  1px grey;
+
+  &:focus {
+    border-color: 0px solid var(--blue);
+    outline: none;
+  }
+  &:hover {
+    border-color: 0px solid var(--blue);
+    outline: none;
+  }
+`;
+const StyledButton = styled.button`
+  align-items: center;
+  background-color: var(--blue);
+  border: none;
+  border-radius:var(--radius);
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  font-size: 0.6rem;
+  height: 30px;
+  justify-content: center;
+  line-height: 24px;
+  min-width: 80px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 0px 20px 0px 20px;
+  letter-spacing: 1.5px;
+  box-shadow:2px 1px  1px grey;
+
+
+  &:active {
+    background-color:var(--red);
+    outline: 0;
+    border: solid 1px var(--red);
+    
+  }
+
+  &:hover {
+    background-color:var(--red);
+    outline: 0;
+    border: solid 1px var(--red);
+  }
+`;
 
 const RentCalculator: React.FC = () => {
   const [indexationDate, setIndexationDate] = useState<number>(2023);
@@ -69,9 +162,9 @@ const RentCalculator: React.FC = () => {
     <StyledContainer>
       <h4>Calculateur de loyer</h4>
       <form>
-        <label htmlFor="indexationDate">
+        <StyledLabel htmlFor="indexationDate">
           Année de demande d'indexation:
-          <input
+          <StyledInput
             type="number"
             min="1984"
             max={new Date().getFullYear()}
@@ -81,20 +174,20 @@ const RentCalculator: React.FC = () => {
             defaultValue={2023}
             onChange={(e) => setIndexationDate(Number(e.target.value))}
           />
-        </label>
-        <label htmlFor="initialRent">
+        </StyledLabel>
+        <StyledLabel htmlFor="initialRent">
           Loyer stipulé sur le bail:
-          <input
+          <StyledInput
             type="tel"
             id="initialRent"
             defaultValue={initialRent}
             onChange={(e) => setInitialRent(Number(e.target.value))}
             required
           />
-        </label>
-        <label htmlFor="contractSignatureDate">
+        </StyledLabel>
+        <StyledLabel htmlFor="contractSignatureDate">
           Date de signature du bail:
-          <input
+          <StyledInput
             type="date"
             min="2000-01-01"
             max={new Date().toISOString().split('T')[0]}
@@ -103,10 +196,10 @@ const RentCalculator: React.FC = () => {
             id="contractSignatureDate"
             onChange={(e) => setContractSignatureDate(new Date(e.target.value))}
           />
-        </label>
-        <label htmlFor="agreementStartDate">
+        </StyledLabel>
+        <StyledLabel htmlFor="agreementStartDate">
           Date d'entrée en vigueur:
-          <input
+          <StyledInput
             type="date"
             min="2000-01-01"
             max={new Date().toISOString().split('T')[0]}
@@ -115,14 +208,21 @@ const RentCalculator: React.FC = () => {
             id="agreementStartDate"
             onChange={(e) => setAgreementStartDate(new Date(e.target.value))}
           />
-        </label>
-        <label htmlFor="region">
+        </StyledLabel>
+        <StyledLabel htmlFor="region">
           Région:
-          <input type="select" disabled required lang="fr-FR" id="region" defaultValue="Wallonie" />
-        </label>
-        <label htmlFor="peb">
+          <StyledInput
+            type="select"
+            disabled
+            required
+            lang="fr-FR"
+            id="region"
+            defaultValue="Wallonie"
+          />
+        </StyledLabel>
+        <StyledLabel htmlFor="peb">
           Certificat PEB:
-          <select
+          <StyledSelect
             disabled={
               indexationDate < ENERGY_RATIOS[region].start.getFullYear() ||
               (indexationDate == ENERGY_RATIOS[region].start.getFullYear() &&
@@ -134,19 +234,20 @@ const RentCalculator: React.FC = () => {
             onChange={(e) => setEnergyCertificate(e.target.value as EnergyEfficiencyRating)}
           >
             {energyEfficiencyRatings.map((rating) => (
-              <option value={rating}>{rating !== 'none' ? rating : 'pas de certificat'}</option>
+              <option value={rating}>{rating !== 'none' ? rating : 'Aucun certificat'}</option>
             ))}
-          </select>
-        </label>
-
-        <StyledButton disabled={!isValid} type="button" onClick={handleCalculate}>
-          Calculer
-        </StyledButton>
+          </StyledSelect>
+        </StyledLabel>
+        <StyledContainerRow>
+          <StyledButton disabled={!isValid} type="button" onClick={handleCalculate}>
+            Calculer
+          </StyledButton>
+          <StyledNewRent>
+            <h6>Loyer Indexé</h6>
+            <h4>{Number(newRent).toFixed(2).toLocaleLowerCase('fr-FR')}€</h4>
+          </StyledNewRent>
+        </StyledContainerRow>
       </form>
-      <StyledNewRent>
-        <h6>Nouveau loyer autorisé</h6>
-        <h2>{Number(newRent).toFixed(2).toLocaleLowerCase('fr-FR')}€</h2>
-      </StyledNewRent>
     </StyledContainer>
   );
 };

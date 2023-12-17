@@ -168,6 +168,7 @@ const StyledButtonBlue = styled.button`
     outline: 0;
     color: var(--red);
     border: solid 1px var(--blue);
+   
   }
 
   &:hover {
@@ -181,14 +182,14 @@ const StyledButtonBlue = styled.button`
 const ApartmentsPicture = () => (
   <StyledSection>
     <StyledDisplayNoneMobile>
-      <StaticImage
-        alt="a building with apartments"
-        placeholder="none"
-        layout="constrained"
-        width={790}
-        src={'../images/logements.jpg'}
-        loading="eager"
-      />
+    <StaticImage
+      alt="a building with apartments"
+      placeholder="none"
+      layout="constrained"
+      width={800}
+      src={'../images/logements.jpg'}
+      loading="eager"
+    />
     </StyledDisplayNoneMobile>
     <StyledButtonsBlue>
       <StyledButtonBlue onClick={() => scrollToSection('informations')}>
