@@ -169,7 +169,7 @@ const ApartmentsPicture = () => (
       alt="a building with apartments"
       placeholder="blurred"
       layout="constrained"
-      width={790}
+      width={800}
       src={'../images/logements.jpg'}
       loading="eager"
     />
