@@ -34,7 +34,7 @@ export const Head = () => (
 const GeneralInformation = () => {
   return (
     <StyledSection>
-      <TwoColumns>
+      <TwoColumns id="informations">
         <Paragraph>
           <h4>À quelles conditions peut-on indexer mon loyer en Wallonie ?</h4>
           <p>
@@ -85,6 +85,13 @@ const GeneralInformation = () => {
   );
 };
 
+const scrollToSection = (sectionId) => {
+  const section = document.getElementById(sectionId);
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth' });
+  }
+};
+
 const StyledImage = styled.img`
   width: 100%;
 `;
@@ -102,7 +109,7 @@ const StyledButtonsBlue = styled.div`
     /* min-height: 100svh; */
     align-items: center;
     justify-content: center;
-    bottom: 15%;
+    bottom: 10%;
   }
 `;
 
@@ -157,10 +164,11 @@ const ApartmentsPicture = () => (
       loading="eager"
     />
     <StyledButtonsBlue>
-      <StyledButtonBlue>Informations</StyledButtonBlue>
+      <StyledButtonBlue onClick={() => scrollToSection('informations')}>
+        Informations
+      </StyledButtonBlue>
       <StyledButtonBlue>Informations</StyledButtonBlue>
       <StyledButtonBlue>Informations</StyledButtonBlue>
     </StyledButtonsBlue>
-
   </StyledSection>
 );
