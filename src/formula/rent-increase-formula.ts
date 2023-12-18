@@ -90,7 +90,6 @@ function getInitialIndex(contractSignatureDate: Date, agreementStartDate: Date, 
 
   const initialIndexDate = new Date(contractSignatureDate);
   initialIndexDate.setMonth(initialIndexDate.getMonth() - 1);
-  console.log(initialIndexDate);
   const initialIndexMonth = initialIndexDate.toLocaleString('en-US', { month: 'long' });
   const initialIndexYear = initialIndexDate.getFullYear();
 
