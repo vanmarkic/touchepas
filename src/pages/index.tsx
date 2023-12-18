@@ -101,9 +101,10 @@ const StyledButtonsBlue = styled.div`
 
   bottom: 21.5%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: start;
   gap: 20px;
   margin-top: 40px;
+  flex-wrap: wrap;
 
   @media (max-aspect-ratio: 1/1) {
     flex-direction: column;

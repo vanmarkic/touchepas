@@ -15,11 +15,11 @@ export const StyledButtonBlue = styled.button`
   color: white;
   cursor: pointer;
   display: flex;
-  font-size: 0.9;
+  font-size: 0.8rem;
   height: 58px;
   justify-content: center;
   line-height: 24px;
-  width: 200px;
+  width: 180px;
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -57,13 +57,13 @@ const StyledLayout = styled.div`
 `;
 
 export const hideWhenVertical = css`
-  @media (max-width: 768px) {
+  @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
     display: none;
   }
 `;
 
 export const hideWhenHorizontal = css`
-  @media (min-width: 768px) {
+  @media (min-aspect-ratio: 1/1) or (min-width: 768px) {
     display: none;
   }
 `;
