@@ -241,12 +241,12 @@ const StyledButton = styled.button`
   box-shadow: var(--shadow);
 
   &:active {
-    background-color: var(--red);
+    background-color: var(--dark-red);
     outline: 0;
   }
 
   &:hover {
-    background-color: var(--red);
+    background-color: var(--dark-red);
     outline: 0;
   }
 `;

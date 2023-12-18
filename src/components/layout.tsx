@@ -31,11 +31,11 @@ export const StyledButtonBlue = styled.button`
   font-weight: 700;
   padding: 0px 20px;
   letter-spacing: 1.5px;
-
+  transition: all 0.1s ease-in-out 0s;
   &:active {
     background-color: white;
     outline: 0;
-    color: var(--red);
+    color: var(--dark-red);
     border: solid 1px var(--blue);
   }
 
@@ -43,7 +43,7 @@ export const StyledButtonBlue = styled.button`
     background-color: white;
     outline: 0;
     border: solid 1px var(--blue);
-    color: var(--red);
+    color: var(--dark-red);
   }
 `;
 
