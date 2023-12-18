@@ -5,6 +5,7 @@ import { Head } from '../pages';
 import { useLocation } from '@reach/router';
 import RentCalculator from './RentCalculator';
 import { HEADER_HEIGHT, Header } from './Header';
+import { StaticImage } from 'gatsby-plugin-image';
 
 export const StyledButtonBlue = styled.button`
   align-items: center;
@@ -124,6 +125,11 @@ const StyledMain = styled.main`
   }
 `;
 
+const Footer = styled.footer`
+  display: flex;
+  padding: 2rem;
+`;
+
 const Layout: React.FC<any> = ({ children }) => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
   const { pathname } = useLocation();
@@ -152,7 +158,17 @@ const Layout: React.FC<any> = ({ children }) => {
       </MobileMenuOverlay>
 
       <StyledLayout>
-        <StyledMain>{children}</StyledMain>
+        <StyledMain>
+          {children}
+          <Footer>
+            <StaticImage
+              placeholder="none"
+              width={100}
+              alt="rwdh logo"
+              src="../logo/partners/rwdh.svg"
+            />
+          </Footer>
+        </StyledMain>
         <SidePanel>
           <RentCalculator />
         </SidePanel>
