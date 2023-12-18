@@ -10,16 +10,16 @@ export const StyledButtonBlue = styled.button`
   align-items: center;
   background-color: var(--blue);
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius);
   box-sizing: border-box;
   color: white;
   cursor: pointer;
   display: flex;
   font-size: 0.9;
-  height: 42px;
+  height: 58px;
   justify-content: center;
   line-height: 24px;
-  min-width: 150px;
+  width: 200px;
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -29,7 +29,7 @@ export const StyledButtonBlue = styled.button`
   box-shadow: var(--shadow);
   text-transform: uppercase;
   font-weight: 700;
-  padding: 0px 20px 0px 20px;
+  padding: 0px 20px;
   letter-spacing: 1.5px;
 
   &:active {
@@ -87,7 +87,9 @@ const StyledMenuButton = styled(StyledButtonBlue)`
   right: 10px;
   size: 40px;
   z-index: 3;
-  ${hideWhenHorizontal}
+  width: 150px;
+  height: 2rem;
+  ${hideWhenHorizontal};
 `;
 
 const MobileMenuOverlay = styled.div<{ showMobileMenu: boolean }>`

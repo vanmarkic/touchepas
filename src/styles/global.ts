@@ -33,7 +33,7 @@ export const GlobalStyle = createGlobalStyle`
     --dark-red:#af211d;
     --black: #010101;
     --white: #fefefe;
-    --radius: 5px;
+    --radius: 3px;
     --shadow: 0 1px 1px hsl(0deg 0% 0% / 0.1),
               0 2px 2px hsl(0deg 0% 0% / 0.2),
               0 4px 4px hsl(0deg 0% 0% / 0.1),

@@ -84,7 +84,12 @@ const StyledImage = styled.img`
   width: 100%;
 `;
 const StyledDisplayNoneMobile = styled.div`
-  display: static;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  .logo {
+    flex: 1 0 auto;
+  }
 
   @media (max-aspect-ratio: 1/1) {
     display: none;
@@ -93,7 +98,7 @@ const StyledDisplayNoneMobile = styled.div`
 
 const StyledButtonsBlue = styled.div`
   width: 100%;
-  position: absolute;
+
   bottom: 21.5%;
   display: flex;
   justify-content: space-evenly;
@@ -109,17 +114,29 @@ const StyledButtonsBlue = styled.div`
   }
 `;
 
+const BigTitle = styled.h1`
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--blue);
+  span {
+    color: var(--dark-red);
+  }
+`;
 const HeroSection = () => (
   <StyledSection>
     <StyledDisplayNoneMobile>
       <StaticImage
+        className="logo"
         alt="a building with apartments"
         placeholder="none"
-        layout="constrained"
-        width={800}
-        src={'../images/logements.jpg'}
+        layout="fixed"
+        src={'../logo/favicon/android-chrome-512x512.png'}
         loading="eager"
+        width={200}
       />
+      <BigTitle>
+        TOUCHE <span> PAS </span> À MON LOYER
+      </BigTitle>
     </StyledDisplayNoneMobile>
     <StyledButtonsBlue>
       <StyledButtonBlue onClick={() => scrollToSection('informations')}>
