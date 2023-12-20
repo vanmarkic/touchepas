@@ -128,6 +128,7 @@ const StyledMain = styled.main`
 const Footer = styled.footer`
   display: flex;
   padding: 2rem;
+  justify-content: space-around;
 `;
 
 const Layout: React.FC<any> = ({ children }) => {
@@ -163,9 +164,16 @@ const Layout: React.FC<any> = ({ children }) => {
           <Footer>
             <StaticImage
               placeholder="none"
-              width={100}
+              height={50}
               alt="rwdh logo"
+              layout="fixed"
               src="../logo/partners/rwdh.svg"
+            />
+            <StaticImage
+              placeholder="none"
+              height={60}
+              alt="csc logo"
+              src="../logo/partners/csc.png"
             />
           </Footer>
         </StyledMain>
