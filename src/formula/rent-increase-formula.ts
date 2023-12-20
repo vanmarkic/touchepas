@@ -2,12 +2,21 @@ import healthIndexData from './health-index.json';
 import { subMonths } from 'date-fns'
 
 export function calculateRentIndexation(
-  contractSignatureDate: Date,
-  agreementStartDate: Date,
-  initialRent: number,
-  yearOfIndexation: number,
-  region: Regions,
-  energyEfficiencyRating: EnergyEfficiencyRating,
+  {
+    contractSignatureDate,
+    agreementStartDate,
+    initialRent,
+    yearOfIndexation,
+    region,
+    energyEfficiencyRating
+  }: {
+    contractSignatureDate: Date;
+    agreementStartDate: Date;
+    initialRent: number;
+    yearOfIndexation: number;
+    region: Regions;
+    energyEfficiencyRating: EnergyEfficiencyRating
+  }
 ): number | null {
 
   const indexBaseYear = getIndexBaseYear(contractSignatureDate);

@@ -29,14 +29,14 @@ const RentCalculator: React.FC = () => {
     e.preventDefault();
     if (isValid) {
       try {
-        const increasedRent = calculateRentIndexation(
-          contractSignatureDate,
-          agreementStartDate,
-          initialRent,
-          indexationDate,
-          region,
-          energyCertificate,
-        );
+        const increasedRent = calculateRentIndexation({
+          contractSignatureDate: contractSignatureDate,
+          agreementStartDate: agreementStartDate,
+          initialRent: initialRent,
+          yearOfIndexation: indexationDate,
+          region: region,
+          energyEfficiencyRating: energyCertificate,
+        });
         if (!increasedRent) {
           setNewRent('something went wrong');
           return;
