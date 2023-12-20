@@ -4,6 +4,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { whenVerticalAspectRatio } from '../styles/global';
 import { StaticImage } from 'gatsby-plugin-image';
+import { heroSectionID } from '../pages';
 
 export const HEADER_HEIGHT = '70px';
 
@@ -34,15 +35,17 @@ const RedSpan = styled.span`
 
 const Img = styled.img``;
 
-interface HeaderProps {
-  GoBackToTop: () => void;
-}
+const scrollToHeroSection = () => {
+  const section = document.getElementById(heroSectionID);
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth' });
+  }
+};
 
-
-export const Header = ({ GoBackToTop }: HeaderProps) => {
-    return (
-    <StyledHeader >
-      <h4 style={{cursor:"pointer"}} onClick={GoBackToTop}>
+export const Header = () => {
+  return (
+    <StyledHeader>
+      <h4 style={{ cursor: 'pointer' }} onClick={scrollToHeroSection}>
         TOUCHE <RedSpan> PAS </RedSpan> À MON LOYER
       </h4>
       <StaticImage

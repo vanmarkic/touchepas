@@ -5,14 +5,8 @@ import { StaticImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 
 const IndexPage: React.FC<{}> = () => {
-  const scrollToHeroSection = () => {
-    const section = document.getElementById('hero-section');
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
   return (
-    <Layout GoBackToTop={scrollToHeroSection}>
+    <Layout>
       <HeroSection />
       <GeneralInformation />
     </Layout>
@@ -130,7 +124,7 @@ const BigTitle = styled.h1`
   }
 `;
 const HeroSection = () => (
-  <StyledSection id="hero-section">
+  <StyledSection id={heroSectionID}>
     <StyledDisplayNoneMobile>
       <StaticImage
         className="logo"
@@ -186,3 +180,5 @@ export const Head = () => (
     </noscript>
   </>
 );
+
+export const heroSectionID = 'hero-section';
