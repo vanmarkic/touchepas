@@ -5,8 +5,14 @@ import { StaticImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 
 const IndexPage: React.FC<{}> = () => {
+  const scrollToHeroSection = () => {
+    const section = document.getElementById('hero-section');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
-    <Layout>
+    <Layout GoBackToTop={scrollToHeroSection}>
       <HeroSection />
       <GeneralInformation />
     </Layout>
@@ -101,7 +107,7 @@ const StyledButtonsBlue = styled.div`
 
   bottom: 21.5%;
   display: flex;
-  justify-content: start;
+  justify-content: center;
   gap: 20px;
   margin-top: 40px;
   flex-wrap: wrap;
@@ -124,7 +130,7 @@ const BigTitle = styled.h1`
   }
 `;
 const HeroSection = () => (
-  <StyledSection>
+  <StyledSection id="hero-section">
     <StyledDisplayNoneMobile>
       <StaticImage
         className="logo"
