@@ -34,10 +34,15 @@ const RedSpan = styled.span`
 
 const Img = styled.img``;
 
-export const Header = () => {
-  return (
-    <StyledHeader>
-      <h4>
+interface HeaderProps {
+  GoBackToTop: () => void;
+}
+
+
+export const Header = ({ GoBackToTop }: HeaderProps) => {
+    return (
+    <StyledHeader >
+      <h4 style={{cursor:"pointer"}} onClick={GoBackToTop}>
         TOUCHE <RedSpan> PAS </RedSpan> À MON LOYER
       </h4>
       <StaticImage

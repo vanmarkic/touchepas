@@ -131,7 +131,7 @@ const Footer = styled.footer`
   justify-content: space-around;
 `;
 
-const Layout: React.FC<any> = ({ children }) => {
+const Layout: React.FC<any> = ({ children, GoBackToTop }) => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
   const { pathname } = useLocation();
 
@@ -144,12 +144,13 @@ const Layout: React.FC<any> = ({ children }) => {
     window.addEventListener('resize', documentHeight);
     documentHeight();
   }, []);
-
+  
+  
   return (
     <>
       <GlobalStyle />
 
-      <Header />
+      <Header GoBackToTop={GoBackToTop}/>
 
       <StyledMenuButton onClick={() => setShowMobileMenu((isShown) => !isShown)}>
         {showMobileMenu ? 'Fermer' : 'Calculateur'}
