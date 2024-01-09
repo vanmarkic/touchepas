@@ -9,6 +9,92 @@ export const whenVerticalAspectRatio = (cssRules: string) => css`
 `;
 
 export const GlobalStyle = createGlobalStyle`
+
+@import '@radix-ui/colors/black-alpha.css';
+@import '@radix-ui/colors/mauve.css';
+@import '@radix-ui/colors/violet.css';
+
+.AccordionItem {
+  overflow: hidden;
+  margin-top: 1px;
+}
+
+.AccordionItem:focus-within {
+  position: relative;
+  z-index: 1;
+}
+
+.AccordionHeader {
+  display: flex;
+  box-shadow:none;
+  border:none
+}
+
+.AccordionTrigger {
+  background-color: transparent;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--blue);
+  background-color: white;
+  box-shadow:none;
+  border:none;
+  font-family: "Lexend" !important;
+    font-size: 0.8rem;
+    color: var(--blue);
+    text-transform:uppercase;
+}
+
+.AccordionTrigger:hover {
+  color: var(--red)!important;
+
+}
+
+.AccordionContent {
+  overflow: hidden;
+  color: var(--blue);
+ 
+
+}
+.AccordionContent[data-state='open'] {
+  animation: slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1);
+}
+.AccordionContent[data-state='closed'] {
+  animation: slideUp 300ms cubic-bezier(0.87, 0, 0.13, 1);
+}
+
+.AccordionContentText {
+  padding: 15px 0px;
+}
+
+
+.AccordionTrigger[data-state='open'] >
+
+.AccordionChevron {
+  transform: rotate(180deg);
+}
+
+@keyframes slideDown {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+
+
   * {
     margin: 0;
     padding: 0;
@@ -50,10 +136,16 @@ export const GlobalStyle = createGlobalStyle`
   h4 {
     font-family: "Lexend" !important;
     font-size: 1.4rem;
-    cursor: default;
     color: var(--blue);
     text-transform:uppercase;
   }
+  h5 {
+    font-family: "Lexend" !important;
+    font-size: 1rem;
+    text-transform:uppercase;
+    text-align: left;
+  }
+
   button {
     font-family: "Lexend" !important;
   }
@@ -89,5 +181,9 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 `;
+
+
+
+
 
 export default GlobalStyle;

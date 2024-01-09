@@ -23,6 +23,7 @@ export const TwoColumns = styled.div`
 
 export const Paragraph = styled.div`
   margin-bottom: 2rem;
+  text-align: left;
 `;
 
 export const Image = styled.div`
