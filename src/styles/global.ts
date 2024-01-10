@@ -1,4 +1,4 @@
-import { createGlobalStyle, css } from "styled-components";
+import { createGlobalStyle, css } from 'styled-components';
 
 export const px2vw = (size: number, width = 1440) => `${(size / width) * 100}vw`;
 
@@ -181,9 +181,5 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 `;
-
-
-
-
 
 export default GlobalStyle;
