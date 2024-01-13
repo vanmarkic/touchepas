@@ -155,7 +155,9 @@ export const GlobalStyle = createGlobalStyle`
     align-items: start;
     justify-content: start;
     gap: .7rem;
-    label {
+  }
+
+  label {
       font-size: .8rem;
       height: 1rem;
       height: fit-content;
@@ -179,7 +181,6 @@ export const GlobalStyle = createGlobalStyle`
       height: fit-content;
       cursor: pointer;
     }
-  }
 `;
 
 export default GlobalStyle;
