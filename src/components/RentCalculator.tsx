@@ -1,12 +1,12 @@
 import React, { FormEventHandler, MouseEventHandler, useState } from 'react';
-import {
-  ENERGY_RATIOS,
-  EnergyEfficiencyRating,
-  Regions,
-  calculateRentIndexation,
-  energyEfficiencyRatings,
-} from '../formula/rent-increase-formula';
+import { calculateRentIndexation } from '../formula/rent-increase-formula';
 import styled from 'styled-components';
+import {
+  Regions,
+  EnergyEfficiencyRating,
+  ENERGY_RATIOS,
+  energyEfficiencyRatings,
+} from '../formula/types-and-constants';
 
 const RentCalculator: React.FC = () => {
   const [indexationDate, setIndexationDate] = useState<number>(2023);

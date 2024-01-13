@@ -1,5 +1,6 @@
-import healthIndexData from './health-index.json';
+import healthIndexData from './indices.json';
 import { subMonths } from 'date-fns'
+import { Regions, EnergyEfficiencyRating, ENERGY_RATIOS, BASE_YEARS } from './types-and-constants';
 
 export function calculateRentIndexation(
   {
@@ -33,14 +34,10 @@ export function calculateRentIndexation(
 
   const formulaWithEnergyRatio = () => {
     const yearOfIndexationWithPEB = getYearOfIndexationWithPEB(agreementStartDate, region)
-
     const currentYearHealthIndex = findHealthIndex(shouldUsePreviousYear ? yearOfIndexationWithPEB - 1 : yearOfIndexationWithPEB, anniversaryMonth, indexBaseYear);
-
     const previousYearHealthIndex = findHealthIndex(shouldUsePreviousYear ? yearOfIndexationWithPEB - 2 : yearOfIndexationWithPEB - 1, anniversaryMonth, indexBaseYear);
-
     const previousYearIndexedRent = basicFormula(previousYearHealthIndex)
     const currentYearIndexedRent = basicFormula(currentYearHealthIndex)
-
     const result = previousYearIndexedRent + ((currentYearIndexedRent - previousYearIndexedRent) * ENERGY_RATIOS[region].peb[energyEfficiencyRating])
 
     return roundToTwoDecimals(result)
@@ -69,9 +66,7 @@ export const getYearOfIndexationWithPEB = (agreementStartDate: Date, region: Reg
   return agreementStartDate.getMonth() >= ENERGY_RATIOS[region].start.getMonth() ? 2022 : 2023;
 }
 
-export const energyEfficiencyRatings = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'none'] as const
 
-export type EnergyEfficiencyRating = typeof energyEfficiencyRatings[number]
 
 
 function roundToTwoDecimals(result: number) {
@@ -136,56 +131,3 @@ const getIndexDate = (date: Date) => {
   return { year: date.getFullYear(), month: date.toLocaleString('en-US', { month: 'long' }) };
 }
 
-export const BASE_YEARS = [
-  1988,
-  1996,
-  2004,
-  2013,
-] as const;
-
-export type Regions = 'wallonia' | 'flanders' | 'brussels';
-
-export const ENERGY_RATIOS: Record<Regions, { start: Date, end: Date, peb: Record<EnergyEfficiencyRating, number> }> = {
-  wallonia: {
-    start: new Date('2022-11-01'),
-    end: new Date('2023-10-31'),
-    peb: {
-      A: 1,
-      B: 1,
-      C: 1,
-      D: .75,
-      E: .5,
-      F: 0,
-      G: 0,
-      none: 0
-    }
-  },
-  flanders: {
-    start: new Date('2022-10-01'),
-    end: new Date('2023-09-30'),
-    peb: {
-      A: 1,
-      B: 1,
-      C: 1,
-      D: .5,
-      E: 0,
-      F: 0,
-      G: 0,
-      none: 0
-    }
-  },
-  brussels: {
-    start: new Date('2022-10-14'),
-    end: new Date('2023-10-13'),
-    peb: {
-      A: 1,
-      B: 1,
-      C: 1,
-      D: 1,
-      E: .5,
-      F: 0,
-      G: 0,
-      none: 0
-    }
-  },
-};
