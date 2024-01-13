@@ -176,7 +176,7 @@ const StyledLabel = styled.label`
   color: var(--blue);
 `;
 
-const StyledInput = styled.input`
+export const StyledInput = styled.input`
   border: 1px solid grey;
   box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.1);
   border-radius: var(--radius);
@@ -214,7 +214,7 @@ const StyledSelect = styled.select`
     outline: none;
   }
 `;
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
   align-items: center;
   background-color: var(--blue);
   border: none;

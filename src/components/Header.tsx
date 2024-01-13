@@ -1,15 +1,17 @@
-// create a sticky header
-
 import * as React from 'react';
 import styled from 'styled-components';
 import { whenVerticalAspectRatio } from '../styles/global';
 import { StaticImage } from 'gatsby-plugin-image';
 import { heroSectionID } from '../pages';
 
+import addToMailchimp from 'gatsby-plugin-mailchimp';
+import { StyledButton, StyledInput } from './RentCalculator';
+
 export const HEADER_HEIGHT = '70px';
 const FlexDiv = styled.div`
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 `;
 
 const StyledHeader = styled.div`
@@ -60,6 +62,18 @@ const scrollToHeroSection = () => {
 };
 
 export const Header = () => {
+  const [email, setEmail] = React.useState('');
+  const [result, setResult] = React.useState<{ result: string; msg: string } | null>(null);
+
+  const handleSubmit = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    await addToMailchimp(email).then((result: any) => {
+      setResult(result);
+    });
+    // I recommend setting `result` to React state
+    // but you can do whatever you want
+  };
+
   return (
     <StyledHeader>
       <FlexDiv>
@@ -76,7 +90,6 @@ export const Header = () => {
         />
       </FlexDiv>
       <FlexDiv>
-        <StyledH6>Inscrivez-vous à la newsletter</StyledH6>
         <StaticImage
           alt="letter"
           layout="constrained"
@@ -84,6 +97,21 @@ export const Header = () => {
           src={'../images/envelope.svg'}
           loading="eager"
         />
+
+        <StyledInput
+          id="outlined-email-input"
+          type="email"
+          name="email"
+          autoComplete="email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <FlexDiv style={{ width: '300px' }}>
+          {result ? (
+            <h6>{result.msg}</h6>
+          ) : (
+            <StyledButton onClick={handleSubmit}>Je m'inscris à la newsletter</StyledButton>
+          )}
+        </FlexDiv>
       </FlexDiv>
     </StyledHeader>
   );

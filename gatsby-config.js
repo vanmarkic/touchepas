@@ -1,6 +1,11 @@
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
+
+require('dotenv').config({
+  path: '.env.' + process.env.NODE_ENV,
+});
+
 module.exports = {
   siteMetadata: {
     title: 'Touche pas à mon loyer',
@@ -12,6 +17,12 @@ module.exports = {
     // "gatsby-plugin-google-gtag",
     'gatsby-plugin-image',
     'gatsby-plugin-sitemap',
+    {
+      resolve: 'gatsby-plugin-mailchimp',
+      options: {
+        endpoint: process.env.MAILCHIMP_ENDPOINT,
+      },
+    },
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
