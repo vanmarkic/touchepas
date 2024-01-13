@@ -1,5 +1,6 @@
 const axios = require('axios');
 const fs = require('fs');
+import { writeFile } from 'node:fs';
 
 exports.onPreBootstrap = async () => {
   const indices = await axios.get(
@@ -19,6 +20,14 @@ exports.onPreBootstrap = async () => {
   }
 
 
+  writeFile('./src/formula/indices.json', JSON.stringify(formattedIndices, null, 2), (err) => {
+    if (err) throw err;
+    console.log('The file has been saved!');
+    console.log('The file has been saved!');
+    console.log('The file has been saved!');
+    console.log('The file has been saved!');
+  });
 
-  fs.writeFileSync('./src/formula/indices.json', JSON.stringify(formattedIndices, null, 2), 'utf8');
+
+  // fs.writeFileSync('./src/formula/indices.json', JSON.stringify(formattedIndices, null, 2), 'utf8');
 };
