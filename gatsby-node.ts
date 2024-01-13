@@ -15,7 +15,7 @@ exports.onPreBootstrap = async () => {
         Year: index.Year,
         Month: index.Month?.split(' ')[0],
         "Base year": index["Base year"]?.split(' ')[0],
-        "Health index": 100
+        "Health index": index["Health index"],
       }))
   }
 
