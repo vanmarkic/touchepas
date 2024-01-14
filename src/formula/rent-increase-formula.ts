@@ -60,9 +60,12 @@ export function calculateRentIndexation(
 
 
 export const getYearOfIndexationWithPEB = (agreementStartDate: Date, region: Regions) => {
+  console.log(agreementStartDate)
   if (agreementStartDate >= ENERGY_RATIOS[region].start) {
-    throw new Error('Error: Agreement start date is after the start of the PEB range.');
+    return agreementStartDate.getFullYear();
   }
+
+
   return agreementStartDate.getMonth() >= ENERGY_RATIOS[region].start.getMonth() ? 2022 : 2023;
 }
 

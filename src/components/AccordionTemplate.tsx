@@ -8,20 +8,7 @@ interface AccordionProps {
   answer: string; // Define the type for the 'answer' prop
 }
 
-const AccordionTemplate: React.FC<AccordionProps> = ({ question, answer }) => (
-  <Accordion.Root className="AccordionRoot" type="single" defaultValue="null" collapsible>
-    <Accordion.Item className="AccordionItem" value="item-1">
-      <AccordionTrigger>
-        <h5> {question}</h5>
-      </AccordionTrigger>
-      <AccordionContent>
-        <p>{answer}</p>
-      </AccordionContent>
-    </Accordion.Item>
-  </Accordion.Root>
-);
-
-const AccordionTrigger: React.FC<{ children: React.ReactNode; className?: string }> = ({
+export const AccordionTrigger: React.FC<{ children: React.ReactNode; className?: string }> = ({
   children,
   className,
   ...props
@@ -29,13 +16,14 @@ const AccordionTrigger: React.FC<{ children: React.ReactNode; className?: string
   return (
     <Accordion.Header className="AccordionHeader">
       <Accordion.Trigger className={classNames('AccordionTrigger', className)} {...props}>
-        {children}
+        <h5>{children}</h5>
+        <ChevronDownIcon className="AccordionTriggerIcon" />
       </Accordion.Trigger>
     </Accordion.Header>
   );
 };
 
-const AccordionContent: React.FC<{ children: React.ReactNode; className?: string }> = ({
+export const AccordionContent: React.FC<{ children: React.ReactNode; className?: string }> = ({
   children,
   className,
   ...props
@@ -46,5 +34,3 @@ const AccordionContent: React.FC<{ children: React.ReactNode; className?: string
     </Accordion.Content>
   );
 };
-
-export default AccordionTemplate;

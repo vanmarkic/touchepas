@@ -6,6 +6,8 @@ import { heroSectionID } from '../pages';
 
 import addToMailchimp from 'gatsby-plugin-mailchimp';
 import { StyledButton, StyledInput } from './RentCalculator';
+import { set } from 'date-fns';
+import { HideWhenVertical } from './layout';
 
 export const HEADER_HEIGHT = '80px';
 
@@ -13,7 +15,7 @@ const FlexDiv = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
-
+  gap: 0.5rem;
 `;
 
 const StyledHeader = styled.div`
@@ -24,9 +26,9 @@ const StyledHeader = styled.div`
   justify-content: space-between;
   column-gap: 0.5rem;
   top: 0px;
-  background-color: rgba(255, 255, 255, 0.7)!important; 
-  backdrop-filter: blur(5px); 
-  height:80px;
+  background-color: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(5px);
+  height: 80px;
   color: var(--blue);
   height: fit-content;
   h4 {
@@ -68,18 +70,6 @@ const scrollToHeroSection = () => {
 };
 
 export const Header = () => {
-  const [email, setEmail] = React.useState('');
-  const [result, setResult] = React.useState<{ result: string; msg: string } | null>(null);
-
-  const handleSubmit = async (e: React.MouseEvent) => {
-    e.preventDefault();
-    await addToMailchimp(email).then((result: any) => {
-      setResult(result);
-    });
-    // I recommend setting `result` to React state
-    // but you can do whatever you want
-  };
-
   return (
     <StyledHeader>
       <FlexDiv>
@@ -95,16 +85,49 @@ export const Header = () => {
           loading="eager"
         />
       </FlexDiv>
-      <FlexDiv>
-        <StyledH6>Inscrivez-vous à la newsletter</StyledH6>
-        <StaticImage
-          alt="letter"
-          layout="constrained"
-          height={80}
-          src={'../images/envelope.svg'}
-          loading="eager"
-        />
-      </FlexDiv>
+      <HideWhenVertical>
+        <NewsletterForm />
+      </HideWhenVertical>
     </StyledHeader>
+  );
+};
+
+export const NewsletterForm = () => {
+  const [email, setEmail] = React.useState('');
+  const [result, setResult] = React.useState<{ result: string; msg: string } | null>(null);
+
+  const handleSubmit = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    await addToMailchimp(email).then((result: any) => {
+      setResult(result);
+    });
+  };
+  return (
+    <FlexDiv>
+      <StaticImage
+        alt="letter"
+        layout="constrained"
+        height={80}
+        src={'../images/envelope.svg'}
+        loading="eager"
+      />
+      <StyledInput
+        id="outlined-email-input"
+        type="email"
+        name="email"
+        autoComplete="email"
+        onChange={(e) => {
+          setEmail(e.target.value);
+          setResult(null);
+        }}
+      />
+      <FlexDiv style={{ width: '500px' }}>
+        {result ? (
+          <h6>{result.msg}</h6>
+        ) : (
+          <StyledButton onClick={handleSubmit}>Je m'inscris à la newsletter</StyledButton>
+        )}
+      </FlexDiv>
+    </FlexDiv>
   );
 };
