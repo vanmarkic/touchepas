@@ -69,7 +69,7 @@ describe('Formula', () => {
         agreementStartDate: new Date('2019-11-01'),
         initialRent: 550,
         yearOfIndexation: 2023,
-        region: 'wallonia',
+        region: 'brussels',
         energyEfficiencyRating: "E",
       }
       )).toEqual(611.61);
@@ -81,7 +81,7 @@ describe('Formula', () => {
         agreementStartDate: new Date('2019-12-12'),
         initialRent: 200,
         yearOfIndexation: 2023,
-        region: 'wallonia',
+        region: 'brussels',
         energyEfficiencyRating: "E",
       }
       )).toEqual(224.4);

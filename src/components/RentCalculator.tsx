@@ -1,15 +1,16 @@
 import React, { FormEventHandler, MouseEventHandler, useState } from 'react';
+import styled from 'styled-components';
 import {
   ENERGY_RATIOS,
   EnergyEfficiencyRating,
   enregistrement,
   Regions,
-  calculateRentIndexation,
   energyEfficiencyRatings,
   enregistrements,
+} from '../formula/types-and-constants';
+import {
+  calculateRentIndexation,
 } from '../formula/rent-increase-formula';
-import styled from 'styled-components';
-
 
 const RentCalculator: React.FC = () => {
   const [indexationDate, setIndexationDate] = useState<number>(2023);
@@ -275,7 +276,7 @@ const StyledLabel = styled.label`
   letter-spacing: 0.2px;
 `;
 
-const StyledInput = styled.input`
+export const StyledInput = styled.input`
   border: 1px solid grey;
   box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.1);
   border-radius: var(--radius);

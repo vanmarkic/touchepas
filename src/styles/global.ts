@@ -154,9 +154,13 @@ export const GlobalStyle = createGlobalStyle`
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
- width:90%; gap: 10px;
+ width:90%;
+  gap: 10px;
 
-    label {
+  }
+
+   
+  label {
       font-size: .8rem;
       height: 1rem;
       height: fit-content;
@@ -180,7 +184,6 @@ export const GlobalStyle = createGlobalStyle`
       height: fit-content;
       cursor: pointer;
     }
-  }
 `;
 
 export default GlobalStyle;
