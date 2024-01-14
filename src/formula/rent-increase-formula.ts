@@ -189,3 +189,7 @@ export const ENERGY_RATIOS: Record<Regions, { start: Date, end: Date, peb: Recor
     }
   },
 };
+
+export const enregistrements = ['Le bail est enregistré', "Le bail n'est pas enregistré", 'none'] as const
+
+export type enregistrement = typeof enregistrements[number]

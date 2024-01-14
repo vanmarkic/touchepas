@@ -43,11 +43,11 @@ export const GlobalStyle = createGlobalStyle`
   font-family: "Lexend" !important;
     font-size: 0.8rem;
     color: var(--blue);
-    text-transform:uppercase;
+  
 }
 
 .AccordionTrigger:hover {
-  color: var(--red)!important;
+ text-decoration:underline
 
 }
 
@@ -135,14 +135,14 @@ export const GlobalStyle = createGlobalStyle`
   }
   h4 {
     font-family: "Lexend" !important;
-    font-size: 1.4rem;
+    font-size: larger;
     color: var(--blue);
     text-transform:uppercase;
   }
   h5 {
     font-family: "Lexend" !important;
     font-size: 1rem;
-    text-transform:uppercase;
+   
     text-align: left;
   }
 
@@ -152,9 +152,10 @@ export const GlobalStyle = createGlobalStyle`
   form {
     display: flex;
     flex-direction: column;
-    align-items: start;
-    justify-content: start;
-    gap: .7rem;
+    align-items: center;
+    justify-content: space-evenly;
+ width:90%; gap: 10px;
+
     label {
       font-size: .8rem;
       height: 1rem;
