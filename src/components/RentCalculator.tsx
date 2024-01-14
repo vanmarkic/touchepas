@@ -8,14 +8,12 @@ import {
   energyEfficiencyRatings,
   enregistrements,
 } from '../formula/types-and-constants';
-import {
-  calculateRentIndexation,
-} from '../formula/rent-increase-formula';
+import { calculateRentIndexation } from '../formula/rent-increase-formula';
 
 const RentCalculator: React.FC = () => {
   const [indexationDate, setIndexationDate] = useState<number>(2023);
   const [initialRent, setInitialRent] = useState<number>(0);
-  const [contractSignatureDate, setContractSignatureDate] = useState<Date>(new Date());
+  const [contractSignatureDate, setContractSignatureDate] = useState<Date | null>(null);
   const [agreementStartDate, setAgreementStartDate] = useState<Date>(new Date());
   const [newRent, setNewRent] = useState<number | string>(0);
   const [region, setRegion] = useState<Regions>('wallonia');
@@ -23,9 +21,6 @@ const RentCalculator: React.FC = () => {
   const [enregistrementResponse, setEnregistrementResponse] = useState<enregistrement>('none');
   const [contentToShow, setContentToShow] = useState<'inputs' | 'text1' | 'text2'>('text2');
   const [showPebFields, setShowPebFields] = useState(false);
-  const [initialRentError, setInitialRentError] = useState<string | null>(null);
-  const [contractSignatureDateError, setContractSignatureDateError] = useState<string | null>(null);
-  const [agreementStartDateError, setAgreementStartDateError] = useState<string | null>(null);
   const isValid =
     indexationDate &&
     initialRent &&
@@ -37,16 +32,6 @@ const RentCalculator: React.FC = () => {
   const handleCalculate = (e: any) => {
     e.preventDefault();
 
-    // Check and set error messages for the required fields
-   console.log(contractSignatureDateError)
-      console.log("ce")
-
-    if (!contractSignatureDateError) {
-      setContractSignatureDateError('Ce champ est obligatoire.');
-    }
-    if (!agreementStartDate) {
-      setAgreementStartDateError('Ce champ est obligatoire.');
-    }
     if (isValid) {
       try {
         const increasedRent = calculateRentIndexation({
@@ -68,14 +53,18 @@ const RentCalculator: React.FC = () => {
     }
   };
 
+  const isBeforePEBMeasure =
+    indexationDate < ENERGY_RATIOS[region].start.getFullYear() ||
+    (agreementStartDate &&
+      indexationDate == ENERGY_RATIOS[region].start.getFullYear() &&
+      agreementStartDate.getMonth() < ENERGY_RATIOS[region].start.getMonth());
+
   return (
     <StyledContainer>
-      <h4>
-        Calculateur de loyer </h4> <RedSpan> Wallonnie</RedSpan>
-     
+      <h4>Calculateur de loyer </h4> <RedSpan> Wallonie</RedSpan>
       <form>
         <StyledLabel htmlFor="enregistrement">
-          Enregistrement du bail
+          Le bail est-il enregistré?
           <StyledSelect
             name="enregistrement"
             id="enregistrement"
@@ -100,39 +89,13 @@ const RentCalculator: React.FC = () => {
               </option>
             ))}
           </StyledSelect>
-          {contentToShow === 'text1' && (
-            <StyledText>
-              Aussi longtemps que le bail n’est pas enregistré, le loyer ne peut pas être indexé.
-              <br />
-              Le loyer ne peut pas non plus être révisé. Le bailleur est tenu de faire enregistrer
-              le bail dans les deux mois de la signature de celui-ci.
-              <br />
-              Si l’indexation a été appliquée alors que le bail n’était pas enregistré, le locataire
-              peut adresser un recommandé au bailleur pour réclamer des sommes indûment payées au
-              cours des 5 ans qui précèdent cette demande.
-              <br />
-              <StyledA>Plus de détails</StyledA>{' '}
-            </StyledText>
-          )}
-          {contentToShow === 'text2' && (
-            <StyledText>
-              Renseignez-vous auprès de votre bailleur et demandez-lui la preuve de l’enregistrement
-              ou consulter le portail « MyMinfin » pour vérifier.
-              <br />
-              <StyledA>Plus de détails</StyledA>{' '}
-            </StyledText>
-          )}
         </StyledLabel>
 
         {contentToShow === 'inputs' && (
           <StyledLabel htmlFor="peb">
             Certificat PEB:
             <StyledSelect
-              disabled={
-                indexationDate < ENERGY_RATIOS[region].start.getFullYear() ||
-                (agreementStartDate && indexationDate == ENERGY_RATIOS[region].start.getFullYear() &&
-                  agreementStartDate.getMonth() < ENERGY_RATIOS[region].start.getMonth())
-              }
+              disabled={isBeforePEBMeasure}
               name="peb"
               id="peb"
               defaultValue={energyCertificate}
@@ -151,17 +114,40 @@ const RentCalculator: React.FC = () => {
                 <option value={rating}>{rating !== 'none' ? rating : 'Aucun certificat'}</option>
               ))}
             </StyledSelect>
-            {contentToShow === 'inputs' && showPebFields === false && (
-              <StyledText>
-                Le certificat de performance énergétique des bâtiments (PEB) est obligatoire en
-                Région wallonne pour tous les biens loués depuis le 1er juin 2011. En l’absence de
-                celui-ci, votre bailleur ne peut pas indexer votre loyer entre le 1er novembre 2022
-                et le 31 octobre 2023.
-                <br />
-                <StyledA>Plus de détails</StyledA>{' '}
-              </StyledText>
-            )}
           </StyledLabel>
+        )}
+
+        {contentToShow === 'text1' && (
+          <StyledText>
+            Aussi longtemps que le bail n’est pas enregistré, le loyer ne peut pas être indexé.
+            <br />
+            Le loyer ne peut pas non plus être révisé. Le bailleur est tenu de faire enregistrer le
+            bail dans les deux mois de la signature de celui-ci.
+            <br />
+            Si l’indexation a été appliquée alors que le bail n’était pas enregistré, le locataire
+            peut adresser un recommandé au bailleur pour réclamer des sommes indûment payées au
+            cours des 5 ans qui précèdent cette demande.
+            <br />
+            <StyledA>Plus de détails</StyledA>{' '}
+          </StyledText>
+        )}
+        {contentToShow === 'text2' && (
+          <StyledText>
+            Renseignez-vous auprès de votre bailleur et demandez-lui la preuve de l’enregistrement
+            ou consultez le portail «MyMinfin» pour vérifier.
+            <br />
+            <StyledA>Plus de détails</StyledA>{' '}
+          </StyledText>
+        )}
+        {contentToShow === 'inputs' && showPebFields === false && (
+          <StyledText>
+            Le certificat de performance énergétique des bâtiments (PEB) est obligatoire en Région
+            wallonne pour tous les biens loués depuis le 1er juin 2011. En l'absence de celui-ci,
+            votre bailleur ne peut pas indexer votre loyer entre le 1er novembre 2022 et le 31
+            octobre 2023.
+            <br />
+            <StyledA>Plus de détails</StyledA>{' '}
+          </StyledText>
         )}
 
         {contentToShow === 'inputs' && showPebFields === true && (
@@ -175,7 +161,7 @@ const RentCalculator: React.FC = () => {
                 required
                 lang="fr-FR"
                 id="indexationDate"
-                defaultValue={2023}
+                defaultValue={new Date().getFullYear()}
                 onChange={(e) => setIndexationDate(Number(e.target.value))}
               />
             </StyledLabel>
@@ -188,8 +174,6 @@ const RentCalculator: React.FC = () => {
                 onChange={(e) => setInitialRent(Number(e.target.value))}
                 required
               />
-              {/* Error message for initialRent */}
-              {initialRentError && <p>{initialRentError}</p>}
             </StyledLabel>
 
             <StyledLabel htmlFor="contractSignatureDate">
@@ -203,8 +187,6 @@ const RentCalculator: React.FC = () => {
                 id="contractSignatureDate"
                 onChange={(e) => setContractSignatureDate(new Date(e.target.value))}
               />
-              {/* Error message */}
-              {contractSignatureDateError && <p>{contractSignatureDateError}</p>}
             </StyledLabel>
 
             <StyledLabel htmlFor="agreementStartDate">
@@ -216,10 +198,9 @@ const RentCalculator: React.FC = () => {
                 required
                 lang="fr-FR"
                 id="agreementStartDate"
+                defaultValue={contractSignatureDate?.toISOString().split('T')[0]}
                 onChange={(e) => setAgreementStartDate(new Date(e.target.value))}
               />
-              {/* Error message */}
-              {agreementStartDateError && <p>{agreementStartDateError}</p>}
             </StyledLabel>
 
             <StyledContainerRow>
@@ -249,7 +230,7 @@ const StyledContainer = styled.div`
   position: relative;
   background-color: #ededed;
   width: 100%;
-  height: calc(100vh - 80px);;
+  height: calc(100vh - 80px);
   padding: 25px;
   margin: 0px;
 `;
@@ -258,8 +239,7 @@ const StyledContainerRow = styled.div`
   align-items: end;
   justify-content: space-between;
   position: relative;
-  
-  width:90%;
+  width: 90%;
 `;
 const StyledNewRent = styled.div`
   display: flex;
@@ -271,7 +251,7 @@ const StyledLabel = styled.label`
   display: flex;
   flex-direction: column;
   align-items: start;
-  width:90%;
+  width: 90%;
   font-weight: bold;
   letter-spacing: 0.2px;
 `;
@@ -282,7 +262,7 @@ export const StyledInput = styled.input`
   border-radius: var(--radius);
   background-color: #f8f8f8;
   outline: none;
-  width:90%;
+  width: 90%;
   padding: 5px;
   font-size: medium;
   font-weight: normal;
@@ -304,7 +284,7 @@ const StyledSelect = styled.select`
   border-radius: var(--radius);
   background-color: #ffffff;
   outline: none;
-  width:90%;
+  width: 90%;
   box-shadow: 1px 1px 1px grey;
   padding: 5px;
   font-size: medium;
@@ -329,16 +309,17 @@ const StyledA = styled.a`
 
 const StyledText = styled.p`
   font-style: italic;
-  width:90%;
+  width: 90%;
   padding-top: 2px;
   color: var(--red);
   font-weight: normal;
   font-size: medium;
 `;
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
+  pointer-events: ${(props) => (props.disabled ? 'none' : null)};
   align-items: center;
-  background-color: var(--blue);
+  background-color: ${(props) => (props.disabled ? 'lightgrey' : 'var(--blue)')};
   border: none;
   border-radius: var(--radius);
   box-sizing: border-box;
@@ -374,8 +355,7 @@ const StyledButton = styled.button`
 `;
 const RedSpan = styled.h4`
   color: var(--dark-red);
-  text-align:center;
-  width:90%;
-  margin-bottom:50px
-
+  text-align: center;
+  width: 90%;
+  margin-bottom: 50px;
 `;
