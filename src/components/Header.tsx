@@ -7,47 +7,53 @@ import { heroSectionID } from '../pages';
 import addToMailchimp from 'gatsby-plugin-mailchimp';
 import { StyledButton, StyledInput } from './RentCalculator';
 
-export const HEADER_HEIGHT = '70px';
+export const HEADER_HEIGHT = '80px';
+
 const FlexDiv = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  cursor: pointer;
+
 `;
 
 const StyledHeader = styled.div`
-  padding: 0.7rem;
+  padding: 1rem;
   display: flex;
   position: sticky;
   align-items: center;
   justify-content: space-between;
   column-gap: 0.5rem;
   top: 0px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.7)!important; 
+  backdrop-filter: blur(5px); 
+  height:80px;
   color: var(--blue);
   height: fit-content;
   h4 {
     ${whenVerticalAspectRatio(`
-      font-size: 1rem;
+      font-size: 1.2rem;
     `)};
   }
   img {
     max-height: 3rem;
   }
-  height: ${HEADER_HEIGHT};
 `;
 
 const StyledH6 = styled.h6`
   padding-right: 5px;
   display: flex;
-  width: 113px;
+  width: fit-content;
   position: sticky;
   align-items: center;
   justify-content: space-between;
   color: var(--blue);
   height: fit-content;
-  font-size: 14px;
-`;
+  font-size: 0.9rem;
 
+  ${whenVerticalAspectRatio(`
+     display:none
+    `)};
+`;
 const RedSpan = styled.span`
   color: var(--dark-red);
 `;
@@ -77,7 +83,7 @@ export const Header = () => {
   return (
     <StyledHeader>
       <FlexDiv>
-        <h4 style={{ cursor: 'pointer' }} onClick={scrollToHeroSection}>
+        <h4 onClick={scrollToHeroSection}>
           TOUCHE <RedSpan> PAS </RedSpan> À MON LOYER
         </h4>
         <StaticImage
@@ -90,6 +96,7 @@ export const Header = () => {
         />
       </FlexDiv>
       <FlexDiv>
+        <StyledH6>Inscrivez-vous à la newsletter</StyledH6>
         <StaticImage
           alt="letter"
           layout="constrained"
@@ -97,21 +104,6 @@ export const Header = () => {
           src={'../images/envelope.svg'}
           loading="eager"
         />
-
-        <StyledInput
-          id="outlined-email-input"
-          type="email"
-          name="email"
-          autoComplete="email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <FlexDiv style={{ width: '300px' }}>
-          {result ? (
-            <h6>{result.msg}</h6>
-          ) : (
-            <StyledButton onClick={handleSubmit}>Je m'inscris à la newsletter</StyledButton>
-          )}
-        </FlexDiv>
       </FlexDiv>
     </StyledHeader>
   );

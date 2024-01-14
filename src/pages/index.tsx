@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { StyledSection, TwoColumns, Paragraph } from '../components/bodyLayout';
+import { StyledSection,StyledSection2, TwoColumns, Paragraph } from '../components/bodyLayout';
 import Layout, { StyledButtonBlue } from '../components/layout';
 import { StaticImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import Accordion from '../components/AccordionTemplate';
-
 const IndexPage: React.FC<{}> = () => {
   return (
     <Layout>
@@ -21,7 +20,7 @@ const SectionTitle = styled.h4`
 `;
 const GeneralInformation = () => {
   return (
-    <StyledSection id="informations">
+    <StyledSection2 id="informations">
       <SectionTitle>Informations générales</SectionTitle>
       <TwoColumns>
         <Paragraph>
@@ -43,7 +42,7 @@ const GeneralInformation = () => {
           />
         </Paragraph>
       </TwoColumns>
-    </StyledSection>
+    </StyledSection2>
   );
 };
 
@@ -60,7 +59,6 @@ const StyledImage = styled.img`
 const StyledDisplayNoneMobile = styled.div`
   display: flex;
   align-items: center;
-  gap: 2rem;
   .logo {
     flex: 1 0 auto;
   }
@@ -98,7 +96,7 @@ const BigTitle = styled.h1`
   }
 `;
 const HeroSection = () => (
-  <StyledSection id={heroSectionID}>
+  <StyledSection id={heroSectionID}>  
     <StyledDisplayNoneMobile>
       <StaticImage
         className="logo"
@@ -117,8 +115,7 @@ const HeroSection = () => (
       <StyledButtonBlue onClick={() => scrollToSection('informations')}>
         Informations Générales
       </StyledButtonBlue>
-      <StyledButtonBlue>Informations</StyledButtonBlue>
-      <StyledButtonBlue>Informations</StyledButtonBlue>
+      <StyledButtonBlue>Actualités</StyledButtonBlue>
     </StyledButtonsBlue>
   </StyledSection>
 );

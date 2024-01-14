@@ -55,3 +55,7 @@ export const ENERGY_RATIOS: Record<Regions, { start: Date, end: Date, peb: Recor
 export const energyEfficiencyRatings = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'none'] as const
 
 export type EnergyEfficiencyRating = typeof energyEfficiencyRatings[number]
+
+export const enregistrements = ['Le bail est enregistré', "Le bail n'est pas enregistré", 'none'] as const
+
+export type enregistrement = typeof enregistrements[number]

@@ -1,15 +1,23 @@
 import styled from 'styled-components';
 import { whenVerticalAspectRatio } from '../styles/global';
 
+
 export const StyledSection = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  row-gap: 5px;
-  column-gap: 20px;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  padding: 0px 0px 40px 0px;
+  min-height: calc(100vh - 80px);
+`;
+
+export const StyledSection2 = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  justify-content: start;
+  align-items: center;
+  min-height: fit-content
 `;
 
 export const TwoColumns = styled.div`

@@ -9,17 +9,17 @@ import { StaticImage } from 'gatsby-plugin-image';
 
 export const StyledButtonBlue = styled.button`
   align-items: center;
-  background-color: var(--blue);
-  border: none;
+ background-color:var(--blue);
+  border: var(--blue)1px solid;
   border-radius: var(--radius);
   box-sizing: border-box;
   color: white;
   cursor: pointer;
   display: flex;
   font-size: 0.8rem;
-  height: 58px;
+  height: 45px;
   justify-content: center;
-  line-height: 24px;
+  line-height: 20px;
   width: 180px;
   position: relative;
   text-align: center;
@@ -28,8 +28,8 @@ export const StyledButtonBlue = styled.button`
   -webkit-user-select: none;
   touch-action: manipulation;
   box-shadow: var(--shadow);
-  text-transform: uppercase;
-  font-weight: 700;
+  
+  font-weight: 500;
   padding: 0px 20px;
   letter-spacing: 1.5px;
   transition: all 0.1s ease-in-out 0s;
@@ -43,7 +43,7 @@ export const StyledButtonBlue = styled.button`
   &:hover {
     background-color: white;
     outline: 0;
-    border: solid 1px var(--blue);
+    border: solid 1px var(--red);
     color: var(--dark-red);
   }
 `;
@@ -54,7 +54,7 @@ const StyledLayout = styled.div`
   display: flex;
   flex-direction: row;
   overflow: hidden;
-  height: calc(100vh - ${HEADER_HEIGHT});
+  height: calc(100vh - 80px);
 `;
 
 export const hideWhenVertical = css`
@@ -71,14 +71,12 @@ export const hideWhenHorizontal = css`
 
 const SidePanel = styled.nav`
   width: 45vw;
-  max-height: 100svh;
+height:  calc(100vh - 80px);
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  padding: 0px 48px 48px 48px;
   align-self: flex-start;
-  margin-bottom: 30px;
   ${hideWhenVertical};
 `;
 
@@ -148,7 +146,6 @@ const Layout: React.FC<any> = ({ children }) => {
   return (
     <>
       <GlobalStyle />
-
       <Header />
 
       <StyledMenuButton onClick={() => setShowMobileMenu((isShown) => !isShown)}>
