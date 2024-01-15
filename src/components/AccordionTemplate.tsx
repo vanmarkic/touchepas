@@ -1,11 +1,10 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import * as Accordion from '@radix-ui/react-accordion';
 import classNames from 'classnames';
-import { ChevronDownIcon } from '@radix-ui/react-icons';
 
 interface AccordionProps {
-  question: string; // Define the type for the 'question' prop
-  answer: string; // Define the type for the 'answer' prop
+  question: string; 
+  answer: string; 
 }
 
 const AccordionTemplate: React.FC<AccordionProps> = ({ question, answer }) => (

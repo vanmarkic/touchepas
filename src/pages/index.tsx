@@ -4,6 +4,7 @@ import Layout, { StyledButtonBlue } from '../components/layout';
 import { StaticImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import Accordion from '../components/AccordionTemplate';
+
 const IndexPage: React.FC<{}> = () => {
   return (
     <Layout>
@@ -17,12 +18,13 @@ export default IndexPage;
 
 const SectionTitle = styled.h4`
   text-align: left;
+  margin:60px 0px 20px 0px;
 `;
+
 const GeneralInformation = () => {
   return (
     <StyledSection2 id="informations">
       <SectionTitle>Informations générales</SectionTitle>
-      <TwoColumns>
         <Paragraph>
           <Accordion
             question="À quelles conditions peut-on indexer mon loyer en Wallonie ?"
@@ -41,7 +43,7 @@ const GeneralInformation = () => {
             answer="Le décret du 19 octobre 2022 a instauré une mesure visant à limiter l'indexation des loyers en fonction du certificat PEB qui a été d'application entre 1er novembre 2022 au 31 octobre 2023. Toute indexation du loyer d'un bail dont la date anniversaire de l'entrée en vigueur tombe dans ce créneau temporel est impactée par la mesure. Elle s'applique dès la date anniversaire de l'entrée en vigueur du bail se situant entre le 1er novembre 2022 et le 31 octobre 2023. L'indexation du loyer en fonction du certificat PEB ne s'applique pas aux contrats de bail qui ont débuté après le 31 octobre 2022. À titre d'exemple, si un contrat de bail est entré en vigueur le 1er novembre 2022, le loyer pourra être indexé à partir du 1er novembre 2023 et ce, sans que cette indexation ne soit liée au certificat PEB. La limitation de l'indexation durant la période du 1er novembre au 31 octobre 2023: - PEB A, B ou C : votre bailleur peut indexer sans limitation pour les logements disposant d'un certificat ; - PEB D : ne peut être demandée que partiellement (75 % du montant de l'indexation) pour les logements disposant d'un certificat; - PEB E : ne peut être demandée que partiellement (50 % du montant de l'indexation) pour les logements disposant d'un certificat; - PEB F ou G n'est pas possible pour les logements disposant d'un certificat; - Aucun PEB : l'indexation n'est pas possible."
           />
         </Paragraph>
-      </TwoColumns>
+    
     </StyledSection2>
   );
 };
@@ -107,7 +109,7 @@ const HeroSection = () => (
         loading="eager"
         width={200}
       />
-      <BigTitle>
+      <BigTitle> 
         TOUCHE <span> PAS </span> À MON LOYER
       </BigTitle>
     </StyledDisplayNoneMobile>

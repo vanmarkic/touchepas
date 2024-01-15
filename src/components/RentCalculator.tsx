@@ -26,6 +26,7 @@ const RentCalculator: React.FC = () => {
   const [initialRentError, setInitialRentError] = useState<string | null>(null);
   const [contractSignatureDateError, setContractSignatureDateError] = useState<string | null>(null);
   const [agreementStartDateError, setAgreementStartDateError] = useState<string | null>(null);
+  
   const isValid =
     indexationDate &&
     initialRent &&

@@ -9,6 +9,7 @@ export const StyledSection = styled.div`
   justify-content: space-evenly;
   align-items: center;
   min-height: calc(100vh - 80px);
+  height: fit-content;
 `;
 
 export const StyledSection2 = styled.div`
@@ -17,7 +18,7 @@ export const StyledSection2 = styled.div`
   position: relative;
   justify-content: start;
   align-items: center;
-  min-height: fit-content
+  height: fit-content;
 `;
 
 export const TwoColumns = styled.div`
@@ -31,7 +32,7 @@ export const TwoColumns = styled.div`
 
 export const Paragraph = styled.div`
   margin-bottom: 2rem;
-  text-align: left;
+  text-align: center;
 `;
 
 export const Image = styled.div`
