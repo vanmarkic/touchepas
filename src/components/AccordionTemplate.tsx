@@ -2,11 +2,17 @@ import React, { ReactNode } from 'react';
 import * as Accordion from '@radix-ui/react-accordion';
 import classNames from 'classnames';
 import { ChevronDownIcon } from '@radix-ui/react-icons';
+import styled from 'styled-components';
 
 interface AccordionProps {
   question: string; // Define the type for the 'question' prop
   answer: string; // Define the type for the 'answer' prop
 }
+
+const StyledAccordionContent = styled(Accordion.Content)`
+  overflow: hidden;
+  color: var(--blue);
+`;
 
 export const AccordionTrigger: React.FC<{ children: React.ReactNode; className?: string }> = ({
   children,
@@ -29,8 +35,8 @@ export const AccordionContent: React.FC<{ children: React.ReactNode; className?:
   ...props
 }) => {
   return (
-    <Accordion.Content className={classNames('AccordionContent', className)} {...props}>
+    <StyledAccordionContent>
       <div className="AccordionContentText">{children}</div>
-    </Accordion.Content>
+    </StyledAccordionContent>
   );
 };
