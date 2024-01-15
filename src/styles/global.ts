@@ -27,22 +27,24 @@ export const GlobalStyle = createGlobalStyle`
 .AccordionHeader {
   display: flex;
   box-shadow:none;
-  border:none
+  border:none;
+ 
 }
 
 .AccordionTrigger {
+  width: 100%;
   background-color: transparent;
-  flex: 1;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items:center;
+  justify-content: center;
   color: var(--blue);
   background-color: white;
   box-shadow:none;
   border:none;
   font-family: "Lexend" !important;
-    font-size: 0.8rem;
-    color: var(--blue);
+  font-size: 0.8rem;
+  color: var(--blue);
+  text-align: center;
   
 }
 
@@ -142,12 +144,12 @@ export const GlobalStyle = createGlobalStyle`
   h5 {
     font-family: "Lexend" !important;
     font-size: 1rem;
-   
-    text-align: left;
+
   }
 
   button {
     font-family: "Lexend" !important;
+    text-align: center;
   }
   form {
     display: flex;

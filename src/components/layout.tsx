@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled, { css } from 'styled-components';
 import GlobalStyle, { whenVerticalAspectRatio } from '../styles/global';
-import { Head } from '../pages';
 import { useLocation } from '@reach/router';
 import RentCalculator from './RentCalculator';
 import { HEADER_HEIGHT, Header } from './Header';
@@ -131,6 +130,7 @@ const StyledMain = styled.main`
 `;
 
 const Footer = styled.footer`
+width: 100%;
   display: flex;
   padding: 2rem;
   justify-content: space-around;
@@ -154,7 +154,6 @@ const Layout: React.FC<any> = ({ children }) => {
     <>
       <GlobalStyle />
       <Header />
-
       <StyledMenuButton onClick={() => setShowMobileMenu((isShown) => !isShown)}>
         {showMobileMenu ? 'Fermer' : 'Calculateur'}
       </StyledMenuButton>
@@ -170,7 +169,6 @@ const Layout: React.FC<any> = ({ children }) => {
               placeholder="none"
               height={40}
               alt="rwdh logo"
-              layout="fixed"
               src="../logo/partners/rwdh.svg"
             />
             <StaticImage

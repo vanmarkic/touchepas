@@ -18,7 +18,9 @@ export default IndexPage;
 
 const SectionTitle = styled.h4`
   text-align: left;
+  margin:60px 0px 20px 0px;
 `;
+
 const GeneralInformation = () => {
   return (
     <StyledSection2 id="informations">
@@ -146,7 +148,7 @@ const HeroSection = () => (
         loading="eager"
         width={200}
       />
-      <BigTitle>
+      <BigTitle> 
         TOUCHE <span> PAS </span> À MON LOYER
       </BigTitle>
     </StyledDisplayNoneMobile>
