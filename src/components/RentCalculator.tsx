@@ -307,7 +307,7 @@ const StyledA = styled.a`
   }
 `;
 
-const StyledText = styled.p`
+export const StyledText = styled.p`
   font-style: italic;
   width: 90%;
   padding-top: 2px;
