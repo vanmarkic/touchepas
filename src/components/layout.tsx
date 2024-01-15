@@ -8,8 +8,8 @@ import { StaticImage } from 'gatsby-plugin-image';
 
 export const StyledButtonBlue = styled.button`
   align-items: center;
- background-color:var(--blue);
-  border: var(--blue)1px solid;
+  background-color: var(--blue);
+  border: var(--blue) 1px solid;
   border-radius: var(--radius);
   box-sizing: border-box;
   color: white;
@@ -27,7 +27,6 @@ export const StyledButtonBlue = styled.button`
   -webkit-user-select: none;
   touch-action: manipulation;
   box-shadow: var(--shadow);
-  
   font-weight: 500;
   padding: 0px 20px;
   letter-spacing: 1.5px;
@@ -68,9 +67,17 @@ export const hideWhenHorizontal = css`
   }
 `;
 
+export const HideWhenHorizontal = styled.div`
+  ${hideWhenHorizontal}
+`;
+
+export const HideWhenVertical = styled.div`
+  ${hideWhenVertical}
+`;
+
 const SidePanel = styled.nav`
   width: 45vw;
-height:  calc(100vh - 80px);
+  height: calc(100vh - 80px);
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -1,26 +1,20 @@
 import React from 'react';
 import * as Accordion from '@radix-ui/react-accordion';
 import classNames from 'classnames';
+import { ChevronDownIcon } from '@radix-ui/react-icons';
+import styled from 'styled-components';
 
 interface AccordionProps {
   question: string; 
   answer: string; 
 }
 
-const AccordionTemplate: React.FC<AccordionProps> = ({ question, answer }) => (
-  <Accordion.Root className="AccordionRoot" type="single" defaultValue="null" collapsible>
-    <Accordion.Item className="AccordionItem" value="item-1">
-      <AccordionTrigger>
-        <h5> {question}</h5>
-      </AccordionTrigger>
-      <AccordionContent>
-        <p>{answer}</p>
-      </AccordionContent>
-    </Accordion.Item>
-  </Accordion.Root>
-);
+const StyledAccordionContent = styled(Accordion.Content)`
+  overflow: hidden;
+  color: var(--blue);
+`;
 
-const AccordionTrigger: React.FC<{ children: React.ReactNode; className?: string }> = ({
+export const AccordionTrigger: React.FC<{ children: React.ReactNode; className?: string }> = ({
   children,
   className,
   ...props
@@ -28,22 +22,21 @@ const AccordionTrigger: React.FC<{ children: React.ReactNode; className?: string
   return (
     <Accordion.Header className="AccordionHeader">
       <Accordion.Trigger className={classNames('AccordionTrigger', className)} {...props}>
-        {children}
+        <h5>{children}</h5>
+        <ChevronDownIcon className="AccordionTriggerIcon" />
       </Accordion.Trigger>
     </Accordion.Header>
   );
 };
 
-const AccordionContent: React.FC<{ children: React.ReactNode; className?: string }> = ({
+export const AccordionContent: React.FC<{ children: React.ReactNode; className?: string }> = ({
   children,
   className,
   ...props
 }) => {
   return (
-    <Accordion.Content className={classNames('AccordionContent', className)} {...props}>
+    <StyledAccordionContent>
       <div className="AccordionContentText">{children}</div>
-    </Accordion.Content>
+    </StyledAccordionContent>
   );
 };
-
-export default AccordionTemplate;
