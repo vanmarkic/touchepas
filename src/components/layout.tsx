@@ -168,16 +168,34 @@ const Layout: React.FC<any> = ({ children }) => {
           <Footer>
             <StaticImage
               placeholder="none"
-              height={50}
+              height={40}
               alt="rwdh logo"
               layout="fixed"
               src="../logo/partners/rwdh.svg"
             />
             <StaticImage
               placeholder="none"
-              height={60}
+              height={40}
               alt="csc logo"
               src="../logo/partners/csc.png"
+            />
+              <StaticImage
+              placeholder="none"
+              height={40}
+              alt="csc logo"
+              src="../logo/partners/moc.png"
+            />
+              <StaticImage
+              placeholder="none"
+              height={40}
+              alt="csc logo"
+              src="../logo/partners/rapel.png"
+            />
+             <StaticImage
+              placeholder="none"
+              height={40}
+              alt="csc logo"
+              src="../logo/partners/solidaris.png"
             />
           </Footer>
         </StyledMain>
