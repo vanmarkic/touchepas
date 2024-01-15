@@ -145,8 +145,8 @@ export const GlobalStyle = createGlobalStyle`
     font-family: "Lexend" !important;
     font-size: 1rem;
 
-  }
-
+  }img
+{object-fit:contain !important;}
   button {
     font-family: "Lexend" !important;
     text-align: center;

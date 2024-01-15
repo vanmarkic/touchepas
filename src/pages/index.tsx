@@ -18,7 +18,7 @@ export default IndexPage;
 
 const SectionTitle = styled.h4`
   text-align: left;
-  margin:60px 0px 20px 0px;
+  margin: 60px 0px 20px 0px;
 `;
 
 const GeneralInformation = () => {
@@ -102,11 +102,26 @@ const StyledDisplayNoneMobile = styled.div`
   align-items: center;
   .logo {
     flex: 1 0 auto;
+    object-fit:contain !important;
   }
 
   @media (max-aspect-ratio: 1/1) {
     display: none;
   }
+`;
+
+const FlexDiv = styled.div`
+  display: flex;
+  flex-direction:row;
+  @media (max-aspect-ratio: 1/1) {
+    flex-direction: column;
+    /* min-height: 100svh; */
+    align-items: center;
+    justify-content: center;
+   
+  }
+
+
 `;
 
 const StyledButtonsBlue = styled.div`
@@ -116,7 +131,7 @@ const StyledButtonsBlue = styled.div`
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin-top: 40px;
+  margin-top: 0px;
   flex-wrap: wrap;
 
   @media (max-aspect-ratio: 1/1) {
@@ -129,16 +144,21 @@ const StyledButtonsBlue = styled.div`
 `;
 
 const BigTitle = styled.h1`
-  font-size: 3.5rem;
+width: fit-content;
+  font-size: 3rem;
+  padding-left:20px;
   font-weight: 900;
   color: var(--blue);
+  @media (max-aspect-ratio: 1/1) {
+    font-size: 3rem;
+  }
   span {
     color: var(--dark-red);
   }
 `;
 const HeroSection = () => (
   <StyledSection id={heroSectionID}>
-    <StyledDisplayNoneMobile>
+    <FlexDiv>
       <StaticImage
         className="logo"
         alt="a building with apartments"
@@ -146,12 +166,13 @@ const HeroSection = () => (
         layout="fixed"
         src={'../logo/favicon/android-chrome-512x512.png'}
         loading="eager"
-        width={200}
+        width={140}
       />
-      <BigTitle> 
-        TOUCHE <span> PAS </span> À MON LOYER
+      <BigTitle>
+        TOUCHE  <span> PAS </span><br/> À MON LOYER
       </BigTitle>
-    </StyledDisplayNoneMobile>
+    </FlexDiv>
+    
     <StyledButtonsBlue>
       <StyledButtonBlue onClick={() => scrollToSection('informations')}>
         Informations Générales

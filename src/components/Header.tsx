@@ -51,7 +51,7 @@ const FlexEnd = styled.div`
 `;
 
 const StyledHeader = styled.div`
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   display: flex;
   position: sticky;
   align-items: center;
@@ -154,9 +154,9 @@ export const NewsletterForm = () => {
         />
 
         {result && result !== null && (
-          <h6 style={{ position: 'absolute', bottom: '-15px', textAlign: 'left', width: '350px', color:"var(--red)" ,fontSize:"12px", fontWeight:"500"}}>
+          <p style={{ position: 'absolute', bottom: '-15px', textAlign: 'left', width: '350px', color:"var(--red)" ,fontSize:"12px", fontWeight:"500"}}>
             {result.msg}
-          </h6>
+          </p>
         )}
         <StyleButton onClick={handleSubmit}>
           <StaticImage

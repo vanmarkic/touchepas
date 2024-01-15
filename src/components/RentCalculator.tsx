@@ -231,7 +231,7 @@ const StyledContainer = styled.div`
   background-color: #ededed;
   width: 100%;
   height: calc(100vh - 80px);
-  padding: 25px;
+  padding: 0.7rem;
   margin: 0px;
 `;
 const StyledContainerRow = styled.div`
