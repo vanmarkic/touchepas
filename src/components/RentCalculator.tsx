@@ -231,7 +231,7 @@ const StyledContainer = styled.div`
   background-color: #ededed;
   width: 100%;
   height: calc(100vh - 80px);
-  padding: 25px;
+  padding: 0.7rem;
   margin: 0px;
 `;
 const StyledContainerRow = styled.div`
@@ -307,7 +307,7 @@ const StyledA = styled.a`
   }
 `;
 
-const StyledText = styled.p`
+export const StyledText = styled.p`
   font-style: italic;
   width: 90%;
   padding-top: 2px;
