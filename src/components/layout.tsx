@@ -5,6 +5,9 @@ import { useLocation } from '@reach/router';
 import RentCalculator from './RentCalculator';
 import { HEADER_HEIGHT, Header } from './Header';
 import { StaticImage } from 'gatsby-plugin-image';
+import calculator from "../images/calculator.png";
+import xmark from "../images/xmark.png";
+import envelope from "../images/envelope.svg";
 
 export const StyledButtonBlue = styled.button`
   align-items: center;
@@ -86,16 +89,24 @@ const SidePanel = styled.nav`
   ${hideWhenVertical};
 `;
 
-const StyledMenuButton = styled(StyledButtonBlue)`
+const StyledMenuButton = styled.button`
   position: fixed;
-  bottom: 6px;
-  right: 10px;
-  size: 40px;
+  bottom: 1rem;
+  right:  1rem;
   z-index: 3;
-  width: 150px;
-  height: 2rem;
+  background-color:white;
+  border:none;
+  padding:5px;
+  border-radius:50%;
+  height:60px;
+  width:60px;
+  box-shadow:1px 1px 5px var(--blue) ;
+  
   ${hideWhenHorizontal};
 `;
+
+
+
 
 const MobileMenuOverlay = styled.div<{ showMobileMenu: boolean }>`
   position: absolute;
@@ -134,6 +145,9 @@ width: 100%;
   display: flex;
   padding: 2rem;
   justify-content: space-around;
+  flex-wrap:wrap;
+  gap:20px;
+  margin-top:60px;
 `;
 
 const Layout: React.FC<any> = ({ children }) => {
@@ -154,9 +168,10 @@ const Layout: React.FC<any> = ({ children }) => {
     <>
       <GlobalStyle />
       <Header />
+      
       <StyledMenuButton onClick={() => setShowMobileMenu((isShown) => !isShown)}>
-        {showMobileMenu ? 'Fermer' : 'Calculateur'}
-      </StyledMenuButton>
+  {showMobileMenu ? <img src={xmark} alt="Closed" /> : <img src={calculator} alt="Calculateur" />}
+</StyledMenuButton>
       <MobileMenuOverlay showMobileMenu={showMobileMenu}>
         <RentCalculator />
       </MobileMenuOverlay>
