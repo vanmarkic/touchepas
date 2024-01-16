@@ -12,6 +12,7 @@ interface AccordionProps {
 const StyledAccordionContent = styled(Accordion.Content)`
   overflow: hidden;
   color: var(--blue);
+  font-size: 0.8rem;
 `;
 
 export const AccordionTrigger: React.FC<{ children: React.ReactNode; className?: string }> = ({

@@ -44,7 +44,6 @@ const FlexDiv = styled.div`
 const FlexEnd = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: start;
   cursor: pointer;
   height: 100%;
@@ -62,7 +61,7 @@ const StyledHeader = styled.div`
   backdrop-filter: blur(5px);
   height: 80px;
   color: var(--blue);
-  height: fit-content;
+  height: 80px;
   h4 {
     ${whenVerticalAspectRatio(`
       font-size: 1.2rem;
@@ -85,8 +84,8 @@ const StyledH6 = styled.h6`
   letter-spacing: 0.6px;
   color: var(--blue);
   height: fit-content;
-  font-size: 16px;
-  text-transform: uppercase;
+  font-size: 14px;
+
 
   ${whenVerticalAspectRatio(`
      display:none
@@ -108,10 +107,12 @@ const scrollToHeroSection = () => {
 export const Header = () => {
   return (
     <StyledHeader>
-      <FlexDiv>
-        <h4 onClick={scrollToHeroSection}>
+      <FlexDiv onClick={scrollToHeroSection}>
+      <HideWhenVertical>
+        <h4 >
           TOUCHE <RedSpan> PAS </RedSpan> À MON LOYER
         </h4>
+        </HideWhenVertical>
         <StaticImage
           alt="logo"
           placeholder="blurred"
@@ -121,9 +122,9 @@ export const Header = () => {
           loading="eager"
         />
       </FlexDiv>
-      <HideWhenVertical>
+    
         <NewsletterForm />
-      </HideWhenVertical>
+     
     </StyledHeader>
   );
 };
@@ -140,8 +141,11 @@ export const NewsletterForm = () => {
   };
   return (
     <FlexEnd>
-      <StyledH6>Inscrivez-vous à la Newsletter</StyledH6>
+       <HideWhenVertical>
+    <StyledH6>Inscrivez-vous à la Newsletter</StyledH6>
+    </HideWhenVertical> 
       <FlexDiv>
+      <HideWhenVertical>
         <StyledInput
           id="outlined-email-input"
           type="email"
@@ -158,6 +162,7 @@ export const NewsletterForm = () => {
             {result.msg}
           </p>
         )}
+            </HideWhenVertical> 
         <StyleButton onClick={handleSubmit}>
           <StaticImage
             alt="letter"
