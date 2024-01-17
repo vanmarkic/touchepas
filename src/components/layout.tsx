@@ -7,6 +7,7 @@ import { HEADER_HEIGHT, Header } from './Header';
 import { StaticImage } from 'gatsby-plugin-image';
 import calculator from '../images/calculator.svg';
 import xmark from '../images/xmark.svg';
+import { Regions } from '../formula/types-and-constants';
 
 export const StyledButtonBlue = styled.button`
   align-items: center;
@@ -146,11 +147,24 @@ const Footer = styled.footer`
   margin-top: 60px;
 `;
 
-const Layout: React.FC<any> = ({ children }) => {
-  const [showMobileMenu, setShowMobileMenu] = React.useState(false);
-  const { pathname } = useLocation();
+const RegionDialog = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vh;
+  margin-top: 10vh;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  z-index: 5;
+`;
 
-  const currentRoom = pathname.split('/');
+const Layout: React.FC<any> = ({ children, handleRegionSwitch }) => {
+  const [showMobileMenu, setShowMobileMenu] = React.useState(false);
+  const [showRegionDialog, setShowRegionDialog] = React.useState(true);
+  const [region, setRegion] = React.useState<Regions>('wallonia');
+
   React.useEffect(() => {
     const documentHeight = () => {
       const doc = document.documentElement;
@@ -164,58 +178,82 @@ const Layout: React.FC<any> = ({ children }) => {
     <>
       <GlobalStyle />
       <Header />
-
-      <StyledMenuButton onClick={() => setShowMobileMenu((isShown) => !isShown)}>
-        {showMobileMenu ? (
-          <img style={{width:"25px"}} src={xmark} alt="Closed" />
-        ) : (
-          <img style={{width:"25px"}} src={calculator} alt="Calculateur" />
-        )}
-      </StyledMenuButton>
-      <MobileMenuOverlay showMobileMenu={showMobileMenu}>
-        <RentCalculator />
-      </MobileMenuOverlay>
-
-      <StyledLayout>
-        <StyledMain>
-          {children}
-          <Footer>
-            <StaticImage
-              placeholder="none"
-              height={40}
-              alt="rwdh logo"
-              src="../logo/partners/rwdh.svg"
-            />
-            <StaticImage
-              placeholder="none"
-              height={40}
-              alt="csc logo"
-              src="../logo/partners/csc.png"
-            />
-            <StaticImage
-              placeholder="none"
-              height={40}
-              alt="csc logo"
-              src="../logo/partners/moc.png"
-            />
-            <StaticImage
-              placeholder="none"
-              height={40}
-              alt="csc logo"
-              src="../logo/partners/rapel.png"
-            />
-            <StaticImage
-              placeholder="none"
-              height={40}
-              alt="csc logo"
-              src="../logo/partners/solidaris.png"
-            />
-          </Footer>
-        </StyledMain>
-        <SidePanel>
-          <RentCalculator />
-        </SidePanel>
-      </StyledLayout>
+      {showRegionDialog ? (
+        <RegionDialog>
+          <h5>Dans quelle région résidez-vous ?</h5>
+          <StyledButtonBlue
+            onClick={() => {
+              setRegion('wallonia');
+              handleRegionSwitch('wallonia');
+              setShowRegionDialog(false);
+            }}
+          >
+            <span>Wallonie</span>
+          </StyledButtonBlue>
+          <StyledButtonBlue
+            onClick={() => {
+              setRegion('brussels');
+              handleRegionSwitch('brussels');
+              setShowRegionDialog(false);
+            }}
+          >
+            <span>Bruxelles</span>
+          </StyledButtonBlue>
+        </RegionDialog>
+      ) : (
+        <>
+          <StyledMenuButton onClick={() => setShowMobileMenu((isShown) => !isShown)}>
+            {showMobileMenu ? (
+              <img style={{ width: '25px' }} src={xmark} alt="Closed" />
+            ) : (
+              <img style={{ width: '25px' }} src={calculator} alt="Calculateur" />
+            )}
+          </StyledMenuButton>
+          <MobileMenuOverlay showMobileMenu={showMobileMenu}>
+            <RentCalculator region={region} />
+          </MobileMenuOverlay>
+          <StyledLayout>
+            <StyledMain>
+              {children}
+              <Footer>
+                <StaticImage
+                  placeholder="none"
+                  height={40}
+                  alt="rwdh logo"
+                  src="../logo/partners/rwdh.svg"
+                />
+                <StaticImage
+                  placeholder="none"
+                  height={40}
+                  alt="csc logo"
+                  src="../logo/partners/csc.png"
+                />
+                <StaticImage
+                  placeholder="none"
+                  height={40}
+                  alt="csc logo"
+                  src="../logo/partners/moc.png"
+                />
+                <StaticImage
+                  placeholder="none"
+                  height={40}
+                  alt="csc logo"
+                  src="../logo/partners/rapel.png"
+                />
+                <StaticImage
+                  placeholder="none"
+                  height={40}
+                  alt="csc logo"
+                  src="../logo/partners/solidaris.png"
+                />
+              </Footer>
+            </StyledMain>
+            <SidePanel>
+              <RentCalculator region={region} />
+            </SidePanel>
+          </StyledLayout>
+        </>
+      )}
     </>
   );
 };
