@@ -5,10 +5,15 @@ export const StyledSection = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  justify-content: space-evenly;
+  justify-content:space-evenly;
   align-items: center;
   min-height: calc(100vh - 80px);
   height: fit-content;
+  ${whenVerticalAspectRatio(`
+     justify-content:flex-start;
+     gap:5rem;
+    `)};
+  
 `;
 
 export const StyledSection2 = styled.div`
@@ -18,6 +23,7 @@ export const StyledSection2 = styled.div`
   justify-content: start;
   align-items: center;
   min-height: calc(100vh - 80px);
+  
 `;
 
 export const TwoColumns = styled.div`

@@ -5,9 +5,8 @@ import { useLocation } from '@reach/router';
 import RentCalculator from './RentCalculator';
 import { HEADER_HEIGHT, Header } from './Header';
 import { StaticImage } from 'gatsby-plugin-image';
-import calculator from "../images/calculator.png";
-import xmark from "../images/xmark.png";
-import envelope from "../images/envelope.svg";
+import calculator from '../images/calculator.svg';
+import xmark from '../images/xmark.svg';
 
 export const StyledButtonBlue = styled.button`
   align-items: center;
@@ -18,7 +17,7 @@ export const StyledButtonBlue = styled.button`
   color: white;
   cursor: pointer;
   display: flex;
-  font-size: 0.8rem;
+  font-size: 14px;
   height: 45px;
   justify-content: center;
   line-height: 20px;
@@ -30,7 +29,7 @@ export const StyledButtonBlue = styled.button`
   -webkit-user-select: none;
   touch-action: manipulation;
   box-shadow: var(--shadow);
-  font-weight: 500;
+  font-weight: 400;
   padding: 0px 20px;
   letter-spacing: 1.5px;
   transition: all 0.1s ease-in-out 0s;
@@ -92,21 +91,18 @@ const SidePanel = styled.nav`
 const StyledMenuButton = styled.button`
   position: fixed;
   bottom: 1rem;
-  right:  1rem;
+  right: 1rem;
   z-index: 3;
-  background-color:white;
-  border:none;
-  padding:5px;
-  border-radius:50%;
-  height:60px;
-  width:60px;
-  box-shadow:1px 1px 5px var(--blue) ;
-  
+  background-color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  box-shadow: 1px 1px 5px var(--blue);
+
   ${hideWhenHorizontal};
 `;
-
-
-
 
 const MobileMenuOverlay = styled.div<{ showMobileMenu: boolean }>`
   position: absolute;
@@ -141,13 +137,13 @@ const StyledMain = styled.main`
 `;
 
 const Footer = styled.footer`
-width: 100%;
+  width: 100%;
   display: flex;
   padding: 2rem;
   justify-content: space-around;
-  flex-wrap:wrap;
-  gap:20px;
-  margin-top:60px;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 60px;
 `;
 
 const Layout: React.FC<any> = ({ children }) => {
@@ -168,10 +164,14 @@ const Layout: React.FC<any> = ({ children }) => {
     <>
       <GlobalStyle />
       <Header />
-      
+
       <StyledMenuButton onClick={() => setShowMobileMenu((isShown) => !isShown)}>
-  {showMobileMenu ? <img src={xmark} alt="Closed" /> : <img src={calculator} alt="Calculateur" />}
-</StyledMenuButton>
+        {showMobileMenu ? (
+          <img style={{width:"25px"}} src={xmark} alt="Closed" />
+        ) : (
+          <img style={{width:"25px"}} src={calculator} alt="Calculateur" />
+        )}
+      </StyledMenuButton>
       <MobileMenuOverlay showMobileMenu={showMobileMenu}>
         <RentCalculator />
       </MobileMenuOverlay>
@@ -192,19 +192,19 @@ const Layout: React.FC<any> = ({ children }) => {
               alt="csc logo"
               src="../logo/partners/csc.png"
             />
-              <StaticImage
+            <StaticImage
               placeholder="none"
               height={40}
               alt="csc logo"
               src="../logo/partners/moc.png"
             />
-              <StaticImage
+            <StaticImage
               placeholder="none"
               height={40}
               alt="csc logo"
               src="../logo/partners/rapel.png"
             />
-             <StaticImage
+            <StaticImage
               placeholder="none"
               height={40}
               alt="csc logo"

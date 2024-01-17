@@ -1,10 +1,13 @@
 import * as React from 'react';
 import { StyledSection, StyledSection2, TwoColumns, Paragraph } from '../components/bodyLayout';
-import Layout, { StyledButtonBlue } from '../components/layout';
+import Layout, { StyledButtonBlue, HideWhenHorizontal} from '../components/layout';
 import { StaticImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import { AccordionContent, AccordionTrigger } from '../components/AccordionTemplate';
 import * as Accordion from '@radix-ui/react-accordion';
+import { NewsletterForm } from '../components/NewsletterForm';
+
+
 const IndexPage: React.FC<{}> = () => {
   return (
     <Layout>
@@ -126,21 +129,14 @@ const FlexDiv = styled.div`
 
 const StyledButtonsBlue = styled.div`
   width: 100%;
-
-  bottom: 21.5%;
+position: relative;
   display: flex;
   justify-content: center;
   gap: 20px;
   margin-top: 0px;
   flex-wrap: wrap;
 
-  @media (max-aspect-ratio: 1/1) {
-    flex-direction: column;
-    /* min-height: 100svh; */
-    align-items: center;
-    justify-content: center;
-    position: static;
-  }
+  
 `;
 
 const BigTitle = styled.h1`
@@ -150,11 +146,12 @@ width: fit-content;
   font-weight: 900;
   color: var(--blue);
   @media (max-aspect-ratio: 1/1) {
-    font-size: 3rem;
+   font-size: 1.9rem;
   }
   span {
     color: var(--dark-red);
   }
+  
 `;
 const HeroSection = () => (
   <StyledSection id={heroSectionID}>
@@ -178,7 +175,12 @@ const HeroSection = () => (
         Informations Générales
       </StyledButtonBlue>
       <StyledButtonBlue>Actualités</StyledButtonBlue>
+     
     </StyledButtonsBlue>
+    <HideWhenHorizontal>
+    <NewsletterForm/>
+    </HideWhenHorizontal>
+   
   </StyledSection>
 );
 
