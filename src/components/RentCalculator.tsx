@@ -10,17 +10,17 @@ import {
 } from '../formula/types-and-constants';
 import { calculateRentIndexation } from '../formula/rent-increase-formula';
 
-const RentCalculator: React.FC = () => {
+const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
   const [indexationDate, setIndexationDate] = useState<number>(2023);
   const [initialRent, setInitialRent] = useState<number>(0);
   const [contractSignatureDate, setContractSignatureDate] = useState<Date | null>(null);
   const [agreementStartDate, setAgreementStartDate] = useState<Date>(new Date());
   const [newRent, setNewRent] = useState<number | string>(0);
-  const [region, setRegion] = useState<Regions>('wallonia');
   const [energyCertificate, setEnergyCertificate] = useState<EnergyEfficiencyRating>('none');
   const [enregistrementResponse, setEnregistrementResponse] = useState<enregistrement>('none');
   const [contentToShow, setContentToShow] = useState<'inputs' | 'text1' | 'text2'>('text2');
   const [showPebFields, setShowPebFields] = useState(false);
+
   const isValid =
     indexationDate &&
     initialRent &&
@@ -61,7 +61,11 @@ const RentCalculator: React.FC = () => {
 
   return (
     <StyledContainer>
-      <h4>Calculateur de loyer </h4> <RedSpan> Wallonie</RedSpan>
+      <h4>Calculateur de loyer</h4>
+      <RedSpan>
+        {region === 'wallonia' ? 'Wallonie' : 'Bruxelles (formule en cours de finalisation)'}
+      </RedSpan>
+
       <form>
         <StyledLabel htmlFor="enregistrement">
           Le bail est-il enregistré?

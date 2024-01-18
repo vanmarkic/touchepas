@@ -1,18 +1,20 @@
 import * as React from 'react';
 import { StyledSection, StyledSection2, TwoColumns, Paragraph } from '../components/bodyLayout';
-import Layout, { StyledButtonBlue, HideWhenHorizontal} from '../components/layout';
+import Layout, { StyledButtonBlue, HideWhenHorizontal } from '../components/layout';
 import { StaticImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import { AccordionContent, AccordionTrigger } from '../components/AccordionTemplate';
 import * as Accordion from '@radix-ui/react-accordion';
 import { NewsletterForm } from '../components/NewsletterForm';
-
+import { Regions } from '../formula/types-and-constants';
 
 const IndexPage: React.FC<{}> = () => {
+  const [region, setRegion] = React.useState<Regions>('wallonia');
+
   return (
-    <Layout>
+    <Layout handleRegionSwitch={setRegion}>
       <HeroSection />
-      <GeneralInformation />
+      <GeneralInformation region={region} />
     </Layout>
   );
 };
@@ -24,7 +26,7 @@ const SectionTitle = styled.h4`
   margin: 60px 0px 20px 0px;
 `;
 
-const GeneralInformation = () => {
+const GeneralInformation = ({ region }: { region: Regions }) => {
   return (
     <StyledSection2 id="informations">
       <SectionTitle>Informations générales</SectionTitle>
@@ -33,17 +35,12 @@ const GeneralInformation = () => {
           <Paragraph>
             <Accordion.Item className="AccordionItem" value="item-1">
               <AccordionTrigger>
-                À quelles conditions peut-on indexer mon loyer en Wallonie ?
+                {region === 'wallonia'
+                  ? 'À quelles conditions peut-on indexer mon loyer en Wallonie ?'
+                  : 'À quelles conditions peut-on indexer mon loyer à Bruxelles ?'}
               </AccordionTrigger>
               <AccordionContent>
-                Le loyer peut être indexé, chaque année, au plus tôt à la date anniversaire de
-                l'entrée en vigueur du bail. L'indexation du loyer est toujours possible, à moins
-                qu'elle n'ait été exclue expressément dans une clause du bail ou qu'il s'agisse d'un
-                bail verbal. Pour indexer le loyer, il faut un bail écrit. Pour les baux conclus ou
-                renouvelés à partir du 01/09/2018 que pour les baux en cours au 01/09/2018, il doit
-                être enregistré. L'indexation du loyer n'est pas automatique et doit être demandée
-                par écrit. La demande d'indexation ne doit pas nécessairement être envoyée par
-                lettre recommandée : elle peut être faite par courrier normal, SMS ou e-mail.
+                {region === 'wallonia' ? 'Contenu Wallonie' : 'Contenu Bruxelles'}
               </AccordionContent>
             </Accordion.Item>
           </Paragraph>
@@ -105,7 +102,7 @@ const StyledDisplayNoneMobile = styled.div`
   align-items: center;
   .logo {
     flex: 1 0 auto;
-    object-fit:contain !important;
+    object-fit: contain !important;
   }
 
   @media (max-aspect-ratio: 1/1) {
@@ -115,43 +112,37 @@ const StyledDisplayNoneMobile = styled.div`
 
 const FlexDiv = styled.div`
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
   @media (max-aspect-ratio: 1/1) {
     flex-direction: column;
     /* min-height: 100svh; */
     align-items: center;
     justify-content: center;
-   
   }
-
-
 `;
 
-const StyledButtonsBlue = styled.div`
+const ButtonsGroup = styled.div`
   width: 100%;
-position: relative;
+  position: relative;
   display: flex;
   justify-content: center;
   gap: 20px;
   margin-top: 0px;
   flex-wrap: wrap;
-
-  
 `;
 
 const BigTitle = styled.h1`
-width: fit-content;
+  width: fit-content;
   font-size: 3rem;
-  padding-left:20px;
+  padding-left: 20px;
   font-weight: 900;
   color: var(--blue);
   @media (max-aspect-ratio: 1/1) {
-   font-size: 1.9rem;
+    font-size: 1.9rem;
   }
   span {
     color: var(--dark-red);
   }
-  
 `;
 const HeroSection = () => (
   <StyledSection id={heroSectionID}>
@@ -166,21 +157,20 @@ const HeroSection = () => (
         width={140}
       />
       <BigTitle>
-        TOUCHE  <span> PAS </span><br/> À MON LOYER
+        TOUCHE <span> PAS </span>
+        <br /> À MON LOYER
       </BigTitle>
     </FlexDiv>
-    
-    <StyledButtonsBlue>
+
+    <ButtonsGroup>
       <StyledButtonBlue onClick={() => scrollToSection('informations')}>
         Informations Générales
       </StyledButtonBlue>
-      <StyledButtonBlue>Actualités</StyledButtonBlue>
-     
-    </StyledButtonsBlue>
+      <StyledButtonBlue onClick={() => scrollToSection('news')}>Actualités</StyledButtonBlue>
+    </ButtonsGroup>
     <HideWhenHorizontal>
-    <NewsletterForm/>
+      <NewsletterForm />
     </HideWhenHorizontal>
-   
   </StyledSection>
 );
 
@@ -217,3 +207,4 @@ export const Head = () => (
 );
 
 export const heroSectionID = 'hero-section';
+export const newsSectionID = 'news';
