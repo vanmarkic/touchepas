@@ -22,6 +22,7 @@ export const StyledSection2 = styled.div`
   justify-content: start;
   align-items: center;
   min-height: calc(100vh - 80px);
+  height: fit-content;
 `;
 
 export const TwoColumns = styled.div`

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { StyledSection, StyledSection2, TwoColumns, Paragraph } from '../components/bodyLayout';
 import Layout, { StyledButtonBlue, HideWhenHorizontal } from '../components/layout';
 import { StaticImage } from 'gatsby-plugin-image';
@@ -7,6 +8,9 @@ import { AccordionContent, AccordionTrigger } from '../components/AccordionTempl
 import * as Accordion from '@radix-ui/react-accordion';
 import { NewsletterForm } from '../components/NewsletterForm';
 import { Regions } from '../formula/types-and-constants';
+import lettre from '../images/lettre.jpg';
+import { StyledA } from '../components/RentCalculator';
+import { Article1, Article2, Article3, Article4 } from '../components/Article';
 
 const IndexPage: React.FC<{}> = () => {
   const [region, setRegion] = React.useState<Regions>('wallonia');
@@ -15,6 +19,7 @@ const IndexPage: React.FC<{}> = () => {
     <Layout handleRegionSwitch={setRegion}>
       <HeroSection />
       <GeneralInformation region={region} />
+      <Actualités />
     </Layout>
   );
 };
@@ -94,22 +99,6 @@ const scrollToSection = (sectionId: string) => {
   }
 };
 
-const StyledImage = styled.img`
-  width: 100%;
-`;
-const StyledDisplayNoneMobile = styled.div`
-  display: flex;
-  align-items: center;
-  .logo {
-    flex: 1 0 auto;
-    object-fit: contain !important;
-  }
-
-  @media (max-aspect-ratio: 1/1) {
-    display: none;
-  }
-`;
-
 const FlexDiv = styled.div`
   display: flex;
   flex-direction: row;
@@ -144,6 +133,7 @@ const BigTitle = styled.h1`
     color: var(--dark-red);
   }
 `;
+
 const HeroSection = () => (
   <StyledSection id={heroSectionID}>
     <FlexDiv>
@@ -207,4 +197,102 @@ export const Head = () => (
 );
 
 export const heroSectionID = 'hero-section';
-export const newsSectionID = 'news';
+interface Article {
+  id: number;
+  title: string;
+  image: string;
+  isExpanded: boolean;
+}
+
+const StyledArticleList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: var(--blue);
+`;
+
+export const Actualités: React.FC = () => {
+  const articlesData: Article[] = [
+    {
+      id: 1,
+      title: 'Indexa­tion des loyers à Bruxelles: la (grosse) goutte qui fait débor­der le budget',
+      image: lettre,
+      isExpanded: false,
+    },
+    {
+      id: 2,
+      title: 'La justice sociale exige la suspen­sion de l’in­dexa­tion des loyers!',
+      image: lettre,
+      isExpanded: false,
+    },
+    {
+      id: 3,
+      title:
+        'A partir du 1er novembre 2023, votre propriétaires pourra de nouveau indexer votre loyer, même si vous vivez dans une passoire énergétique!',
+      image: lettre,
+      isExpanded: false,
+    },
+    {
+      id: 4,
+      title:
+        'Les loyers pourront à nouveau être indexés en Wallonie et en Flandre, peu importe le certificat PEB du logement',
+      image: lettre,
+      isExpanded: false,
+    },
+  ];
+
+  const [articles, setArticles] = useState(articlesData);
+  const [openArticleId, setOpenArticleId] = useState<number | null>(null);
+  const articleRefs = useRef<Array<HTMLDivElement | null>>([]);
+
+  const toggleReadMore = (id: number) => {
+    setOpenArticleId((prevId) => (prevId === id ? null : id));
+  };
+
+  const handleOutsideClick = (event: MouseEvent) => {
+    if (openArticleId !== null) {
+      const isOutsideClick = !articleRefs.current.some(
+        (articleRef) => articleRef?.contains(event.target as Node),
+      );
+      if (isOutsideClick) {
+        setOpenArticleId(null);
+      }
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [openArticleId]);
+
+  return (
+    <StyledSection2 id="news">
+      <SectionTitle>Actualités</SectionTitle>
+      <StyledArticleList className="article-list">
+        {articles.map((article) => (
+          <div
+            key={article.id}
+            className={`article ${article.id === openArticleId ? 'open' : ''}`}
+            ref={(ref) => (articleRefs.current[article.id] = ref)}
+          >
+            <h5>{article.title}</h5>
+            {article.id === openArticleId && (
+              <>
+                {article.id === 1 && <Article1 />}
+                {article.id === 2 && <Article2 />}
+                {article.id === 3 && <Article3 />}
+                {article.id === 4 && <Article4 />}
+              </>
+            )}
+            <StyledA onClick={() => toggleReadMore(article.id)}>
+              {article.id === openArticleId ? "Fermer l'article" : "Lire l'article"}
+            </StyledA>
+          </div>
+        ))}
+      </StyledArticleList>
+    </StyledSection2>
+  );
+};

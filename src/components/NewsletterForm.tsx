@@ -26,7 +26,7 @@ const StyleButton = styled.button`
 `;
 const StyledH6 = styled.h6`
   padding-right: 5px;
-  width: fit-content;
+  width: 250px;
   top: -18px;
   position: absolute;
   letter-spacing: 0.6px;
@@ -42,6 +42,7 @@ const FlexEnd = styled.div`
   align-items: start;
   cursor: pointer;
   height: 100%;
+  width: 100%;
   position:relative;
   ${whenVerticalAspectRatio(`
      align-items:center;
@@ -50,6 +51,7 @@ const FlexEnd = styled.div`
 
 const FlexDiv = styled.div`
   display: flex;
+  width:100%;
   align-items: center;
   cursor: pointer;
   gap: 0.5rem;
@@ -64,7 +66,7 @@ export const StyledInput = styled.input`
   border-radius: var(--radius);
   background-color: #f8f8f8;
   outline: none;
-  width: 260px;
+  width: 250px;
   padding: 6px;
   font-size: medium;
   font-weight: normal;

@@ -302,7 +302,7 @@ const StyledSelect = styled.select`
     outline: none;
   }
 `;
-const StyledA = styled.a`
+export const StyledA = styled.a`
   font-size: medium;
   text-decoration: underline;
   color: var(--blue);
