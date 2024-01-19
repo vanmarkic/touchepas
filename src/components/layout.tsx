@@ -18,7 +18,7 @@ export const StyledButtonBlue = styled.button`
   color: white;
   cursor: pointer;
   display: flex;
-  font-size: 14px;
+  font-size: 13px;
   height: 45px;
   justify-content: center;
   line-height: 20px;
@@ -67,6 +67,7 @@ export const hideWhenVertical = css`
 export const hideWhenHorizontal = css`
   @media (min-aspect-ratio: 1/1) or (min-width: 768px) {
     display: none;
+    width: fit-content;
   }
 `;
 
