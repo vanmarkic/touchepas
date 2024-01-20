@@ -1,3 +1,4 @@
+import { ca } from 'date-fns/locale';
 import { ENERGY_RATIOS, EnergyEfficiencyRating, RentIndexationArguments } from './types-and-constants';
 import { roundToTwoDecimals, deriveData, deriveDataWithPEB } from './utils';
 
@@ -25,7 +26,7 @@ export function calculateRentIndexation(
     deriveData({ agreementStartDate, contractSignatureDate, yearOfIndexation, region })
 
   if (region === 'brussels') {
-    return roundToTwoDecimals(calculateRentIndexationForBxl(initialRent, initialIndex, newHealthIndex, energyEfficiencyRating, agreementStartDate))
+    return roundToTwoDecimals(calculateRentIndexationForBxl(initialRent, initialIndex, newHealthIndex, energyEfficiencyRating, agreementStartDate) ?? 0)
   }
 
   // ---- basic formula preapplied with index and rent
@@ -91,17 +92,30 @@ const correctionFactors: CorrectionFactors = {
   }
 };
 
-function calculateRentIndexationForBxl(initialRent: number, initialIndex: number, newHealthIndex: number, rating: EnergyEfficiencyRating, anniversaryDate: Date): number {
+export function calculateRentIndexationForBxl(initialRent: number, initialIndex: number, newHealthIndex: number, rating: EnergyEfficiencyRating, anniversaryDate: Date): number | void {
   let indexedRent: number = initialRent * newHealthIndex / initialIndex;
 
   const month: Month = convertDateToMonth(anniversaryDate);
-  rating = rating === 'G' ? 'F' : rating
-  const factor = correctionFactors[rating][month];
-  if (factor) {
-    indexedRent *= factor;
+
+  switch (rating) {
+    case 'A':
+    case 'B':
+    case 'C':
+    case 'D':
+      return indexedRent
+    case 'E':
+      return indexedRent *= correctionFactors['E'][month];
+    case 'F':
+    case 'G':
+      return indexedRent *= correctionFactors['F'][month];
+    case 'none':
+      alert('Please select a rating');
+      break;
+    default:
+      alert('Please select a rating');
+      break;
   }
 
-  return indexedRent;
 }
 
 function convertDateToMonth(date: Date): Month {
