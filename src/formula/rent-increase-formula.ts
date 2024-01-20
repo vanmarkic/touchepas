@@ -19,6 +19,8 @@ export function calculateRentIndexation(
   }: RentIndexationArguments
 ): number | null {
 
+
+
   const { indexBaseYear, anniversaryMonth, initialIndex, newHealthIndex, isRequestedAfterEndOfDecree, wasIndexationRequestedBeforeStartOfEnergyRatingDecree, healthIndexBeforeDecree } =
     deriveData({ agreementStartDate, contractSignatureDate, yearOfIndexation, region })
 
