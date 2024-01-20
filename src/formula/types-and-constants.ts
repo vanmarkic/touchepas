@@ -5,6 +5,15 @@ export const BASE_YEARS = [
   2013,
 ] as const;
 
+
+export type RentIndexationArguments = {
+  contractSignatureDate: Date;
+  agreementStartDate: Date;
+  initialRent: number;
+  yearOfIndexation: number;
+  region: Regions;
+  energyEfficiencyRating: EnergyEfficiencyRating
+}
 export type Regions = 'wallonia' | 'flanders' | 'brussels';
 
 export const ENERGY_RATIOS: Record<Regions, { start: Date, end: Date, peb: Record<EnergyEfficiencyRating, number> }> = {
