@@ -4,7 +4,12 @@ import styled from 'styled-components';
 const StyledArticleContent = styled.p`
   color: var(--blue);
   font-size: 0.8rem !important;
-  margin:20px 5px 10px 5px;
+  margin:10px 0px;
+`;
+const StyledArticleSubTitle = styled.h6`
+  color: var(--blue);
+  font-size: 0.9rem !important;
+ font-weight:bold;
 `;
 
 export const Article1: React.FC = () => {
@@ -108,7 +113,7 @@ export const Article2: React.FC = () => {
         sans réserve :
         <br />
         <br />
-        "Confiner chacun chez soi rappelle les inégalités criantes existantes en termes d'accès au
+      <p style={{fontStyle:"italic", fontSize:"0.8rem"}}>"Confiner chacun chez soi rappelle les inégalités criantes existantes en termes d'accès au
         logement, singulièrement dans les grandes villes, et plus encore à Bruxelles. Nous ne vivons
         pas dans les mêmes mondes selon qu'il nous est demandé de nous confiner seul dans une maison
         avec jardin que à trois, quatre, cinq ou plus dans un appartement modeste. Cette inégalité
@@ -117,6 +122,7 @@ export const Article2: React.FC = () => {
         l'accès au logement, fruits de diversité de revenus, de formation mais aussi de
         discrimination. Mal loger, c'est mal vivre. Nous ne pouvons plus condamner une partie aussi
         importante de la population à la précarité du milieu de vie."
+        </p>  
         <br />
         <br />
         Ces inégalités face au logement parfaitement décrites sont le fruit d'un marché du logement
@@ -163,6 +169,7 @@ export const Article2: React.FC = () => {
         de la période de forte inflation.
         <br />
         <br />
+        <p style={{ fontSize: '0.7rem' }}>
         Signataires initiateurs réunis au sein de la Plate-Forme Logement : Rassemblement Bruxellois
         pour le Droit à l'Habitat (RBDH), Fédération bruxelloise Unie pour le Logement (FéBUL),
         Inter-Environnement Bruxelles (IEB), CSC Bruxelles, MOC Bruxelles, Equipes Populaires
@@ -177,6 +184,7 @@ export const Article2: React.FC = () => {
         Wallon de Lutte contre la Pauvreté, Mouvement chrétien pour la paix, DUNE asbl, RWDH,
         Tuiniersforum des jardiniers, GAFFI asbl, Comité de Défense de Saint-Gilles, Les ami.e.s du
         champ des cailles, Angela D.
+        </p>
       </StyledArticleContent>
     </div>
   );
@@ -271,7 +279,7 @@ export const Article4: React.FC = () => {
         Bruxelles, l’ordonnance sur la modification du système d’indexation arrive à son terme à la
         mi-octobre, on ne sait pas encore si la mesure sera reconduite.
         <br />
-        <br />
+        
         Rappelons que ces mesures provisoires avaient été prises l’année dernière au début de
         l’automne (novembre en Wallonie, octobre dans la capitale) face à un bâti vieillissant et
         des prix de l’énergie qui grimpaient en flèche. Rappelons aussi que l’interdiction
@@ -279,18 +287,18 @@ export const Article4: React.FC = () => {
         n’y a pas de certificat. Une limitation existe aussi lorsque la performance énergétique du
         logement est un D ou un E.
         <br />
-        <br />
+
         "Il s’agissait d’une réaction à un évènement exceptionnel", explique Christophe Collignon,
         ministre wallon du Logement, "il fallait alors protéger l’économiquement faible et donc les
         locataires. Aujourd’hui, la situation est revenue à la normale. Il faut donc que les choses
         se remettent en place", ajoute-t-il.
-      </StyledArticleContent>
+      
       <br />
       <br />
-      <h3>Une bonne nouvelle pour le syndicat des propriétaires</h3>
+      <br />
+      <StyledArticleSubTitle>Une bonne nouvelle pour le syndicat des propriétaires</StyledArticleSubTitle>
       <br />
 
-      <StyledArticleContent>
         Pour le Syndicat national des propriétaires et des copropriétaires (SNPC), cette annonce de
         la fin de l’interdiction et du plafonnement de l’indexation en Wallonie et en Flandre est
         une bonne nouvelle. Son président Olivier Hamal se souvient que le syndicat s’était opposé
@@ -308,13 +316,14 @@ export const Article4: React.FC = () => {
         incitatif et qu'"on en a fait une mesure contraignante sans même laisser le temps aux
         bailleurs de s’adapter. Ce n’est pas en quelques semaines, quelques mois, que l’on peut
         faire passer un PEB G, par exemple, au niveau D".
-      </StyledArticleContent>
+     
       <br />
       <br />
-      <h3>Une mauvaise nouvelle pour le syndicat des locataires</h3>
+      <br />
+      < StyledArticleSubTitle >Une mauvaise nouvelle pour le syndicat des locataires</StyledArticleSubTitle >
       <br />
 
-      <StyledArticleContent>
+     
         Du côté des locataires, la fin de la réglementation actuelle est une mauvaise nouvelle. Le
         syndicat des locataires estime que la moitié des logements (voire plus dans certaines
         communes) mis en location sont mal isolés. "Ce n’est pas au locataire de payer pour des
@@ -341,14 +350,11 @@ export const Article4: React.FC = () => {
         G, 17% le PEB F. Pour les appartements, la situation est moins problématique : 16% disposent
         du PEB G et 9% le F.
         <br />
-      </StyledArticleContent>
+     
       <br />
       <br />
-
-      <h3>L’Europe va fixer des objectifs d’ici peu</h3>
+      <StyledArticleSubTitle>L’Europe va fixer des objectifs d’ici peu</StyledArticleSubTitle>
       <br />
-
-      <StyledArticleContent>
         Notons, toujours dans ce dossier de l’isolation des bâtiments, que l’Europe ne devrait pas
         tarder à proposer aux États des objectifs en matière de rénovation et de performance
         énergétique des bâtiments. À charge pour chaque État de mettre en place les mesures

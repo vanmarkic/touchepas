@@ -197,11 +197,13 @@ export const Head = () => (
 );
 
 export const heroSectionID = 'hero-section';
+
 interface Article {
   id: number;
   title: string;
   image: string;
   isExpanded: boolean;
+  source: string;
 }
 
 const StyledArticleList = styled.div`
@@ -210,6 +212,32 @@ const StyledArticleList = styled.div`
   gap: 20px;
   color: var(--blue);
 `;
+const StyledArticle = styled.div`
+  color: var(--blue);
+  border: 1px solid var(--blue);
+  box-shadow: 1px 1px 1px var(--blue);
+  padding: 20px;
+  border-radius: var(--radius);
+`;
+
+const StyledSource = styled.a`
+  color: var(--blue);
+  font-size: 0.7rem !important;
+  width: 100%;
+  display: block;
+`;
+
+const StyledArticleInfos = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  gap: 10px;
+`;
+const StyledVignette = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+`;
 
 export const Actualités: React.FC = () => {
   const articlesData: Article[] = [
@@ -217,12 +245,14 @@ export const Actualités: React.FC = () => {
       id: 1,
       title: 'Indexa­tion des loyers à Bruxelles: la (grosse) goutte qui fait débor­der le budget',
       image: lettre,
+      source: 'Publié le 4 octobre 2023, Les Équipes Populaires.be ',
       isExpanded: false,
     },
     {
       id: 2,
       title: 'La justice sociale exige la suspen­sion de l’in­dexa­tion des loyers!',
       image: lettre,
+      source: 'Publié le 16 juin 2022, Les Équipes Populaires.be',
       isExpanded: false,
     },
     {
@@ -230,6 +260,7 @@ export const Actualités: React.FC = () => {
       title:
         'A partir du 1er novembre 2023, votre propriétaires pourra de nouveau indexer votre loyer, même si vous vivez dans une passoire énergétique!',
       image: lettre,
+      source: 'Publié le 30 octobre 2023, rwdh.be',
       isExpanded: false,
     },
     {
@@ -237,6 +268,7 @@ export const Actualités: React.FC = () => {
       title:
         'Les loyers pourront à nouveau être indexés en Wallonie et en Flandre, peu importe le certificat PEB du logement',
       image: lettre,
+      source: 'Publié le 31 août 2023, rtbf.be',
       isExpanded: false,
     },
   ];
@@ -273,12 +305,24 @@ export const Actualités: React.FC = () => {
       <SectionTitle>Actualités</SectionTitle>
       <StyledArticleList className="article-list">
         {articles.map((article) => (
-          <div
+          <StyledArticle 
+          
             key={article.id}
             className={`article ${article.id === openArticleId ? 'open' : ''}`}
             ref={(ref) => (articleRefs.current[article.id] = ref)}
           >
-            <h5>{article.title}</h5>
+            <StyledVignette >
+              <img style={{ width: '30%', borderRadius: 'var(--radius)' }} src={lettre} />
+              <StyledArticleInfos>
+                <h5>{article.title}</h5>
+                <StyledSource>{article.source}</StyledSource>
+                <StyledA onClick={() => toggleReadMore(article.id)}>
+                  {article.id === openArticleId ? "Fermer l'article" : "Lire l'article"}
+                </StyledA>
+                <br />
+              </StyledArticleInfos>
+            </StyledVignette>
+
             {article.id === openArticleId && (
               <>
                 {article.id === 1 && <Article1 />}
@@ -287,10 +331,7 @@ export const Actualités: React.FC = () => {
                 {article.id === 4 && <Article4 />}
               </>
             )}
-            <StyledA onClick={() => toggleReadMore(article.id)}>
-              {article.id === openArticleId ? "Fermer l'article" : "Lire l'article"}
-            </StyledA>
-          </div>
+          </StyledArticle>
         ))}
       </StyledArticleList>
     </StyledSection2>

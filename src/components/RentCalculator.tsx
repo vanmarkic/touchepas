@@ -305,9 +305,9 @@ const StyledSelect = styled.select`
 export const StyledA = styled.a`
   font-size: medium;
   text-decoration: underline;
-  color: var(--blue);
+  color: var(--red);
   &:hover {
-    color: var(--red);
+    color: var(--blue);
   }
 `;
 
