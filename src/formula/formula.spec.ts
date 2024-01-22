@@ -1,6 +1,7 @@
 import {
-  calculateRentIndexation, getIsAfterDecree, getYearOfIndexationWithPEB,
+  calculateRentIndexation, calculateRentIndexationForBxl,
 } from './rent-increase-formula';
+import { getIsAfterDecree, getYearOfIndexationWithPEB } from './utils';
 
 // Describe the test suite
 describe('Formula', () => {
@@ -108,4 +109,25 @@ describe('year of indexation within PEB range', () => {
     expect(getYearOfIndexationWithPEB(new Date('2010-11-01'), 'wallonia')).toBe(2022);
 
   })
+});
+describe('brussels formula', () => {
+  describe('calculateRentIndexationForBxl', () => {
+    it('should return the original rent when category is A', () => {
+      const result = calculateRentIndexationForBxl(1000, 100, 100, 'A', new Date('2022-01-01'));
+      expect(result).toBe(1000);
+    });
+
+    it('should return the original rent when category is B', () => {
+      const result = calculateRentIndexationForBxl(1000, 100, 100, 'B', new Date('2022-01-01'));
+      expect(result).toBe(1000);
+    });
+
+    it('should calculate the rent indexation correctly', () => {
+      const result = calculateRentIndexationForBxl(1000, 100, 101, 'G', new Date('2022-01-01'));
+      // Perform the necessary calculations here
+      expect(result).toBe(912.94080891);
+    });
+
+    // Add more tests as needed
+  });
 });

@@ -1,6 +1,13 @@
-import healthIndexData from './indices.json';
-import { subMonths } from 'date-fns'
-import { Regions, EnergyEfficiencyRating, ENERGY_RATIOS, BASE_YEARS } from './types-and-constants';
+import { ca } from 'date-fns/locale';
+import { ENERGY_RATIOS, EnergyEfficiencyRating, RentIndexationArguments } from './types-and-constants';
+import { roundToTwoDecimals, deriveData, deriveDataWithPEB } from './utils';
+
+const basicFormula = (initialIndex: number, initialRent: number) => (newIndex: number): number => roundToTwoDecimals((initialRent * newIndex) / initialIndex)
+
+const formulaWithEnergyRatio = (previousYearIndexedRent: number, currentYearIndexedRent: number, PEBRatio: number) => {
+  return previousYearIndexedRent + ((currentYearIndexedRent - previousYearIndexedRent) * PEBRatio)
+}
+
 
 export function calculateRentIndexation(
   {
@@ -10,131 +17,114 @@ export function calculateRentIndexation(
     yearOfIndexation,
     region,
     energyEfficiencyRating
-  }: {
-    contractSignatureDate: Date;
-    agreementStartDate: Date;
-    initialRent: number;
-    yearOfIndexation: number;
-    region: Regions;
-    energyEfficiencyRating: EnergyEfficiencyRating
-  }
+  }: RentIndexationArguments
 ): number | null {
 
-  const indexBaseYear = getIndexBaseYear(contractSignatureDate);
 
-  const anniversaryMonth = subMonths(agreementStartDate, 1).toLocaleString('en-US', { month: 'long' });
 
-  const shouldUsePreviousYear = anniversaryMonth === "December";
+  const { indexBaseYear, anniversaryMonth, initialIndex, newHealthIndex, isRequestedAfterEndOfDecree, wasIndexationRequestedBeforeStartOfEnergyRatingDecree, healthIndexBeforeDecree } =
+    deriveData({ agreementStartDate, contractSignatureDate, yearOfIndexation, region })
 
-  const newHealthIndex = findHealthIndex(shouldUsePreviousYear ? yearOfIndexation - 1 : yearOfIndexation, anniversaryMonth, indexBaseYear);
-
-  const initialIndex = getInitialIndex(contractSignatureDate, agreementStartDate, indexBaseYear)
-
-  const basicFormula = (newIndex: number): number => roundToTwoDecimals((initialRent * newIndex) / initialIndex)
-
-  const formulaWithEnergyRatio = () => {
-    const yearOfIndexationWithPEB = getYearOfIndexationWithPEB(agreementStartDate, region)
-    const currentYearHealthIndex = findHealthIndex(shouldUsePreviousYear ? yearOfIndexationWithPEB - 1 : yearOfIndexationWithPEB, anniversaryMonth, indexBaseYear);
-    const previousYearHealthIndex = findHealthIndex(shouldUsePreviousYear ? yearOfIndexationWithPEB - 2 : yearOfIndexationWithPEB - 1, anniversaryMonth, indexBaseYear);
-    const previousYearIndexedRent = basicFormula(previousYearHealthIndex)
-    const currentYearIndexedRent = basicFormula(currentYearHealthIndex)
-    const result = previousYearIndexedRent + ((currentYearIndexedRent - previousYearIndexedRent) * ENERGY_RATIOS[region].peb[energyEfficiencyRating])
-
-    return roundToTwoDecimals(result)
+  if (region === 'brussels') {
+    return roundToTwoDecimals(calculateRentIndexationForBxl(initialRent, initialIndex, newHealthIndex, energyEfficiencyRating, agreementStartDate) ?? 0)
   }
 
-  const wasIndexationRequestedBeforeStartOfEnergyRatingDecree = yearOfIndexation <= ENERGY_RATIOS[region].start.getFullYear() && agreementStartDate.getMonth() < ENERGY_RATIOS[region].start.getMonth()
+  // ---- basic formula preapplied with index and rent
+  const basicFormulaWithInitialRentAndIndex = basicFormula(initialIndex, initialRent)
 
-  const isAfterDecree = getIsAfterDecree(yearOfIndexation, region, agreementStartDate)
+  const {
+    previousYearIndexedRent,
+    currentYearIndexedRent,
+  } = deriveDataWithPEB({ agreementStartDate, region, anniversaryMonth, indexBaseYear, basicFormulaWithInitialRentAndIndex })
 
-  if (isAfterDecree) {
+  // ---- made lazy
+  const getIndexedRentWithEnergyRatio = () => formulaWithEnergyRatio(previousYearIndexedRent, currentYearIndexedRent, ENERGY_RATIOS[region].peb[energyEfficiencyRating])
 
-    const result = formulaWithEnergyRatio() * newHealthIndex / findHealthIndex(shouldUsePreviousYear ? yearOfIndexation - 2 : yearOfIndexation - 1, anniversaryMonth, indexBaseYear)
-    return roundToTwoDecimals(result)
-
+  //---- pure business logic
+  if (isRequestedAfterEndOfDecree) {
+    return roundToTwoDecimals(getIndexedRentWithEnergyRatio() * newHealthIndex / healthIndexBeforeDecree)
   }
 
-  return wasIndexationRequestedBeforeStartOfEnergyRatingDecree ? basicFormula(newHealthIndex) : formulaWithEnergyRatio()
+  return wasIndexationRequestedBeforeStartOfEnergyRatingDecree ? basicFormulaWithInitialRentAndIndex(newHealthIndex) : getIndexedRentWithEnergyRatio()
 
 }
 
 
-export const getYearOfIndexationWithPEB = (agreementStartDate: Date, region: Regions) => {
-  console.log(agreementStartDate)
-  if (agreementStartDate >= ENERGY_RATIOS[region].start) {
-    return agreementStartDate.getFullYear();
+
+type Month = '14-31 October' | 'November' | 'December' | 'January' | 'February' | 'March' | 'April' | 'May' | 'June' | 'July' | 'August' | 'September' | '1-13 October';
+
+interface CorrectionFactors {
+  [key: string]: {
+    [month in Month]: number;
+  };
+}
+
+const correctionFactors: CorrectionFactors = {
+  'E': {
+    '14-31 October': 0.949447646,
+    'November': 0.945356473,
+    'December': 0.951977401,
+    'January': 0.951950895,
+    'February': 0.961757813,
+    'March': 0.967996216,
+    'April': 0.965766823,
+    'May': 0.971941594,
+    'June': 0.972124068,
+    'July': 0.976119286,
+    'August': 0.977109655,
+    'September': 0.980049682,
+    '1-13 October': 0.989805521
+  },
+  'F': {
+    '14-31 October': 0.898895293,
+    'November': 0.890712946,
+    'December': 0.903954802,
+    'January': 0.903901791,
+    'February': 0.923515625,
+    'March': 0.935992433,
+    'April': 0.931533646,
+    'May': 0.943883189,
+    'June': 0.944248135,
+    'July': 0.952238571,
+    'August': 0.954219311,
+    'September': 0.960099363,
+    '1-13 October': 0.979611041
+  }
+};
+
+export function calculateRentIndexationForBxl(initialRent: number, initialIndex: number, newHealthIndex: number, rating: EnergyEfficiencyRating, anniversaryDate: Date): number | void {
+  let indexedRent: number = initialRent * newHealthIndex / initialIndex;
+
+  const month: Month = convertDateToMonth(anniversaryDate);
+
+  switch (rating) {
+    case 'A':
+    case 'B':
+    case 'C':
+    case 'D':
+      return indexedRent
+    case 'E':
+      return indexedRent *= correctionFactors['E'][month];
+    case 'F':
+    case 'G':
+      return indexedRent *= correctionFactors['F'][month];
+    case 'none':
+      alert('Please select a rating');
+      break;
+    default:
+      alert('Please select a rating');
+      break;
   }
 
-
-  return agreementStartDate.getMonth() >= ENERGY_RATIOS[region].start.getMonth() ? 2022 : 2023;
 }
 
+function convertDateToMonth(date: Date): Month {
+  const month: number = date.getMonth();
+  const day: number = date.getDate();
 
-
-
-function roundToTwoDecimals(result: number) {
-  return Math.round(result * 100) / 100;
-}
-
-export function getIsAfterDecree(yearOfIndexation: number, region: Regions, agreementStartDate: Date) {
-  return yearOfIndexation > ENERGY_RATIOS[region].end.getFullYear() || (yearOfIndexation === ENERGY_RATIOS[region].end.getFullYear() && agreementStartDate.getMonth() > ENERGY_RATIOS[region].end.getMonth());
-}
-
-function getInitialIndex(contractSignatureDate: Date, agreementStartDate: Date, selectedIndexBaseYear: number) {
-
-  if (contractSignatureDate < new Date('1984-01-01')) {
-    return 82.54;
+  const monthNames: Month[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', '1-13 October', 'November', 'December'];
+  if (month === 9) {
+    return day >= 14 && day <= 31 ? '14-31 October' : '1-13 October';
   }
-
-  if (agreementStartDate < new Date('1994-02-01')) {
-    const agreementAnniversaireDate = new Date(agreementStartDate);
-    agreementAnniversaireDate.setMonth(agreementStartDate.getMonth() - 1);
-    const agreementSignatureMonth = agreementStartDate.toLocaleString('en-US', { month: 'long' });
-    const agreementSignatureYear = agreementStartDate.getFullYear();
-
-    return findHealthIndex(agreementSignatureYear, agreementSignatureMonth, selectedIndexBaseYear);
-  }
-
-  const initialIndexDate = new Date(contractSignatureDate);
-  initialIndexDate.setMonth(initialIndexDate.getMonth() - 1);
-  const initialIndexMonth = initialIndexDate.toLocaleString('en-US', { month: 'long' });
-  const initialIndexYear = initialIndexDate.getFullYear();
-
-  return findHealthIndex(initialIndexYear, initialIndexMonth, selectedIndexBaseYear);
-
+  return monthNames[month];
 }
-
-function getIndexBaseYear(date: Date): number {
-  let selectedIndexBaseYear: typeof BASE_YEARS[number] | 0 = 0
-
-  BASE_YEARS.forEach((year) => {
-    if (year <= date.getFullYear() && year > selectedIndexBaseYear) {
-      selectedIndexBaseYear = year;
-    }
-  })
-  if (!selectedIndexBaseYear) {
-    throw new Error('Error: Could not find base year for given date.');
-  }
-  return selectedIndexBaseYear
-}
-
-function findHealthIndex(year: number, month: string, baseYear: number) {
-
-  const indexEntry = healthIndexData.facts.find(entry => {
-    return entry["Year"] === year.toString() &&
-      entry["Month"] === month && entry["Base year"] === baseYear.toString();
-  });
-
-  if (!indexEntry) throw new Error('Error: Could not find health index for : date :' + year + ' ' + month + ' - base year :' + baseYear);
-
-  return indexEntry['Health index']
-}
-
-const getIndexDate = (date: Date) => {
-  return { year: date.getFullYear(), month: date.toLocaleString('en-US', { month: 'long' }) };
-}
-
-
-
-
-
