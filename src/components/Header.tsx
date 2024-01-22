@@ -54,17 +54,7 @@ export const Header = () => {
   return (
     <StyledHeader>
       <FlexDiv onClick={scrollToHeroSection}>
-          <h4>
-            TOUCHE <RedSpan> PAS </RedSpan> À MON LOYER
-          </h4>
-        <StaticImage
-          alt="logo"
-          placeholder="blurred"
-          layout="constrained"
-          width={50}
-          src={'../logo/logo.png'}
-          loading="eager"
-        />
+        <TitleWithLogo />
       </FlexDiv>
       <HideWhenVertical>
         <NewsletterForm />
@@ -73,3 +63,18 @@ export const Header = () => {
   );
 };
 
+export const TitleWithLogo = () => (
+  <>
+    <h4>
+      TOUCHE <RedSpan> PAS </RedSpan> À MON LOYER
+    </h4>
+    <StaticImage
+      alt="logo"
+      placeholder="blurred"
+      layout="constrained"
+      width={50}
+      src={'../logo/logo.png'}
+      loading="eager"
+    />
+  </>
+);

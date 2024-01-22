@@ -11,8 +11,32 @@ import { Regions } from '../formula/types-and-constants';
 import lettre from '../images/lettre.jpg';
 import { StyledA } from '../components/RentCalculator';
 import { Article1, Article2, Article3, Article4 } from '../components/Article';
+import GlobalStyle from '../styles/global';
+import { TitleWithLogo } from '../components/Header';
 
 const IndexPage: React.FC<{}> = () => {
+  // return <DefinitiveContent />;
+  return (
+    <div
+      style={{
+        display: 'flex',
+        margin: 'auto',
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+      }}
+    >
+      <GlobalStyle />
+      <TitleWithLogo />
+      <NewsletterForm style={{ alignSelf: 'center' }} />
+      <p>Something is cooking</p>
+    </div>
+  );
+};
+
+export default IndexPage;
+
+export const DefinitiveContent: React.FC<{}> = () => {
   const [region, setRegion] = React.useState<Regions>('wallonia');
 
   return (
@@ -23,8 +47,6 @@ const IndexPage: React.FC<{}> = () => {
     </Layout>
   );
 };
-
-export default IndexPage;
 
 const SectionTitle = styled.h4`
   text-align: left;
