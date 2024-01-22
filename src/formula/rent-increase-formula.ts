@@ -1,12 +1,12 @@
-import { ca } from 'date-fns/locale';
 import { ENERGY_RATIOS, EnergyEfficiencyRating, RentIndexationArguments } from './types-and-constants';
 import { roundToTwoDecimals, deriveData, deriveDataWithPEB } from './utils';
 
-const basicFormula = (initialIndex: number, initialRent: number) => (newIndex: number): number => roundToTwoDecimals((initialRent * newIndex) / initialIndex)
-
-const formulaWithEnergyRatio = (previousYearIndexedRent: number, currentYearIndexedRent: number, PEBRatio: number) => {
-  return previousYearIndexedRent + ((currentYearIndexedRent - previousYearIndexedRent) * PEBRatio)
+export const basicFormula = (initialIndex: number, initialRent: number) => (newIndex: number): number => {
+  return roundToTwoDecimals((initialRent * newIndex) / initialIndex)
 }
+
+const formulaWithEnergyRatio = (previousYearIndexedRent: number, currentYearIndexedRent: number, PEBRatio: number) => previousYearIndexedRent + ((currentYearIndexedRent - previousYearIndexedRent) * PEBRatio)
+
 
 
 export function calculateRentIndexation(
@@ -21,9 +21,9 @@ export function calculateRentIndexation(
 ): number | null {
 
 
-
   const { indexBaseYear, anniversaryMonth, initialIndex, newHealthIndex, isRequestedAfterEndOfDecree, wasIndexationRequestedBeforeStartOfEnergyRatingDecree, healthIndexBeforeDecree } =
     deriveData({ agreementStartDate, contractSignatureDate, yearOfIndexation, region })
+
 
   if (region === 'brussels') {
     return roundToTwoDecimals(calculateRentIndexationForBxl(initialRent, initialIndex, newHealthIndex, energyEfficiencyRating, agreementStartDate) ?? 0)
@@ -42,10 +42,12 @@ export function calculateRentIndexation(
 
   //---- pure business logic
   if (isRequestedAfterEndOfDecree) {
-    return roundToTwoDecimals(getIndexedRentWithEnergyRatio() * newHealthIndex / healthIndexBeforeDecree)
+    return calculerIndexationLoyerAprèsFinDuDécretEnWallonie(initialRent, initialIndex, healthIndexBeforeDecree, newHealthIndex, ENERGY_RATIOS[region].peb[energyEfficiencyRating])
+
+    // return roundToTwoDecimals(getIndexedRentWithEnergyRatio() * newHealthIndex / healthIndexBeforeDecree)
   }
 
-  return wasIndexationRequestedBeforeStartOfEnergyRatingDecree ? basicFormulaWithInitialRentAndIndex(newHealthIndex) : getIndexedRentWithEnergyRatio()
+  return roundToTwoDecimals(wasIndexationRequestedBeforeStartOfEnergyRatingDecree ? basicFormulaWithInitialRentAndIndex(newHealthIndex) : calculerIndexationLoyerDurantDécretEnWallonie(currentYearIndexedRent, previousYearIndexedRent, ENERGY_RATIOS[region].peb[energyEfficiencyRating]))
 
 }
 
@@ -127,4 +129,37 @@ function convertDateToMonth(date: Date): Month {
     return day >= 14 && day <= 31 ? '14-31 October' : '1-13 October';
   }
   return monthNames[month];
+}
+
+
+
+function calculerIndexationLoyerAprèsFinDuDécretEnWallonie(loyerBase: number, indiceSanteDepart: number, indiceSanteAnniversaire: number, indiceSanteAnniversaireSuivant: number, PEBRatio: number): number {
+  // Étape 1: Calculer le loyer indexé initial
+  let loyerIndexeInitial = loyerBase * indiceSanteAnniversaire / indiceSanteDepart;
+
+  // Étape 2: Appliquer la limitation de 75% pour le certificat PEB D
+  let augmentationLoyer = (loyerIndexeInitial - loyerBase) * PEBRatio;
+  let loyerAdaptePEB = loyerBase + augmentationLoyer;
+
+  // Étape 3: Calculer le loyer indexé pour l'année suivante
+  let loyerIndexeSuivant = loyerAdaptePEB * indiceSanteAnniversaireSuivant / indiceSanteAnniversaire;
+
+  return roundToTwoDecimals(loyerIndexeSuivant) // Arrondit à deux décimales
+}
+
+
+function calculerIndexationLoyerDurantDécretEnWallonie(loyerIndexeActuel: number, loyerIndexePrecedent: number, PEBRatio: number) {
+  // Calculer le loyer indexé actuel
+
+
+  // Calculer la différence
+  let difference = loyerIndexeActuel - loyerIndexePrecedent;
+
+  // Appliquer la limitation en fonction du certificat PEB
+  let augmentationLoyer = difference * PEBRatio;
+
+  // Calculer le loyer indexé final pour l'année en cours
+  let loyerIndexeFinal = loyerIndexePrecedent + augmentationLoyer;
+
+  return roundToTwoDecimals(loyerIndexeFinal); // Arrondit à deux décimales
 }
