@@ -3,12 +3,12 @@ import { subMonths } from 'date-fns';
 import { BASE_YEARS, ENERGY_RATIOS, Regions } from './types-and-constants';
 
 export const getYearOfIndexationWithPEB = (agreementStartDate: Date, region: Regions) => {
-  console.log(agreementStartDate)
+
   if (agreementStartDate >= ENERGY_RATIOS[region].start) {
     return agreementStartDate.getFullYear();
   }
 
-  return agreementStartDate.getMonth() >= ENERGY_RATIOS[region].start.getMonth() ? 2022 : 2023;
+  return (agreementStartDate.getMonth() - 1) >= ENERGY_RATIOS[region].start.getMonth() ? 2022 : 2023;
 }
 
 
@@ -32,7 +32,7 @@ export function getInitialIndex(contractSignatureDate: Date, agreementStartDate:
     const agreementSignatureMonth = agreementStartDate.toLocaleString('en-US', { month: 'long' });
     const agreementSignatureYear = agreementStartDate.getFullYear();
 
-    return findHealthIndex(agreementSignatureYear, agreementSignatureMonth, selectedIndexBaseYear);
+    return roundToTwoDecimals(findHealthIndex(agreementSignatureYear, agreementSignatureMonth, selectedIndexBaseYear))
   }
 
   const initialIndexDate = new Date(contractSignatureDate);
@@ -40,7 +40,7 @@ export function getInitialIndex(contractSignatureDate: Date, agreementStartDate:
   const initialIndexMonth = initialIndexDate.toLocaleString('en-US', { month: 'long' });
   const initialIndexYear = initialIndexDate.getFullYear();
 
-  return findHealthIndex(initialIndexYear, initialIndexMonth, selectedIndexBaseYear);
+  return roundToTwoDecimals(findHealthIndex(initialIndexYear, initialIndexMonth, selectedIndexBaseYear))
 
 }
 
@@ -66,7 +66,7 @@ export function findHealthIndex(year: number, month: string, baseYear: number) {
   });
 
   if (!indexEntry) throw new Error('Error: Could not find health index for : date :' + year + ' ' + month + ' - base year :' + baseYear);
-
+  console.log(indexEntry)
   return indexEntry['Health index']
 }
 
@@ -78,6 +78,7 @@ export const getIndexDate = (date: Date) => {
 
 
 export const shouldUsePreviousYear = (anniversaryMonth: string) => anniversaryMonth === "December";
+
 export const getAnniversaryMonth = (agreementStartDate: Date) => subMonths(agreementStartDate, 1).toLocaleString('en-US', { month: 'long' });
 
 export const deriveData = (
@@ -86,13 +87,15 @@ export const deriveData = (
 ) => {
   const indexBaseYear = getIndexBaseYear(contractSignatureDate);
   const anniversaryMonth = getAnniversaryMonth(agreementStartDate);
+
   const initialIndex = getInitialIndex(contractSignatureDate, agreementStartDate, indexBaseYear)
-  const newHealthIndex = findHealthIndex(shouldUsePreviousYear(anniversaryMonth) ? yearOfIndexation - 1 : yearOfIndexation, anniversaryMonth, indexBaseYear);
+
+  const newHealthIndex = roundToTwoDecimals(findHealthIndex(shouldUsePreviousYear(anniversaryMonth) ? yearOfIndexation - 1 : yearOfIndexation, anniversaryMonth, indexBaseYear));
   const isRequestedAfterEndOfDecree = getIsAfterDecree(yearOfIndexation, region, agreementStartDate)
 
   const wasIndexationRequestedBeforeStartOfEnergyRatingDecree = yearOfIndexation <= ENERGY_RATIOS[region].start.getFullYear() && agreementStartDate.getMonth() < ENERGY_RATIOS[region].start.getMonth()
 
-  const healthIndexBeforeDecree = findHealthIndex(shouldUsePreviousYear(anniversaryMonth) ? yearOfIndexation - 2 : yearOfIndexation - 1, anniversaryMonth, indexBaseYear)
+  const healthIndexBeforeDecree = roundToTwoDecimals(findHealthIndex(shouldUsePreviousYear(anniversaryMonth) ? yearOfIndexation - 2 : yearOfIndexation - 1, anniversaryMonth, indexBaseYear));
 
   return ({
     indexBaseYear, anniversaryMonth, initialIndex, newHealthIndex, isRequestedAfterEndOfDecree, wasIndexationRequestedBeforeStartOfEnergyRatingDecree, healthIndexBeforeDecree
@@ -104,11 +107,18 @@ export const deriveDataWithPEB = (
     { agreementStartDate: Date; region: Regions, anniversaryMonth: string; indexBaseYear: number; basicFormulaWithInitialRentAndIndex: (index: number) => number }
 ) => {
   const yearOfIndexationWithPEB = getYearOfIndexationWithPEB(agreementStartDate, region)
-  const currentYearHealthIndex = findHealthIndex(shouldUsePreviousYear(anniversaryMonth) ? yearOfIndexationWithPEB - 1 : yearOfIndexationWithPEB, anniversaryMonth, indexBaseYear);
-  const previousYearHealthIndex = findHealthIndex(shouldUsePreviousYear(anniversaryMonth) ? yearOfIndexationWithPEB - 2 : yearOfIndexationWithPEB - 1, anniversaryMonth, indexBaseYear);
+
+  const currentYearHealthIndex = findHealthIndex(shouldUsePreviousYear(anniversaryMonth) ? yearOfIndexationWithPEB - 2 : yearOfIndexationWithPEB - 1, anniversaryMonth, indexBaseYear);
+
+
+
+  const previousYearHealthIndex = findHealthIndex(shouldUsePreviousYear(anniversaryMonth) ? yearOfIndexationWithPEB - 3 : yearOfIndexationWithPEB - 2, anniversaryMonth, indexBaseYear);
 
   const previousYearIndexedRent = basicFormulaWithInitialRentAndIndex(previousYearHealthIndex)
+
+
   const currentYearIndexedRent = basicFormulaWithInitialRentAndIndex(currentYearHealthIndex)
+
 
 
 
