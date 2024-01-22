@@ -8,6 +8,7 @@ import { StaticImage } from 'gatsby-plugin-image';
 import calculator from '../images/calculator.svg';
 import xmark from '../images/xmark.svg';
 import { Regions } from '../formula/types-and-constants';
+import { IntroSection } from '../pages/index';
 
 export const StyledButtonBlue = styled.button`
   align-items: center;
@@ -154,11 +155,19 @@ const RegionDialog = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 2vh;
-  margin-top: 10vh;
   width: 100vw;
-  height: 100vh;
   background-color: white;
   z-index: 5;
+`;
+const StyledH2 = styled.h2`
+  flex: 1;
+  font-size: 1.1rem;
+  font-weight: 200;
+  padding-top: 20px;
+  @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
+    font-size: 18px;
+    text-align:center;
+  }
 `;
 
 const Layout: React.FC<any> = ({
@@ -167,6 +176,7 @@ const Layout: React.FC<any> = ({
   showCalculator,
   handleShowCalculator,
 }) => {
+  const [showMobileMenu, setShowMobileMenu] = React.useState(false);
   const [showRegionDialog, setShowRegionDialog] = React.useState(true);
   const [region, setRegion] = React.useState<Regions>('wallonia');
 
@@ -185,7 +195,8 @@ const Layout: React.FC<any> = ({
       <Header />
       {showRegionDialog ? (
         <RegionDialog>
-          <h5>Dans quelle région résidez-vous ?</h5>
+           <IntroSection/>
+          <StyledH2>Où se situe le bien que je loue ?</StyledH2>
           <StyledButtonBlue
             onClick={() => {
               setRegion('wallonia');
@@ -193,6 +204,7 @@ const Layout: React.FC<any> = ({
               setShowRegionDialog(false);
             }}
           >
+            <img alt='wallonie' src='../images/wallonie.png' />
             <span>Wallonie</span>
           </StyledButtonBlue>
           <StyledButtonBlue
@@ -204,6 +216,7 @@ const Layout: React.FC<any> = ({
           >
             <span>Bruxelles</span>
           </StyledButtonBlue>
+         
         </RegionDialog>
       ) : (
         <>
