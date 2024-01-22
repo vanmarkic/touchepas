@@ -177,7 +177,7 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
             </StyledLabel>
 
             <StyledLabel htmlFor="initialRent">
-              Loyer stipulé sur le bail:
+              Loyer stipulé sur le bail (hors charge):
               <StyledInput
                 type="tel"
                 id="initialRent"
