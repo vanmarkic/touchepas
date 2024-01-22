@@ -161,8 +161,12 @@ const RegionDialog = styled.div`
   z-index: 5;
 `;
 
-const Layout: React.FC<any> = ({ children, handleRegionSwitch }) => {
-  const [showMobileMenu, setShowMobileMenu] = React.useState(false);
+const Layout: React.FC<any> = ({
+  children,
+  handleRegionSwitch,
+  showCalculator,
+  handleShowCalculator,
+}) => {
   const [showRegionDialog, setShowRegionDialog] = React.useState(true);
   const [region, setRegion] = React.useState<Regions>('wallonia');
 
@@ -203,14 +207,14 @@ const Layout: React.FC<any> = ({ children, handleRegionSwitch }) => {
         </RegionDialog>
       ) : (
         <>
-          <StyledMenuButton onClick={() => setShowMobileMenu((isShown) => !isShown)}>
-            {showMobileMenu ? (
+          <StyledMenuButton onClick={handleShowCalculator}>
+            {showCalculator ? (
               <img style={{ width: '25px' }} src={xmark} alt="Closed" />
             ) : (
               <img style={{ width: '25px' }} src={calculator} alt="Calculateur" />
             )}
           </StyledMenuButton>
-          <MobileMenuOverlay showMobileMenu={showMobileMenu}>
+          <MobileMenuOverlay showMobileMenu={showCalculator}>
             <RentCalculator region={region} />
           </MobileMenuOverlay>
           <StyledLayout>

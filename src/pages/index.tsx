@@ -14,10 +14,19 @@ import { Article1, Article2, Article3, Article4 } from '../components/Article';
 
 const IndexPage: React.FC<{}> = () => {
   const [region, setRegion] = React.useState<Regions>('wallonia');
+  const [showCalculator, setShowCalculator] = React.useState<boolean>(false);
+
+  const handleShowCalculator = () => {
+    setShowCalculator((prevState) => !prevState);
+  };
 
   return (
-    <Layout handleRegionSwitch={setRegion}>
-      <HeroSection />
+    <Layout
+      handleRegionSwitch={setRegion}
+      showCalculator={showCalculator}
+      handleShowCalculator={handleShowCalculator}
+    >
+      <HeroSection handleShowCalculator={handleShowCalculator} />
       <GeneralInformation region={region} />
       <Actualités />
     </Layout>
@@ -134,7 +143,7 @@ const BigTitle = styled.h1`
   }
 `;
 
-const HeroSection = () => (
+const HeroSection: React.FC<any> = ({ handleShowCalculator }) => (
   <StyledSection id={heroSectionID}>
     <FlexDiv>
       <StaticImage
@@ -153,6 +162,9 @@ const HeroSection = () => (
     </FlexDiv>
 
     <ButtonsGroup>
+      <HideWhenHorizontal>
+        <StyledButtonBlue onClick={handleShowCalculator}>Calculateur d'indexation</StyledButtonBlue>
+      </HideWhenHorizontal>
       <StyledButtonBlue onClick={() => scrollToSection('informations')}>
         Informations Générales
       </StyledButtonBlue>
@@ -225,6 +237,7 @@ const StyledSource = styled.a`
   font-size: 0.7rem !important;
   width: 100%;
   display: block;
+  cursor: pointer;
 `;
 
 const StyledArticleInfos = styled.div`
@@ -305,13 +318,12 @@ export const Actualités: React.FC = () => {
       <SectionTitle>Actualités</SectionTitle>
       <StyledArticleList className="article-list">
         {articles.map((article) => (
-          <StyledArticle 
-          
+          <StyledArticle
             key={article.id}
             className={`article ${article.id === openArticleId ? 'open' : ''}`}
             ref={(ref) => (articleRefs.current[article.id] = ref)}
           >
-            <StyledVignette >
+            <StyledVignette>
               <img style={{ width: '30%', borderRadius: 'var(--radius)' }} src={lettre} />
               <StyledArticleInfos>
                 <h5>{article.title}</h5>

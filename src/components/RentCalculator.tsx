@@ -120,38 +120,44 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
             </StyledSelect>
           </StyledLabel>
         )}
-
         {contentToShow === 'text1' && (
-          <StyledText>
-            Aussi longtemps que le bail n’est pas enregistré, le loyer ne peut pas être indexé.
-            <br />
-            Le loyer ne peut pas non plus être révisé. Le bailleur est tenu de faire enregistrer le
-            bail dans les deux mois de la signature de celui-ci.
-            <br />
-            Si l’indexation a été appliquée alors que le bail n’était pas enregistré, le locataire
-            peut adresser un recommandé au bailleur pour réclamer des sommes indûment payées au
-            cours des 5 ans qui précèdent cette demande.
-            <br />
-            <StyledA>Plus de détails</StyledA>{' '}
-          </StyledText>
+          <>
+            <StyledText>
+              Aussi longtemps que le bail n’est pas enregistré, le loyer ne peut pas être indexé.
+              <br />
+              Le loyer ne peut pas non plus être révisé. Le bailleur est tenu de faire enregistrer
+              le bail dans les deux mois de la signature de celui-ci.
+              <br />
+              Si l’indexation a été appliquée alors que le bail n’était pas enregistré, le locataire
+              peut adresser un recommandé au bailleur pour réclamer des sommes indûment payées au
+              cours des 5 ans qui précèdent cette demande.
+              <br />
+              <br />
+            </StyledText>
+            <StyledA>Plus de détails</StyledA>
+          </>
         )}
         {contentToShow === 'text2' && (
-          <StyledText>
-            Renseignez-vous auprès de votre bailleur et demandez-lui la preuve de l’enregistrement
-            ou consultez le portail «MyMinfin» pour vérifier.
-            <br />
-            <StyledA>Plus de détails</StyledA>{' '}
-          </StyledText>
+          <>
+            <StyledText>
+              Renseignez-vous auprès de votre bailleur et demandez-lui la preuve de l’enregistrement
+              ou consultez le portail «MyMinfin» pour vérifier.
+              <br />
+            </StyledText>
+            <StyledA>Plus de détails</StyledA>
+          </>
         )}
         {contentToShow === 'inputs' && showPebFields === false && (
-          <StyledText>
-            Le certificat de performance énergétique des bâtiments (PEB) est obligatoire en Région
-            wallonne pour tous les biens loués depuis le 1er juin 2011. En l'absence de celui-ci,
-            votre bailleur ne peut pas indexer votre loyer entre le 1er novembre 2022 et le 31
-            octobre 2023.
-            <br />
-            <StyledA>Plus de détails</StyledA>{' '}
-          </StyledText>
+          <>
+            <StyledText>
+              Le certificat de performance énergétique des bâtiments (PEB) est obligatoire en Région
+              wallonne pour tous les biens loués depuis le 1er juin 2011. En l'absence de celui-ci,
+              votre bailleur ne peut pas indexer votre loyer entre le 1er novembre 2022 et le 31
+              octobre 2023.
+              <br />
+            </StyledText>
+            <StyledA>Plus de détails</StyledA>
+          </>
         )}
 
         {contentToShow === 'inputs' && showPebFields === true && (
@@ -171,7 +177,7 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
             </StyledLabel>
 
             <StyledLabel htmlFor="initialRent">
-              Loyer stipulé sur le bail:
+              Loyer stipulé sur le bail (hors charge):
               <StyledInput
                 type="tel"
                 id="initialRent"
@@ -304,20 +310,25 @@ const StyledSelect = styled.select`
 `;
 export const StyledA = styled.a`
   font-size: medium;
+  margin-top: 4px;
   text-decoration: underline;
-  color: var(--red);
+  cursor: pointer;
+  color: var(--blue);
+  width: 90%;
   &:hover {
-    color: var(--blue);
+    color: var(--red);
   }
 `;
 
 export const StyledText = styled.p`
-  font-style: italic;
   width: 90%;
   padding-top: 2px;
-  color: var(--red);
-  font-weight: normal;
+  color: var(--blue);
+  font-weight: 500;
   font-size: medium;
+  &::before {
+    content: '→ ';
+  }
 `;
 
 export const StyledButton = styled.button`
