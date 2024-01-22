@@ -162,7 +162,9 @@ const HeroSection: React.FC<any> = ({ handleShowCalculator }) => (
     </FlexDiv>
 
     <ButtonsGroup>
-      <StyledButtonBlue onClick={handleShowCalculator}>Calculateur d'indexation</StyledButtonBlue>
+      <HideWhenHorizontal>
+        <StyledButtonBlue onClick={handleShowCalculator}>Calculateur d'indexation</StyledButtonBlue>
+      </HideWhenHorizontal>
       <StyledButtonBlue onClick={() => scrollToSection('informations')}>
         Informations Générales
       </StyledButtonBlue>
