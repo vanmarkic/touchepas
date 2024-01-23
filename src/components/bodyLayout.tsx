@@ -8,7 +8,7 @@ export const StyledSection = styled.div`
   justify-content: space-evenly;
   align-items: center;
   min-height: calc(100vh - 80px);
-  
+
   ${whenVerticalAspectRatio(`
      justify-content:flex-start;
      gap:8%;
@@ -46,4 +46,15 @@ export const Image = styled.div`
   width: 100%;
   background-image: url('../images/logements.jpg');
   padding: 10px;
+`;
+
+export const StyledH2 = styled.h2`
+  flex: 1;
+  font-size: 1.1rem;
+  font-weight: 200;
+  padding-top: 20px;
+  @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
+    font-size: 18px;
+    text-align: center;
+  }
 `;
