@@ -160,8 +160,7 @@ export const GlobalStyle = createGlobalStyle`
   gap: 10px;
 
   }
-
-   
+  
   label {
       font-size: .8rem;
       height: 1rem;
@@ -186,6 +185,7 @@ export const GlobalStyle = createGlobalStyle`
       height: fit-content;
       cursor: pointer;
     }
+   
 `;
 
 export default GlobalStyle;

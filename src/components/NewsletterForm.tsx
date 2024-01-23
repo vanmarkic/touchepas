@@ -46,6 +46,7 @@ const FlexEnd = styled.div`
   position:relative;
   ${whenVerticalAspectRatio(`
      align-items:center;
+     margin-bottom:20px;
     `)};
 `;
 

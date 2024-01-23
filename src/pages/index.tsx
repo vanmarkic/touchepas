@@ -32,7 +32,6 @@ const IndexPage: React.FC<{}> = () => {
     </Layout>
   );
 };
-
 export default IndexPage;
 
 const SectionTitle = styled.h4`
@@ -40,10 +39,23 @@ const SectionTitle = styled.h4`
   margin: 60px 0px 20px 0px;
 `;
 
+const StyledH2 = styled.h2`
+  flex: 1;
+  font-size: 1.1rem;
+  font-weight: 200;
+  width: fit-content;
+  padding-top: 20px;
+  @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
+    font-size: 18px;
+    text-align:center;
+
+  }
+`;
+
 const GeneralInformation = ({ region }: { region: Regions }) => {
   return (
     <StyledSection2 id="informations">
-      <SectionTitle>Informations générales</SectionTitle>
+      <SectionTitle>Infos utiles</SectionTitle>
       <TwoColumns>
         <Accordion.Root className="AccordionRoot" type="single" defaultValue="item-1" collapsible>
           <Paragraph>
@@ -111,11 +123,15 @@ const scrollToSection = (sectionId: string) => {
 const FlexDiv = styled.div`
   display: flex;
   flex-direction: row;
-  @media (max-aspect-ratio: 1/1) {
-    flex-direction: column;
-    /* min-height: 100svh; */
-    align-items: center;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
     justify-content: center;
+    flex-direction: column;
+    align-items:center;
+    width: 100%;
   }
 `;
 
@@ -130,46 +146,61 @@ const ButtonsGroup = styled.div`
 `;
 
 const BigTitle = styled.h1`
-  width: fit-content;
-  font-size: 3rem;
-  padding-left: 20px;
-  font-weight: 900;
+  font-size: 4vw;
+  font-weight: 700;
   color: var(--blue);
-  @media (max-aspect-ratio: 1/1) {
-    font-size: 1.9rem;
+  @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
+    font-size: 8vw;
+
   }
   span {
     color: var(--dark-red);
   }
 `;
+const StyledStaticImage = styled(StaticImage)`
+  height: fit-content;
+  height: 12vw !important;
+  width: 12vw !important;
+  @media (max-aspect-ratio: 1/1) and (max-width: 759px) {
+    width: 20vw !important;
+    height: 20vw !important;
+  }
+`;
+export const IntroSection = () => (
+    <div style={{ display: 'flex', flexDirection: 'column', width: '80%' }}>
+      <FlexDiv>
+        <BigTitle>
+          TOUCHE <span> PAS </span>À MON LOYER
+        </BigTitle>
+        <StyledStaticImage
+          alt="a building with apartments"
+          placeholder="none"
+          layout="fixed"
+          src={'../logo/favicon/android-chrome-512x512.png'}
+          loading="eager"
+        />
+      </FlexDiv>
+      <StyledH2>
+        Touche pas à mon loyer est une plateforme de calcul d’indexation de loyer engagée dans la
+        défense des droits des locataires.
+      </StyledH2>
+    </div>
+);
 
 const HeroSection: React.FC<any> = ({ handleShowCalculator }) => (
-  <StyledSection id={heroSectionID}>
-    <FlexDiv>
-      <StaticImage
-        className="logo"
-        alt="a building with apartments"
-        placeholder="none"
-        layout="fixed"
-        src={'../logo/favicon/android-chrome-512x512.png'}
-        loading="eager"
-        width={140}
-      />
-      <BigTitle>
-        TOUCHE <span> PAS </span>
-        <br /> À MON LOYER
-      </BigTitle>
-    </FlexDiv>
 
+  <StyledSection id={heroSectionID}>
+    <IntroSection/>
     <ButtonsGroup>
       <HideWhenHorizontal>
         <StyledButtonBlue onClick={handleShowCalculator}>Calculateur d'indexation</StyledButtonBlue>
       </HideWhenHorizontal>
       <StyledButtonBlue onClick={() => scrollToSection('informations')}>
-        Informations Générales
+        Infos utiles
       </StyledButtonBlue>
       <StyledButtonBlue onClick={() => scrollToSection('news')}>Actualités</StyledButtonBlue>
     </ButtonsGroup>
+
     <HideWhenHorizontal>
       <NewsletterForm />
     </HideWhenHorizontal>

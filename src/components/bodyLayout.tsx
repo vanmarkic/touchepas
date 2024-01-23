@@ -8,10 +8,12 @@ export const StyledSection = styled.div`
   justify-content: space-evenly;
   align-items: center;
   min-height: calc(100vh - 80px);
-  height: fit-content;
+  
   ${whenVerticalAspectRatio(`
      justify-content:flex-start;
      gap:8%;
+      height: calc(100vh - 80px);
+  
     `)};
 `;
 
