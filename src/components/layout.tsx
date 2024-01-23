@@ -9,7 +9,6 @@ import calculator from '../images/calculator.svg';
 import xmark from '../images/xmark.svg';
 import { Regions } from '../formula/types-and-constants';
 import { IntroSection } from '../pages/index';
-import { set } from 'date-fns';
 
 export const StyledButtonBlue = styled.button`
   align-items: center;

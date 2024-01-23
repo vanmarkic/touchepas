@@ -1,10 +1,7 @@
-
 import * as React from 'react';
 import styled from 'styled-components';
 import addToMailchimp from 'gatsby-plugin-mailchimp';
 import { whenVerticalAspectRatio } from '../styles/global';
-
-import { set } from 'date-fns';
 
 const StyleButton = styled.button`
   color: white;
@@ -33,7 +30,6 @@ const StyledH6 = styled.h6`
   color: var(--blue);
   height: fit-content;
   font-size: 14px;
- 
 `;
 
 const FlexEnd = styled.div`
@@ -43,7 +39,7 @@ const FlexEnd = styled.div`
   cursor: pointer;
   height: 100%;
   width: 100%;
-  position:relative;
+  position: relative;
   ${whenVerticalAspectRatio(`
      align-items:center;
      margin-bottom:20px;
@@ -52,7 +48,7 @@ const FlexEnd = styled.div`
 
 const FlexDiv = styled.div`
   display: flex;
-  width:100%;
+  width: 100%;
   align-items: center;
   cursor: pointer;
   gap: 0.5rem;
@@ -86,49 +82,48 @@ export const StyledInput = styled.input`
 `;
 
 export const NewsletterForm = () => {
-    const [email, setEmail] = React.useState('');
-    const [result, setResult] = React.useState<{ result: string; msg: string } | null>(null);
-  
-    const handleSubmit = async (e: React.MouseEvent) => {
-      e.preventDefault();
-      await addToMailchimp(email).then((result: any) => {
-        setResult(result);
-      });
-    };
-    return (
-      <FlexEnd>
-        <StyledH6>Abonnez-vous à la Newsletter</StyledH6>
-        <FlexDiv>
-          <StyledInput
-            id="outlined-email-input"
-            type="email"
-            name="email"
-            autoComplete="email"
-            onChange={(e) => {
-              setEmail(e.target.value);
-              setResult(null);
-            }}
-          />
-  
-          {result && result !== null && (
-            <p
-              style={{
-                position: 'absolute',
-                bottom: '-15px',
-                textAlign: 'left',
-                width: '350px',
-                color: 'var(--red)',
-                fontSize: '12px',
-                fontWeight: '500',
-              }}
-            >
-              {result.msg}
-            </p>
-          )}
-  
-          <StyleButton onClick={handleSubmit}>S'inscrire</StyleButton>
-        </FlexDiv>
-      </FlexEnd>
-    );
+  const [email, setEmail] = React.useState('');
+  const [result, setResult] = React.useState<{ result: string; msg: string } | null>(null);
+
+  const handleSubmit = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    await addToMailchimp(email).then((result: any) => {
+      setResult(result);
+    });
   };
-  
+  return (
+    <FlexEnd>
+      <StyledH6>Abonnez-vous à la Newsletter</StyledH6>
+      <FlexDiv>
+        <StyledInput
+          id="outlined-email-input"
+          type="email"
+          name="email"
+          autoComplete="email"
+          onChange={(e) => {
+            setEmail(e.target.value);
+            setResult(null);
+          }}
+        />
+
+        {result && result !== null && (
+          <p
+            style={{
+              position: 'absolute',
+              bottom: '-15px',
+              textAlign: 'left',
+              width: '350px',
+              color: 'var(--red)',
+              fontSize: '12px',
+              fontWeight: '500',
+            }}
+          >
+            {result.msg}
+          </p>
+        )}
+
+        <StyleButton onClick={handleSubmit}>S'inscrire</StyleButton>
+      </FlexDiv>
+    </FlexEnd>
+  );
+};

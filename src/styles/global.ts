@@ -73,7 +73,7 @@ export const GlobalStyle = createGlobalStyle`
 
 .AccordionTrigger[data-state='open'] >
 
-.AccordionChevron {lay
+.AccordionChevron {
      transform: rotate(180deg);
 }
 
