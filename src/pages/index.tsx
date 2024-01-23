@@ -47,8 +47,7 @@ const StyledH2 = styled.h2`
   padding-top: 20px;
   @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
     font-size: 18px;
-    text-align:center;
-
+    text-align: center;
   }
 `;
 
@@ -130,7 +129,7 @@ const FlexDiv = styled.div`
   @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
     justify-content: center;
     flex-direction: column;
-    align-items:center;
+    align-items: center;
     width: 100%;
   }
 `;
@@ -151,7 +150,6 @@ const BigTitle = styled.h1`
   color: var(--blue);
   @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
     font-size: 8vw;
-
   }
   span {
     color: var(--dark-red);
@@ -167,30 +165,29 @@ const StyledStaticImage = styled(StaticImage)`
   }
 `;
 export const IntroSection = () => (
-    <div style={{ display: 'flex', flexDirection: 'column', width: '80%' }}>
-      <FlexDiv>
-        <BigTitle>
-          TOUCHE <span> PAS </span>À MON LOYER
-        </BigTitle>
-        <StyledStaticImage
-          alt="a building with apartments"
-          placeholder="none"
-          layout="fixed"
-          src={'../logo/favicon/android-chrome-512x512.png'}
-          loading="eager"
-        />
-      </FlexDiv>
-      <StyledH2>
-        Touche pas à mon loyer est une plateforme de calcul d’indexation de loyer engagée dans la
-        défense des droits des locataires.
-      </StyledH2>
-    </div>
+  <div style={{ display: 'flex', flexDirection: 'column', width: '80%' }}>
+    <FlexDiv>
+      <BigTitle>
+        TOUCHE <span> PAS </span>À MON LOYER
+      </BigTitle>
+      <StyledStaticImage
+        alt="a building with apartments"
+        placeholder="none"
+        layout="fixed"
+        src={'../logo/favicon/android-chrome-512x512.png'}
+        loading="eager"
+      />
+    </FlexDiv>
+    <StyledH2>
+      Touche pas à mon loyer est une plateforme de calcul d’indexation de loyer engagée dans la
+      défense des droits des locataires.
+    </StyledH2>
+  </div>
 );
 
 const HeroSection: React.FC<any> = ({ handleShowCalculator }) => (
-
   <StyledSection id={heroSectionID}>
-    <IntroSection/>
+    <IntroSection />
     <ButtonsGroup>
       <HideWhenHorizontal>
         <StyledButtonBlue onClick={handleShowCalculator}>Calculateur d'indexation</StyledButtonBlue>
