@@ -1,14 +1,14 @@
 import * as React from 'react';
 import styled, { css } from 'styled-components';
-import GlobalStyle, { whenVerticalAspectRatio } from '../styles/global';
-import { useLocation } from '@reach/router';
+import GlobalStyle from '../styles/global';
 import RentCalculator from './RentCalculator';
 import { HEADER_HEIGHT, Header } from './Header';
-import { StaticImage } from 'gatsby-plugin-image';
 import calculator from '../images/calculator.svg';
 import xmark from '../images/xmark.svg';
 import { Regions } from '../formula/types-and-constants';
-import { IntroSection } from '../pages/index';
+import { IntroSection } from '../components/IntroSection';
+import { Footer } from './Footer';
+import { RegionSwitch } from './RegionSwitch';
 
 export const StyledButtonBlue = styled.button`
   align-items: center;
@@ -140,25 +140,7 @@ const StyledMain = styled.main<{ showRegionDialog: boolean }>`
   }
 `;
 
-const StyledRegionDialog = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2vh;
-  background-color: white;
-  z-index: 5;
-  bottom: 2;
-`;
-const StyledH2 = styled.h2`
-  flex: 1;
-  font-size: 1.1rem;
-  font-weight: 200;
-  padding-top: 20px;
-  @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
-    font-size: 18px;
-    text-align: center;
-  }
-`;
+
 
 const Layout: React.FC<any> = ({
   children,
@@ -224,59 +206,3 @@ const Layout: React.FC<any> = ({
 
 export default Layout;
 
-const StyledFooter = styled.footer`
-  width: 100%;
-  display: flex;
-  padding: 2rem;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-top: 60px;
-`;
-
-const Footer = () => {
-  return (
-    <StyledFooter>
-      <StaticImage placeholder="none" height={40} alt="rwdh logo" src="../logo/partners/rwdh.svg" />
-      <StaticImage placeholder="none" height={40} alt="csc logo" src="../logo/partners/csc.png" />
-      <StaticImage placeholder="none" height={40} alt="csc logo" src="../logo/partners/moc.png" />
-      <StaticImage placeholder="none" height={40} alt="csc logo" src="../logo/partners/rapel.png" />
-      <StaticImage
-        placeholder="none"
-        height={40}
-        alt="csc logo"
-        src="../logo/partners/solidaris.png"
-      />
-    </StyledFooter>
-  );
-};
-
-const RegionSwitch: React.FC<{
-  setRegion: (region: Regions) => void;
-  handleRegionSwitch: (region: Regions) => void;
-  setShowRegionDialog: (state: boolean) => void;
-}> = ({ setRegion, handleRegionSwitch, setShowRegionDialog }) => {
-  return (
-    <StyledRegionDialog>
-      <StyledH2>Où se situe le bien que je loue ?</StyledH2>
-      <StyledButtonBlue
-        onClick={() => {
-          setRegion('wallonia');
-          handleRegionSwitch('wallonia');
-          setShowRegionDialog(false);
-        }}
-      >
-        <span>Wallonie</span>
-      </StyledButtonBlue>
-      <StyledButtonBlue
-        onClick={() => {
-          setRegion('brussels');
-          handleRegionSwitch('brussels');
-          setShowRegionDialog(false);
-        }}
-      >
-        <span>Bruxelles</span>
-      </StyledButtonBlue>
-    </StyledRegionDialog>
-  );
-};

@@ -26,6 +26,11 @@ export const StyledSection2 = styled.div`
   height: fit-content;
 `;
 
+export const SectionTitle = styled.h4`
+  text-align: left;
+  margin: 60px 0px 20px 0px;
+`;
+
 export const TwoColumns = styled.div`
   width: 100%;
   font-size: 18px;

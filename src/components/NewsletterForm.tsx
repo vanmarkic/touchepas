@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import addToMailchimp from 'gatsby-plugin-mailchimp';
 import { whenVerticalAspectRatio } from '../styles/global';
 
-const StyleButton = styled.button`
+export const StyleButton = styled.button`
   color: white;
   border: 1px solid var(--blue);
   border-radius: var(--radius);
