@@ -2,9 +2,9 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { whenVerticalAspectRatio } from '../styles/global';
 import { StaticImage } from 'gatsby-plugin-image';
-import { heroSectionID } from '../pages';
 import { NewsletterForm } from './NewsletterForm';
 import { HideWhenVertical } from './layout';
+import { heroSectionID } from './HeroSection';
 
 export const HEADER_HEIGHT = '80px';
 
