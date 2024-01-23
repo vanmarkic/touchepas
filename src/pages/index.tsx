@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { StyledSection, StyledSection2, TwoColumns, Paragraph } from '../components/bodyLayout';
 import Layout, { StyledButtonBlue, HideWhenHorizontal } from '../components/layout';
 import { StaticImage } from 'gatsby-plugin-image';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { AccordionContent, AccordionTrigger } from '../components/AccordionTemplate';
 import * as Accordion from '@radix-ui/react-accordion';
 import { NewsletterForm } from '../components/NewsletterForm';
@@ -123,9 +123,9 @@ const FlexDiv = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  width: 100%;
+  justify-content: start;
+  row-gap: 20px;
+  /* width: 100%; */
   @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
     justify-content: center;
     flex-direction: column;
@@ -144,10 +144,12 @@ const ButtonsGroup = styled.div`
   flex-wrap: wrap;
 `;
 
-const BigTitle = styled.h1`
+const BigTitle = styled.div`
   font-size: 4vw;
   font-weight: 700;
   color: var(--blue);
+  width: fit-content;
+  display: inline;
   @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
     font-size: 8vw;
   }
@@ -155,27 +157,20 @@ const BigTitle = styled.h1`
     color: var(--dark-red);
   }
 `;
-const StyledStaticImage = styled(StaticImage)`
-  height: fit-content;
-  height: 12vw !important;
-  width: 12vw !important;
-  @media (max-aspect-ratio: 1/1) and (max-width: 759px) {
-    width: 20vw !important;
-    height: 20vw !important;
-  }
-`;
+
 export const IntroSection = () => (
-  <div style={{ display: 'flex', flexDirection: 'column', width: '80%' }}>
+  <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
     <FlexDiv>
       <BigTitle>
         TOUCHE <span> PAS </span>À MON LOYER
       </BigTitle>
-      <StyledStaticImage
+      <StaticImage
         alt="a building with apartments"
         placeholder="none"
-        layout="fixed"
+        layout="constrained"
         src={'../logo/favicon/android-chrome-512x512.png'}
         loading="eager"
+        className="logo"
       />
     </FlexDiv>
     <StyledH2>
@@ -187,7 +182,6 @@ export const IntroSection = () => (
 
 const HeroSection: React.FC<any> = ({ handleShowCalculator }) => (
   <StyledSection id={heroSectionID}>
-    <IntroSection />
     <ButtonsGroup>
       <HideWhenHorizontal>
         <StyledButtonBlue onClick={handleShowCalculator}>Calculateur d'indexation</StyledButtonBlue>

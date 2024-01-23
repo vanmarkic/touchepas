@@ -9,6 +9,7 @@ import calculator from '../images/calculator.svg';
 import xmark from '../images/xmark.svg';
 import { Regions } from '../formula/types-and-constants';
 import { IntroSection } from '../pages/index';
+import { set } from 'date-fns';
 
 export const StyledButtonBlue = styled.button`
   align-items: center;
@@ -119,10 +120,11 @@ const MobileMenuOverlay = styled.div<{ showMobileMenu: boolean }>`
   min-width: 100%;
 `;
 
-const StyledMain = styled.main`
+const StyledMain = styled.main<{ showRegionDialog: boolean }>`
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
+  max-height: ${({ showRegionDialog }) => (showRegionDialog ? '100vh' : 'auto')};
   padding-left: 2svw;
   padding-right: 2svw;
   overflow: scroll;
@@ -139,25 +141,14 @@ const StyledMain = styled.main`
   }
 `;
 
-const Footer = styled.footer`
-  width: 100%;
-  display: flex;
-  padding: 2rem;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-top: 60px;
-`;
-
-const RegionDialog = styled.div`
-  position: absolute;
+const StyledRegionDialog = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2vh;
-  width: 100vw;
   background-color: white;
   z-index: 5;
+  bottom: 2;
 `;
 const StyledH2 = styled.h2`
   flex: 1;
@@ -166,7 +157,7 @@ const StyledH2 = styled.h2`
   padding-top: 20px;
   @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
     font-size: 18px;
-    text-align:center;
+    text-align: center;
   }
 `;
 
@@ -191,33 +182,9 @@ const Layout: React.FC<any> = ({
   return (
     <>
       <GlobalStyle />
-      <Header />
-      {showRegionDialog ? (
-        <RegionDialog>
-           <IntroSection/>
-          <StyledH2>Où se situe le bien que je loue ?</StyledH2>
-          <StyledButtonBlue
-            onClick={() => {
-              setRegion('wallonia');
-              handleRegionSwitch('wallonia');
-              setShowRegionDialog(false);
-            }}
-          >
-            <span>Wallonie</span>
-          </StyledButtonBlue>
-          <StyledButtonBlue
-            onClick={() => {
-              setRegion('brussels');
-              handleRegionSwitch('brussels');
-              setShowRegionDialog(false);
-            }}
-          >
-            <span>Bruxelles</span>
-          </StyledButtonBlue>
-         
-        </RegionDialog>
-      ) : (
-        <>
+      <Header showRegionDialog={showRegionDialog} />
+      <>
+        {showRegionDialog ? null : (
           <StyledMenuButton onClick={handleShowCalculator}>
             {showCalculator ? (
               <img style={{ width: '25px' }} src={xmark} alt="Closed" />
@@ -225,53 +192,92 @@ const Layout: React.FC<any> = ({
               <img style={{ width: '25px' }} src={calculator} alt="Calculateur" />
             )}
           </StyledMenuButton>
-          <MobileMenuOverlay showMobileMenu={showCalculator}>
-            <RentCalculator region={region} />
-          </MobileMenuOverlay>
-          <StyledLayout>
-            <StyledMain>
-              {children}
-              <Footer>
-                <StaticImage
-                  placeholder="none"
-                  height={40}
-                  alt="rwdh logo"
-                  src="../logo/partners/rwdh.svg"
-                />
-                <StaticImage
-                  placeholder="none"
-                  height={40}
-                  alt="csc logo"
-                  src="../logo/partners/csc.png"
-                />
-                <StaticImage
-                  placeholder="none"
-                  height={40}
-                  alt="csc logo"
-                  src="../logo/partners/moc.png"
-                />
-                <StaticImage
-                  placeholder="none"
-                  height={40}
-                  alt="csc logo"
-                  src="../logo/partners/rapel.png"
-                />
-                <StaticImage
-                  placeholder="none"
-                  height={40}
-                  alt="csc logo"
-                  src="../logo/partners/solidaris.png"
-                />
-              </Footer>
-            </StyledMain>
+        )}
+        <MobileMenuOverlay showMobileMenu={showCalculator && !showRegionDialog}>
+          <RentCalculator region={region} />
+        </MobileMenuOverlay>
+        <StyledLayout>
+          <StyledMain showRegionDialog={showRegionDialog}>
+            <IntroSection />
+            {showRegionDialog ? (
+              <RegionSwitch
+                handleRegionSwitch={handleRegionSwitch}
+                setRegion={setRegion}
+                setShowRegionDialog={setShowRegionDialog}
+              />
+            ) : (
+              <>
+                {children}
+                <Footer />
+              </>
+            )}
+          </StyledMain>
+          {!showRegionDialog ? (
             <SidePanel>
               <RentCalculator region={region} />
             </SidePanel>
-          </StyledLayout>
-        </>
-      )}
+          ) : null}
+        </StyledLayout>
+      </>
     </>
   );
 };
 
 export default Layout;
+
+const StyledFooter = styled.footer`
+  width: 100%;
+  display: flex;
+  padding: 2rem;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 60px;
+`;
+
+const Footer = () => {
+  return (
+    <StyledFooter>
+      <StaticImage placeholder="none" height={40} alt="rwdh logo" src="../logo/partners/rwdh.svg" />
+      <StaticImage placeholder="none" height={40} alt="csc logo" src="../logo/partners/csc.png" />
+      <StaticImage placeholder="none" height={40} alt="csc logo" src="../logo/partners/moc.png" />
+      <StaticImage placeholder="none" height={40} alt="csc logo" src="../logo/partners/rapel.png" />
+      <StaticImage
+        placeholder="none"
+        height={40}
+        alt="csc logo"
+        src="../logo/partners/solidaris.png"
+      />
+    </StyledFooter>
+  );
+};
+
+const RegionSwitch: React.FC<{
+  setRegion: (region: Regions) => void;
+  handleRegionSwitch: (region: Regions) => void;
+  setShowRegionDialog: (state: boolean) => void;
+}> = ({ setRegion, handleRegionSwitch, setShowRegionDialog }) => {
+  return (
+    <StyledRegionDialog>
+      <StyledH2>Où se situe le bien que je loue ?</StyledH2>
+      <StyledButtonBlue
+        onClick={() => {
+          setRegion('wallonia');
+          handleRegionSwitch('wallonia');
+          setShowRegionDialog(false);
+        }}
+      >
+        <span>Wallonie</span>
+      </StyledButtonBlue>
+      <StyledButtonBlue
+        onClick={() => {
+          setRegion('brussels');
+          handleRegionSwitch('brussels');
+          setShowRegionDialog(false);
+        }}
+      >
+        <span>Bruxelles</span>
+      </StyledButtonBlue>
+    </StyledRegionDialog>
+  );
+};

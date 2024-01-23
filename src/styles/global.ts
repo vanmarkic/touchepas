@@ -73,8 +73,8 @@ export const GlobalStyle = createGlobalStyle`
 
 .AccordionTrigger[data-state='open'] >
 
-.AccordionChevron {
-  transform: rotate(180deg);
+.AccordionChevron {lay
+     transform: rotate(180deg);
 }
 
 @keyframes slideDown {
@@ -95,7 +95,15 @@ export const GlobalStyle = createGlobalStyle`
   }
 }
 
+.logo {
 
+      width:12vw !important;
+    @media (max-aspect-ratio: 1/1) and (max-width: 759px) {
+    width:40vw !important;
+
+  }
+  }
+  
 
   * {
     margin: 0;
@@ -145,8 +153,9 @@ export const GlobalStyle = createGlobalStyle`
     font-family: "Lexend" !important;
     font-size: 1rem;
 
-  }img
-{object-fit:contain !important;}
+  }
+  img {object-fit:contain !important;}
+  logoStyle
   button {
     font-family: "Lexend" !important;
     text-align: center;
