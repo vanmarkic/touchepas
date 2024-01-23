@@ -176,7 +176,6 @@ const Layout: React.FC<any> = ({
   showCalculator,
   handleShowCalculator,
 }) => {
-  const [showMobileMenu, setShowMobileMenu] = React.useState(false);
   const [showRegionDialog, setShowRegionDialog] = React.useState(true);
   const [region, setRegion] = React.useState<Regions>('wallonia');
 
@@ -204,7 +203,6 @@ const Layout: React.FC<any> = ({
               setShowRegionDialog(false);
             }}
           >
-            <img alt='wallonie' src='../images/wallonie.png' />
             <span>Wallonie</span>
           </StyledButtonBlue>
           <StyledButtonBlue

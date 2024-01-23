@@ -55,7 +55,7 @@ const StyledH2 = styled.h2`
 const GeneralInformation = ({ region }: { region: Regions }) => {
   return (
     <StyledSection2 id="informations">
-      <SectionTitle>Informations générales</SectionTitle>
+      <SectionTitle>Infos utiles</SectionTitle>
       <TwoColumns>
         <Accordion.Root className="AccordionRoot" type="single" defaultValue="item-1" collapsible>
           <Paragraph>
@@ -157,14 +157,22 @@ const BigTitle = styled.h1`
     color: var(--dark-red);
   }
 `;
+const StyledStaticImage = styled(StaticImage)`
+  height: fit-content;
+  height: 12vw !important;
+  width: 12vw !important;
+  @media (max-aspect-ratio: 1/1) and (max-width: 759px) {
+    width: 20vw !important;
+    height: 20vw !important;
+  }
+`;
 export const IntroSection = () => (
     <div style={{ display: 'flex', flexDirection: 'column', width: '80%' }}>
       <FlexDiv>
         <BigTitle>
           TOUCHE <span> PAS </span>À MON LOYER
         </BigTitle>
-        <StaticImage
-          className="logo"
+        <StyledStaticImage
           alt="a building with apartments"
           placeholder="none"
           layout="fixed"
@@ -183,7 +191,6 @@ const HeroSection: React.FC<any> = ({ handleShowCalculator }) => (
 
   <StyledSection id={heroSectionID}>
     <IntroSection/>
-
     <ButtonsGroup>
       <HideWhenHorizontal>
         <StyledButtonBlue onClick={handleShowCalculator}>Calculateur d'indexation</StyledButtonBlue>
@@ -192,7 +199,6 @@ const HeroSection: React.FC<any> = ({ handleShowCalculator }) => (
         Infos utiles
       </StyledButtonBlue>
       <StyledButtonBlue onClick={() => scrollToSection('news')}>Actualités</StyledButtonBlue>
-  
     </ButtonsGroup>
 
     <HideWhenHorizontal>

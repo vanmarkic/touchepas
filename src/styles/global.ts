@@ -13,12 +13,7 @@ export const GlobalStyle = createGlobalStyle`
 @import '@radix-ui/colors/black-alpha.css';
 @import '@radix-ui/colors/mauve.css';
 @import '@radix-ui/colors/violet.css';
-.scrolled {
-    height: 40px  !important;
-    overflow:hidden !important;
-    background-color:red !important;
 
-  }
 .AccordionItem {
   overflow: hidden;
   margin-top: 1px;
@@ -165,18 +160,7 @@ export const GlobalStyle = createGlobalStyle`
   gap: 10px;
 
   }
-  .logo {
-   height:fit-content;
-    height:12vw !important;
- width:12vw !important;
- @media (max-aspect-ratio: 1/1) and (max-width: 759px) {
-  width:20vw !important;
-height:20vw !important;
-  }
-  }
   
-
-   
   label {
       font-size: .8rem;
       height: 1rem;
