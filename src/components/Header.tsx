@@ -2,14 +2,15 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { whenVerticalAspectRatio } from '../styles/global';
 import { StaticImage } from 'gatsby-plugin-image';
-import { heroSectionID } from '../pages';
 import { NewsletterForm } from './NewsletterForm';
 import { HideWhenVertical } from './layout';
+import { heroSectionID } from './HeroSection';
 
 export const HEADER_HEIGHT = '80px';
 
-const FlexDiv = styled.div`
+const FlexDiv = styled.div<{ showRegionDialog: boolean }>`
   display: flex;
+  visibility: ${({ showRegionDialog }) => (showRegionDialog ? 'hidden' : 'visbile')};
   align-items: center;
   cursor: pointer;
   gap: 0.5rem;
@@ -50,13 +51,13 @@ const scrollToHeroSection = () => {
   }
 };
 
-export const Header = () => {
+export const Header = ({ showRegionDialog }: { showRegionDialog: boolean }) => {
   return (
     <StyledHeader>
-      <FlexDiv onClick={scrollToHeroSection}>
-          <h4>
-            TOUCHE <RedSpan> PAS </RedSpan> À MON LOYER
-          </h4>
+      <FlexDiv showRegionDialog={showRegionDialog} onClick={scrollToHeroSection}>
+        <h4>
+          TOUCHE <RedSpan> PAS </RedSpan> À MON LOYER
+        </h4>
         <StaticImage
           alt="logo"
           placeholder="blurred"
@@ -72,4 +73,3 @@ export const Header = () => {
     </StyledHeader>
   );
 };
-
