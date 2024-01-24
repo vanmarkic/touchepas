@@ -155,19 +155,22 @@ export const GlobalStyle = createGlobalStyle`
 
   }
   img {object-fit:contain !important;}
-  logoStyle
+
   button {
     font-family: "Lexend" !important;
     text-align: center;
   }
   form {
+    margin-top:10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
- width:90%;
-  gap: 10px;
-
+    width:254px;
+    padding-left:4px;
+    height:480px;
+    gap: 6px;
+    background-color: var(--blue);
+    border-radius:10px;
   }
   
   label {
@@ -183,7 +186,7 @@ export const GlobalStyle = createGlobalStyle`
       /* height: 1rem; */
       font-size: 1rem;
       padding: 0.2rem;
-      width: 200px;
+      width: 220px;
       color: var(--black);
     }
     button {

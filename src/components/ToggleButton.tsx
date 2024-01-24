@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Regions } from '../formula/types-and-constants';
 import * as Switch from '@radix-ui/react-switch';
 import './ToggleButton.css';
 
 interface ToggleButtonProps {
-  onClick: (region: Regions) => void;
+  onClick: (region: Regions)  => void; 
 }
 
 const Wrapper = styled.div`
@@ -20,27 +20,26 @@ export const Button = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 80px;
-  height: 30px;
+  height:30px;
   border: none;
   border-radius: 30px;
-  background-color: var(--red);
-  box-shadow: inset 1px 1px 1px black;
+  background-color:var(--red);
+  box-shadow:inset 1px 1px 1px black;
 `;
 
 export const ButtonText = styled.button<{ active: boolean }>`
   text-align: left;
   z-index: 1000;
-  border: none;
-  box-shadow: none;
-  color: ${(props) => (props.active ? 'var(--red)' : 'var(--blue)')};
-  background-color: transparent;
-  font-size: 20px;
-  margin: 0.5rem;
+  border:none;
+  box-shadow:none;
+  color: ${(props) => (props.active ? "var(--red)" : 'var(--blue)')};
+  background-color: white;
+  font-size:20px;
 `;
 
 export const Circle = styled.button<{ active: boolean }>`
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   border: none;
   text-align: right;

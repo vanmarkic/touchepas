@@ -26,7 +26,6 @@ const FlexDiv = styled.div`
   align-items: center;
   justify-content: start;
   row-gap: 20px;
-  /* width: 100%; */
   @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
     justify-content: center;
     flex-direction: column;

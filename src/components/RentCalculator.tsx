@@ -1,4 +1,4 @@
-import React, { FormEventHandler, MouseEventHandler, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import {
   ENERGY_RATIOS,
@@ -9,6 +9,7 @@ import {
   enregistrements,
 } from '../formula/types-and-constants';
 import { calculateRentIndexation } from '../formula/rent-increase-formula';
+import hand from '../images/hand.png';
 
 const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
   const [indexationDate, setIndexationDate] = useState<number>(2023);
@@ -66,7 +67,30 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
         {region === 'wallonia' ? 'Wallonie' : 'Bruxelles (formule en cours de finalisation)'}
       </RedSpan>
 
-      <form>
+      <form style={{ position: 'relative' }}>
+        <img
+          src={hand}
+          style={{ position: 'absolute', top: '145px', pointerEvents: 'none', objectFit: 'cover' }}
+        />
+        <StyledNewRent>
+          <StyledLabel style={{color:"white", }}>Loyer Indexé</StyledLabel>
+          <h4
+            style={{
+              boxShadow: 'inset 2px 2px 2px',
+              borderRadius: 'var(--radius)',
+              backgroundColor: ' white',
+              width: '70%',
+            justifyContent:"flex-end",
+              height:"100%",
+              display:"flex",
+              alignItems:"center", 
+              padding:"5px",
+            }}
+          >
+            {Number(newRent).toFixed(2).toLocaleLowerCase('fr-FR')}€
+          </h4>
+        </StyledNewRent>
+
         <StyledLabel htmlFor="enregistrement">
           Le bail est-il enregistré?
           <StyledSelect
@@ -94,7 +118,6 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
             ))}
           </StyledSelect>
         </StyledLabel>
-
         {contentToShow === 'inputs' && (
           <StyledLabel htmlFor="peb">
             Certificat PEB:
@@ -124,9 +147,6 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
           <>
             <StyledText>
               Aussi longtemps que le bail n’est pas enregistré, le loyer ne peut pas être indexé.
-              <br />
-              Le loyer ne peut pas non plus être révisé. Le bailleur est tenu de faire enregistrer
-              le bail dans les deux mois de la signature de celui-ci.
               <br />
               Si l’indexation a été appliquée alors que le bail n’était pas enregistré, le locataire
               peut adresser un recommandé au bailleur pour réclamer des sommes indûment payées au
@@ -159,7 +179,6 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
             <StyledA>Plus de détails</StyledA>
           </>
         )}
-
         {contentToShow === 'inputs' && showPebFields === true && (
           <>
             <StyledLabel htmlFor="indexationDate">
@@ -177,7 +196,7 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
             </StyledLabel>
 
             <StyledLabel htmlFor="initialRent">
-              Loyer stipulé sur le bail (hors charge):
+              Loyer du bail hors charges:
               <StyledInput
                 type="tel"
                 id="initialRent"
@@ -217,10 +236,6 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
               <StyledButton disabled={!isValid} type="button" onClick={handleCalculate}>
                 Calculer
               </StyledButton>
-              <StyledNewRent>
-                <h6>Loyer Indexé</h6>
-                <h4>{Number(newRent).toFixed(2).toLocaleLowerCase('fr-FR')}€</h4>
-              </StyledNewRent>
             </StyledContainerRow>
           </>
         )}
@@ -238,7 +253,6 @@ const StyledContainer = styled.div`
   /* padding: 0rem 2rem; */
   border-radius: var(--radius);
   position: relative;
-  background-color: #ededed;
   width: 100%;
   height: calc(100vh - 80px);
   padding: 0.7rem;
@@ -249,20 +263,24 @@ const StyledContainerRow = styled.div`
   align-items: end;
   justify-content: space-between;
   position: relative;
-  width: 90%;
+  margin-top: 10px;
 `;
 const StyledNewRent = styled.div`
   display: flex;
-  flex-direction: column;
+  height: 65px;
+  width: 220px;
+  padding: 5px;
+  margin-top: 5px;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const StyledLabel = styled.label`
-  color: var(--blue);
+  color: white;
   display: flex;
   flex-direction: column;
   align-items: start;
-  width: 90%;
-  font-weight: bold;
+  font-weight: 300;
   letter-spacing: 0.2px;
 `;
 
@@ -272,9 +290,8 @@ export const StyledInput = styled.input`
   border-radius: var(--radius);
   background-color: #f8f8f8;
   outline: none;
-  width: 90%;
   padding: 5px;
-  font-size: medium;
+  font-size: 14px;
   font-weight: normal;
 
   &:focus {
@@ -294,10 +311,9 @@ const StyledSelect = styled.select`
   border-radius: var(--radius);
   background-color: #ffffff;
   outline: none;
-  width: 90%;
   box-shadow: 1px 1px 1px grey;
   padding: 5px;
-  font-size: medium;
+  font-size: 14px;
 
   &:focus {
     border-color: 0px solid var(--blue);
@@ -323,8 +339,8 @@ export const StyledA = styled.a`
 export const StyledText = styled.p`
   width: 90%;
   padding-top: 2px;
-  color: var(--blue);
-  font-weight: 500;
+  color: white;
+  font-weight: 300;
   font-size: medium;
   &::before {
     content: '→ ';
@@ -334,11 +350,11 @@ export const StyledText = styled.p`
 export const StyledButton = styled.button`
   pointer-events: ${(props) => (props.disabled ? 'none' : null)};
   align-items: center;
-  background-color: ${(props) => (props.disabled ? 'lightgrey' : 'var(--blue)')};
+  background-color: ${(props) => (props.disabled ? 'lightgrey' : 'white')};
   border: none;
   border-radius: var(--radius);
   box-sizing: border-box;
-  color: white;
+  color: var(--blue);
   cursor: pointer;
   display: flex;
   font-size: 0.6rem;
@@ -364,7 +380,7 @@ export const StyledButton = styled.button`
   }
 
   &:hover {
-    background-color: var(--dark-red);
+    color: var(--dark-red);
     outline: 0;
   }
 `;
@@ -372,5 +388,4 @@ const RedSpan = styled.h4`
   color: var(--dark-red);
   text-align: center;
   width: 90%;
-  margin-bottom: 50px;
 `;
