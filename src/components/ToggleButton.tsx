@@ -13,7 +13,18 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   position: relative;
-  column-gap: 10px;
+`;
+
+export const Button = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80px;
+  height: 30px;
+  border: none;
+  border-radius: 30px;
+  background-color: var(--red);
+  box-shadow: inset 1px 1px 1px black;
 `;
 
 export const ButtonText = styled.button<{ active: boolean }>`
@@ -22,10 +33,16 @@ export const ButtonText = styled.button<{ active: boolean }>`
   border: none;
   box-shadow: none;
   color: ${(props) => (props.active ? 'var(--red)' : 'var(--blue)')};
-  background-color: transparent;
+  background-color: white;
   font-size: 20px;
-  cursor: pointer;
 `;
+
+// border: none;
+// box-shadow: none;
+// color: ${(props) => (props.active ? 'var(--red)' : 'var(--blue)')};
+// background-color: transparent;
+// font-size: 1rem;
+// margin: 0 0.8rem;
 
 const ToggleButton: React.FC<ToggleButtonProps> = ({ onClick }) => {
   const [activeRegion, setActiveRegion] = useState<Regions>('brussels');
@@ -44,7 +61,6 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({ onClick }) => {
       <Switch.Root
         checked={activeRegion === 'wallonia'}
         className="SwitchRoot"
-        id="airplane-mode"
         onCheckedChange={(e) => handleToggle(e ? 'wallonia' : 'brussels')}
       >
         <Switch.Thumb className="SwitchThumb" />

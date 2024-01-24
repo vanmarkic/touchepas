@@ -150,6 +150,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   html,
   body {
+    transition: all 0.400s linear;
     --blue: #150d63;
     --red:#E04843;  
     --dark-red:#af211d;

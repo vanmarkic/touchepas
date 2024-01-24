@@ -7,7 +7,6 @@ export const StyledSection = styled.div`
   position: relative;
   justify-content: space-evenly;
   align-items: center;
-  min-height: calc(100vh - 80px);
 
   ${whenVerticalAspectRatio(`
      justify-content:flex-start;

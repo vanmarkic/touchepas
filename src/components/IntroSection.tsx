@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { StaticImage } from 'gatsby-plugin-image';
 import { StyledH2 } from './bodyLayout';
 
-export const Description = styled(StyledH2)`
-  width: fit-content;
+export const Description = styled.p`
+  margin-top: 1rem;
 `;
 
 const BigTitle = styled.div`
@@ -27,34 +27,46 @@ const FlexDiv = styled.div`
   justify-content: start;
   row-gap: 20px;
   @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
-    justify-content: center;
+    /* justify-content: center; */
     flex-direction: column;
     align-items: center;
     width: 100%;
   }
 `;
-export const IntroSection: React.FC<any> = () => (
-  <div style={{ display: 'flex', justifyContent: 'center' }}>
-    <div
-      style={{ width: '80%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
-    >
-      <FlexDiv>
-        <BigTitle>
-          TOUCHE <span> PAS </span>À MON LOYER
-        </BigTitle>
-        <StaticImage
-          alt="a building with apartments"
-          placeholder="none"
-          layout="constrained"
-          src={'../logo/favicon/android-chrome-512x512.png'}
-          loading="eager"
-          className="logo"
-        />
-      </FlexDiv>
-      <Description>
-        Touche pas à mon loyer est une plateforme de calcul d’indexation de loyer engagée dans la
-        défense des droits des locataires.
-      </Description>
+
+const IntroSection: React.FC<any> = ({ children, showRegionDialog }) => {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div
+        style={{
+          width: '80%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          // minHeight: '80vh',
+          alignItems: 'center',
+        }}
+      >
+        <FlexDiv>
+          <BigTitle>
+            TOUCHE <span> PAS </span>À MON LOYER
+          </BigTitle>
+          <StaticImage
+            alt="a building with apartments"
+            placeholder="none"
+            layout="constrained"
+            src={'../logo/favicon/android-chrome-512x512.png'}
+            loading="eager"
+            className="logo"
+          />
+        </FlexDiv>
+        <Description>
+          Touche pas à mon loyer est une plateforme de calcul d'indexation de loyer engagée dans la
+          défense des droits des locataires.
+        </Description>
+      </div>
     </div>
-  </div>
-);
+  );
+};
+
+export default React.memo(IntroSection);
