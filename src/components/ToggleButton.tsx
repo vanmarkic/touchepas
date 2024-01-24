@@ -33,16 +33,10 @@ export const ButtonText = styled.button<{ active: boolean }>`
   border: none;
   box-shadow: none;
   color: ${(props) => (props.active ? 'var(--red)' : 'var(--blue)')};
-  background-color: white;
-  font-size: 20px;
+  background-color: transparent;
+  font-size: 1rem;
+  margin: 0 0.8rem;
 `;
-
-// border: none;
-// box-shadow: none;
-// color: ${(props) => (props.active ? 'var(--red)' : 'var(--blue)')};
-// background-color: transparent;
-// font-size: 1rem;
-// margin: 0 0.8rem;
 
 const ToggleButton: React.FC<ToggleButtonProps> = ({ onClick }) => {
   const [activeRegion, setActiveRegion] = useState<Regions>('brussels');
