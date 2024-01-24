@@ -1,18 +1,12 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { StaticImage } from 'gatsby-plugin-image';
+import { StyledH2 } from './bodyLayout';
 
-const StyledH2 = styled.h2`
-  flex: 1;
-  font-size: 1.1rem;
-  font-weight: 200;
+export const Description = styled(StyledH2)`
   width: fit-content;
-  padding-top: 20px;
-  @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
-    font-size: 18px;
-    text-align: center;
-  }
 `;
+
 const BigTitle = styled.div`
   font-size: 4vw;
   font-weight: 700;
@@ -57,10 +51,10 @@ export const IntroSection: React.FC<any> = () => (
           className="logo"
         />
       </FlexDiv>
-      <StyledH2>
+      <Description>
         Touche pas à mon loyer est une plateforme de calcul d’indexation de loyer engagée dans la
         défense des droits des locataires.
-      </StyledH2>
+      </Description>
     </div>
   </div>
 );

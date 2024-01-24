@@ -91,7 +91,7 @@ const SidePanel = styled.nav`
   ${hideWhenVertical};
 `;
 
-const StyledMenuButton = styled.button`
+const StyledMenuButton = styled.div`
   position: fixed;
   bottom: 1rem;
   right: 1rem;
@@ -100,10 +100,12 @@ const StyledMenuButton = styled.button`
   border: none;
   padding: 5px;
   border-radius: 50%;
-  height: 60px;
-  width: 60px;
+  height: 50px;
+  width: 50px;
   box-shadow: 1px 1px 5px var(--blue);
-
+  justify-content: center;
+  align-items: center;
+  display: flex;
   ${hideWhenHorizontal};
 `;
 
@@ -140,8 +142,6 @@ const StyledMain = styled.main<{ showRegionDialog: boolean }>`
   }
 `;
 
-
-
 const Layout: React.FC<any> = ({
   children,
   handleRegionSwitch,
@@ -168,7 +168,7 @@ const Layout: React.FC<any> = ({
         {showRegionDialog ? null : (
           <StyledMenuButton onClick={handleShowCalculator}>
             {showCalculator ? (
-              <img style={{ width: '25px' }} src={xmark} alt="Closed" />
+              <img style={{ width: '25px' }} src={xmark} alt="Fermer" />
             ) : (
               <img style={{ width: '25px' }} src={calculator} alt="Calculateur" />
             )}
@@ -205,4 +205,3 @@ const Layout: React.FC<any> = ({
 };
 
 export default Layout;
-

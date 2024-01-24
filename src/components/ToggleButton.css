@@ -1,0 +1,45 @@
+/* @import '@radix-ui/colors/black-alpha.css'; */
+
+/* reset */
+button {
+  all: unset;
+}
+.SwitchRoot {
+  display: flex;
+  width: 65px;
+  height: 24px;
+  background-color: var(--red);
+  border-radius: 9999px;
+  position: relative;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  align-items: center;
+  box-shadow: inset 0px 2px 4px 2px rgba(52, 52, 52, 0.4);
+}
+.SwitchRoot:focus {
+  /* box-shadow: 0 0 0 2px var(--blue); */
+}
+.SwitchRoot[data-state='checked'] {
+  /* background-color: var(--blue); */
+}
+
+.SwitchThumb {
+  border: 2px solid lightgray;
+  display: block;
+  width: 36px;
+  height: 36px;
+  background-color: white;
+  border-radius: 9999px;
+  box-shadow: var(--shadow);
+  transform: translateX(-8px);
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.SwitchThumb[data-state='checked'] {
+  transform: translateX(38px);
+}
+
+.Label {
+  color: var(--red);
+  font-size: 15px;
+  line-height: 1;
+}
