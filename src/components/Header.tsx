@@ -2,9 +2,10 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { whenVerticalAspectRatio } from '../styles/global';
 import { StaticImage } from 'gatsby-plugin-image';
-import { heroSectionID } from '../pages';
+import { heroSectionID } from './HeroSection';
 import { NewsletterForm } from './NewsletterForm';
 import { HideWhenVertical } from './layout';
+import ToggleButton from './ToggleButton';
 
 export const HEADER_HEIGHT = '80px';
 
@@ -15,6 +16,14 @@ const FlexDiv = styled.div<{ showRegionDialog: boolean }>`
   cursor: pointer;
   gap: 0.5rem;
   position: relative;
+`;
+
+
+const ToggleButtonContainer = styled.div<{ showRegionDialog: boolean }>`
+  visibility: ${({ showRegionDialog }) => (showRegionDialog ? 'hidden' : 'visbile')};
+  @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
+   display: none;
+  }
 `;
 
 const StyledHeader = styled.div`
@@ -52,6 +61,7 @@ const scrollToHeroSection = () => {
 };
 
 export const Header = ({ showRegionDialog }: { showRegionDialog: boolean }) => {
+  const handleToggle = () => {};
   return (
     <StyledHeader>
       <FlexDiv showRegionDialog={showRegionDialog} onClick={scrollToHeroSection}>
@@ -67,6 +77,11 @@ export const Header = ({ showRegionDialog }: { showRegionDialog: boolean }) => {
           loading="eager"
         />
       </FlexDiv>
+
+      <ToggleButtonContainer showRegionDialog={showRegionDialog}>
+        <ToggleButton onClick={handleToggle} />
+      </ToggleButtonContainer >
+
       <HideWhenVertical>
         <NewsletterForm />
       </HideWhenVertical>

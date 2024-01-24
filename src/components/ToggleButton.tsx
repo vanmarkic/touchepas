@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Regions } from '../formula/types-and-constants';
 
 interface ToggleButtonProps {
-  onClick: (region: Regions)  => void; // Définissez le type de la fonction onClick
+  onClick: (region: Regions)  => void; 
 }
 
 const Wrapper = styled.div`
@@ -17,10 +17,10 @@ export const Button = styled.div<{ active: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 80px;
-  height:30px;
+  width: 60px;
+  height:25px;
   border: none;
-  border-radius: 30px;
+  border-radius: 25px;
   background-color:var(--red);
   box-shadow:inset 1px 1px 1px black;
 `;
@@ -33,12 +33,12 @@ export const ButtonText = styled.button<{ active: boolean }>`
   box-shadow:none;
   color: ${(props) => (props.active ? "var(--red)" : 'var(--blue)')};
   background-color: white;
-  font-size:20px;
+  font-size:18px;
 `;
 
 export const Circle = styled.button<{ active: boolean }>`
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   border:none;
   text-align: right;
