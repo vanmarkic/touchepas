@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Regions } from '../formula/types-and-constants';
 import * as Switch from '@radix-ui/react-switch';
 import './ToggleButton.css';
 
 interface ToggleButtonProps {
-  onClick: (region: Regions)  => void; // Définissez le type de la fonction onClick
+  onClick: (region: Regions)  => void; 
 }
 
 const Wrapper = styled.div`
