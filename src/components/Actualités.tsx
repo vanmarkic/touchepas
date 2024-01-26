@@ -8,6 +8,7 @@ import Building from '../images/Building.png';
 import { useState, useEffect, useRef } from 'react';
 import { StyledSection2, SectionTitle } from '../components/bodyLayout';
 import { Article1, Article2, Article3, Article4 } from '../components/Article';
+import xmark from "../images/xmark.svg";
 
 interface Article {
   id: number;
@@ -28,13 +29,16 @@ const StyledArticleList = styled.div`
   color: var(--blue);
 `;
 
-export const StyledA2 = styled.a`
-  font-size: 16px;
+export const StyledA2 = styled.a<StyledArticleProps>`
+  font-size: ${({ isOpen }) => (isOpen ? '30px' : '16px')};
   margin-top: 4px;
-  text-decoration: underline;
+  text-decoration: ${({ isOpen }) => (isOpen ? 'none' : 'underline')};
   cursor: pointer;
-  color: var(--blue);
-  &:hover {color: var(--red);}
+  color: var(--red);
+  &:hover {color: var(--blue);};
+  position:${({ isOpen }) => (isOpen ? 'absolute' : 'relative')};
+  top:${({ isOpen }) => (isOpen ? '15px' : '0')};
+  right:0;
 `;
 
 export const StyledH4 = styled.h4`
@@ -50,6 +54,7 @@ const StyledArticle = styled.div`
   border-radius: var(--radius);
   width: 100%;
   overflow: hidden;
+
   @media (max-aspect-ratio: 1/1) and (max-width: 768px) {width: 80%;}
 `;
 
@@ -65,10 +70,12 @@ const StyledArticleInfos = styled.div<StyledArticleProps>`
   flex-direction: column;
   width: ${({ isOpen }) => (isOpen ? '90%' : '70%')};
   gap: 5px;
-  padding: 10px 0px;
+  padding: 20px 0px;
   margin: auto;
+  position: relative;
   @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
     width: 90%;
+
   }`;
 
 const StyledVignette = styled.div`
@@ -174,8 +181,8 @@ export const Actualités: React.FC = () => {
 
                 <StyledSource>{article.source}</StyledSource>
 
-                <StyledA2 onClick={() => toggleReadMore(article.id)}>
-                  {article.id === openArticleId ? "Fermer l'article" : "Lire l'article"}
+                <StyledA2 key={article.id} isOpen={article.id === openArticleId} onClick={() => toggleReadMore(article.id)}>
+                  {article.id === openArticleId ?  <img style={{ width: '25px' }} src={xmark} alt="Fermer" /> : "Lire l'article"}
                 </StyledA2>
 
       

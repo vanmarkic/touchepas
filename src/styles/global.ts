@@ -110,6 +110,7 @@ export const GlobalStyle = createGlobalStyle`
     width: 50% !important;
     object-fit:cover!important;
     border-radius:  var(--radius);
+    padding-bottom:10px;
     @media (max-aspect-ratio: 1/1) and (max-width: 759px) {
       margin:auto;
       width: 60% !important;
@@ -119,11 +120,13 @@ export const GlobalStyle = createGlobalStyle`
 
   .imageArticleClosed{
     object-fit:cover!important;
-    height: 14vw!important;
+    max-height:220px;
+    height: 29vw;
     width: 14vw !important;
     border-radius:  var(--radius) 0px  0px var(--radius);
     @media (max-aspect-ratio: 1/1) and (max-width: 759px) {
       width: 100% !important;
+      height: 17vw!important;
   }
   }
 
