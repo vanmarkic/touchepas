@@ -31,6 +31,21 @@ const StyledH6 = styled.h6`
   height: fit-content;
   font-size: 14px;
 `;
+const StyledText = styled.p`
+  bottom: -15px;
+  text-align: left;
+  width: 350px;
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 500;
+  position: absolute;
+  @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-top: 15px;
+  }
+`;
 
 const FlexEnd = styled.div`
   display: flex;
@@ -107,7 +122,7 @@ export const NewsletterForm = () => {
         />
 
         {result && result !== null && (
-          <p
+          <StyledText
             style={{
               position: 'absolute',
               bottom: '-15px',
@@ -119,7 +134,7 @@ export const NewsletterForm = () => {
             }}
           >
             {result.msg}
-          </p>
+          </StyledText>
         )}
 
         <StyleButton onClick={handleSubmit}>S'inscrire</StyleButton>

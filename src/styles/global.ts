@@ -103,7 +103,28 @@ export const GlobalStyle = createGlobalStyle`
 
   }
   }
-  
+
+
+  .imageArticle{
+    margin:auto;
+    width: 50% !important;
+    object-fit:cover!important;
+    border-radius:  var(--radius);
+    @media (max-aspect-ratio: 1/1) and (max-width: 759px) {
+      margin:auto;
+      width: 60% !important;
+  }
+  }
+
+
+  .imageArticleClosed{
+    width: 30% !important;
+    border-radius:  var(--radius) 0px  0px var(--radius);
+    @media (max-aspect-ratio: 1/1) and (max-width: 759px) {
+      width: 100% !important;
+  }
+  }
+
 
   * {
     margin: 0;
@@ -161,12 +182,10 @@ export const GlobalStyle = createGlobalStyle`
     text-align: center;
   }
   form {
-    margin-top:10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width:254px;
-    padding-left:4px;
+    width:265px;
     height:480px;
     gap: 6px;
     background-color: var(--blue);
