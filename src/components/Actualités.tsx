@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import lettre from '../images/lettre.jpg';
 import bruxelles from '../images/bruxelles.jpg';
-import energie from "../images/energie.jpg";
-import Street from "../images/Street.png";
-import Building from "../images/Building.png";
+import energie from '../images/energie.jpg';
+import Street from '../images/Street.png';
+import Building from '../images/Building.png';
 import { useState, useEffect, useRef } from 'react';
 import { StyledSection2, SectionTitle } from '../components/bodyLayout';
 import { Article1, Article2, Article3, Article4 } from '../components/Article';
@@ -26,8 +26,6 @@ const StyledArticleList = styled.div`
   align-items: center;
   gap: 20px;
   color: var(--blue);
-
-
 `;
 
 export const StyledA2 = styled.a`
@@ -36,33 +34,28 @@ export const StyledA2 = styled.a`
   text-decoration: underline;
   cursor: pointer;
   color: var(--blue);
-  &:hover {
-    color: var(--red);
-  }
+  &:hover {color: var(--red);}
 `;
+
 export const StyledH4 = styled.h4`
-  font-size: 1rem!important;
+  font-size: 1rem !important;
   color: var(--blue);
   display: flex;
 `;
-
 
 const StyledArticle = styled.div`
   color: var(--blue);
   border: 1px solid var(--blue);
   box-shadow: 1px 1px 1px var(--blue);
   border-radius: var(--radius);
-  width:100%;
+  width: 100%;
   overflow: hidden;
-  @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
-    width:80%;
-  }
+  @media (max-aspect-ratio: 1/1) and (max-width: 768px) {width: 80%;}
 `;
 
 const StyledSource = styled.a`
   color: var(--blue);
-  font-size: 13px!important;
-  width: 100%;
+  font-size: 13px !important;
   display: block;
   cursor: pointer;
 `;
@@ -70,16 +63,13 @@ const StyledSource = styled.a`
 const StyledArticleInfos = styled.div<StyledArticleProps>`
   display: flex;
   flex-direction: column;
-  max-width: ${({ isOpen }) => (isOpen ? '70%' : 'auto')};
+  width: ${({ isOpen }) => (isOpen ? '90%' : '70%')};
   gap: 5px;
-  padding:0px 20px;
-  margin:auto;
-  margin-top:10px;
+  padding: 10px 0px;
+  margin: auto;
   @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
     width: 90%;
-    margin-bottom:10px;
-  }
-`;
+  }`;
 
 const StyledVignette = styled.div`
   width: 100%;
@@ -90,9 +80,7 @@ const StyledVignette = styled.div`
   gap: 5px;
 
   @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
-    flex-direction: column;
-  }
-
+    flex-direction: column;}
 `;
 
 export const Actualités: React.FC = () => {
@@ -130,7 +118,7 @@ export const Actualités: React.FC = () => {
   ];
   const [articles, setArticles] = useState(articlesData);
   const [openArticleId, setOpenArticleId] = useState<number | null>(null);
-  const [isOpen, setIsOpen] = useState<boolean| false>(false);
+  const [isOpen, setIsOpen] = useState<boolean | false>(false);
 
   const articleRefs = useRef<Array<HTMLDivElement | null>>([]);
 
@@ -164,34 +152,33 @@ export const Actualités: React.FC = () => {
         {articles.map((article) => (
           <StyledArticle
             key={article.id}
-           
             className={`article ${article.id === openArticleId ? 'open' : ''}`}
             ref={(ref) => (articleRefs.current[article.id] = ref)}
           >
-                 
             <StyledVignette>
-            {article.id != openArticleId && (  <img
-          alt="article"
-          src={article.image}
-          loading="eager"
-          className="imageArticleClosed"
-        />)}
-    
-              <StyledArticleInfos key={article.id}
-            isOpen={article.id === openArticleId}>
-              {article.id === openArticleId && (  <img
-          alt="article"
-          src={article.image}
-          loading="eager"
-          className="imageArticle"
-        />)}
-                <StyledH4>{article.title}</StyledH4>
+              {article.id != openArticleId && (
+                <img
+                  alt="article"
+                  src={article.image}
+                  loading="eager"
+                  className="imageArticleClosed"
+                />
+              )}
+
+              <StyledArticleInfos key={article.id} isOpen={article.id === openArticleId}>
+                {article.id === openArticleId && (
+                  <img alt="article" src={article.image} loading="eager" className="imageArticle" />
+                )}
                 
+                <StyledH4>{article.title}</StyledH4>
+
                 <StyledSource>{article.source}</StyledSource>
+
                 <StyledA2 onClick={() => toggleReadMore(article.id)}>
                   {article.id === openArticleId ? "Fermer l'article" : "Lire l'article"}
                 </StyledA2>
-                <br />
+
+      
               </StyledArticleInfos>
             </StyledVignette>
 

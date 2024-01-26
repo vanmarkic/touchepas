@@ -6,7 +6,6 @@ const StyledArticleContent = styled.p`
   font-size: 16px!important;
   width: 90%;
   margin: auto;
-    padding:10px 20px;
 
 `;
 const StyledArticleSubTitle = styled.h6`
