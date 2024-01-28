@@ -73,18 +73,20 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
           style={{ position: 'absolute', top: '145px', pointerEvents: 'none', objectFit: 'cover' }}
         />
         <StyledNewRent>
-          <StyledLabel style={{color:"white", }}>Loyer Indexé</StyledLabel>
+          <StyledLabel style={{ color: 'white' }}>Loyer Indexé</StyledLabel>
           <h4
             style={{
-              boxShadow: 'inset 2px 2px 2px',
+              boxShadow: 'inset 1px 1px 2px black',
               borderRadius: 'var(--radius)',
               backgroundColor: ' white',
+              color: 'var(--blue)',
               width: '70%',
-            justifyContent:"flex-end",
-              height:"100%",
-              display:"flex",
-              alignItems:"center", 
-              padding:"5px",
+              justifyContent: 'flex-end',
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              padding: '5px',
+              fontSize: '22px',
             }}
           >
             {Number(newRent).toFixed(2).toLocaleLowerCase('fr-FR')}€
@@ -250,14 +252,14 @@ const StyledContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: start;
-  /* padding: 0rem 2rem; */
   border-radius: var(--radius);
   position: relative;
   width: 100%;
   height: calc(100vh - 80px);
-  padding: 0.7rem;
+  padding: 0.7rem 0.7rem 0rem 0.7rem;
   margin: 0px;
 `;
+
 const StyledContainerRow = styled.div`
   display: flex;
   align-items: end;
@@ -265,6 +267,7 @@ const StyledContainerRow = styled.div`
   position: relative;
   margin-top: 10px;
 `;
+
 const StyledNewRent = styled.div`
   display: flex;
   height: 65px;
@@ -282,6 +285,7 @@ const StyledLabel = styled.label`
   align-items: start;
   font-weight: 300;
   letter-spacing: 0.2px;
+  font-size: 15px;
 `;
 
 export const StyledInput = styled.input`
@@ -325,23 +329,23 @@ const StyledSelect = styled.select`
   }
 `;
 export const StyledA = styled.a`
-  font-size: medium;
+  font-size: 14px;
   margin-top: 4px;
   text-decoration: underline;
   cursor: pointer;
-  color: var(--blue);
-  width: 90%;
+  color: white;
+  width: 220px;
   &:hover {
     color: var(--red);
   }
 `;
 
 export const StyledText = styled.p`
-  width: 90%;
   padding-top: 2px;
   color: white;
   font-weight: 300;
-  font-size: medium;
+  width: 220px;
+  font-size: 14px;
   &::before {
     content: '→ ';
   }
@@ -388,4 +392,5 @@ const RedSpan = styled.h4`
   color: var(--dark-red);
   text-align: center;
   width: 90%;
+  margin-bottom: 10px;
 `;

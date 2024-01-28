@@ -3,12 +3,15 @@ import styled from 'styled-components';
 
 const StyledArticleContent = styled.p`
   color: var(--blue);
-  font-size: 0.8rem !important;
-  margin:10px 0px;
+  font-size: 16px!important;
+  width: 90%;
+  margin: auto;
+  padding-bottom:20px;
+
 `;
 const StyledArticleSubTitle = styled.h6`
   color: var(--blue);
-  font-size: 0.9rem !important;
+  font-size: 18px !important;
  font-weight:bold;
 `;
 
@@ -78,7 +81,7 @@ export const Article1: React.FC = () => {
       
       <br />
       <br />
-      <p style={{ fontSize: '0.7rem' }}>
+      <p style={{ fontSize: '13px' }}>
         Carte blanche à l'initiative de la Plateforme Logement (Equipes Populaires Bruxelles, MOC
         Bruxelles, Inter-Environnement Bruxelles, CSC Bruxelles, FGTB Bruxelles, FéBUL, RBDH).{' '}
         <br />
@@ -113,7 +116,7 @@ export const Article2: React.FC = () => {
         sans réserve :
         <br />
         <br />
-      <p style={{fontStyle:"italic", fontSize:"0.8rem"}}>"Confiner chacun chez soi rappelle les inégalités criantes existantes en termes d'accès au
+      <p style={{fontStyle:"italic", fontSize:"16px"}}>"Confiner chacun chez soi rappelle les inégalités criantes existantes en termes d'accès au
         logement, singulièrement dans les grandes villes, et plus encore à Bruxelles. Nous ne vivons
         pas dans les mêmes mondes selon qu'il nous est demandé de nous confiner seul dans une maison
         avec jardin que à trois, quatre, cinq ou plus dans un appartement modeste. Cette inégalité
@@ -169,7 +172,7 @@ export const Article2: React.FC = () => {
         de la période de forte inflation.
         <br />
         <br />
-        <p style={{ fontSize: '0.7rem' }}>
+        <p style={{ fontSize: '13px' }}>
         Signataires initiateurs réunis au sein de la Plate-Forme Logement : Rassemblement Bruxellois
         pour le Droit à l'Habitat (RBDH), Fédération bruxelloise Unie pour le Logement (FéBUL),
         Inter-Environnement Bruxelles (IEB), CSC Bruxelles, MOC Bruxelles, Equipes Populaires

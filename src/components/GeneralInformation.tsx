@@ -18,7 +18,8 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
                     : 'À quelles conditions peut-on indexer mon loyer à Bruxelles ?'}
                 </AccordionTrigger>
                 <AccordionContent>
-                  {region === 'wallonia' ? 'Contenu Wallonie' : 'Contenu Bruxelles'}
+                  {region === 'wallonia' ? "Le loyer peut être indexé, chaque année, au plus tôt à la date anniversaire de l’entrée en vigueur du bail. L'indexation du loyer est toujours possible, à moins qu'elle n'ait été exclue expressément dans une clause du bail ou qu'il s'agisse d'un bail verbal. Pour indexer le loyer, il faut un bail écrit. Pour les baux conclus ou renouvelés à partir du 01/09/2018 que pour les baux en cours au 01/09/2018, il doit être enregistré. L'indexation du loyer n'est pas automatique et doit être demandée par écrit. La demande d’indexation ne doit pas nécessairement être envoyée par lettre recommandée : elle peut être faite par courrier normal, SMS ou e-mail." : "Contenu Bruxelles"
+                  }
                 </AccordionContent>
               </Accordion.Item>
             </Paragraph>
