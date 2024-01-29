@@ -6,6 +6,7 @@ import { NewsletterForm } from './NewsletterForm';
 import { HideWhenVertical } from './layout';
 import ToggleButton from './ToggleButton';
 import { navButtonsID } from './HeroSection';
+import { Regions } from '../formula/types-and-constants';
 
 export const HEADER_HEIGHT = '80px';
 
@@ -59,14 +60,16 @@ const scrollToHeroSection = () => {
   }
 };
 
-export const Header = ({ showRegionDialog }: { showRegionDialog: boolean }) => {
-  const handleToggle = () => {};
+export const Header = ({
+  showRegionDialog,
+  handleRegionSwitch,
+}: {
+  showRegionDialog: boolean;
+  handleRegionSwitch: (r: Regions) => void;
+}) => {
   return (
     <StyledHeader>
       <FlexDiv showRegionDialog={showRegionDialog} onClick={scrollToHeroSection}>
-        <h4>
-          TOUCHE <RedSpan> PAS </RedSpan> À MON LOYER
-        </h4>
         <StaticImage
           alt="logo"
           placeholder="blurred"
@@ -75,14 +78,16 @@ export const Header = ({ showRegionDialog }: { showRegionDialog: boolean }) => {
           src={'../logo/logo.png'}
           loading="eager"
         />
+        <h4>
+          TOUCHE <RedSpan> PAS </RedSpan> À MON LOYER
+        </h4>
       </FlexDiv>
 
-      <ToggleButtonContainer showRegionDialog={showRegionDialog}>
-        <ToggleButton onClick={handleToggle} />
-      </ToggleButtonContainer>
-
       <HideWhenVertical>
-        <NewsletterForm />
+        <div style={{ display: 'flex', gap: '2rem' }}>
+          {showRegionDialog ? null : <ToggleButton onClick={handleRegionSwitch} />}
+          <NewsletterForm />
+        </div>
       </HideWhenVertical>
     </StyledHeader>
   );

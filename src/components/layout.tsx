@@ -157,9 +157,9 @@ const Layout: React.FC<any> = ({
   handleRegionSwitch,
   showCalculator,
   handleShowCalculator,
+  region,
 }) => {
   const [showRegionDialog, setShowRegionDialog] = React.useState(true);
-  const [region, setRegion] = React.useState<Regions>('wallonia');
 
   React.useEffect(() => {
     const documentHeight = () => {
@@ -174,7 +174,7 @@ const Layout: React.FC<any> = ({
     <>
       <GlobalStyle />
       <HideWhenVertical>
-        <Header showRegionDialog={showRegionDialog} />
+        <Header showRegionDialog={showRegionDialog} handleRegionSwitch={handleRegionSwitch} />
       </HideWhenVertical>
       <>
         <MobileCalculator
@@ -192,7 +192,6 @@ const Layout: React.FC<any> = ({
               <StyledRegionDialog>
                 <RegionSwitch
                   handleRegionSwitch={handleRegionSwitch}
-                  setRegion={setRegion}
                   setShowRegionDialog={setShowRegionDialog}
                 />
               </StyledRegionDialog>

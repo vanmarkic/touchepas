@@ -19,6 +19,7 @@ const IndexPage: React.FC<{}> = () => {
       handleRegionSwitch={setRegion}
       showCalculator={showCalculator}
       handleShowCalculator={handleShowCalculator}
+      region={region}
     >
       <GeneralInformation region={region} />
       <Actualités />

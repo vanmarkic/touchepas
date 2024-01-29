@@ -84,7 +84,6 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
               display: 'flex',
               alignItems: 'center',
               padding: '5px',
-              fontSize: '22px',
             }}
           >
             {Number(newRent).toFixed(2).toLocaleLowerCase('fr-FR')}€
