@@ -12,36 +12,43 @@ import { calculateRentIndexation } from '../formula/rent-increase-formula';
 import hand from '../images/hand.png';
 
 const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
-  const [indexationDate, setIndexationDate] = useState<number>(2023);
+  const [yearOfIndexation, setYearOfIndexation] = useState<number>();
   const [initialRent, setInitialRent] = useState<number>(0);
   const [contractSignatureDate, setContractSignatureDate] = useState<Date | null>(null);
   const [agreementStartDate, setAgreementStartDate] = useState<Date>(new Date());
   const [newRent, setNewRent] = useState<number | string>(0);
-  const [energyCertificate, setEnergyCertificate] = useState<EnergyEfficiencyRating>('none');
+  const [energyEfficiencyRating, setEnergyEfficiencyRating] =
+    useState<EnergyEfficiencyRating>('none');
   const [enregistrementResponse, setEnregistrementResponse] = useState<enregistrement>('none');
   const [contentToShow, setContentToShow] = useState<'inputs' | 'text1' | 'text2'>('text2');
   const [showPebFields, setShowPebFields] = useState(false);
 
-  const isValid =
-    indexationDate &&
-    initialRent &&
-    contractSignatureDate &&
-    agreementStartDate &&
-    indexationDate > agreementStartDate.getFullYear() &&
-    agreementStartDate >= contractSignatureDate;
+  const isValid = React.useMemo(() => {
+    return (
+      yearOfIndexation &&
+      initialRent &&
+      contractSignatureDate &&
+      agreementStartDate &&
+      (agreementStartDate.getMonth() >= new Date().getMonth()
+        ? yearOfIndexation < new Date().getFullYear()
+        : yearOfIndexation <= new Date().getFullYear()) &&
+      yearOfIndexation > agreementStartDate.getFullYear() &&
+      agreementStartDate >= contractSignatureDate
+    );
+  }, [yearOfIndexation, initialRent, contractSignatureDate, agreementStartDate]);
 
   const handleCalculate = (e: any) => {
     e.preventDefault();
 
-    if (isValid) {
+    if (isValid && yearOfIndexation && initialRent && contractSignatureDate && agreementStartDate) {
       try {
         const increasedRent = calculateRentIndexation({
-          contractSignatureDate: contractSignatureDate,
-          agreementStartDate: agreementStartDate,
-          initialRent: initialRent,
-          yearOfIndexation: indexationDate,
-          region: region,
-          energyEfficiencyRating: energyCertificate,
+          contractSignatureDate,
+          agreementStartDate,
+          initialRent,
+          yearOfIndexation,
+          region,
+          energyEfficiencyRating,
         });
         if (!increasedRent) {
           setNewRent('something went wrong');
@@ -55,10 +62,11 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
   };
 
   const isBeforePEBMeasure =
-    indexationDate < ENERGY_RATIOS[region].start.getFullYear() ||
-    (agreementStartDate &&
-      indexationDate == ENERGY_RATIOS[region].start.getFullYear() &&
-      agreementStartDate.getMonth() < ENERGY_RATIOS[region].start.getMonth());
+    yearOfIndexation &&
+    (yearOfIndexation < ENERGY_RATIOS[region].start.getFullYear() ||
+      (agreementStartDate &&
+        yearOfIndexation == ENERGY_RATIOS[region].start.getFullYear() &&
+        agreementStartDate.getMonth() < ENERGY_RATIOS[region].start.getMonth()));
 
   return (
     <StyledContainer>
@@ -118,13 +126,13 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
           <StyledLabel htmlFor="peb">
             Certificat PEB:
             <StyledSelect
-              disabled={isBeforePEBMeasure}
+              disabled={!!isBeforePEBMeasure}
               name="peb"
               id="peb"
-              defaultValue={energyCertificate}
+              defaultValue={energyEfficiencyRating}
               onChange={(e) => {
                 const selectedValue = e.target.value as EnergyEfficiencyRating;
-                setEnergyCertificate(selectedValue);
+                setEnergyEfficiencyRating(selectedValue);
                 if (selectedValue !== 'none') {
                   setShowPebFields(true);
                 }
@@ -186,8 +194,8 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
                 required
                 lang="fr-FR"
                 id="indexationDate"
-                defaultValue={new Date().getFullYear()}
-                onChange={(e) => setIndexationDate(Number(e.target.value))}
+                placeholder={new Date().getFullYear().toString()}
+                onChange={(e) => setYearOfIndexation(Number(e.target.value))}
               />
             </StyledLabel>
 
