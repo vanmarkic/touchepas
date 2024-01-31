@@ -74,10 +74,7 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
           <StyledLabel style={{ color: 'white' }}>Loyer Indexé</StyledLabel>
           <h4
             style={{
-              boxShadow: 'inset 1px 1px 2px black',
-              borderRadius: 'var(--radius)',
-              backgroundColor: ' white',
-              color: 'var(--blue)',
+              color: 'var(--white)',
               width: '70%',
               justifyContent: 'flex-end',
               height: '100%',
@@ -86,7 +83,7 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
               padding: '5px',
             }}
           >
-            {Number(newRent).toFixed(2).toLocaleLowerCase('fr-FR')}€
+            {newRent ? Number(newRent).toFixed(2).toLocaleLowerCase('fr-FR') : '- '}€
           </h4>
         </StyledNewRent>
 
@@ -267,9 +264,9 @@ const StyledContainerRow = styled.div`
 const StyledNewRent = styled.div`
   display: flex;
   height: 65px;
-  width: 220px;
-  padding: 5px;
-  margin-top: 5px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 15px;
   justify-content: space-between;
   align-items: center;
 `;
