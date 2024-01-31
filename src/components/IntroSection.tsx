@@ -33,10 +33,10 @@ const FlexDiv = styled.div`
     width: 100%;
   }
 `;
-
+export const navButtonsID = 'navButtonsID';
 const IntroSection: React.FC<any> = ({ children, showRegionDialog }) => {
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <div id={navButtonsID} style={{ display: 'flex', justifyContent: 'center' }}>
       <div
         style={{
           width: '80%',

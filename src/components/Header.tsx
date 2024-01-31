@@ -5,8 +5,8 @@ import { StaticImage } from 'gatsby-plugin-image';
 import { NewsletterForm } from './NewsletterForm';
 import { HideWhenVertical } from './layout';
 import ToggleButton from './ToggleButton';
-import { navButtonsID } from './HeroSection';
 import { Regions } from '../formula/types-and-constants';
+import { navButtonsID } from './IntroSection';
 
 export const HEADER_HEIGHT = '80px';
 
