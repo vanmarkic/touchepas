@@ -91,7 +91,7 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
               padding: '5px',
             }}
           >
-            {newRent ? Number(newRent).toFixed(2).toLocaleLowerCase('fr-FR') : '- '}€
+            {newRent ? Number(newRent).toFixed(2).replace('.', ',') : '- '}€
           </h4>
         </StyledNewRent>
 
@@ -202,7 +202,7 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
             <StyledLabel htmlFor="initialRent">
               Loyer du bail hors charges:
               <StyledInput
-                type="tel"
+                type="number"
                 id="initialRent"
                 onChange={(e) => setInitialRent(Number(e.target.value))}
                 required
