@@ -2,7 +2,7 @@ import {
   basicFormula,
   calculateRentIndexation, calculateRentIndexationForBxl,
 } from './rent-increase-formula';
-import { deriveData, deriveDataWithPEB, findHealthIndex, getAnniversaryMonth, getIndexBaseYear, getInitialIndex, getIsAfterDecree, getYearOfIndexationWithPEB, shouldUsePreviousYear } from './utils';
+import { deriveData, deriveDataWithPEB, getAnniversaryMonth, getIndexBaseYear, getInitialIndex, getIsAfterDecree, getYearOfIndexationWithPEB, shouldUsePreviousYear } from './utils';
 
 // Describe the test suite
 describe('Formula', () => {

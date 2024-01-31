@@ -21,10 +21,8 @@ const scrollToSection = (sectionId: string) => {
   }
 };
 
-export const navButtonsID = 'navButtonsID';
-
 export const NavButtons: React.FC<any> = ({ handleShowCalculator }) => (
-  <StyledSection id={navButtonsID}>
+  <StyledSection>
     <ButtonsGroup>
       <HideWhenHorizontal>
         <StyledButtonBlue onClick={handleShowCalculator}>Calculateur d'indexation</StyledButtonBlue>

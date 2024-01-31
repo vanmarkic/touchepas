@@ -214,6 +214,11 @@ export const GlobalStyle = createGlobalStyle`
       width: 220px;
       color: var(--black);
     }
+    input::placeholder {
+      font-weight: bold;
+      opacity: 0.5;
+      color: grey;
+   }
     button {
       font-family: "Lexend" !important;
       height: 1rem;

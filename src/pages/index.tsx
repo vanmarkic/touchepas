@@ -8,19 +8,9 @@ import { Footer } from '../components/Footer';
 
 const IndexPage: React.FC<{}> = () => {
   const [region, setRegion] = React.useState<Regions>('wallonia');
-  const [showCalculator, setShowCalculator] = React.useState<boolean>(false);
-
-  const handleShowCalculator = () => {
-    setShowCalculator((prevState) => !prevState);
-  };
 
   return (
-    <Layout
-      handleRegionSwitch={setRegion}
-      showCalculator={showCalculator}
-      handleShowCalculator={handleShowCalculator}
-      region={region}
-    >
+    <Layout handleRegionSwitch={setRegion} region={region}>
       <GeneralInformation region={region} />
       <Actualités />
       <Footer />
