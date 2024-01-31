@@ -97,11 +97,12 @@ const SidePanel = styled.nav`
   ${hideWhenVertical};
 `;
 
-const StyledMenuButton = styled.div`
+const StyledCalculatorButton = styled.div`
   position: fixed;
   bottom: 1rem;
   right: 1rem;
-  z-index: 3;
+  z-index: 20;
+  cursor: pointer;
   background-color: white;
   border: none;
   padding: 5px;
@@ -117,7 +118,7 @@ const StyledMenuButton = styled.div`
 
 const CalculatorMobileWrapper = styled.div<{ showMobileMenu: boolean }>`
   position: absolute;
-  z-index: 2;
+  z-index: 10;
   background-color: rgba(255, 255, 255, 0.9);
   height: calc(100svh - ${HEADER_HEIGHT});
   display: ${(props) => (props.showMobileMenu ? 'flex' : 'none')};
@@ -152,14 +153,14 @@ margin-top: 2vh;
     `)}
 `;
 
-const Layout: React.FC<any> = ({
-  children,
-  handleRegionSwitch,
-  showCalculator,
-  handleShowCalculator,
-  region,
-}) => {
+const Layout: React.FC<any> = ({ children, handleRegionSwitch, region }) => {
   const [showRegionDialog, setShowRegionDialog] = React.useState(true);
+  const [showCalculator, setShowCalculator] = React.useState<boolean>(false);
+
+  const handleShowCalculator = () => {
+    console.log('show calculator', showCalculator);
+    setShowCalculator((prevState) => !prevState);
+  };
 
   React.useEffect(() => {
     const documentHeight = () => {
@@ -236,13 +237,13 @@ const MobileCalculator: React.FC<any> = ({
   return (
     <>
       {showRegionDialog ? null : (
-        <StyledMenuButton onClick={handleShowCalculator}>
+        <StyledCalculatorButton onClick={handleShowCalculator}>
           {showCalculator ? (
             <img style={{ width: '25px' }} src={xmark} alt="Fermer" />
           ) : (
             <img style={{ width: '25px' }} src={calculator} alt="Calculateur" />
           )}
-        </StyledMenuButton>
+        </StyledCalculatorButton>
       )}
       <CalculatorMobileWrapper showMobileMenu={showCalculator && !showRegionDialog}>
         <RentCalculator region={region} />
