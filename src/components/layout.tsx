@@ -6,9 +6,11 @@ import { HEADER_HEIGHT, Header } from './Header';
 import calculator from '../images/calculator.svg';
 import xmark from '../images/xmark.svg';
 import { Regions } from '../formula/types-and-constants';
-import { IntroSection } from '../components/IntroSection';
+import IntroSection from '../components/IntroSection';
 import { Footer } from './Footer';
 import { RegionSwitch } from './RegionSwitch';
+import { whenVerticalAspectRatio } from '../styles/global';
+import { NavButtons } from './HeroSection';
 
 export const StyledButtonBlue = styled.button`
   align-items: center;
@@ -57,6 +59,10 @@ const StyledLayout = styled.div`
   flex-direction: row;
   overflow: hidden;
   height: calc(100vh - 80px);
+
+  ${whenVerticalAspectRatio(`
+      height: 100vh;
+    `)}
 `;
 
 export const hideWhenVertical = css`
@@ -109,7 +115,7 @@ const StyledMenuButton = styled.div`
   ${hideWhenHorizontal};
 `;
 
-const MobileMenuOverlay = styled.div<{ showMobileMenu: boolean }>`
+const CalculatorMobileWrapper = styled.div<{ showMobileMenu: boolean }>`
   position: absolute;
   z-index: 2;
   background-color: rgba(255, 255, 255, 0.9);
@@ -131,8 +137,9 @@ const StyledMain = styled.main<{ showRegionDialog: boolean }>`
   overflow: scroll;
   /* scroll-snap-type: y mandatory; */
   width: 100%;
+
   @media (min-aspect-ratio: 1/1) {
-    width: 70vw;
+    width: 55vw;
   }
   h4 {
     font-size: 1.2rem;
@@ -140,6 +147,9 @@ const StyledMain = styled.main<{ showRegionDialog: boolean }>`
   p {
     font-size: 1rem;
   }
+  ${whenVerticalAspectRatio(`
+margin-top: 2vh;
+    `)}
 `;
 
 const Layout: React.FC<any> = ({
@@ -147,9 +157,9 @@ const Layout: React.FC<any> = ({
   handleRegionSwitch,
   showCalculator,
   handleShowCalculator,
+  region,
 }) => {
   const [showRegionDialog, setShowRegionDialog] = React.useState(true);
-  const [region, setRegion] = React.useState<Regions>('wallonia');
 
   React.useEffect(() => {
     const documentHeight = () => {
@@ -163,41 +173,42 @@ const Layout: React.FC<any> = ({
   return (
     <>
       <GlobalStyle />
-      <Header showRegionDialog={showRegionDialog} />
+      <HideWhenVertical>
+        <Header showRegionDialog={showRegionDialog} handleRegionSwitch={handleRegionSwitch} />
+      </HideWhenVertical>
       <>
-        {showRegionDialog ? null : (
-          <StyledMenuButton onClick={handleShowCalculator}>
-            {showCalculator ? (
-              <img style={{ width: '25px' }} src={xmark} alt="Fermer" />
-            ) : (
-              <img style={{ width: '25px' }} src={calculator} alt="Calculateur" />
-            )}
-          </StyledMenuButton>
-        )}
-        <MobileMenuOverlay showMobileMenu={showCalculator && !showRegionDialog}>
-          <RentCalculator region={region} />
-        </MobileMenuOverlay>
+        <MobileCalculator
+          showRegionDialog={showRegionDialog}
+          handleShowCalculator={handleShowCalculator}
+          showCalculator={showCalculator}
+          region={region}
+        />
+
         <StyledLayout>
           <StyledMain showRegionDialog={showRegionDialog}>
-            <IntroSection />
+            <IntroSection showRegionDialog={showRegionDialog} />
+
             {showRegionDialog ? (
-              <RegionSwitch
-                handleRegionSwitch={handleRegionSwitch}
-                setRegion={setRegion}
-                setShowRegionDialog={setShowRegionDialog}
-              />
+              <StyledRegionDialog>
+                <RegionSwitch
+                  handleRegionSwitch={handleRegionSwitch}
+                  setShowRegionDialog={setShowRegionDialog}
+                />
+              </StyledRegionDialog>
             ) : (
               <>
+                <StyledRegionDialog>
+                  <NavButtons handleShowCalculator={handleShowCalculator} />
+                </StyledRegionDialog>
                 {children}
-                <Footer />
               </>
             )}
           </StyledMain>
-          {!showRegionDialog ? (
+          {showRegionDialog ? null : (
             <SidePanel>
               <RentCalculator region={region} />
             </SidePanel>
-          ) : null}
+          )}
         </StyledLayout>
       </>
     </>
@@ -205,3 +216,37 @@ const Layout: React.FC<any> = ({
 };
 
 export default Layout;
+
+const StyledRegionDialog = styled.div`
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vh;
+
+  z-index: 5;
+  bottom: 2;
+`;
+const MobileCalculator: React.FC<any> = ({
+  showRegionDialog,
+  handleShowCalculator,
+  showCalculator,
+  region,
+}) => {
+  return (
+    <>
+      {showRegionDialog ? null : (
+        <StyledMenuButton onClick={handleShowCalculator}>
+          {showCalculator ? (
+            <img style={{ width: '25px' }} src={xmark} alt="Fermer" />
+          ) : (
+            <img style={{ width: '25px' }} src={calculator} alt="Calculateur" />
+          )}
+        </StyledMenuButton>
+      )}
+      <CalculatorMobileWrapper showMobileMenu={showCalculator && !showRegionDialog}>
+        <RentCalculator region={region} />
+      </CalculatorMobileWrapper>
+    </>
+  );
+};

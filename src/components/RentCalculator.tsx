@@ -63,9 +63,7 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
   return (
     <StyledContainer>
       <h4>Calculateur de loyer</h4>
-      <RedSpan>
-        {region === 'wallonia' ? 'Wallonie' : 'Bruxelles (formule en cours de finalisation)'}
-      </RedSpan>
+      <RedSpan>{region === 'wallonia' ? 'Wallonie' : 'Bruxelles'}</RedSpan>
 
       <form style={{ position: 'relative' }}>
         <img
@@ -86,7 +84,6 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
               display: 'flex',
               alignItems: 'center',
               padding: '5px',
-              fontSize: '22px',
             }}
           >
             {Number(newRent).toFixed(2).toLocaleLowerCase('fr-FR')}€

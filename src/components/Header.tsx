@@ -2,10 +2,11 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { whenVerticalAspectRatio } from '../styles/global';
 import { StaticImage } from 'gatsby-plugin-image';
-import { heroSectionID } from './HeroSection';
 import { NewsletterForm } from './NewsletterForm';
 import { HideWhenVertical } from './layout';
 import ToggleButton from './ToggleButton';
+import { navButtonsID } from './HeroSection';
+import { Regions } from '../formula/types-and-constants';
 
 export const HEADER_HEIGHT = '80px';
 
@@ -18,11 +19,10 @@ const FlexDiv = styled.div<{ showRegionDialog: boolean }>`
   position: relative;
 `;
 
-
 const ToggleButtonContainer = styled.div<{ showRegionDialog: boolean }>`
   visibility: ${({ showRegionDialog }) => (showRegionDialog ? 'hidden' : 'visbile')};
   @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
-   display: none;
+    display: none;
   }
 `;
 
@@ -54,20 +54,22 @@ const RedSpan = styled.span`
 `;
 
 const scrollToHeroSection = () => {
-  const section = document.getElementById(heroSectionID);
+  const section = document.getElementById(navButtonsID);
   if (section) {
     section.scrollIntoView({ behavior: 'smooth' });
   }
 };
 
-export const Header = ({ showRegionDialog }: { showRegionDialog: boolean }) => {
-  const handleToggle = () => {};
+export const Header = ({
+  showRegionDialog,
+  handleRegionSwitch,
+}: {
+  showRegionDialog: boolean;
+  handleRegionSwitch: (r: Regions) => void;
+}) => {
   return (
     <StyledHeader>
       <FlexDiv showRegionDialog={showRegionDialog} onClick={scrollToHeroSection}>
-        <h4>
-          TOUCHE <RedSpan> PAS </RedSpan> À MON LOYER
-        </h4>
         <StaticImage
           alt="logo"
           placeholder="blurred"
@@ -76,14 +78,16 @@ export const Header = ({ showRegionDialog }: { showRegionDialog: boolean }) => {
           src={'../logo/logo.png'}
           loading="eager"
         />
+        <h4>
+          TOUCHE <RedSpan> PAS </RedSpan> À MON LOYER
+        </h4>
       </FlexDiv>
 
-      <ToggleButtonContainer showRegionDialog={showRegionDialog}>
-        <ToggleButton onClick={handleToggle} />
-      </ToggleButtonContainer >
-
       <HideWhenVertical>
-        <NewsletterForm />
+        <div style={{ display: 'flex', gap: '2rem' }}>
+          {showRegionDialog ? null : <ToggleButton onClick={handleRegionSwitch} />}
+          <NewsletterForm />
+        </div>
       </HideWhenVertical>
     </StyledHeader>
   );
