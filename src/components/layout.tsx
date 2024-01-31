@@ -195,6 +195,7 @@ const Layout: React.FC<any> = ({ children, handleRegionSwitch, region }) => {
                   handleRegionSwitch={handleRegionSwitch}
                   setShowRegionDialog={setShowRegionDialog}
                 />
+                <Footer />
               </StyledRegionDialog>
             ) : (
               <>
