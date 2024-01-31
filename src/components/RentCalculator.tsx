@@ -229,7 +229,6 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
                 required
                 lang="fr-FR"
                 id="agreementStartDate"
-                defaultValue={contractSignatureDate?.toISOString().split('T')[0]}
                 onChange={(e) => setAgreementStartDate(new Date(e.target.value))}
               />
             </StyledLabel>
@@ -358,7 +357,7 @@ export const StyledButton = styled.button`
   border: none;
   border-radius: var(--radius);
   box-sizing: border-box;
-  color: var(--blue);
+  color: ${(props) => (props.disabled ? 'darkgrey' : 'var(--blue)')};
   cursor: pointer;
   display: flex;
   font-size: 0.6rem;
@@ -376,7 +375,7 @@ export const StyledButton = styled.button`
   font-weight: 500;
   padding: 0px 20px 0px 20px;
   letter-spacing: 1.5px;
-  box-shadow: var(--shadow);
+  box-shadow: ${(props) => (props.disabled ? 'none' : 'var(--shadow)')};
 
   &:active {
     background-color: var(--dark-red);

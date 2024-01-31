@@ -2,30 +2,6 @@
   "facts": [
     {
       "Year": "1982",
-      "Month": "May",
-      "Base year": "1988",
-      "Health index": null
-    },
-    {
-      "Year": "1982",
-      "Month": "May",
-      "Base year": "1996",
-      "Health index": null
-    },
-    {
-      "Year": "1982",
-      "Month": "May",
-      "Base year": "2004",
-      "Health index": null
-    },
-    {
-      "Year": "1982",
-      "Month": "May",
-      "Base year": "2013",
-      "Health index": null
-    },
-    {
-      "Year": "1982",
       "Month": "June",
       "Base year": "1988",
       "Health index": null
@@ -11999,6 +11975,30 @@
       "Month": "December",
       "Base year": "2013",
       "Health index": 129.53000000000046
+    },
+    {
+      "Year": "2024",
+      "Month": "January",
+      "Base year": "1988",
+      "Health index": 215.67000000000075
+    },
+    {
+      "Year": "2024",
+      "Month": "January",
+      "Base year": "1996",
+      "Health index": 178.88000000000062
+    },
+    {
+      "Year": "2024",
+      "Month": "January",
+      "Base year": "2004",
+      "Health index": 157.23000000000056
+    },
+    {
+      "Year": "2024",
+      "Month": "January",
+      "Base year": "2013",
+      "Health index": 130.19000000000045
     },
     {
       "Year": null,
