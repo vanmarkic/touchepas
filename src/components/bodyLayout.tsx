@@ -33,12 +33,12 @@ export const SectionTitle = styled.h4`
 export const TwoColumns = styled.div`
   width: 100%;
   font-size: 18px;
-  padding: 10px;
+  padding: 10px 0px;
 `;
 
 export const Paragraph = styled.div`
   margin-bottom: 2rem;
-  text-align: center;
+  text-align: left !important;
 `;
 
 export const Image = styled.div`

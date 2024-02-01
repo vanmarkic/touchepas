@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import ToggleButton from './ToggleButton';
 import { StyleButton } from './NewsletterForm';
 import { StyledH2 } from './bodyLayout';
+import { Description } from './IntroSection';
 
 export const RegionSwitch: React.FC<{
   handleRegionSwitch: (region: Regions) => void;
@@ -15,6 +16,7 @@ export const RegionSwitch: React.FC<{
 
   return (
     <>
+   
       <p style={{ fontSize: 'small' }}>Où se situe le bien que je loue ?</p>
 
       <ToggleButton onClick={handleToggle} />

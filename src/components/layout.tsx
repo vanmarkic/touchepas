@@ -133,8 +133,8 @@ const StyledMain = styled.main<{ showRegionDialog: boolean }>`
   flex-direction: column;
   row-gap: 1rem;
   max-height: ${({ showRegionDialog }) => (showRegionDialog ? '100vh' : 'auto')};
-  padding-left: 2svw;
-  padding-right: 2svw;
+  padding-left: 5svw;
+  padding-right: 5svw;
   overflow: scroll;
   /* scroll-snap-type: y mandatory; */
   width: 100%;
@@ -220,7 +220,7 @@ const Layout: React.FC<any> = ({ children, handleRegionSwitch, region }) => {
 export default Layout;
 
 const StyledRegionDialog = styled.div`
-  margin-top: 2rem;
+ // margin-top: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;

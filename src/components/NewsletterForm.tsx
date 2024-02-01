@@ -10,7 +10,7 @@ export const StyleButton = styled.button`
   width: fit-content;
   font-size: 14px;
   padding: 0px 10px;
-  height: 35px;
+  height: 32px;
   background-color: var(--blue);
   box-shadow: 0 0 0 1px var(--blue);
   &:hover {
@@ -23,7 +23,6 @@ export const StyleButton = styled.button`
 `;
 const StyledH6 = styled.h6`
   padding-right: 5px;
-  width: 250px;
   top: -18px;
   position: absolute;
   letter-spacing: 0.6px;
@@ -80,7 +79,7 @@ export const StyledInput = styled.input`
   outline: none;
   width: 250px;
   padding: 6px;
-  font-size: medium;
+  font-size: 14px;
   font-weight: normal;
   max-height: 3rem;
 
@@ -108,7 +107,7 @@ export const NewsletterForm = () => {
   };
   return (
     <FlexEnd>
-      <StyledH6>Abonnez-vous à la Newsletter</StyledH6>
+      <StyledH6>Tenez-moi au courant de l’actualité !</StyledH6>
       <FlexDiv>
         <StyledInput
           id="outlined-email-input"

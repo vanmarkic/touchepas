@@ -28,6 +28,8 @@ export const GlobalStyle = createGlobalStyle`
   display: flex;
   box-shadow:none;
   border:none;
+  width: 100%;
+  justify-content: space-between;
  
 }
 
@@ -35,29 +37,32 @@ export const GlobalStyle = createGlobalStyle`
   width: 100%;
   background-color: transparent;
   display: flex;
-  align-items:center;
-  justify-content: center;
   color: var(--blue);
-  background-color: white;
-  box-shadow:none;
-  border:none;
+  background-color: none;
   font-family: "Lexend" !important;
-  font-size: 0.8rem;
+  font-size: 18px !important;
   color: var(--blue);
-  text-align: center;
+  justify-content: space-between;
+  
+
   
 }
 
 .AccordionTrigger:hover {
- text-decoration:underline
+color:var(--red);
+}
+.AccordionTrigger span {
+  font-size:22px;
+  
 
+  
 }
 
 .AccordionContent {
   overflow: hidden;
+  text-align: left !important;
   color: var(--blue);
  
-
 }
 .AccordionContent[data-state='open'] {
   animation: slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1);
@@ -67,7 +72,7 @@ export const GlobalStyle = createGlobalStyle`
 }
 
 .AccordionContentText {
-  padding: 15px 0px;
+  padding: 10px 0px;
 }
 
 
@@ -178,7 +183,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   h5 {
     font-family: "Lexend" !important;
-    font-size: 1rem;
+    font-size: 20px;
 
   }
   img {object-fit:contain !important;}
@@ -227,7 +232,11 @@ export const GlobalStyle = createGlobalStyle`
       height: fit-content;
       cursor: pointer;
     }
-   
+   a{
+    color: var(--blue);
+    font-weight:500;
+    text-decoration:none;
+   }
 `;
 
 export default GlobalStyle;
