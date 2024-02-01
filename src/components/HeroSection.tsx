@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { StyledSection } from '../components/bodyLayout';
 import { StyledButtonBlue, HideWhenHorizontal } from '../components/layout';
 import { NewsletterForm } from './NewsletterForm';
+import {Description} from "./IntroSection";
+import { WidthIcon } from '@radix-ui/react-icons';
 
 const ButtonsGroup = styled.div`
   width: 100%;
@@ -10,7 +12,7 @@ const ButtonsGroup = styled.div`
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin-top: 0px;
+  margin: 3rem 0rem;
   flex-wrap: wrap;
 `;
 
@@ -22,6 +24,11 @@ const scrollToSection = (sectionId: string) => {
 };
 
 export const NavButtons: React.FC<any> = ({ handleShowCalculator }) => (
+  <div > 
+  <Description>
+  Chaque année, votre propriétaire peut exiger une augmentation de votre loyer. C’est son droit mais il ne peut pas le faire à n’importe quelles conditions et doit respecter des règles et vos droits en tant que locataire.  Le calculateur « Touche pas à mon loyer » vous permet vérifier facilement si le nouveau loyer demandé par votre propriétaire est conforme à la loi et vous informe sur vos droits en tant que locataire pour éviter de payer des loyers trop chers. 
+
+  </Description>
   <StyledSection>
     <ButtonsGroup>
       <HideWhenHorizontal>
@@ -37,4 +44,5 @@ export const NavButtons: React.FC<any> = ({ handleShowCalculator }) => (
       <NewsletterForm />
     </HideWhenHorizontal>
   </StyledSection>
+  </div>
 );

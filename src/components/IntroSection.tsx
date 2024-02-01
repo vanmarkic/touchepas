@@ -1,10 +1,10 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { StaticImage } from 'gatsby-plugin-image';
-import { StyledH2 } from './bodyLayout';
+import { StaticImage } from 'gatsby-plugin-image';``
 
 export const Description = styled.p`
   margin-top: 1rem;
+  font-size: 18px !important;
 `;
 
 const BigTitle = styled.div`
@@ -36,14 +36,12 @@ const FlexDiv = styled.div`
 export const navButtonsID = 'navButtonsID';
 const IntroSection: React.FC<any> = ({ children, showRegionDialog }) => {
   return (
-    <div id={navButtonsID} style={{ display: 'flex', justifyContent: 'center' }}>
+    <div id={navButtonsID} style={{ display: 'flex', justifyContent: 'center', marginTop:"50px" }}>
       <div
         style={{
-          width: '80%',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          // minHeight: '80vh',
           alignItems: 'center',
         }}
       >
@@ -61,9 +59,9 @@ const IntroSection: React.FC<any> = ({ children, showRegionDialog }) => {
           />
         </FlexDiv>
         <Description>
-          Touche pas à mon loyer est une plateforme de calcul d'indexation de loyer engagée dans la
-          défense des droits des locataires.
+        Vérifiez  l’indexation de votre loyer et défendez vos droits en tant que locataire ! 
         </Description>
+       
       </div>
     </div>
   );
