@@ -1,5 +1,5 @@
 const axios = require('axios');
-const fs = require('fs');
+import { Actions } from 'gatsby';
 import { writeFile } from 'node:fs';
 
 exports.onPreBootstrap = async () => {
@@ -24,10 +24,6 @@ exports.onPreBootstrap = async () => {
     if (err) throw err;
     console.log('The file has been saved!');
     console.log('The file has been saved!');
-    console.log('The file has been saved!');
-    console.log('The file has been saved!');
+
   });
-
-
-  // fs.writeFileSync('./src/formula/indices.json', JSON.stringify(formattedIndices, null, 2), 'utf8');
 };

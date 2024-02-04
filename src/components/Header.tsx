@@ -70,25 +70,31 @@ export const Header = ({
   return (
     <StyledHeader>
       <FlexDiv showRegionDialog={showRegionDialog} onClick={scrollToHeroSection}>
-        <StaticImage
-          alt="logo"
-          placeholder="blurred"
-          layout="constrained"
-          width={50}
-          src={'../logo/logo.png'}
-          loading="eager"
-        />
-        <h4>
-          TOUCHE <RedSpan> PAS </RedSpan> À MON LOYER
-        </h4>
+        <SiteHeading />
       </FlexDiv>
 
       <HideWhenVertical>
         <div style={{ display: 'flex', gap: '2rem' }}>
           {showRegionDialog ? null : children}
-          <NewsletterForm />
+          <NewsletterForm>Tenez-moi au courant de l'actualité !</NewsletterForm>
         </div>
       </HideWhenVertical>
     </StyledHeader>
   );
 };
+
+export const SiteHeading = () => (
+  <>
+    <StaticImage
+      alt="logo"
+      placeholder="blurred"
+      layout="constrained"
+      width={50}
+      src={'../logo/logo.png'}
+      loading="eager"
+    />
+    <h4>
+      TOUCHE <RedSpan> PAS </RedSpan> À MON LOYER
+    </h4>
+  </>
+);

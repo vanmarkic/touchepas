@@ -4,16 +4,55 @@ import { Regions } from '../formula/types-and-constants';
 import { GeneralInformation } from '../components/GeneralInformation';
 import { Actualités } from '../components/Actualités';
 import { Footer } from '../components/Footer';
+import { Redirect } from '@reach/router';
+import GlobalStyle from '../styles/global';
+import { NewsletterForm } from '../components/NewsletterForm';
+import { SiteHeading } from '../components/Header';
 
 const IndexPage: React.FC<{}> = () => {
   const [region, setRegion] = React.useState<Regions>('brussels');
-
+  const showTeaser = true;
   return (
-    <Layout handleRegionSwitch={setRegion} region={region}>
-      <GeneralInformation region={region} />
-      <Actualités />
-      <Footer />
-    </Layout>
+    <>
+      <GlobalStyle />
+      {showTeaser ? (
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-around',
+            alignItems: 'center !important',
+            minHeight: '90vh',
+            margin: '1rem',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: '50px',
+            }}
+          >
+            <SiteHeading />
+          </div>
+          <p>
+            Vous êtes locataires à Bruxelles ou en Wallonie ? Votre propriétaire veut indexer votre
+            loyer ? Vérifiez le loyer maximum autorisé avec notre calculateur et retrouvez toutes
+            les informations pour défendre vos droits sur Touche pas à mon loyer.be Bientôt en
+            ligne...
+          </p>
+          <NewsletterForm>Tenez moi au courant du lancement</NewsletterForm>
+          <Footer />
+        </div>
+      ) : (
+        <Layout handleRegionSwitch={setRegion} region={region}>
+          <GeneralInformation region={region} />
+          <Actualités />
+          <Footer />
+        </Layout>
+      )}
+    </>
   );
 };
 export default IndexPage;

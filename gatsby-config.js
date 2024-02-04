@@ -11,7 +11,8 @@ module.exports = {
     title: 'Touche pas à mon loyer',
     siteUrl: 'https://www.touchepasamonloyer.be',
   },
-  pathPrefix: '/touchepas',
+  trailingSlash: 'always',
+  // pathPrefix: '/touchepas',
   plugins: [
     'gatsby-plugin-styled-components',
     // "gatsby-plugin-google-gtag",
@@ -28,7 +29,7 @@ module.exports = {
       options: {
         name: 'Touche pas à mon loyer',
         short_name: 'Touche Pas',
-        start_url: '/',
+        // start_url: '/',
         background_color: '#ffffff',
         theme_color: '#150d63',
         display: 'minimal-ui',

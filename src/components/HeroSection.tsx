@@ -47,7 +47,7 @@ export const NavButtons: React.FC<any> = ({ handleShowCalculator, children }) =>
       </ButtonsGroup>
 
       <HideWhenHorizontal>
-        <NewsletterForm />
+        <NewsletterForm>Tenez-moi au courant de l'actualité !</NewsletterForm>
         {children}
       </HideWhenHorizontal>
     </StyledSection>

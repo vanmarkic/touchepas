@@ -66,6 +66,7 @@ const FlexDiv = styled.div`
   align-items: center;
   cursor: pointer;
   gap: 0.5rem;
+  justify-content: center;
   position: relative;
   ${whenVerticalAspectRatio(`
       flex-direction:column;
@@ -95,7 +96,7 @@ export const StyledInput = styled.input`
   }
 `;
 
-export const NewsletterForm = () => {
+export const NewsletterForm = ({ children }: { children: any }) => {
   const [email, setEmail] = React.useState('');
   const [result, setResult] = React.useState<{ result: string; msg: string } | null>(null);
 
@@ -107,8 +108,8 @@ export const NewsletterForm = () => {
   };
   return (
     <FlexEnd>
-      <StyledH6>Tenez-moi au courant de l’actualité !</StyledH6>
       <FlexDiv>
+        <StyledH6>{children}</StyledH6>
         <StyledInput
           id="outlined-email-input"
           type="email"
