@@ -62,10 +62,10 @@ const scrollToHeroSection = () => {
 
 export const Header = ({
   showRegionDialog,
-  handleRegionSwitch,
+  children,
 }: {
   showRegionDialog: boolean;
-  handleRegionSwitch: (r: Regions) => void;
+  children: React.ReactNode;
 }) => {
   return (
     <StyledHeader>
@@ -85,7 +85,7 @@ export const Header = ({
 
       <HideWhenVertical>
         <div style={{ display: 'flex', gap: '2rem' }}>
-          {showRegionDialog ? null : <ToggleButton onClick={handleRegionSwitch} />}
+          {showRegionDialog ? null : children}
           <NewsletterForm />
         </div>
       </HideWhenVertical>

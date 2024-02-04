@@ -5,7 +5,8 @@ import * as Switch from '@radix-ui/react-switch';
 import './ToggleButton.css';
 
 interface ToggleButtonProps {
-  onClick: (region: Regions) => void;
+  setActiveRegion: (region: Regions) => void;
+  activeRegion: Extract<Regions, 'brussels' | 'wallonia'>;
 }
 
 const Wrapper = styled.div`
@@ -38,12 +39,9 @@ export const ButtonText = styled.button<{ color: string }>`
   margin: 0 0.8rem;
 `;
 
-const ToggleButton: React.FC<ToggleButtonProps> = ({ onClick }) => {
-  const [activeRegion, setActiveRegion] = useState<Regions>('brussels');
-
+const ToggleButton: React.FC<ToggleButtonProps> = ({ setActiveRegion, activeRegion }) => {
   const handleToggle = (region: Regions) => {
     setActiveRegion(region);
-    onClick(region);
   };
 
   return (

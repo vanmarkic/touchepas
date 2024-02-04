@@ -5,12 +5,12 @@ import RentCalculator from './RentCalculator';
 import { HEADER_HEIGHT, Header } from './Header';
 import calculator from '../images/calculator.svg';
 import xmark from '../images/xmark.svg';
-import { Regions } from '../formula/types-and-constants';
 import IntroSection from '../components/IntroSection';
 import { Footer } from './Footer';
-import { RegionSwitch } from './RegionSwitch';
+import { RegionDialog } from './RegionDialog';
 import { whenVerticalAspectRatio } from '../styles/global';
 import { NavButtons } from './HeroSection';
+import ToggleButton from './ToggleButton';
 
 export const StyledButtonBlue = styled.button`
   align-items: center;
@@ -158,7 +158,6 @@ const Layout: React.FC<any> = ({ children, handleRegionSwitch, region }) => {
   const [showCalculator, setShowCalculator] = React.useState<boolean>(false);
 
   const handleShowCalculator = () => {
-    console.log('show calculator', showCalculator);
     setShowCalculator((prevState) => !prevState);
   };
 
@@ -171,11 +170,17 @@ const Layout: React.FC<any> = ({ children, handleRegionSwitch, region }) => {
     documentHeight();
   }, []);
 
+  const RegionToggle = () => (
+    <ToggleButton setActiveRegion={handleRegionSwitch} activeRegion={region} />
+  );
+
   return (
     <>
       <GlobalStyle />
       <HideWhenVertical>
-        <Header showRegionDialog={showRegionDialog} handleRegionSwitch={handleRegionSwitch} />
+        <Header showRegionDialog={showRegionDialog}>
+          <RegionToggle />
+        </Header>
       </HideWhenVertical>
       <>
         <MobileCalculator
@@ -188,20 +193,20 @@ const Layout: React.FC<any> = ({ children, handleRegionSwitch, region }) => {
         <StyledLayout>
           <StyledMain showRegionDialog={showRegionDialog}>
             <IntroSection showRegionDialog={showRegionDialog} />
-
             {showRegionDialog ? (
-              <StyledRegionDialog>
-                <RegionSwitch
-                  handleRegionSwitch={handleRegionSwitch}
-                  setShowRegionDialog={setShowRegionDialog}
-                />
+              <TopSection>
+                <RegionDialog setShowRegionDialog={setShowRegionDialog}>
+                  <RegionToggle />
+                </RegionDialog>
                 <Footer />
-              </StyledRegionDialog>
+              </TopSection>
             ) : (
               <>
-                <StyledRegionDialog>
-                  <NavButtons handleShowCalculator={handleShowCalculator} />
-                </StyledRegionDialog>
+                <TopSection>
+                  <NavButtons handleShowCalculator={handleShowCalculator}>
+                    <RegionToggle />
+                  </NavButtons>
+                </TopSection>
                 {children}
               </>
             )}
@@ -219,8 +224,8 @@ const Layout: React.FC<any> = ({ children, handleRegionSwitch, region }) => {
 
 export default Layout;
 
-const StyledRegionDialog = styled.div`
- // margin-top: 2rem;
+const TopSection = styled.div`
+  // margin-top: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
