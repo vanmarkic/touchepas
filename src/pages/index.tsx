@@ -2,12 +2,11 @@ import * as React from 'react';
 import Layout from '../components/layout';
 import { Regions } from '../formula/types-and-constants';
 import { GeneralInformation } from '../components/GeneralInformation';
-import { NavButtons } from '../components/HeroSection';
 import { Actualités } from '../components/Actualités';
 import { Footer } from '../components/Footer';
 
 const IndexPage: React.FC<{}> = () => {
-  const [region, setRegion] = React.useState<Regions>('wallonia');
+  const [region, setRegion] = React.useState<Regions>('brussels');
 
   return (
     <Layout handleRegionSwitch={setRegion} region={region}>
