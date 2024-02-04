@@ -11,10 +11,17 @@ import { SiteHeading } from '../components/Header';
 
 const IndexPage: React.FC<{}> = () => {
   const [region, setRegion] = React.useState<Regions>('brussels');
-  const showTeaser = true;
+  const [showTeaser, setShowTeaser] = React.useState<boolean>(false);
+
   return (
     <>
       <GlobalStyle />
+      <button
+        style={{ fontSize: '8px', border: '1px solid black' }}
+        onClick={() => setShowTeaser((prevState) => !prevState)}
+      >
+        show hide teaser
+      </button>
       {showTeaser ? (
         <div
           style={{
