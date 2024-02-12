@@ -17,12 +17,14 @@ const IndexPage: React.FC<{}> = () => {
   return (
     <>
       <GlobalStyle />
-      <button
-        style={{ fontSize: '8px', border: '1px solid black' }}
-        onClick={() => setShowTeaser((prevState) => !prevState)}
-      >
-        show hide teaser
-      </button>
+      {process.env.NODE_ENV === 'production' ? null : (
+        <button
+          style={{ fontSize: '8px', border: '1px solid black' }}
+          onClick={() => setShowTeaser((prevState) => !prevState)}
+        >
+          show hide teaser
+        </button>
+      )}
       {showTeaser ? (
         <div
           style={{
