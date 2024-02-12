@@ -16,6 +16,7 @@ on:
 
 env:
   MAILCHIMP_ENDPOINT: ${{ secrets.MAILCHIMP_ENDPOINT }}
+  GATSBY_TEASER_ENABLED: ${{ vars.TEASER_ENABLED }}
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
