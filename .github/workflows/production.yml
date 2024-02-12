@@ -90,3 +90,4 @@ jobs:
           local_dir: './public'
           delete: true
           mirror_verbose: 10
+          net_max_retries: 0
