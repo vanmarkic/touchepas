@@ -88,4 +88,4 @@ jobs:
           user: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local_dir: './public'
-          remote_dir: '/www/touchepasamonloyer.be'
+          remote_dir: '/rwdh/www/touchepasamonloyer.be'
