@@ -89,3 +89,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local_dir: './public'
           delete: true
+          mirror_verbose: 10
