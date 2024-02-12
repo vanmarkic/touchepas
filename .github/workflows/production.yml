@@ -2,13 +2,13 @@
 #
 # To get started with Gatsby see: https://www.gatsbyjs.com/docs/quick-start/
 #
-name: Deploy Gatsby site to Pages
+name: Deploy Gatsby site to FTP
 
 on:
   # Runs on pushes targeting the default branch
   push:
     branches:
-      - 'staging'
+      - 'master'
   schedule:
     - cron: '30 03 28-31 * *'
   # Allows you to run this workflow manually from the Actions tab
