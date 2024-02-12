@@ -4,24 +4,27 @@ import { Regions } from '../formula/types-and-constants';
 import { GeneralInformation } from '../components/GeneralInformation';
 import { Actualités } from '../components/Actualités';
 import { Footer } from '../components/Footer';
-import { Redirect } from '@reach/router';
 import GlobalStyle from '../styles/global';
 import { NewsletterForm } from '../components/NewsletterForm';
 import { SiteHeading } from '../components/Header';
 
 const IndexPage: React.FC<{}> = () => {
+  process.env.TEASER_ENABLED;
   const [region, setRegion] = React.useState<Regions>('brussels');
-  const [showTeaser, setShowTeaser] = React.useState<boolean>(false);
+
+  const [showTeaser, setShowTeaser] = React.useState<boolean>(!!process.env.GATSBY_TEASER_ENABLED);
 
   return (
     <>
       <GlobalStyle />
-      <button
-        style={{ fontSize: '8px', border: '1px solid black' }}
-        onClick={() => setShowTeaser((prevState) => !prevState)}
-      >
-        show hide teaser
-      </button>
+      {process.env.NODE_ENV === 'production' ? null : (
+        <button
+          style={{ fontSize: '8px', border: '1px solid black' }}
+          onClick={() => setShowTeaser((prevState) => !prevState)}
+        >
+          show hide teaser
+        </button>
+      )}
       {showTeaser ? (
         <div
           style={{
@@ -31,6 +34,7 @@ const IndexPage: React.FC<{}> = () => {
             alignItems: 'center !important',
             minHeight: '90vh',
             margin: '1rem',
+            gap: '3rem',
           }}
         >
           <div
@@ -38,18 +42,23 @@ const IndexPage: React.FC<{}> = () => {
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              marginTop: '50px',
             }}
           >
             <SiteHeading />
           </div>
+          <h3>
+            Vérifiez l'indexation de votre loyer et défendez vos droits en tant que locataire !
+          </h3>
           <p>
-            Vous êtes locataires à Bruxelles ou en Wallonie ? Votre propriétaire veut indexer votre
-            loyer ? Vérifiez le loyer maximum autorisé avec notre calculateur et retrouvez toutes
-            les informations pour défendre vos droits sur Touche pas à mon loyer.be Bientôt en
-            ligne...
+            Vous êtes locataire à Bruxelles ou en Wallonie ? Votre propriétaire veut indexer votre
+            loyer ? <br /> <br />
+            Vérifiez le loyer maximum autorisé avec notre calculateur et retrouvez toutes les
+            informations pour défendre vos droits sur <a>touchepasàmonloyer.be</a>
+            <br />
+            <br />
+            Bientôt en ligne...
           </p>
-          <NewsletterForm>Tenez moi au courant du lancement</NewsletterForm>
+          <NewsletterForm>Tenez moi au courant</NewsletterForm>
           <Footer />
         </div>
       ) : (
