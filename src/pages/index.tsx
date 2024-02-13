@@ -7,6 +7,14 @@ import { Footer } from '../components/Footer';
 import GlobalStyle from '../styles/global';
 import { NewsletterForm } from '../components/NewsletterForm';
 import { SiteHeading } from '../components/Header';
+import styled from 'styled-components';
+
+const StyledH3 = styled.h3`
+text-transform:uppercase;
+color:var(--blue);
+font-size:0.9rem;
+`;
+
 
 const IndexPage: React.FC<{}> = () => {
   process.env.TEASER_ENABLED;
@@ -34,7 +42,7 @@ const IndexPage: React.FC<{}> = () => {
             alignItems: 'center !important',
             minHeight: '90vh',
             margin: '1rem',
-            gap: '3rem',
+            gap: '1rem',
           }}
         >
           <div
@@ -46,9 +54,9 @@ const IndexPage: React.FC<{}> = () => {
           >
             <SiteHeading />
           </div>
-          <h3>
+          <StyledH3>
             Vérifiez l'indexation de votre loyer et défendez vos droits en tant que locataire !
-          </h3>
+          </StyledH3>
           <p>
             Vous êtes locataire à Bruxelles ou en Wallonie ? Votre propriétaire veut indexer votre
             loyer ? <br /> <br />
@@ -58,7 +66,7 @@ const IndexPage: React.FC<{}> = () => {
             <br />
             Bientôt en ligne...
           </p>
-          <NewsletterForm>Tenez moi au courant</NewsletterForm>
+          <NewsletterForm>Restez à l'écoute pour notre lancement !</NewsletterForm>
           <Footer />
         </div>
       ) : (
