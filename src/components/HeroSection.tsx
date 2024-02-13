@@ -41,7 +41,7 @@ export const NavButtons: React.FC<any> = ({ handleShowCalculator, children }) =>
           </StyledButtonBlue>
         </HideWhenHorizontal>
         <StyledButtonBlue onClick={() => scrollToSection('informations')}>
-          Infos utiles
+          Mes droits
         </StyledButtonBlue>
         <StyledButtonBlue onClick={() => scrollToSection('news')}>Actualités</StyledButtonBlue>
       </ButtonsGroup>

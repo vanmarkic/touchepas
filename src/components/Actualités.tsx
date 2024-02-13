@@ -93,25 +93,18 @@ const StyledVignette = styled.div`
 export const Actualités: React.FC = () => {
   const articlesData: Article[] = [
     {
-      id: 1,
-      title: 'Indexa­tion des loyers à Bruxelles: la (grosse) goutte qui fait débor­der le budget',
-      image: bruxelles,
-      source: 'Publié le 4 octobre 2023, Les Équipes Populaires.be ',
-      isExpanded: false,
-    },
-    {
-      id: 2,
-      title: 'La justice sociale exige la suspen­sion de l’in­dexa­tion des loyers!',
-      image: Building,
-      source: 'Publié le 16 juin 2022, Les Équipes Populaires.be',
-      isExpanded: false,
-    },
-    {
       id: 3,
       title:
         'A partir du 1er novembre 2023, votre propriétaires pourra de nouveau indexer votre loyer, même si vous vivez dans une passoire énergétique!',
       image: energie,
       source: 'Publié le 30 octobre 2023, rwdh.be',
+      isExpanded: false,
+    },
+    {
+      id: 1,
+      title: 'Indexa­tion des loyers à Bruxelles: la (grosse) goutte qui fait débor­der le budget',
+      image: bruxelles,
+      source: 'Publié le 4 octobre 2023, Les Équipes Populaires.be ',
       isExpanded: false,
     },
     {
@@ -122,6 +115,15 @@ export const Actualités: React.FC = () => {
       source: 'Publié le 31 août 2023, rtbf.be',
       isExpanded: false,
     },
+    {
+      id: 2,
+      title: 'La justice sociale exige la suspen­sion de l’in­dexa­tion des loyers!',
+      image: Building,
+      source: 'Publié le 16 juin 2022, Les Équipes Populaires.be',
+      isExpanded: false,
+    },
+
+   
   ];
   const [articles, setArticles] = useState(articlesData);
   const [openArticleId, setOpenArticleId] = useState<number | null>(null);
