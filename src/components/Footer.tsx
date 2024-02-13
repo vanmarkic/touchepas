@@ -82,6 +82,22 @@ export const Footer: React.FC<any> = () => {
           src="../logo/partners/CEPAG.jpg"
         />
       </StyledA>
+      <StyledA href="https://www.rwlp.be/" target="_blank">
+        <StaticImage
+          placeholder="none"
+          height={40}
+          alt="csc logo"
+          src="../logo/partners/Rwlp.png"
+        />
+      </StyledA>
+      <StyledA href="https://www.equipespopulaires.be/" target="_blank">
+        <StaticImage
+          placeholder="none"
+          height={40}
+          alt="csc logo"
+          src="../logo/partners/EP.png"
+        />
+      </StyledA>
     </StyledFooter>
   );
 };

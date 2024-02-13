@@ -119,8 +119,8 @@ const StyledCalculatorButton = styled.div`
 const CalculatorMobileWrapper = styled.div<{ showMobileMenu: boolean }>`
   position: absolute;
   z-index: 10;
-  background-color: rgba(255, 255, 255, 0.9);
-  height: calc(100svh - ${HEADER_HEIGHT});
+  background-color: rgba(255, 255, 255);
+  height: calc(100svh );
   display: ${(props) => (props.showMobileMenu ? 'flex' : 'none')};
   flex-direction: column;
   justify-content: center;
