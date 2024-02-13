@@ -12,7 +12,7 @@ import styled from 'styled-components';
 const StyledH3 = styled.h3`
 text-transform:uppercase;
 color:var(--blue);
-font-size:0.9rem;
+font-size:1rem;
 `;
 
 
