@@ -11,13 +11,12 @@ const StyledFooter = styled.footer`
   gap: 20px;
 `;
 
-
 const StyledContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 15px;
 `;
 
 const StyledA = styled.a`
@@ -26,10 +25,13 @@ const StyledA = styled.a`
   align-items: center;
 `;
 
+const StyledH6 = styled.h6`
+ color:var(--blue);
+`;
 export const Footer: React.FC<any> = () => {
   return (
     <StyledFooter>
-      <h6>UNE INITIATIVE DE :</h6>
+      <StyledH6>UNE INITIATIVE DE :</StyledH6>
       <StyledContainer>
         <StyledA href="https://rwdh.be/" target="_blank">
           <StaticImage
@@ -40,7 +42,7 @@ export const Footer: React.FC<any> = () => {
           />
         </StyledA>
       </StyledContainer>
-      <h6>AVEC LE SOUTIEN DE :</h6>
+      <StyledH6>AVEC LE SOUTIEN DE :</StyledH6>
       <StyledContainer>
         <StyledA href="https://www.lacsc.be/" target="_blank">
           <StaticImage
