@@ -14,6 +14,9 @@ const StyledAccordionContent = styled(Accordion.Content)`
   color: black;
   font-size: 16px;
 `;
+const StyledH5 = styled.h5`
+ text-align:left;
+`;
 
 export const AccordionTrigger: React.FC<{ children: React.ReactNode; className?: string }> = ({
   children,
@@ -23,7 +26,7 @@ export const AccordionTrigger: React.FC<{ children: React.ReactNode; className?:
   return (
     <Accordion.Header className="AccordionHeader">
       <Accordion.Trigger className={classNames('AccordionTrigger', className)} {...props}>
-        <h5>{children}</h5>
+        <StyledH5>{children}</StyledH5>
         <ChevronDownIcon className="AccordionTriggerIcon" />
       </Accordion.Trigger>
     </Accordion.Header>
