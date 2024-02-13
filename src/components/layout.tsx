@@ -120,7 +120,7 @@ const CalculatorMobileWrapper = styled.div<{ showMobileMenu: boolean }>`
   position: absolute;
   z-index: 10;
   background-color: rgba(255, 255, 255);
-  height: calc(100svh );
+  height: calc(100svh- ${HEADER_HEIGHT});
   display: ${(props) => (props.showMobileMenu ? 'flex' : 'none')};
   flex-direction: column;
   justify-content: center;
