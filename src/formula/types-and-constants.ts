@@ -65,6 +65,10 @@ export const energyEfficiencyRatings = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'none
 
 export type EnergyEfficiencyRating = typeof energyEfficiencyRatings[number]
 
-export const enregistrements = ['Le bail est enregistré', "Le bail n'est pas enregistré", 'none'] as const
+export const enregistrements = [
+  { label: 'Le bail est enregistré', value: 'yes' },
+  { label: "Le bail n'est pas enregistré", value: 'no' },
+  { label: "Je ne sais pas", value: 'none' }
+] as const
 
-export type enregistrement = typeof enregistrements[number]
+export type Enregistrement = typeof enregistrements[number]

@@ -10,15 +10,14 @@ import { SiteHeading } from '../components/Header';
 import styled from 'styled-components';
 
 const StyledH3 = styled.h3`
-text-transform:uppercase;
-color:var(--blue);
-font-size:1rem;
+  text-transform: uppercase;
+  color: var(--blue);
+  font-size: 1rem;
 `;
-
 
 const IndexPage: React.FC<{}> = () => {
   process.env.TEASER_ENABLED;
-  const [region, setRegion] = React.useState<Regions>('brussels');
+  const [region, setRegion] = React.useState<Regions>('wallonia');
 
   const [showTeaser, setShowTeaser] = React.useState<boolean>(!!process.env.GATSBY_TEASER_ENABLED);
 

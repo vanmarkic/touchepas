@@ -3,13 +3,73 @@ import styled from 'styled-components';
 import {
   ENERGY_RATIOS,
   EnergyEfficiencyRating,
-  enregistrement,
+  Enregistrement,
   Regions,
   energyEfficiencyRatings,
   enregistrements,
 } from '../formula/types-and-constants';
 import { calculateRentIndexation } from '../formula/rent-increase-formula';
 import hand from '../images/hand.png';
+import { text } from 'stream/consumers';
+
+type TextContentKeys = 'pebInput' | 'unregisteredContract' | 'unknownContractRegistration';
+
+export const StyledA = styled.a`
+  font-size: 14px;
+  margin-top: 4px;
+  text-decoration: underline;
+  cursor: pointer;
+  color: white;
+  width: 220px;
+  &:hover {
+    color: var(--red);
+  }
+`;
+
+export const StyledText = styled.p`
+  padding-top: 2px;
+  color: white;
+  font-weight: 300;
+  width: 220px;
+  font-size: 14px;
+  &::before {
+    content: '→ ';
+  }
+`;
+
+const textContent: Record<TextContentKeys, React.ReactElement> = {
+  pebInput: (
+    <>
+      <StyledText>
+        Le certificat de performance énergétique des bâtiments (PEB) est obligatoire en Région
+        wallonne pour tous les biens loués depuis le 1er juin 2011. En l'absence de celui-ci, votre
+        bailleur ne peut pas indexer votre loyer entre le 1er novembre 2022 et le 31 octobre 2023.
+        <br />
+      </StyledText>
+      <StyledA>Plus de détails</StyledA>
+    </>
+  ),
+  unknownContractRegistration: (
+    <>
+      <StyledText>
+        Renseignez-vous auprès de votre bailleur et demandez-lui la preuve de l'enregistrement ou
+        consultez le portail «MyMinfin» pour vérifier.
+        <br />
+      </StyledText>
+      <StyledA>Plus de détails</StyledA>
+    </>
+  ),
+  unregisteredContract: (
+    <>
+      <StyledText>
+        Renseignez-vous auprès de votre bailleur et demandez-lui la preuve de l'enregistrement ou
+        consultez le portail «MyMinfin» pour vérifier.
+        <br />
+      </StyledText>
+      <StyledA href="">Plus de détails</StyledA>
+    </>
+  ),
+};
 
 const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
   const [yearOfIndexation, setYearOfIndexation] = useState<number>();
@@ -19,9 +79,15 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
   const [newRent, setNewRent] = useState<number | string>(0);
   const [energyEfficiencyRating, setEnergyEfficiencyRating] =
     useState<EnergyEfficiencyRating>('none');
-  const [enregistrementResponse, setEnregistrementResponse] = useState<enregistrement>('none');
-  const [contentToShow, setContentToShow] = useState<'inputs' | 'text1' | 'text2'>('text2');
-  const [showPebFields, setShowPebFields] = useState(false);
+
+  const [contractRegistrationStatus, setRegistrationStatus] =
+    useState<Enregistrement['value']>('none');
+
+  const [contentToShow, setContentToShow] = useState<TextContentKeys>(
+    'unknownContractRegistration',
+  );
+
+  const [PEBIsValid, setPEBIsValid] = useState(false);
 
   const isValid = React.useMemo(() => {
     return (
@@ -100,29 +166,29 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
           <StyledSelect
             name="enregistrement"
             id="enregistrement"
-            defaultValue={enregistrementResponse}
+            defaultValue={contractRegistrationStatus}
             onChange={(e) => {
-              const selectedValue = e.target.value as enregistrement;
-              setEnregistrementResponse(selectedValue);
+              const selectedValue = e.target.value as Enregistrement['value'];
+              setRegistrationStatus(selectedValue);
 
               // Update contentToShow based on selectedValue
-              if (selectedValue === 'Le bail est enregistré') {
-                setContentToShow('inputs');
-              } else if (selectedValue === "Le bail n'est pas enregistré") {
-                setContentToShow('text1');
+              if (selectedValue === 'yes') {
+                setContentToShow('pebInput');
+              } else if (selectedValue === 'no') {
+                setContentToShow('unregisteredContract');
               } else if (selectedValue === 'none') {
-                setContentToShow('text2');
+                setContentToShow('unknownContractRegistration');
               }
             }}
           >
             {enregistrements.map((enregistrement) => (
-              <option value={enregistrement} key={enregistrement}>
-                {enregistrement !== 'none' ? enregistrement : 'Je ne sais pas'}
+              <option value={enregistrement.value} key={enregistrement.value}>
+                {enregistrement.label}
               </option>
             ))}
           </StyledSelect>
         </StyledLabel>
-        {contentToShow === 'inputs' && (
+        {contentToShow === 'pebInput' && (
           <StyledLabel htmlFor="peb">
             Certificat PEB:
             <StyledSelect
@@ -134,10 +200,10 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
                 const selectedValue = e.target.value as EnergyEfficiencyRating;
                 setEnergyEfficiencyRating(selectedValue);
                 if (selectedValue !== 'none') {
-                  setShowPebFields(true);
+                  setPEBIsValid(true);
                 }
                 if (selectedValue === 'none') {
-                  setShowPebFields(false);
+                  setPEBIsValid(false);
                 }
               }}
             >
@@ -147,43 +213,14 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
             </StyledSelect>
           </StyledLabel>
         )}
-        {contentToShow === 'text1' && (
-          <>
-            <StyledText>
-              Aussi longtemps que le bail n’est pas enregistré, le loyer ne peut pas être indexé.
-              <br />
-              Si l’indexation a été appliquée alors que le bail n’était pas enregistré, le locataire
-              peut adresser un recommandé au bailleur pour réclamer des sommes indûment payées au
-              cours des 5 ans qui précèdent cette demande.
-              <br />
-              <br />
-            </StyledText>
-            <StyledA>Plus de détails</StyledA>
-          </>
-        )}
-        {contentToShow === 'text2' && (
-          <>
-            <StyledText>
-              Renseignez-vous auprès de votre bailleur et demandez-lui la preuve de l’enregistrement
-              ou consultez le portail «MyMinfin» pour vérifier.
-              <br />
-            </StyledText>
-            <StyledA>Plus de détails</StyledA>
-          </>
-        )}
-        {contentToShow === 'inputs' && showPebFields === false && (
-          <>
-            <StyledText>
-              Le certificat de performance énergétique des bâtiments (PEB) est obligatoire en Région
-              wallonne pour tous les biens loués depuis le 1er juin 2011. En l'absence de celui-ci,
-              votre bailleur ne peut pas indexer votre loyer entre le 1er novembre 2022 et le 31
-              octobre 2023.
-              <br />
-            </StyledText>
-            <StyledA>Plus de détails</StyledA>
-          </>
-        )}
-        {contentToShow === 'inputs' && showPebFields === true && (
+
+        {contentToShow === 'unregisteredContract' && textContent[contentToShow]}
+
+        {contentToShow === 'unknownContractRegistration' && textContent[contentToShow]}
+
+        {contentToShow === 'pebInput' && PEBIsValid === false && textContent[contentToShow]}
+
+        {PEBIsValid === true && (
           <>
             <StyledLabel htmlFor="indexationDate">
               Année de l'indexation:
@@ -327,28 +364,6 @@ const StyledSelect = styled.select`
   &:hover {
     border-color: 0px solid var(--blue);
     outline: none;
-  }
-`;
-export const StyledA = styled.a`
-  font-size: 14px;
-  margin-top: 4px;
-  text-decoration: underline;
-  cursor: pointer;
-  color: white;
-  width: 220px;
-  &:hover {
-    color: var(--red);
-  }
-`;
-
-export const StyledText = styled.p`
-  padding-top: 2px;
-  color: white;
-  font-weight: 300;
-  width: 220px;
-  font-size: 14px;
-  &::before {
-    content: '→ ';
   }
 `;
 
