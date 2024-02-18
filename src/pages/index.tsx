@@ -71,7 +71,7 @@ const IndexPage: React.FC<{}> = () => {
       ) : (
         <Layout handleRegionSwitch={setRegion} region={region}>
           <GeneralInformation region={region} />
-          <Actualités />
+          <Actualités region={region}/>
           <Footer />
         </Layout>
       )}
