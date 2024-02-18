@@ -13,6 +13,7 @@ const StyledH3 = styled.h3`
   text-transform: uppercase;
   color: var(--blue);
   font-size: 1rem;
+  text-align: center;
 `;
 
 const IndexPage: React.FC<{}> = () => {
@@ -40,8 +41,9 @@ const IndexPage: React.FC<{}> = () => {
             justifyContent: 'space-around',
             alignItems: 'center !important',
             minHeight: '90vh',
-            margin: '1rem',
+            margin: '1rem auto',
             gap: '1rem',
+            maxWidth: '960px',
           }}
         >
           <div
@@ -56,22 +58,22 @@ const IndexPage: React.FC<{}> = () => {
           <StyledH3>
             Vérifiez l'indexation de votre loyer et défendez vos droits en tant que locataire !
           </StyledH3>
-          <p>
+          <div>
             Vous êtes locataire à Bruxelles ou en Wallonie ? Votre propriétaire veut indexer votre
             loyer ? <br /> <br />
             Vérifiez le loyer maximum autorisé avec notre calculateur et retrouvez toutes les
             informations pour défendre vos droits sur <a>touchepasàmonloyer.be</a>
             <br />
             <br />
-            Bientôt en ligne...
-          </p>
+            <p style={{ textAlign: 'center' }}>Bientôt en ligne...</p>
+          </div>
           <NewsletterForm>Restez à l'écoute pour notre lancement !</NewsletterForm>
           <Footer />
         </div>
       ) : (
         <Layout handleRegionSwitch={setRegion} region={region}>
           <GeneralInformation region={region} />
-          <Actualités region={region}/>
+          <Actualités region={region} />
           <Footer />
         </Layout>
       )}

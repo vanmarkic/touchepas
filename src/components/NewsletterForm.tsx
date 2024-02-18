@@ -29,9 +29,10 @@ const StyledH6 = styled.h6`
   color: var(--blue);
   height: fit-content;
   font-size: 13px;
-  text-transform:uppercase;
+  text-transform: uppercase;
   @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
     position: static;
+    max-width: 270px;
   }
 `;
 const StyledText = styled.p`
