@@ -39,7 +39,7 @@ const IndexPage: React.FC<{}> = () => {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-around',
-            alignItems: 'center !important',
+            alignItems: 'center',
             minHeight: '90vh',
             margin: '1rem auto',
             gap: '1rem',
@@ -58,7 +58,7 @@ const IndexPage: React.FC<{}> = () => {
           <StyledH3>
             Vérifiez l'indexation de votre loyer et défendez vos droits en tant que locataire !
           </StyledH3>
-          <div>
+          <div style={{ maxWidth: '90vw' }}>
             Vous êtes locataire à Bruxelles ou en Wallonie ? Votre propriétaire veut indexer votre
             loyer ? <br /> <br />
             Vérifiez le loyer maximum autorisé avec notre calculateur et retrouvez toutes les
