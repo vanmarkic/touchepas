@@ -10,9 +10,12 @@ import {
 } from '../formula/types-and-constants';
 import { calculateRentIndexation } from '../formula/rent-increase-formula';
 import hand from '../images/hand.png';
-import { text } from 'stream/consumers';
 
-type TextContentKeys = 'pebInput' | 'unregisteredContract' | 'unknownContractRegistration';
+type TextContentKeys =
+  | 'pebInput'
+  | 'unregisteredContract'
+  | 'unknownContractRegistration'
+  | 'unwritten';
 
 export const StyledA = styled.a`
   font-size: 14px;
@@ -37,8 +40,8 @@ export const StyledText = styled.p`
   }
 `;
 
-const textContent: Record<TextContentKeys, React.ReactElement> = {
-  pebInput: (
+const textContent: Record<TextContentKeys, (region: Regions) => React.ReactElement> = {
+  pebInput: (region) => (
     <>
       <StyledText>
         Le certificat de performance énergétique des bâtiments (PEB) est obligatoire en Région
@@ -49,24 +52,56 @@ const textContent: Record<TextContentKeys, React.ReactElement> = {
       <StyledA>Plus de détails</StyledA>
     </>
   ),
-  unknownContractRegistration: (
+  unknownContractRegistration: (region) => (
     <>
       <StyledText>
         Renseignez-vous auprès de votre bailleur et demandez-lui la preuve de l'enregistrement ou
         consultez le portail «MyMinfin» pour vérifier.
         <br />
       </StyledText>
-      <StyledA>Plus de détails</StyledA>
+      <StyledA
+        href={
+          region === 'wallonia'
+            ? 'https://www.droitsquotidiens.be/fr/question/comment-savoir-si-mon-bail-est-enregistre-wallonie'
+            : 'https://www.droitsquotidiens.be/fr/question/comment-savoir-si-mon-bail-est-enregistre-bruxelles'
+        }
+        target="_blank"
+      >
+        Plus de détails
+      </StyledA>
     </>
   ),
-  unregisteredContract: (
+  unwritten: (region) => (
+    <>
+      <StyledText>
+        Votre propriétaire ne peut pas indexer votre loyer si vous n'avez pas signé de bail !
+        <br />
+      </StyledText>
+      <StyledA
+        href="https://www.droitsquotidiens.be/fr/question/je-nai-pas-signe-de-contrat-de-bail-quels-sont-mes-droits-wallonie"
+        target="_blank"
+      >
+        Plus de détails
+      </StyledA>
+    </>
+  ),
+  unregisteredContract: (region) => (
     <>
       <StyledText>
         Renseignez-vous auprès de votre bailleur et demandez-lui la preuve de l'enregistrement ou
         consultez le portail «MyMinfin» pour vérifier.
         <br />
       </StyledText>
-      <StyledA href="">Plus de détails</StyledA>
+      <StyledA
+        href={
+          region === 'brussels'
+            ? 'https://www.droitsquotidiens.be/fr/question/lenregistrement-du-bail-est-il-obligatoire-bruxelles'
+            : 'https://www.droitsquotidiens.be/fr/question/lenregistrement-du-bail-est-il-obligatoire-wallonie'
+        }
+        target="_blank"
+      >
+        Plus de détails
+      </StyledA>
     </>
   ),
 };
@@ -162,7 +197,7 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
         </StyledNewRent>
 
         <StyledLabel htmlFor="enregistrement">
-          Le bail est-il enregistré?
+          Le bail est-il écrit et enregistré?
           <StyledSelect
             name="enregistrement"
             id="enregistrement"
@@ -174,10 +209,16 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
               // Update contentToShow based on selectedValue
               if (selectedValue === 'yes') {
                 setContentToShow('pebInput');
+                setPEBIsValid(false);
               } else if (selectedValue === 'no') {
                 setContentToShow('unregisteredContract');
+                setPEBIsValid(false);
               } else if (selectedValue === 'none') {
                 setContentToShow('unknownContractRegistration');
+                setPEBIsValid(false);
+              } else if (selectedValue === 'unwritten') {
+                setContentToShow('unwritten');
+                setPEBIsValid(false);
               }
             }}
           >
@@ -214,11 +255,10 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
           </StyledLabel>
         )}
 
-        {contentToShow === 'unregisteredContract' && textContent[contentToShow]}
-
-        {contentToShow === 'unknownContractRegistration' && textContent[contentToShow]}
-
-        {contentToShow === 'pebInput' && PEBIsValid === false && textContent[contentToShow]}
+        {contentToShow === 'unregisteredContract' && textContent[contentToShow](region)}
+        {contentToShow === 'unwritten' && textContent[contentToShow](region)}
+        {contentToShow === 'unknownContractRegistration' && textContent[contentToShow](region)}
+        {contentToShow === 'pebInput' && PEBIsValid === false && textContent[contentToShow](region)}
 
         {PEBIsValid === true && (
           <>
