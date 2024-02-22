@@ -10,6 +10,7 @@ import {
 } from '../formula/types-and-constants';
 import { calculateRentIndexation } from '../formula/rent-increase-formula';
 import hand from '../images/hand.png';
+import { set } from 'date-fns';
 
 type TextContentKeys =
   | 'pebInput'
@@ -112,17 +113,15 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
   const [contractSignatureDate, setContractSignatureDate] = useState<Date | null>(null);
   const [agreementStartDate, setAgreementStartDate] = useState<Date>(new Date());
   const [newRent, setNewRent] = useState<number | string>(0);
-  const [energyEfficiencyRating, setEnergyEfficiencyRating] =
-    useState<EnergyEfficiencyRating>('none');
+  const [energyEfficiencyRating, setEnergyEfficiencyRating] = useState<
+    EnergyEfficiencyRating | 'unselected'
+  >('unselected');
 
-  const [contractRegistrationStatus, setRegistrationStatus] =
-    useState<Enregistrement['value']>('none');
+  const [contractRegistrationStatus, setRegistrationStatus] = useState<Enregistrement['value']>();
 
-  const [contentToShow, setContentToShow] = useState<TextContentKeys>(
-    'unknownContractRegistration',
-  );
+  const [contentToShow, setContentToShow] = useState<TextContentKeys>();
 
-  const [PEBIsValid, setPEBIsValid] = useState(false);
+  const [PEBIsValid, setPEBIsValid] = useState<boolean>();
 
   const isValid = React.useMemo(() => {
     return (
@@ -141,7 +140,15 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
   const handleCalculate = (e: any) => {
     e.preventDefault();
 
-    if (isValid && yearOfIndexation && initialRent && contractSignatureDate && agreementStartDate) {
+    if (
+      isValid &&
+      yearOfIndexation &&
+      initialRent &&
+      contractSignatureDate &&
+      agreementStartDate &&
+      PEBIsValid &&
+      energyEfficiencyRating !== 'unselected'
+    ) {
       try {
         const increasedRent = calculateRentIndexation({
           contractSignatureDate,
@@ -222,6 +229,9 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
               }
             }}
           >
+            <option disabled selected>
+              -- Sélectionnez une option --
+            </option>
             {enregistrements.map((enregistrement) => (
               <option value={enregistrement.value} key={enregistrement.value}>
                 {enregistrement.label}
@@ -238,9 +248,9 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
               id="peb"
               defaultValue={energyEfficiencyRating}
               onChange={(e) => {
-                const selectedValue = e.target.value as EnergyEfficiencyRating;
+                const selectedValue = e.target.value as EnergyEfficiencyRating | 'unselected';
                 setEnergyEfficiencyRating(selectedValue);
-                if (selectedValue !== 'none') {
+                if (selectedValue !== 'none' && selectedValue !== 'unselected') {
                   setPEBIsValid(true);
                 }
                 if (selectedValue === 'none') {
@@ -248,6 +258,9 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
                 }
               }}
             >
+              <option disabled selected value="unselected">
+                -- Sélectionnez une option --
+              </option>
               {energyEfficiencyRatings.map((rating) => (
                 <option value={rating}>{rating !== 'none' ? rating : 'Aucun certificat'}</option>
               ))}
@@ -258,7 +271,11 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
         {contentToShow === 'unregisteredContract' && textContent[contentToShow](region)}
         {contentToShow === 'unwritten' && textContent[contentToShow](region)}
         {contentToShow === 'unknownContractRegistration' && textContent[contentToShow](region)}
-        {contentToShow === 'pebInput' && PEBIsValid === false && textContent[contentToShow](region)}
+        {contentToShow === 'pebInput' && energyEfficiencyRating === 'unselected' && null}
+        {contentToShow === 'pebInput' &&
+          PEBIsValid === false &&
+          energyEfficiencyRating !== 'unselected' &&
+          textContent[contentToShow](region)}
 
         {PEBIsValid === true && (
           <>
