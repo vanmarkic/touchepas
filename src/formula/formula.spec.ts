@@ -1,74 +1,103 @@
 import {
   basicFormula,
-  calculateRentIndexation, calculateRentIndexationForBxl,
+  calculateRentIndexation,
+  calculateRentIndexationForBxl,
 } from './rent-increase-formula';
-import { deriveData, deriveDataWithPEB, getAnniversaryMonth, getIndexBaseYear, getInitialIndex, getIsAfterDecree, getYearOfIndexationWithPEB, shouldUsePreviousYear } from './utils';
+import {
+  deriveData,
+  deriveDataWithPEB,
+  getAnniversaryMonth,
+  getIndexBaseYear,
+  getInitialIndex,
+  getIsAfterDecree,
+  getYearOfIndexationWithPEB,
+  shouldUsePreviousYear,
+} from './utils';
 
 // Describe the test suite
 describe('Formula', () => {
-
-  it('Test case 2', () => {
+  it('Test case O', () => {
     const agreementStartDate = new Date('2022-02-17');
     const anniversaryMonth = getAnniversaryMonth(agreementStartDate);
+    expect(anniversaryMonth).toBe('January');
+
     const indexBaseYear = getIndexBaseYear(agreementStartDate);
     const contractSignatureDate = new Date('2022-01-01');
     const initialRent = 800;
     const initialIndex = getInitialIndex(contractSignatureDate, agreementStartDate, indexBaseYear);
-    const basicFormulaWithInitialRentAndIndex = basicFormula(initialIndex, initialRent)
-    const { currentYearIndexedRent, previousYearIndexedRent } = deriveDataWithPEB(
-      { agreementStartDate, region: 'wallonia', anniversaryMonth, indexBaseYear, basicFormulaWithInitialRentAndIndex })
+    const basicFormulaWithInitialRentAndIndex = basicFormula(initialIndex, initialRent);
+    const { currentYearIndexedRent, previousYearIndexedRent } = deriveDataWithPEB({
+      agreementStartDate,
+      region: 'wallonia',
+      anniversaryMonth,
+      indexBaseYear,
+      basicFormulaWithInitialRentAndIndex,
+    });
 
     expect(previousYearIndexedRent).toBe(818.06);
     expect(currentYearIndexedRent).toBe(885.81);
 
-
-
-
-
-    expect(calculateRentIndexation
-      ({
-        contractSignatureDate: new Date('2022-01-01'),
-        agreementStartDate: new Date('2022-02-17'),
+    expect(
+      calculateRentIndexation({
+        contractSignatureDate,
+        agreementStartDate,
         initialRent: 800,
         yearOfIndexation: 2023,
         region: 'wallonia',
-        energyEfficiencyRating: "F",
-      }
-      )).toEqual(818.06);
-
+        energyEfficiencyRating: 'A',
+      }),
+    ).toEqual(885.81);
   });
-
-
-
 
   // Describe individual test cases
   it('Test case 1', () => {
-
-    expect(calculateRentIndexation({
-      contractSignatureDate: new Date('1995-12-01'),
-      agreementStartDate: new Date('1995-11-01'),
-      initialRent: 1000,
-      yearOfIndexation: 2023,
-      region: 'wallonia',
-      energyEfficiencyRating: "A",
-    })
+    expect(
+      calculateRentIndexation({
+        contractSignatureDate: new Date('1995-12-01'),
+        agreementStartDate: new Date('1995-11-01'),
+        initialRent: 1000,
+        yearOfIndexation: 2023,
+        region: 'wallonia',
+        energyEfficiencyRating: 'A',
+      }),
     ).toEqual(1786.5);
-
   });
 
   it('Test case 3', () => {
+    const contractSignatureDate = new Date('2019-09-01');
+    const agreementStartDate = new Date('2019-11-01');
+    const anniversaryMonth = getAnniversaryMonth(agreementStartDate);
+    expect(anniversaryMonth).toBe('October');
+    const indexBaseYear = getIndexBaseYear(agreementStartDate);
+
+    const initialRent = 600;
+    const initialIndex = getInitialIndex(contractSignatureDate, agreementStartDate, indexBaseYear);
+    const basicFormulaWithInitialRentAndIndex = basicFormula(initialIndex, initialRent);
+    const { currentYearIndexedRent, previousYearIndexedRent } = deriveDataWithPEB({
+      agreementStartDate,
+      region: 'wallonia',
+      anniversaryMonth,
+      indexBaseYear,
+      basicFormulaWithInitialRentAndIndex,
+    });
+    const yearOfIndexationWithPEB = getYearOfIndexationWithPEB(agreementStartDate, 'wallonia');
+
+    expect(yearOfIndexationWithPEB).toBe(2022);
+
+    expect(previousYearIndexedRent).toBe(626.79);
+    expect(currentYearIndexedRent).toBe(703.69);
+
     //https://logement.wallonie.be/fr/bail/indexation-loyer
-    expect(calculateRentIndexation
-      ({
-        contractSignatureDate: new Date('2019-09-01'),
-        agreementStartDate: new Date('2019-11-01'),
-        initialRent: 600,
+    expect(
+      calculateRentIndexation({
+        contractSignatureDate,
+        agreementStartDate,
+        initialRent,
         yearOfIndexation: 2022,
         region: 'wallonia',
-        energyEfficiencyRating: "E",
-      }
-      )).toEqual(665.24);
-
+        energyEfficiencyRating: 'E',
+      }),
+    ).toEqual(665.24);
   });
 
   it('Test case 4', () => {
@@ -79,24 +108,28 @@ describe('Formula', () => {
     const contractSignatureDate = new Date('2019-09-01');
     const initialRent = 600;
     const initialIndex = getInitialIndex(contractSignatureDate, agreementStartDate, indexBaseYear);
-    const basicFormulaWithInitialRentAndIndex = basicFormula(initialIndex, initialRent)
-    const { currentYearIndexedRent, previousYearIndexedRent } = deriveDataWithPEB(
-      { agreementStartDate, region: 'wallonia', anniversaryMonth, indexBaseYear, basicFormulaWithInitialRentAndIndex })
+    const basicFormulaWithInitialRentAndIndex = basicFormula(initialIndex, initialRent);
+    const { currentYearIndexedRent, previousYearIndexedRent } = deriveDataWithPEB({
+      agreementStartDate,
+      region: 'wallonia',
+      anniversaryMonth,
+      indexBaseYear,
+      basicFormulaWithInitialRentAndIndex,
+    });
 
     expect(previousYearIndexedRent).toBe(626.79);
     expect(currentYearIndexedRent).toBe(703.69);
 
-    expect(calculateRentIndexation
-      ({
+    expect(
+      calculateRentIndexation({
         contractSignatureDate,
         agreementStartDate,
         initialRent,
         yearOfIndexation: 2022,
         region: 'wallonia',
-        energyEfficiencyRating: "D",
-      }
-      )).toEqual(684.47);
-
+        energyEfficiencyRating: 'D',
+      }),
+    ).toEqual(684.47);
   });
   it('Test case 5', () => {
     // https://logement.wallonie.be/fr/bail/indexation-loyer
@@ -106,7 +139,6 @@ describe('Formula', () => {
     expect(anniversaryMonth).toBe('October');
     const indexBaseYear = getIndexBaseYear(agreementStartDate);
     expect(indexBaseYear).toBe(2013);
-
 
     const initialIndex = getInitialIndex(contractSignatureDate, agreementStartDate, indexBaseYear);
 
@@ -118,101 +150,88 @@ describe('Formula', () => {
 
     const yearOfIndexationWithPEB = getYearOfIndexationWithPEB(agreementStartDate, 'wallonia');
 
-    expect(yearOfIndexationWithPEB).toBe(2023);
+    expect(yearOfIndexationWithPEB).toBe(2022);
 
-    const { healthIndexBeforeDecree, newHealthIndex, isRequestedAfterEndOfDecree } = deriveData({ agreementStartDate, contractSignatureDate, yearOfIndexation: 2023, region: 'wallonia' })
-
+    const { healthIndexBeforeDecree, newHealthIndex, isRequestedAfterEndOfDecree } = deriveData({
+      agreementStartDate,
+      contractSignatureDate,
+      yearOfIndexation: 2023,
+      region: 'wallonia',
+    });
 
     expect(isRequestedAfterEndOfDecree).toBe(true);
-    expect(newHealthIndex).toBe(128.30);
+    expect(newHealthIndex).toBe(128.3);
     expect(healthIndexBeforeDecree).toBe(127.92);
 
-
-    expect(calculateRentIndexation
-      ({
+    expect(
+      calculateRentIndexation({
         contractSignatureDate,
         agreementStartDate,
         initialRent: 600,
         yearOfIndexation: 2023,
         region: 'wallonia',
-        energyEfficiencyRating: "D",
-      }
-      )).toEqual(662.55);
-
-
-
-
+        energyEfficiencyRating: 'D',
+      }),
+    ).toEqual(662.55);
   });
   it('Test case 6', () => {
     // https://logement.wallonie.be/fr/bail/indexation-loyer
 
-
-    expect(calculateRentIndexation
-      ({
+    expect(
+      calculateRentIndexation({
         contractSignatureDate: new Date('2021-09-01'),
         agreementStartDate: new Date('2021-11-01'),
         initialRent: 600,
         yearOfIndexation: 2023,
         region: 'wallonia',
-        energyEfficiencyRating: "D",
-      }
-      )).toEqual(662.55);
-
+        energyEfficiencyRating: 'D',
+      }),
+    ).toEqual(662.55);
   });
-
-
 
   it('should be correct when after decree date in wallonia', () => {
-
-    expect(calculateRentIndexation
-      ({
+    expect(
+      calculateRentIndexation({
         contractSignatureDate: new Date('2021-09-01'),
         agreementStartDate: new Date('2021-11-01'),
         initialRent: 600,
         yearOfIndexation: 2023,
         region: 'wallonia',
-        energyEfficiencyRating: "E",
-      }
-      )).toEqual(642.3);
-
-
+        energyEfficiencyRating: 'E',
+      }),
+    ).toEqual(642.3);
   });
   it('should be correct when after decree date in brussels', () => {
-
-    expect(calculateRentIndexation
-      ({
-
+    expect(
+      calculateRentIndexation({
         contractSignatureDate: new Date('2019-09-01'),
         agreementStartDate: new Date('2019-11-01'),
         initialRent: 550,
         yearOfIndexation: 2023,
         region: 'brussels',
-        energyEfficiencyRating: "E",
-      }
-      )).toEqual(611.62);
+        energyEfficiencyRating: 'E',
+      }),
+    ).toEqual(611.62);
 
-    expect(calculateRentIndexation
-      ({
-
+    expect(
+      calculateRentIndexation({
         contractSignatureDate: new Date('2019-09-12'),
         agreementStartDate: new Date('2019-12-12'),
         initialRent: 200,
         yearOfIndexation: 2023,
         region: 'brussels',
-        energyEfficiencyRating: "E",
-      }
-      )).toEqual(224.4);
-
+        energyEfficiencyRating: 'E',
+      }),
+    ).toEqual(224.4);
   });
 
   it('should check whether is after end of decree', () => {
-    expect(getIsAfterDecree(2023, 'wallonia', new Date("11-01-2023"))).toBe(true);
-    expect(getIsAfterDecree(2023, 'wallonia', new Date("11-01-2030"))).toBe(true);
-    expect(getIsAfterDecree(2023, 'wallonia', new Date("10-31-2023"))).toBe(false);
-    expect(getIsAfterDecree(2023, 'wallonia', new Date("10-31-2022"))).toBe(false);
-  })
+    expect(getIsAfterDecree(2023, 'wallonia', new Date('11-01-2023'))).toBe(true);
+    expect(getIsAfterDecree(2023, 'wallonia', new Date('11-01-2030'))).toBe(true);
+    expect(getIsAfterDecree(2023, 'wallonia', new Date('10-31-2023'))).toBe(false);
+    expect(getIsAfterDecree(2023, 'wallonia', new Date('10-31-2022'))).toBe(false);
+  });
 });
-
 
 describe('year of indexation within PEB range', () => {
   it('should return the right year', () => {
@@ -222,10 +241,8 @@ describe('year of indexation within PEB range', () => {
 
     expect(getYearOfIndexationWithPEB(new Date('2010-01-01'), 'wallonia')).toBe(2023);
 
-
     expect(getYearOfIndexationWithPEB(new Date('2010-11-01'), 'wallonia')).toBe(2023);
-
-  })
+  });
 });
 describe('brussels formula', () => {
   describe('calculateRentIndexationForBxl', () => {
