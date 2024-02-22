@@ -74,6 +74,7 @@ const StyledArticleInfos = styled.div<StyledArticleProps>`
   display: flex;
   flex-direction: column;
   width: ${({ isOpen }) => (isOpen ? '90%' : '70%')};
+  cursor: ${({ isOpen }) => (isOpen ? 'default' : 'pointer')};
   gap: 5px;
   padding: 20px 0px;
   margin: auto;
@@ -172,6 +173,7 @@ export const Actualités = ({ region }: { region: Regions }) => {
               key={article.id}
               className={`article ${article.id === openArticleId ? 'open' : ''}`}
               ref={(ref) => (articleRefs.current[article.id] = ref)}
+              onClick={() => toggleReadMore(article.id)}
             >
               <StyledVignette>
                 {article.id !== openArticleId && (
@@ -193,11 +195,7 @@ export const Actualités = ({ region }: { region: Regions }) => {
                   )}
                   <StyledH4>{article.title}</StyledH4>
                   <StyledSource>{article.source}</StyledSource>
-                  <StyledA2
-                    key={article.id}
-                    isOpen={article.id === openArticleId}
-                    onClick={() => toggleReadMore(article.id)}
-                  >
+                  <StyledA2 key={article.id} isOpen={article.id === openArticleId}>
                     {article.id === openArticleId ? (
                       <img style={{ width: '25px' }} src={xmark} alt="Fermer" />
                     ) : (
