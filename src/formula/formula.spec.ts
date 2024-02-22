@@ -3,6 +3,7 @@ import {
   calculateRentIndexation,
   calculateRentIndexationForBxl,
 } from './rent-increase-formula';
+import { EnergyEfficiencyRating, Regions } from './types-and-constants';
 import {
   deriveData,
   deriveDataWithPEB,
@@ -64,38 +65,41 @@ describe('Formula', () => {
   });
 
   it('Test case 3', () => {
-    const contractSignatureDate = new Date('2019-09-01');
-    const agreementStartDate = new Date('2019-11-01');
-    const anniversaryMonth = getAnniversaryMonth(agreementStartDate);
-    expect(anniversaryMonth).toBe('October');
-    const indexBaseYear = getIndexBaseYear(agreementStartDate);
+    //https://logement.wallonie.be/fr/bail/indexation-loyer
+    //FIXTURES
+    const contractSignatureDate: Date = new Date('2019-09-01');
+    const agreementStartDate: Date = new Date('2019-11-01');
+    const initialRent: number = 600;
+    const region: Regions = 'wallonia';
+    const yearOfIndexation: number = 2022;
+    const energyEfficiencyRating: EnergyEfficiencyRating = 'E';
 
-    const initialRent = 600;
+    //DERIVED FIXTURES
+    const anniversaryMonth = getAnniversaryMonth(agreementStartDate);
+    const indexBaseYear = getIndexBaseYear(agreementStartDate);
     const initialIndex = getInitialIndex(contractSignatureDate, agreementStartDate, indexBaseYear);
-    const basicFormulaWithInitialRentAndIndex = basicFormula(initialIndex, initialRent);
     const { currentYearIndexedRent, previousYearIndexedRent } = deriveDataWithPEB({
       agreementStartDate,
-      region: 'wallonia',
+      region,
       anniversaryMonth,
       indexBaseYear,
-      basicFormulaWithInitialRentAndIndex,
+      basicFormulaWithInitialRentAndIndex: basicFormula(initialIndex, initialRent),
     });
     const yearOfIndexationWithPEB = getYearOfIndexationWithPEB(agreementStartDate, 'wallonia');
 
+    //ASSERTIONS
+    expect(anniversaryMonth).toBe('October');
     expect(yearOfIndexationWithPEB).toBe(2022);
-
     expect(previousYearIndexedRent).toBe(626.79);
     expect(currentYearIndexedRent).toBe(703.69);
-
-    //https://logement.wallonie.be/fr/bail/indexation-loyer
     expect(
       calculateRentIndexation({
         contractSignatureDate,
         agreementStartDate,
         initialRent,
-        yearOfIndexation: 2022,
-        region: 'wallonia',
-        energyEfficiencyRating: 'E',
+        region,
+        yearOfIndexation,
+        energyEfficiencyRating,
       }),
     ).toEqual(665.24);
   });
