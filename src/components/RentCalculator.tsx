@@ -266,7 +266,7 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
               Année de l'indexation:
               <StyledInput
                 type="number"
-                min="1984"
+                min={new Date().getFullYear() - 1}
                 max={new Date().getFullYear()}
                 required
                 lang="fr-FR"
