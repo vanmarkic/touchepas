@@ -11,6 +11,7 @@ import {
 import { calculateRentIndexation } from '../formula/rent-increase-formula';
 import hand from '../images/hand.png';
 import { text } from 'stream/consumers';
+import { scrollToSection } from './HeroSection';
 
 type TextContentKeys = 'pebInput' | 'unregisteredContract' | 'unknownContractRegistration';
 
@@ -37,6 +38,13 @@ export const StyledText = styled.p`
   }
 `;
 
+const scrollToParagraph = (sectionId: string) => {
+  const section = document.getElementById(sectionId);
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth' });
+  }
+};
+
 const textContent: Record<TextContentKeys, React.ReactElement> = {
   pebInput: (
     <>
@@ -46,7 +54,7 @@ const textContent: Record<TextContentKeys, React.ReactElement> = {
         bailleur ne peut pas indexer votre loyer entre le 1er novembre 2022 et le 31 octobre 2023.
         <br />
       </StyledText>
-      <StyledA>Plus de détails</StyledA>
+      <StyledA onClick={() => scrollToParagraph('peb')}>Plus de détails</StyledA>
     </>
   ),
   unknownContractRegistration: (
@@ -56,7 +64,7 @@ const textContent: Record<TextContentKeys, React.ReactElement> = {
         consultez le portail «MyMinfin» pour vérifier.
         <br />
       </StyledText>
-      <StyledA>Plus de détails</StyledA>
+      <StyledA target="_blank" href='https://eservices.minfin.fgov.be/myminfin-web/pages/public'>Plus de détails</StyledA>
     </>
   ),
   unregisteredContract: (
@@ -66,7 +74,7 @@ const textContent: Record<TextContentKeys, React.ReactElement> = {
         consultez le portail «MyMinfin» pour vérifier.
         <br />
       </StyledText>
-      <StyledA href="">Plus de détails</StyledA>
+      <StyledA  target="_blank" href='https://eservices.minfin.fgov.be/myminfin-web/pages/public'>Plus de détails</StyledA>
     </>
   ),
 };
