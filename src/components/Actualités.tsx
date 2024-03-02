@@ -143,25 +143,6 @@ export const Actualités = ({ region }: { region: Regions }) => {
     setOpenArticleId((prevId) => (prevId === id ? null : id));
   };
 
-  const handleOutsideClick = (event: MouseEvent) => {
-    if (openArticleId !== null) {
-      const isOutsideClick = !articleRefs.current.some(
-        (articleRef) => articleRef?.contains(event.target as Node),
-      );
-      if (isOutsideClick) {
-        setOpenArticleId(null);
-      }
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener('mousedown', handleOutsideClick);
-
-    return () => {
-      document.removeEventListener('mousedown', handleOutsideClick);
-    };
-  }, [openArticleId]);
-
   return (
     <StyledSection2 id="news">
       <SectionTitle>Actualités</SectionTitle>
