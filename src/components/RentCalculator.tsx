@@ -10,7 +10,7 @@ import {
 } from '../formula/types-and-constants';
 import { calculateRentIndexation } from '../formula/rent-increase-formula';
 import hand from '../images/hand.png';
-import { set } from 'date-fns';
+import { scrollToSection } from './HeroSection';
 
 type TextContentKeys =
   | 'pebInput'
@@ -50,7 +50,7 @@ const textContent: Record<TextContentKeys, (region: Regions) => React.ReactEleme
         bailleur ne peut pas indexer votre loyer entre le 1er novembre 2022 et le 31 octobre 2023.
         <br />
       </StyledText>
-      <StyledA>Plus de détails</StyledA>
+      <StyledA onClick={() => scrollToSection('peb')}>Plus de détails</StyledA>
     </>
   ),
   unknownContractRegistration: (region) => (

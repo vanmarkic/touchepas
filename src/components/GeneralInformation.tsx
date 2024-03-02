@@ -88,7 +88,7 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
             </Accordion.Item>
           </Paragraph>
 
-          <Paragraph>
+          <Paragraph id="peb">
             <Accordion.Item className="AccordionItem" value="item-6">
               <AccordionTrigger><span>#5 </span>C’est quoi un certificat PEB ?</AccordionTrigger>
               <AccordionContent>
