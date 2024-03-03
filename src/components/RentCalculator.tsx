@@ -11,8 +11,13 @@ import {
 import { calculateRentIndexation } from '../formula/rent-increase-formula';
 import hand from '../images/hand.png';
 import { scrollToSection } from './HeroSection';
+import * as RadioGroup from '@radix-ui/react-radio-group';
+import './RadioGroup.css';
 
 type TextContentKeys =
+  | 'writtenNotification'
+  | 'enregistrement'
+  | 'noWrittenNotification'
   | 'pebInput'
   | 'unregisteredContract'
   | 'unknownContractRegistration'
@@ -42,6 +47,14 @@ export const StyledText = styled.p`
 `;
 
 const textContent: Record<TextContentKeys, (region: Regions) => React.ReactElement> = {
+  writtenNotification: (region) => <></>,
+  enregistrement: (region) => <></>,
+  noWrittenNotification: (region) => (
+    <StyledText>
+      Votre propriétaire doit faire la demande par écrit pour indexer votre loyer. Elle peut être
+      faite par courrier normal, SMS ou e-mail mais elle est obligatoire pour indexer votre loyer.
+    </StyledText>
+  ),
   pebInput: (region) => (
     <>
       <StyledText>
@@ -119,7 +132,7 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
 
   const [contractRegistrationStatus, setRegistrationStatus] = useState<Enregistrement['value']>();
 
-  const [contentToShow, setContentToShow] = useState<TextContentKeys>();
+  const [contentToShow, setContentToShow] = useState<TextContentKeys>('writtenNotification');
 
   const [PEBIsValid, setPEBIsValid] = useState<boolean>();
 
@@ -178,8 +191,8 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
 
   return (
     <StyledContainer>
-      <h4>Calculateur de loyer</h4>
-      <RedSpan>{region === 'wallonia' ? 'Wallonie' : 'Bruxelles'}</RedSpan>
+      <h4>Mon loyer maximum autorisé</h4>
+      <RedSpan>{region === 'wallonia' ? 'en Wallonie' : 'à Bruxelles'}</RedSpan>
 
       <form style={{ position: 'relative' }}>
         <img
@@ -187,7 +200,7 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
           style={{ position: 'absolute', top: '145px', pointerEvents: 'none', objectFit: 'cover' }}
         />
         <StyledNewRent>
-          <StyledLabel style={{ color: 'white' }}>Loyer Indexé</StyledLabel>
+          <StyledLabel style={{ color: 'white', width: '30%' }}>Loyer Maximum Autorisé</StyledLabel>
           <h4
             style={{
               color: 'var(--white)',
@@ -203,42 +216,85 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
           </h4>
         </StyledNewRent>
 
-        <StyledLabel htmlFor="enregistrement">
-          Le bail est-il écrit et enregistré?
-          <StyledSelect
-            name="enregistrement"
-            id="enregistrement"
-            defaultValue={contractRegistrationStatus}
-            onChange={(e) => {
-              const selectedValue = e.target.value as Enregistrement['value'];
-              setRegistrationStatus(selectedValue);
+        {contentToShow === 'writtenNotification' || contentToShow === 'noWrittenNotification' ? (
+          <StyledLabel htmlFor="writtenNotification">
+            Votre propriétaire vous a-t-il envoyé une demande d'indexation par écrit?
+            <RadioGroup.Root
+              id="writtenNotification"
+              className="RadioGroupRoot"
+              defaultValue="default"
+              aria-label="View density"
+              onValueChange={(value) => {
+                if (value === 'false') setContentToShow('noWrittenNotification');
+                if (value === 'true') setContentToShow('enregistrement');
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <RadioGroup.Item className="RadioGroupItem" value="true" id="r1">
+                  <RadioGroup.Indicator className="RadioGroupIndicator" />
+                </RadioGroup.Item>
+                <label className="Label" htmlFor="r1">
+                  Oui
+                </label>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <RadioGroup.Item className="RadioGroupItem" value="false" id="r2">
+                  <RadioGroup.Indicator className="RadioGroupIndicator" />
+                </RadioGroup.Item>
+                <label className="Label" htmlFor="r2">
+                  Non
+                </label>
+              </div>
+            </RadioGroup.Root>
+          </StyledLabel>
+        ) : null}
+        {contentToShow === 'noWrittenNotification' ? (
+          <>
+            {textContent[contentToShow](region)}
+            <StyledButton onClick={() => setContentToShow('enregistrement')}>
+              Continuer
+            </StyledButton>
+          </>
+        ) : null}
 
-              // Update contentToShow based on selectedValue
-              if (selectedValue === 'yes') {
-                setContentToShow('pebInput');
-                setPEBIsValid(false);
-              } else if (selectedValue === 'no') {
-                setContentToShow('unregisteredContract');
-                setPEBIsValid(false);
-              } else if (selectedValue === 'none') {
-                setContentToShow('unknownContractRegistration');
-                setPEBIsValid(false);
-              } else if (selectedValue === 'unwritten') {
-                setContentToShow('unwritten');
-                setPEBIsValid(false);
-              }
-            }}
-          >
-            <option disabled selected>
-              -- Sélectionnez une option --
-            </option>
-            {enregistrements.map((enregistrement) => (
-              <option value={enregistrement.value} key={enregistrement.value}>
-                {enregistrement.label}
+        {!['writtenNotification', 'noWrittenNotification'].includes(contentToShow) ? (
+          <StyledLabel htmlFor="enregistrement">
+            Le bail est-il écrit et enregistré?
+            <StyledSelect
+              name="enregistrement"
+              id="enregistrement"
+              defaultValue={contractRegistrationStatus}
+              onChange={(e) => {
+                const selectedValue = e.target.value as Enregistrement['value'];
+                setRegistrationStatus(selectedValue);
+
+                // Update contentToShow based on selectedValue
+                if (selectedValue === 'yes') {
+                  setContentToShow('pebInput');
+                  setPEBIsValid(false);
+                } else if (selectedValue === 'no') {
+                  setContentToShow('unregisteredContract');
+                  setPEBIsValid(false);
+                } else if (selectedValue === 'none') {
+                  setContentToShow('unknownContractRegistration');
+                  setPEBIsValid(false);
+                } else if (selectedValue === 'unwritten') {
+                  setContentToShow('unwritten');
+                  setPEBIsValid(false);
+                }
+              }}
+            >
+              <option disabled selected>
+                -- Sélectionnez une option --
               </option>
-            ))}
-          </StyledSelect>
-        </StyledLabel>
+              {enregistrements.map((enregistrement) => (
+                <option value={enregistrement.value} key={enregistrement.value}>
+                  {enregistrement.label}
+                </option>
+              ))}
+            </StyledSelect>
+          </StyledLabel>
+        ) : null}
         {contentToShow === 'pebInput' && (
           <StyledLabel htmlFor="peb">
             Certificat PEB:
@@ -379,8 +435,10 @@ const StyledLabel = styled.label`
   flex-direction: column;
   align-items: start;
   font-weight: 300;
+  max-width: 265px;
   letter-spacing: 0.2px;
   font-size: 15px;
+  padding: 5px;
 `;
 
 export const StyledInput = styled.input`
