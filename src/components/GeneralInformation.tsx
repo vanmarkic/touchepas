@@ -27,7 +27,9 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
 
           <Paragraph>
             <Accordion.Item className="AccordionItem" value="item-2">
-              <AccordionTrigger><span>#1 </span>Que signifie l’indexation de mon loyer ?</AccordionTrigger>
+              <AccordionTrigger>
+                <span>#1 </span>Que signifie l’indexation de mon loyer ?
+              </AccordionTrigger>
               <AccordionContent>
                 Chaque année, la loi belge permet aux propriétaires d’augmenter le loyer pour tenir
                 compte de l’inflation. Cette augmentation est calculée à partir de l’indice santé
@@ -42,7 +44,9 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
 
           <Paragraph>
             <Accordion.Item className="AccordionItem" value="item-3">
-              <AccordionTrigger><span>#2 </span>Comment se calcule l’indexation ?</AccordionTrigger>
+              <AccordionTrigger>
+                <span>#2 </span>Comment se calcule l’indexation ?
+              </AccordionTrigger>
               <AccordionContent>
                 L’indexation de votre loyer se base sur l’indice santé calculé par Statbel. Mais
                 depuis le 1er novembre 2022, le calcul de l’indexation du loyer en Belgique prend en
@@ -50,22 +54,37 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
                 calcul varient en fonction de votre lieu de résidence (Flandre, Wallonie ou région
                 de Bruxelles-Capitale) et prend en compte l’enregistrement de votre bail, la date de
                 signature de votre bail et le niveau de PEB de votre logement. C’est pourquoi nous
-                avons développé un calculateur pour vous aider à y voir plus clair ! 
-                <br/>Pour connaitre
-                les modalités exactes de calcul, rendez-vous sur les sites officiels de
-                l’administration où se situe votre logement :<br/> 
-                <a target='_blank' href='https://logement.brussels/louer/bail/indexation-des-loyers/indexation-des-loyers-a-partir-du-14-octobre-2023-avec-facteurs-de-correction/'>Région de Bruxelles-Capitale</a>
-                <br/>
-                <a target='_blank' href='https://www.vlaanderen.be/huurprijs-en-huurwaarborg/huurprijsindexatie-sinds-1-oktober-2023-met-correctiefactoren)'>
-                  Région flamande</a><br/>
-                <a target='_blank' href='https://logement.wallonie.be/fr/bail/indexation-loyer'>Région wallonne</a><br/>
+                avons développé un calculateur pour vous aider à y voir plus clair !
+                <br />
+                Pour connaitre les modalités exactes de calcul, rendez-vous sur les sites officiels
+                de l’administration où se situe votre logement :<br />
+                <a
+                  target="_blank"
+                  href="https://logement.brussels/louer/bail/indexation-des-loyers/indexation-des-loyers-a-partir-du-14-octobre-2023-avec-facteurs-de-correction/"
+                >
+                  Région de Bruxelles-Capitale
+                </a>
+                <br />
+                <a
+                  target="_blank"
+                  href="https://www.vlaanderen.be/huurprijs-en-huurwaarborg/huurprijsindexatie-sinds-1-oktober-2023-met-correctiefactoren)"
+                >
+                  Région flamande
+                </a>
+                <br />
+                <a target="_blank" href="https://logement.wallonie.be/fr/bail/indexation-loyer">
+                  Région wallonne
+                </a>
+                <br />
               </AccordionContent>
             </Accordion.Item>
           </Paragraph>
 
           <Paragraph>
             <Accordion.Item className="AccordionItem" value="item-4">
-              <AccordionTrigger><span>#3 </span>L’indexation de mon loyer est-elle automatique ?</AccordionTrigger>
+              <AccordionTrigger>
+                <span>#3 </span>L’indexation de mon loyer est-elle automatique ?
+              </AccordionTrigger>
               <AccordionContent>
                 Non! L’indexation de votre loyer doit vous être demandée par écrit par votre
                 propriétaire. Elle ne peut avoir lieu qu’une fois par an, à la date anniversaire de
@@ -77,7 +96,8 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
           <Paragraph>
             <Accordion.Item className="AccordionItem" value="item-5">
               <AccordionTrigger>
-              <span>#4 </span>Qu’est-ce qui se passe si mon propriétaire oublie d’indexer mon loyer ?
+                <span>#4 </span>Qu’est-ce qui se passe si mon propriétaire oublie d’indexer mon
+                loyer ?
               </AccordionTrigger>
               <AccordionContent>
                 Le propriétaire qui oublie d’indexer le loyer à la date anniversaire de l’entrée en
@@ -88,9 +108,11 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
             </Accordion.Item>
           </Paragraph>
 
-          <Paragraph id="peb">
+          <Paragraph id="pebSection">
             <Accordion.Item className="AccordionItem" value="item-6">
-              <AccordionTrigger><span>#5 </span>C’est quoi un certificat PEB ?</AccordionTrigger>
+              <AccordionTrigger>
+                <span>#5 </span>C’est quoi un certificat PEB ?
+              </AccordionTrigger>
               <AccordionContent>
                 Le certificat de performance énergétique des bâtiments (PEB) est un document
                 officiel établi par un professionnel agrée qui indique la consommation théorique
@@ -104,7 +126,7 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
           <Paragraph>
             <Accordion.Item className="AccordionItem" value="item-7">
               <AccordionTrigger>
-              <span>#6 </span>Que signifie les lettres A++, B, C, D, E, F et G du certificat PEB ?
+                <span>#6 </span>Que signifie les lettres A++, B, C, D, E, F et G du certificat PEB ?
               </AccordionTrigger>
               <AccordionContent>
                 Le certificat PEB mentionne notamment, pour chaque logement, sa consommation
@@ -123,7 +145,9 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
 
           <Paragraph>
             <Accordion.Item className="AccordionItem" value="item-8">
-              <AccordionTrigger><span>#7 </span>A quoi sert un certificat PEB ?</AccordionTrigger>
+              <AccordionTrigger>
+                <span>#7 </span>A quoi sert un certificat PEB ?
+              </AccordionTrigger>
               <AccordionContent>
                 En tant que locataire, le certificat PEB vous permet de connaitre la consommation
                 théorique de votre logement et d’avoir une estimation du coût de votre facture de
@@ -137,7 +161,8 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
           <Paragraph>
             <Accordion.Item className="AccordionItem" value="item-9">
               <AccordionTrigger>
-              <span>#8 </span>Votre propriétaire est-il obligé d’avoir un certificat PEB pour louer son logement ?
+                <span>#8 </span>Votre propriétaire est-il obligé d’avoir un certificat PEB pour
+                louer son logement ?
               </AccordionTrigger>
               <AccordionContent>
                 Oui, toute personne qui met un logement en vente ou en location doit disposer d'un
@@ -153,7 +178,7 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
           <Paragraph>
             <Accordion.Item className="AccordionItem" value="item-10">
               <AccordionTrigger>
-              <span>#9 </span>Qui doit faire les démarches pour obtenir un certificat PEB ?
+                <span>#9 </span>Qui doit faire les démarches pour obtenir un certificat PEB ?
               </AccordionTrigger>
               <AccordionContent>
                 C’est à votre propriétaire de réaliser les démarches pour obtenir un certificat.
@@ -166,7 +191,7 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
           <Paragraph>
             <Accordion.Item className="AccordionItem" value="item-11">
               <AccordionTrigger>
-              <span>#10 </span> Mon propriétaire n’a pas de certificat PEB. Que se passe-t-il ?
+                <span>#10 </span> Mon propriétaire n’a pas de certificat PEB. Que se passe-t-il ?
               </AccordionTrigger>
               <AccordionContent>
                 Votre propriétaire peut être sanctionné par des amendes administratives qui varient
@@ -181,8 +206,8 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
           <Paragraph>
             <Accordion.Item className="AccordionItem" value="item-12">
               <AccordionTrigger>
-              <span>#11 </span>Votre propriétaire ne pouvait pas indexer le loyer ou vous a demandé un loyer trop
-                élevé ? Comment faire pour demander le remboursement ?{' '}
+                <span>#11 </span>Votre propriétaire ne pouvait pas indexer le loyer ou vous a
+                demandé un loyer trop élevé ? Comment faire pour demander le remboursement ?{' '}
               </AccordionTrigger>
               <AccordionContent>
                 Si votre propriétaire vous a fait indûment payer un loyer indexé, vous pouvez lui
@@ -194,15 +219,19 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
                 plus tard un an après l’envoi du courrier recommandé. En cas de conflit, le juge de
                 paix du lieu du logement loué est compétent. Vous souhaitez vous faire aider ?
                 Prenez contact avec une association pour voir quelles sont les démarches à
-                entreprendre. <br/>
-                <a target='_blank' href='https://logement.brussels/acteurs-du-logement/'> Liste des associations par commune sur Bruxelles</a>
-                <br/>
-                <a target='_blank' href='https://www.flw.be/?pc&type=10#map'>   Liste des associations par région en Wallonie </a>
+                entreprendre. <br />
+                <a target="_blank" href="https://logement.brussels/acteurs-du-logement/">
+                  {' '}
+                  Liste des associations par commune sur Bruxelles
+                </a>
+                <br />
+                <a target="_blank" href="https://www.flw.be/?pc&type=10#map">
+                  {' '}
+                  Liste des associations par région en Wallonie{' '}
+                </a>
               </AccordionContent>
             </Accordion.Item>
           </Paragraph>
-
-
         </Accordion.Root>
       </TwoColumns>
     </StyledSection2>

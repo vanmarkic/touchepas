@@ -63,7 +63,13 @@ const textContent: Record<TextContentKeys, (region: Regions) => React.ReactEleme
         bailleur ne peut pas indexer votre loyer entre le 1er novembre 2022 et le 31 octobre 2023.
         <br />
       </StyledText>
-      <StyledA onClick={() => scrollToSection('peb')}>Plus de détails</StyledA>
+      <StyledA
+        onClick={() => {
+          scrollToSection('pebSection');
+        }}
+      >
+        Plus de détails
+      </StyledA>
     </>
   ),
   unknownContractRegistration: (region) => (
@@ -259,7 +265,7 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
 
         {!['writtenNotification', 'noWrittenNotification'].includes(contentToShow) ? (
           <StyledLabel htmlFor="enregistrement">
-            Le bail est-il écrit et enregistré?
+            Le bail est-il enregistré ?
             <StyledSelect
               name="enregistrement"
               id="enregistrement"
@@ -438,7 +444,6 @@ const StyledLabel = styled.label`
   max-width: 265px;
   letter-spacing: 0.2px;
   font-size: 15px;
-  padding: 5px;
 `;
 
 export const StyledInput = styled.input`
