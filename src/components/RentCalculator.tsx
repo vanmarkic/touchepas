@@ -130,7 +130,7 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
   const [yearOfIndexation, setYearOfIndexation] = useState<number>();
   const [initialRent, setInitialRent] = useState<number>(0);
   const [contractSignatureDate, setContractSignatureDate] = useState<Date | null>(null);
-  const [agreementStartDate, setAgreementStartDate] = useState<Date>(new Date());
+  const [agreementStartDate, setAgreementStartDate] = useState<Date>();
   const [newRent, setNewRent] = useState<number | string>(0);
   const [energyEfficiencyRating, setEnergyEfficiencyRating] = useState<
     EnergyEfficiencyRating | 'unselected'
@@ -142,15 +142,24 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
 
   const [PEBIsValid, setPEBIsValid] = useState<boolean>();
 
+  const isAnniversaryMonthReached = React.useMemo(() => {
+    return (
+      yearOfIndexation &&
+      contractSignatureDate &&
+      agreementStartDate &&
+      (agreementStartDate.getMonth() >= new Date().getMonth()
+        ? yearOfIndexation < new Date().getFullYear()
+        : yearOfIndexation <= new Date().getFullYear())
+    );
+  }, [agreementStartDate, yearOfIndexation]);
+
   const isValid = React.useMemo(() => {
     return (
       yearOfIndexation &&
       initialRent &&
       contractSignatureDate &&
       agreementStartDate &&
-      (agreementStartDate.getMonth() >= new Date().getMonth()
-        ? yearOfIndexation < new Date().getFullYear()
-        : yearOfIndexation <= new Date().getFullYear()) &&
+      isAnniversaryMonthReached &&
       yearOfIndexation > agreementStartDate.getFullYear() &&
       agreementStartDate >= contractSignatureDate
     );
@@ -203,7 +212,7 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
       <form style={{ position: 'relative' }}>
         <img
           src={hand}
-          style={{ position: 'absolute', top: '145px', pointerEvents: 'none', objectFit: 'cover' }}
+          style={{ position: 'absolute', top: '195px', pointerEvents: 'none', objectFit: 'cover' }}
         />
         <StyledNewRent>
           <StyledLabel style={{ color: 'white', width: '30%' }}>Loyer Maximum Autorisé</StyledLabel>
@@ -395,6 +404,15 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
               <StyledButton disabled={!isValid} type="button" onClick={handleCalculate}>
                 Calculer
               </StyledButton>
+              {!isAnniversaryMonthReached &&
+              agreementStartDate &&
+              contractSignatureDate &&
+              yearOfIndexation ? (
+                <StyledValidation>
+                  L'indexation est impossible pour l'instant. Votre propriétaire doit attendre la
+                  date anniversaire de votre bail pour vous indexer.
+                </StyledValidation>
+              ) : null}
             </StyledContainerRow>
           </>
         )}
@@ -403,6 +421,13 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
   );
 };
 export default RentCalculator;
+
+const StyledValidation = styled.p`
+  color: var(--red);
+  font-size: 12px;
+  margin: 5px;
+  width: 80%;
+`;
 
 const StyledContainer = styled.div`
   display: flex;
@@ -419,8 +444,9 @@ const StyledContainer = styled.div`
 
 const StyledContainerRow = styled.div`
   display: flex;
-  align-items: end;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   position: relative;
   margin-top: 10px;
 `;

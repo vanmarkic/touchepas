@@ -197,7 +197,7 @@ color:var(--red);
     flex-direction: column;
     align-items: center;
     width:265px;
-    height:480px;
+    height:530px;
     gap: 6px;
     background-color: var(--blue);
     border-radius:10px;
