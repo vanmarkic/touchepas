@@ -19,7 +19,7 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
               </AccordionTrigger>
               <AccordionContent>
                 {region === 'wallonia'
-                  ? "Le loyer peut être indexé, chaque année, au plus tôt à la date anniversaire de l’entrée en vigueur du bail. L'indexation du loyer est toujours possible, à moins qu'elle n'ait été exclue expressément dans une clause du bail ou qu'il s'agisse d'un bail verbal. Pour indexer le loyer, il faut un bail écrit. Pour les baux conclus ou renouvelés à partir du 01/09/2018 que pour les baux en cours au 01/09/2018, il doit être enregistré. L'indexation du loyer n'est pas automatique et doit être demandée par écrit. La demande d’indexation ne doit pas nécessairement être envoyée par lettre recommandée : elle peut être faite par courrier normal, SMS ou e-mail."
+                  ? "Le loyer peut être indexé, chaque année, au plus tôt à la date anniversaire de l'entrée en vigueur du bail. L'indexation du loyer est toujours possible, à moins qu'elle n'ait été exclue expressément dans une clause du bail ou qu'il s'agisse d'un bail verbal. Pour indexer le loyer, il faut un bail écrit. Pour les baux conclus ou renouvelés à partir du 01/09/2018 que pour les baux en cours au 01/09/2018, il doit être enregistré. L'indexation du loyer n'est pas automatique et doit être demandée par écrit. La demande d'indexation ne doit pas nécessairement être envoyée par lettre recommandée : elle peut être faite par courrier normal, SMS ou e-mail."
                   : 'Contenu Bruxelles'}
               </AccordionContent>
             </Accordion.Item>
@@ -28,16 +28,16 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
           <Paragraph>
             <Accordion.Item className="AccordionItem" value="item-2">
               <AccordionTrigger>
-                <span>#1 </span>Que signifie l’indexation de mon loyer ?
+                <span>#1 </span>Que signifie l'indexation de mon loyer ?
               </AccordionTrigger>
               <AccordionContent>
-                Chaque année, la loi belge permet aux propriétaires d’augmenter le loyer pour tenir
-                compte de l’inflation. Cette augmentation est calculée à partir de l’indice santé
-                qui suit l’évolution des prix (prix de l’essence, de la nourriture, de l’énergie…).
-                L’indexation de votre loyer correspond donc à l’augmentation maximum que votre
+                Chaque année, la loi belge permet aux propriétaires d'augmenter le loyer pour tenir
+                compte de l'inflation. Cette augmentation est calculée à partir de l'indice santé
+                qui suit l'évolution des prix (prix de l'essence, de la nourriture, de l'énergie…).
+                L'indexation de votre loyer correspond donc à l'augmentation maximum que votre
                 propriétaire peut vous demander une fois par an, moyennant une série de conditions
-                (enregistrement du bail, PEB…). Votre propriétaire n’est pas obligé de le faire et
-                peut décider de ne pas indexer, ou bien d’indexer moins que le montant autorisé.
+                (enregistrement du bail, PEB…). Votre propriétaire n'est pas obligé de le faire et
+                peut décider de ne pas indexer, ou bien d'indexer moins que le montant autorisé.
               </AccordionContent>
             </Accordion.Item>
           </Paragraph>
@@ -45,19 +45,19 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
           <Paragraph>
             <Accordion.Item className="AccordionItem" value="item-3">
               <AccordionTrigger>
-                <span>#2 </span>Comment se calcule l’indexation ?
+                <span>#2 </span>Comment se calcule l'indexation ?
               </AccordionTrigger>
               <AccordionContent>
-                L’indexation de votre loyer se base sur l’indice santé calculé par Statbel. Mais
-                depuis le 1er novembre 2022, le calcul de l’indexation du loyer en Belgique prend en
-                compte d’autres règles qui viennent compliquer fortement ce calcul. Les règles de
+                L'indexation de votre loyer se base sur l'indice santé calculé par Statbel. Mais
+                depuis le 1er novembre 2022, le calcul de l'indexation du loyer en Belgique prend en
+                compte d'autres règles qui viennent compliquer fortement ce calcul. Les règles de
                 calcul varient en fonction de votre lieu de résidence (Flandre, Wallonie ou région
-                de Bruxelles-Capitale) et prend en compte l’enregistrement de votre bail, la date de
-                signature de votre bail et le niveau de PEB de votre logement. C’est pourquoi nous
+                de Bruxelles-Capitale) et prend en compte l'enregistrement de votre bail, la date de
+                signature de votre bail et le niveau de PEB de votre logement. C'est pourquoi nous
                 avons développé un calculateur pour vous aider à y voir plus clair !
                 <br />
                 Pour connaitre les modalités exactes de calcul, rendez-vous sur les sites officiels
-                de l’administration où se situe votre logement :<br />
+                de l'administration où se situe votre logement :<br />
                 <a
                   target="_blank"
                   href="https://logement.brussels/louer/bail/indexation-des-loyers/indexation-des-loyers-a-partir-du-14-octobre-2023-avec-facteurs-de-correction/"
@@ -83,12 +83,12 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
           <Paragraph>
             <Accordion.Item className="AccordionItem" value="item-4">
               <AccordionTrigger>
-                <span>#3 </span>L’indexation de mon loyer est-elle automatique ?
+                <span>#3 </span>L'indexation de mon loyer est-elle automatique ?
               </AccordionTrigger>
               <AccordionContent>
-                Non! L’indexation de votre loyer doit vous être demandée par écrit par votre
-                propriétaire. Elle ne peut avoir lieu qu’une fois par an, à la date anniversaire de
-                l’entrée en vigueur du contrat. Cela vaut pour les trois régions.
+                Non! L'indexation de votre loyer doit vous être demandée par écrit par votre
+                propriétaire. Elle ne peut avoir lieu qu'une fois par an, à la date anniversaire de
+                l'entrée en vigueur du contrat. Cela vaut pour les trois régions.
               </AccordionContent>
             </Accordion.Item>
           </Paragraph>
@@ -96,14 +96,14 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
           <Paragraph>
             <Accordion.Item className="AccordionItem" value="item-5">
               <AccordionTrigger>
-                <span>#4 </span>Qu’est-ce qui se passe si mon propriétaire oublie d’indexer mon
+                <span>#4 </span>Qu'est-ce qui se passe si mon propriétaire oublie d'indexer mon
                 loyer ?
               </AccordionTrigger>
               <AccordionContent>
-                Le propriétaire qui oublie d’indexer le loyer à la date anniversaire de l’entrée en
-                vigueur d’un bail peut toujours le faire, mais à une condition : ne pas récupérer
+                Le propriétaire qui oublie d'indexer le loyer à la date anniversaire de l'entrée en
+                vigueur d'un bail peut toujours le faire, mais à une condition : ne pas récupérer
                 plus que les trois mois qui précèdent sa demande. Il ne peut en aucun cas vous
-                demander de payer pour les mois durant lesquels il n’a pas perçu l’indexation !
+                demander de payer pour les mois durant lesquels il n'a pas perçu l'indexation !
               </AccordionContent>
             </Accordion.Item>
           </Paragraph>
@@ -111,14 +111,14 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
           <Paragraph id="pebSection">
             <Accordion.Item className="AccordionItem" value="item-6">
               <AccordionTrigger>
-                <span>#5 </span>C’est quoi un certificat PEB ?
+                <span>#5 </span>C'est quoi un certificat PEB ?
               </AccordionTrigger>
               <AccordionContent>
                 Le certificat de performance énergétique des bâtiments (PEB) est un document
                 officiel établi par un professionnel agrée qui indique la consommation théorique
                 d'énergie de votre logement en fonction de ses caractéristiques (simple ou double
-                vitrage, isolation, énergies renouvelables, équipements de chauffage...). C’est sa «
-                carte d’identité énergétique ». Le certificat est valide pendant 10ans.
+                vitrage, isolation, énergies renouvelables, équipements de chauffage...). C'est sa «
+                carte d'identité énergétique ». Le certificat est valide pendant 10ans.
               </AccordionContent>
             </Accordion.Item>
           </Paragraph>
@@ -130,14 +130,14 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
               </AccordionTrigger>
               <AccordionContent>
                 Le certificat PEB mentionne notamment, pour chaque logement, sa consommation
-                d'énergie sur une échelle qui va de A++ jusqu’à G. Une lettre A ou B signifie que
-                votre logement est très performant et qu’il consomme très peu d’énergie pour être
-                chauffé. Une lettre F ou G signifie que votre logement est très mal isolé et qu’il
-                consomme beaucoup d’énergie – et risque donc de vous coûter plus à chauffer. A
-                partir de la lettre D, on estime qu’il s’agit d’une « passoire énergétique » et que
-                vous habitez un logement mal isolé. Attention toutefois, il s’agit d’un calcul
-                théorique ! Il vous permet de comparer des logements entre eux mais ne vous indique
-                pas la consommation réelle que vous aurez : celle-ci dépend de vos habitudes, de
+                d'énergie sur une échelle qui va de A++ jusqu'à G. Une lettre A ou B signifie que
+                votre logement est très performant et qu'il consomme très peu d'énergie pour être
+                chauffé. Une lettre F ou G signifie que votre logement est très mal isolé qu'il
+                consomme beaucoup d'énergie – et risque donc de vous coûter plus à chauffer. A
+                partir de la lettre D, on estime qu'il s'agit d'une « passoire énergétique » et que
+                vous habitez un logement mal isolé. Attention toutefois, il s'agit d'un calcul
+                théorique ! Il vous permet de comparer des logements entre eux mais ne vous indique
+                pas la consommation réelle que vous aurez : celle-ci dépend de vos habitudes, de
                 votre présence dans le logement …
               </AccordionContent>
             </Accordion.Item>
@@ -150,9 +150,9 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
               </AccordionTrigger>
               <AccordionContent>
                 En tant que locataire, le certificat PEB vous permet de connaitre la consommation
-                théorique de votre logement et d’avoir une estimation du coût de votre facture de
+                théorique de votre logement et d'avoir une estimation du coût de votre facture de
                 chauffage. Le certificat indique aussi des recommandations pour améliorer
-                l’isolation du logement et vous permet de savoir quels travaux le propriétaire
+                l'isolation du logement et vous permet de savoir quels travaux le propriétaire
                 devrait mener en priorité pour que le logement soit mieux isolé.
               </AccordionContent>
             </Accordion.Item>
@@ -161,7 +161,7 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
           <Paragraph>
             <Accordion.Item className="AccordionItem" value="item-9">
               <AccordionTrigger>
-                <span>#8 </span>Votre propriétaire est-il obligé d’avoir un certificat PEB pour
+                <span>#8 </span>Votre propriétaire est-il obligé d'avoir un certificat PEB pour
                 louer son logement ?
               </AccordionTrigger>
               <AccordionContent>
@@ -181,9 +181,9 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
                 <span>#9 </span>Qui doit faire les démarches pour obtenir un certificat PEB ?
               </AccordionTrigger>
               <AccordionContent>
-                C’est à votre propriétaire de réaliser les démarches pour obtenir un certificat.
-                Celui-ci n’est valable que 10 ans et doit être renouvelé. Regardez bien la date du
-                certificat pour vous assurer qu’il est toujours d’actualité.
+                C'est à votre propriétaire de réaliser les démarches pour obtenir un certificat.
+                Celui-ci n'est valable que 10 ans et doit être renouvelé. Regardez bien la date du
+                certificat pour vous assurer qu'il est toujours d'actualité.
               </AccordionContent>
             </Accordion.Item>
           </Paragraph>
@@ -191,12 +191,12 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
           <Paragraph>
             <Accordion.Item className="AccordionItem" value="item-11">
               <AccordionTrigger>
-                <span>#10 </span> Mon propriétaire n’a pas de certificat PEB. Que se passe-t-il ?
+                <span>#10 </span> Mon propriétaire n'a pas de certificat PEB. Que se passe-t-il ?
               </AccordionTrigger>
               <AccordionContent>
                 Votre propriétaire peut être sanctionné par des amendes administratives qui varient
                 en fonction des régions. Le non-respect de ces obligations est également considéré
-                comme un manquement du propriétaire, susceptible d’être sanctionné en justice. Mais
+                comme un manquement du propriétaire, susceptible d'être sanctionné en justice. Mais
                 il y a peu de chances que les juges prononcent la résolution du contrat de bail ou
                 la résolution du contrat de bail sur base de ce seul manquement…
               </AccordionContent>
@@ -216,7 +216,7 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
                 montants de l'indexation de loyer que vous avez payés sont prescrits. Si votre
                 propriétaire ne réagit pas ou n'est pas d'accord de vous rembourser, vous pouvez
                 demander au juge de paix de le condamner à vous rembourser. Vous devez le faire au
-                plus tard un an après l’envoi du courrier recommandé. En cas de conflit, le juge de
+                plus tard un an après l'envoi du courrier recommandé. En cas de conflit, le juge de
                 paix du lieu du logement loué est compétent. Vous souhaitez vous faire aider ?
                 Prenez contact avec une association pour voir quelles sont les démarches à
                 entreprendre. <br />
@@ -229,6 +229,66 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
                   {' '}
                   Liste des associations par région en Wallonie{' '}
                 </a>
+              </AccordionContent>
+            </Accordion.Item>
+          </Paragraph>
+          <Paragraph id="needhelp">
+            <Accordion.Item className="AccordionItem" value="item-13">
+              <AccordionTrigger>
+                <span>#12 </span>Où m'adresser si j'ai besoin d'aide ?
+              </AccordionTrigger>
+              <AccordionContent>
+                <ul>
+                  <li>
+                    Si le montant indexé vous parait très élevé ou si vous avez des questions en
+                    lien avec votre logement, vous pouvez contacter une Association de Promotion du
+                    Logement (APL) de votre région, le service bail du SPW logement ou encore un
+                    service logement communal proche.
+                  </li>
+                  <br />
+                  <li>
+                    Vous pouvez vous rendre dans une Association de promotion au logement. Pour
+                    trouver une APL près de chez vous, vous pouvez vous rendre sur{' '}
+                    <a href="https://www.flw.be/#carte" target="_blank">
+                      https://www.flw.be/#carte
+                    </a>{' '}
+                    <br /> En y mettant votre code postal, la carte vous renseignera l'association
+                    de promotion du logement la plus proche de chez vous. Des permanences physiques
+                    sont assurées.
+                  </li>
+                  <br />
+                  <li>
+                    Des permanence physique « info-conseil logement » ont lieu dans chaque province
+                    : (voir tableau) <br />
+                    <a
+                      href="https://logement.wallonie.be/fr/page/info-conseils-logement"
+                      target="_blank"
+                    >
+                      https://logement.wallonie.be/fr/page/info-conseils-logement
+                    </a>
+                    <br />
+                    Appeler le 1718 numéro gratuit de la Région Wallonne.
+                  </li>
+                  <br />
+                  <li>
+                    Prenez contact avec les permanences locales en Wallonie <br />
+                    "Info-Conseils Logement" <br />
+                    081/33.23.10 (9h00 à 12h00 et 14h00 à 16h00) <br />
+                    infobail@spw.wallonie.be <br />
+                  </li>
+                  <br />
+                  <li>
+                    Rendez-vous dans un Espace Wallonie : <br />
+                    <a href="https://www.wallonie.be/fr/les-espaces-wallonie" target="_blank">
+                      https://www.wallonie.be/fr/les-espaces-wallonie
+                    </a>
+                  </li>
+                  <br />
+                  <li>
+                    Trouver une association près de chez moi <br />
+                    lien vers Fonds du Logement
+                  </li>
+                </ul>
               </AccordionContent>
             </Accordion.Item>
           </Paragraph>
