@@ -4,11 +4,11 @@ button {
 }
 
 .RadioGroupRoot {
+  margin-top: 20px;
   display: flex;
-  gap: 10px;
+  gap: 30px;
   justify-content: space-around;
-  align-self: center;
-  padding: 5px;
+  align-self: flex-start;
 }
 
 .RadioGroupItem {
@@ -43,7 +43,7 @@ button {
 
 .Label {
   color: white !important;
-  font-size: 15px;
+  font-size: 22px;
   line-height: 1;
-  padding-left: 15px;
+  padding-left: 6px;
 }

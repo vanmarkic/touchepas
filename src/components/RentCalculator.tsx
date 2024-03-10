@@ -470,6 +470,7 @@ const StyledLabel = styled.label`
   max-width: 265px;
   letter-spacing: 0.2px;
   font-size: 15px;
+  width: 220px;
 `;
 
 export const StyledInput = styled.input`
