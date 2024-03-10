@@ -24,7 +24,7 @@ export function calculateRentIndexation({
   yearOfIndexation,
   region,
   energyEfficiencyRating,
-}: RentIndexationArguments): number | null {
+}: RentIndexationArguments): { explanation: string; rent: number | null } {
   const {
     indexBaseYear,
     anniversaryMonth,
@@ -36,15 +36,43 @@ export function calculateRentIndexation({
   } = deriveData({ agreementStartDate, contractSignatureDate, yearOfIndexation, region });
 
   if (region === 'brussels') {
-    return roundToTwoDecimals(
-      calculateRentIndexationForBxl(
-        initialRent,
-        initialIndex,
-        newHealthIndex,
-        energyEfficiencyRating,
-        agreementStartDate,
-      ) ?? 0,
-    );
+    return {
+      // provide detailed process to obtain the rent
+      explanation: `La fonction "calculateRentIndexationForBxl" est utilisée pour calculer l'indexation du loyer pour la région de Bruxelles.
+      
+      Elle prend en compte plusieurs paramètres, tels que le loyer initial, l'indice santé initial, le nouvel indice de santé, la cote d'efficacité énergétique et la date anniversaire.
+
+      Voici comment elle fonctionne avec des valeurs dynamiques :
+      
+      Supposons que le loyer initial soit de ${initialRent} euros, l'indice initial soit de ${initialIndex}, le nouvel indice de santé soit de ${newHealthIndex} et la cote d'efficacité énergétique soit de ${energyEfficiencyRating}.
+      
+      Le loyer indexé est calculé en multipliant le loyer initial (${initialRent} euros) par le nouvel indice de santé (${newHealthIndex}) et en divisant le résultat par l'indice initial (${initialIndex}). Cela donne un loyer indexé.
+      
+      Ensuite, en fonction de la cote d'efficacité énergétique (${energyEfficiencyRating}), la fonction applique des facteurs de correction spécifiques pour ajuster le loyer indexé. Les cotes A, B, C et D n'ont pas de facteur de correction supplémentaire, tandis que les cotes E, F et G ont des facteurs de correction spécifiques pour chaque mois.
+      
+      Si la cote d'efficacité énergétique n'est pas sélectionnée ou si une valeur inattendue est fournie, la fonction affiche une alerte demandant de sélectionner une cote valide.
+      
+      La fonction renvoie le loyer indexé final (${roundToTwoDecimals(
+        calculateRentIndexationForBxl(
+          initialRent,
+          initialIndex,
+          newHealthIndex,
+          energyEfficiencyRating,
+          agreementStartDate,
+        ) ?? 0,
+      )} euros).
+      
+      `,
+      rent: roundToTwoDecimals(
+        calculateRentIndexationForBxl(
+          initialRent,
+          initialIndex,
+          newHealthIndex,
+          energyEfficiencyRating,
+          agreementStartDate,
+        ) ?? 0,
+      ),
+    };
   }
 
   // ---- basic formula preapplied with index and rent
@@ -69,11 +97,12 @@ export function calculateRentIndexation({
   //---- pure business logic
   if (isRequestedAfterEndOfDecree && region === 'wallonia') {
     if (['A', 'B', 'C'].includes(energyEfficiencyRating)) {
-      return basicFormulaWithInitialRentAndIndex(newHealthIndex);
+      return {
+        explanation: 'wallonia after end of decree and A B or C',
+        rent: basicFormulaWithInitialRentAndIndex(newHealthIndex),
+      };
     }
     const agreementMonth = agreementStartDate.toLocaleString('en-US', { month: 'long' });
-    // const yearOfAdaptedRent = yearOfIndexation - 1;
-    // const adaptedIndex = findHealthIndex(yearOfAdaptedRent, 'October', indexBaseYear);
 
     const ratioEnergetique = ENERGY_RATIOS[region].peb[energyEfficiencyRating];
     const ecartType = (initialRent / initialIndex) * healthIndexBeforeDecree;
@@ -87,24 +116,47 @@ export function calculateRentIndexation({
         ? initialRent + ecartType2Ratio
         : loyerIndexéOctobre2O21 + ecartType2Ratio;
 
-    debugger;
     if (!['November', 'December'].includes(agreementMonth)) {
-      debugger;
-      return roundToTwoDecimals(loyerAdapté);
+      return {
+        explanation:
+          'after decree except for november and december in wallonia, for rating of D and worse',
+        rent: roundToTwoDecimals(loyerAdapté),
+      };
     }
-    debugger;
-    return roundToTwoDecimals((loyerAdapté * newHealthIndex) / healthIndexBeforeDecree);
+    return {
+      explanation: 'after decree for november and december in wallonia, for rating of D and worse',
+      rent: roundToTwoDecimals((loyerAdapté * newHealthIndex) / healthIndexBeforeDecree),
+    };
   }
 
-  return roundToTwoDecimals(
-    wasIndexationRequestedBeforeStartOfEnergyRatingDecree
-      ? basicFormulaWithInitialRentAndIndex(newHealthIndex)
-      : calculerIndexationLoyerDurantDécretEnWallonie(
-          currentYearIndexedRent,
-          previousYearIndexedRent,
-          ENERGY_RATIOS[region].peb[energyEfficiencyRating],
+  return wasIndexationRequestedBeforeStartOfEnergyRatingDecree
+    ? {
+        rent: roundToTwoDecimals(basicFormulaWithInitialRentAndIndex(newHealthIndex)),
+        explanation: 'before decree in wallonia',
+      }
+    : {
+        explanation: `Différence = Loyer potentiel de l'année en cours ${currentYearIndexedRent} - loyer indexé à l'année précédente ${previousYearIndexedRent}
+        Différence soumise au prorata du ratio PEB = différence X ${
+          ENERGY_RATIOS[region].peb[energyEfficiencyRating]
+        } 
+        Loyer indexé final = Loyer indexé précédent ${previousYearIndexedRent} +   Différence soumise au prorata du ratio PEB ${
+          currentYearIndexedRent -
+          previousYearIndexedRent * ENERGY_RATIOS[region].peb[energyEfficiencyRating]
+        } =  ${roundToTwoDecimals(
+          calculerIndexationLoyerDurantDécretEnWallonie(
+            currentYearIndexedRent,
+            previousYearIndexedRent,
+            ENERGY_RATIOS[region].peb[energyEfficiencyRating],
+          ),
+        )}`,
+        rent: roundToTwoDecimals(
+          calculerIndexationLoyerDurantDécretEnWallonie(
+            currentYearIndexedRent,
+            previousYearIndexedRent,
+            ENERGY_RATIOS[region].peb[energyEfficiencyRating],
+          ),
         ),
-  );
+      };
 }
 
 type Month =

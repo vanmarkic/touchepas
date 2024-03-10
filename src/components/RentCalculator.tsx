@@ -13,6 +13,7 @@ import hand from '../images/hand.png';
 import { scrollToSection } from './HeroSection';
 import * as RadioGroup from '@radix-ui/react-radio-group';
 import './RadioGroup.css';
+import ExplanationModal from './ExplanationModal';
 
 type TextContentKeys =
   | 'writtenNotification'
@@ -131,7 +132,10 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
   const [initialRent, setInitialRent] = useState<number>(0);
   const [contractSignatureDate, setContractSignatureDate] = useState<Date | null>(null);
   const [agreementStartDate, setAgreementStartDate] = useState<Date>();
-  const [newRent, setNewRent] = useState<number | string>(0);
+  const [newRent, setNewRent] = useState<{ rent: number | null; explanation: string }>({
+    rent: 0,
+    explanation: '',
+  });
   const [energyEfficiencyRating, setEnergyEfficiencyRating] = useState<
     EnergyEfficiencyRating | 'unselected'
   >('unselected');
@@ -139,6 +143,8 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
   const [contractRegistrationStatus, setRegistrationStatus] = useState<Enregistrement['value']>();
 
   const [contentToShow, setContentToShow] = useState<TextContentKeys>('writtenNotification');
+
+  const [showExplanation, setShowExplanation] = useState<boolean | null>(false);
 
   const [PEBIsValid, setPEBIsValid] = useState<boolean>();
 
@@ -178,7 +184,7 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
       energyEfficiencyRating !== 'unselected'
     ) {
       try {
-        const increasedRent = calculateRentIndexation({
+        const rent = calculateRentIndexation({
           contractSignatureDate,
           agreementStartDate,
           initialRent,
@@ -186,11 +192,11 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
           region,
           energyEfficiencyRating,
         });
-        if (!increasedRent) {
-          setNewRent('something went wrong');
+        if (!rent) {
+          setNewRent({ ...newRent, explanation: 'something went wrong' });
           return;
         }
-        setNewRent(increasedRent);
+        setNewRent(rent);
       } catch (error: any) {
         alert(error.message);
       }
@@ -204,11 +210,14 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
         yearOfIndexation == ENERGY_RATIOS[region].start.getFullYear() &&
         agreementStartDate.getMonth() < ENERGY_RATIOS[region].start.getMonth()));
 
+  const handleOpenExplanation = (e) => {
+    e.preventDefault();
+    setShowExplanation(true);
+  };
   return (
     <StyledContainer>
       <h4>Mon loyer maximum autorisé</h4>
       <RedSpan>{region === 'wallonia' ? 'en Wallonie' : 'à Bruxelles'}</RedSpan>
-
       <form style={{ position: 'relative' }}>
         <img
           src={hand}
@@ -227,195 +236,206 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
               padding: '5px',
             }}
           >
-            {newRent ? Number(newRent).toFixed(2).replace('.', ',') : '- '}€
+            {newRent ? Number(newRent.rent).toFixed(2).replace('.', ',') : '- '}€
           </h4>
         </StyledNewRent>
-
-        {contentToShow === 'writtenNotification' || contentToShow === 'noWrittenNotification' ? (
-          <StyledLabel htmlFor="writtenNotification">
-            Votre propriétaire vous a-t-il envoyé une demande d'indexation par écrit?
-            <RadioGroup.Root
-              id="writtenNotification"
-              className="RadioGroupRoot"
-              defaultValue="default"
-              aria-label="View density"
-              onValueChange={(value) => {
-                if (value === 'false') setContentToShow('noWrittenNotification');
-                if (value === 'true') setContentToShow('enregistrement');
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <RadioGroup.Item className="RadioGroupItem" value="true" id="r1">
-                  <RadioGroup.Indicator className="RadioGroupIndicator" />
-                </RadioGroup.Item>
-                <label className="Label" htmlFor="r1">
-                  Oui
-                </label>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <RadioGroup.Item className="RadioGroupItem" value="false" id="r2">
-                  <RadioGroup.Indicator className="RadioGroupIndicator" />
-                </RadioGroup.Item>
-                <label className="Label" htmlFor="r2">
-                  Non
-                </label>
-              </div>
-            </RadioGroup.Root>
-          </StyledLabel>
-        ) : null}
-        {contentToShow === 'noWrittenNotification' ? (
-          <>
-            {textContent[contentToShow](region)}
-            <StyledButton onClick={() => setContentToShow('enregistrement')}>
-              Continuer
-            </StyledButton>
-          </>
-        ) : null}
-
-        {!['writtenNotification', 'noWrittenNotification'].includes(contentToShow) ? (
-          <StyledLabel htmlFor="enregistrement">
-            Le bail est-il enregistré ?
-            <StyledSelect
-              name="enregistrement"
-              id="enregistrement"
-              defaultValue={contractRegistrationStatus}
-              onChange={(e) => {
-                const selectedValue = e.target.value as Enregistrement['value'];
-                setRegistrationStatus(selectedValue);
-
-                // Update contentToShow based on selectedValue
-                if (selectedValue === 'yes') {
-                  setContentToShow('pebInput');
-                  setPEBIsValid(false);
-                } else if (selectedValue === 'no') {
-                  setContentToShow('unregisteredContract');
-                  setPEBIsValid(false);
-                } else if (selectedValue === 'none') {
-                  setContentToShow('unknownContractRegistration');
-                  setPEBIsValid(false);
-                } else if (selectedValue === 'unwritten') {
-                  setContentToShow('unwritten');
-                  setPEBIsValid(false);
-                }
-              }}
-            >
-              <option disabled selected>
-                -- Sélectionnez une option --
-              </option>
-              {enregistrements.map((enregistrement) => (
-                <option value={enregistrement.value} key={enregistrement.value}>
-                  {enregistrement.label}
-                </option>
-              ))}
-            </StyledSelect>
-          </StyledLabel>
-        ) : null}
-        {contentToShow === 'pebInput' && (
-          <StyledLabel htmlFor="peb">
-            Certificat PEB:
-            <StyledSelect
-              disabled={!!isBeforePEBMeasure}
-              name="peb"
-              id="peb"
-              defaultValue={energyEfficiencyRating}
-              onChange={(e) => {
-                const selectedValue = e.target.value as EnergyEfficiencyRating | 'unselected';
-                setEnergyEfficiencyRating(selectedValue);
-                if (selectedValue !== 'none' && selectedValue !== 'unselected') {
-                  setPEBIsValid(true);
-                }
-                if (selectedValue === 'none') {
-                  setPEBIsValid(false);
-                }
-              }}
-            >
-              <option disabled selected value="unselected">
-                -- Sélectionnez une option --
-              </option>
-              {energyEfficiencyRatings.map((rating) => (
-                <option value={rating}>{rating !== 'none' ? rating : 'Aucun certificat'}</option>
-              ))}
-            </StyledSelect>
-          </StyledLabel>
-        )}
-
-        {contentToShow === 'unregisteredContract' && textContent[contentToShow](region)}
-        {contentToShow === 'unwritten' && textContent[contentToShow](region)}
-        {contentToShow === 'unknownContractRegistration' && textContent[contentToShow](region)}
-        {contentToShow === 'pebInput' && energyEfficiencyRating === 'unselected' && null}
-        {contentToShow === 'pebInput' &&
-          PEBIsValid === false &&
-          energyEfficiencyRating !== 'unselected' &&
-          textContent[contentToShow](region)}
-
-        {PEBIsValid === true && (
-          <>
-            <StyledLabel htmlFor="indexationDate">
-              Année de l'indexation:
-              <StyledInput
-                type="number"
-                min={new Date().getFullYear() - 1}
-                max={new Date().getFullYear()}
-                required
-                lang="fr-FR"
-                id="indexationDate"
-                placeholder={new Date().getFullYear().toString()}
-                onChange={(e) => setYearOfIndexation(Number(e.target.value))}
-              />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+          {contentToShow === 'writtenNotification' || contentToShow === 'noWrittenNotification' ? (
+            <StyledLabel htmlFor="writtenNotification">
+              Votre propriétaire vous a-t-il envoyé une demande d'indexation par écrit?
+              <RadioGroup.Root
+                id="writtenNotification"
+                className="RadioGroupRoot"
+                defaultValue="default"
+                aria-label="View density"
+                onValueChange={(value) => {
+                  if (value === 'false') setContentToShow('noWrittenNotification');
+                  if (value === 'true') setContentToShow('enregistrement');
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <RadioGroup.Item className="RadioGroupItem" value="true" id="r1">
+                    <RadioGroup.Indicator className="RadioGroupIndicator" />
+                  </RadioGroup.Item>
+                  <label className="Label" htmlFor="r1">
+                    Oui
+                  </label>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <RadioGroup.Item className="RadioGroupItem" value="false" id="r2">
+                    <RadioGroup.Indicator className="RadioGroupIndicator" />
+                  </RadioGroup.Item>
+                  <label className="Label" htmlFor="r2">
+                    Non
+                  </label>
+                </div>
+              </RadioGroup.Root>
             </StyledLabel>
-
-            <StyledLabel htmlFor="initialRent">
-              Loyer du bail hors charges:
-              <StyledInput
-                type="number"
-                id="initialRent"
-                onChange={(e) => setInitialRent(Number(e.target.value))}
-                required
-              />
-            </StyledLabel>
-
-            <StyledLabel htmlFor="contractSignatureDate">
-              Date de signature du bail:
-              <StyledInput
-                type="date"
-                min="2000-01-01"
-                max={new Date().toISOString().split('T')[0]}
-                required
-                lang="fr-FR"
-                id="contractSignatureDate"
-                onChange={(e) => setContractSignatureDate(new Date(e.target.value))}
-              />
-            </StyledLabel>
-
-            <StyledLabel htmlFor="agreementStartDate">
-              Date d'entrée en vigueur:
-              <StyledInput
-                type="date"
-                min="2000-01-01"
-                max={new Date().toISOString().split('T')[0]}
-                required
-                lang="fr-FR"
-                id="agreementStartDate"
-                onChange={(e) => setAgreementStartDate(new Date(e.target.value))}
-              />
-            </StyledLabel>
-
-            <StyledContainerRow>
-              <StyledButton disabled={!isValid} type="button" onClick={handleCalculate}>
-                Calculer
+          ) : null}
+          {contentToShow === 'noWrittenNotification' ? (
+            <>
+              {textContent[contentToShow](region)}
+              <StyledButton onClick={() => setContentToShow('enregistrement')}>
+                Continuer
               </StyledButton>
-              {!isAnniversaryMonthReached &&
-              agreementStartDate &&
-              contractSignatureDate &&
-              yearOfIndexation ? (
-                <StyledValidation>
-                  L'indexation est impossible pour l'instant. Votre propriétaire doit attendre la
-                  date anniversaire de votre bail pour vous indexer.
-                </StyledValidation>
-              ) : null}
-            </StyledContainerRow>
-          </>
-        )}
+            </>
+          ) : null}
+
+          {!['writtenNotification', 'noWrittenNotification'].includes(contentToShow) ? (
+            <StyledLabel htmlFor="enregistrement">
+              Le bail est-il enregistré ?
+              <StyledSelect
+                name="enregistrement"
+                id="enregistrement"
+                defaultValue={contractRegistrationStatus}
+                onChange={(e) => {
+                  const selectedValue = e.target.value as Enregistrement['value'];
+                  setRegistrationStatus(selectedValue);
+
+                  // Update contentToShow based on selectedValue
+                  if (selectedValue === 'yes') {
+                    setContentToShow('pebInput');
+                    setPEBIsValid(false);
+                  } else if (selectedValue === 'no') {
+                    setContentToShow('unregisteredContract');
+                    setPEBIsValid(false);
+                  } else if (selectedValue === 'none') {
+                    setContentToShow('unknownContractRegistration');
+                    setPEBIsValid(false);
+                  } else if (selectedValue === 'unwritten') {
+                    setContentToShow('unwritten');
+                    setPEBIsValid(false);
+                  }
+                }}
+              >
+                <option disabled selected>
+                  -- Sélectionnez une option --
+                </option>
+                {enregistrements.map((enregistrement) => (
+                  <option value={enregistrement.value} key={enregistrement.value}>
+                    {enregistrement.label}
+                  </option>
+                ))}
+              </StyledSelect>
+            </StyledLabel>
+          ) : null}
+          {contentToShow === 'pebInput' && (
+            <StyledLabel htmlFor="peb">
+              Certificat PEB:
+              <StyledSelect
+                disabled={!!isBeforePEBMeasure}
+                name="peb"
+                id="peb"
+                defaultValue={energyEfficiencyRating}
+                onChange={(e) => {
+                  const selectedValue = e.target.value as EnergyEfficiencyRating | 'unselected';
+                  setEnergyEfficiencyRating(selectedValue);
+                  if (selectedValue !== 'none' && selectedValue !== 'unselected') {
+                    setPEBIsValid(true);
+                  }
+                  if (selectedValue === 'none') {
+                    setPEBIsValid(false);
+                  }
+                }}
+              >
+                <option disabled selected value="unselected">
+                  -- Sélectionnez une option --
+                </option>
+                {energyEfficiencyRatings.map((rating) => (
+                  <option value={rating}>{rating !== 'none' ? rating : 'Aucun certificat'}</option>
+                ))}
+              </StyledSelect>
+            </StyledLabel>
+          )}
+
+          {contentToShow === 'unregisteredContract' && textContent[contentToShow](region)}
+          {contentToShow === 'unwritten' && textContent[contentToShow](region)}
+          {contentToShow === 'unknownContractRegistration' && textContent[contentToShow](region)}
+          {contentToShow === 'pebInput' && energyEfficiencyRating === 'unselected' && null}
+          {contentToShow === 'pebInput' &&
+            PEBIsValid === false &&
+            energyEfficiencyRating !== 'unselected' &&
+            textContent[contentToShow](region)}
+
+          {PEBIsValid === true && (
+            <>
+              <StyledLabel htmlFor="indexationDate">
+                Année de l'indexation:
+                <StyledInput
+                  type="number"
+                  min={new Date().getFullYear() - 1}
+                  max={new Date().getFullYear()}
+                  required
+                  lang="fr-FR"
+                  id="indexationDate"
+                  placeholder={new Date().getFullYear().toString()}
+                  onChange={(e) => setYearOfIndexation(Number(e.target.value))}
+                />
+              </StyledLabel>
+
+              <StyledLabel htmlFor="initialRent">
+                Loyer du bail hors charges:
+                <StyledInput
+                  type="number"
+                  id="initialRent"
+                  onChange={(e) => setInitialRent(Number(e.target.value))}
+                  required
+                />
+              </StyledLabel>
+
+              <StyledLabel htmlFor="contractSignatureDate">
+                Date de signature du bail:
+                <StyledInput
+                  type="date"
+                  min="2000-01-01"
+                  max={new Date().toISOString().split('T')[0]}
+                  required
+                  lang="fr-FR"
+                  id="contractSignatureDate"
+                  onChange={(e) => setContractSignatureDate(new Date(e.target.value))}
+                />
+              </StyledLabel>
+
+              <StyledLabel htmlFor="agreementStartDate">
+                Date d'entrée en vigueur:
+                <StyledInput
+                  type="date"
+                  min="2000-01-01"
+                  max={new Date().toISOString().split('T')[0]}
+                  required
+                  lang="fr-FR"
+                  id="agreementStartDate"
+                  onChange={(e) => setAgreementStartDate(new Date(e.target.value))}
+                />
+              </StyledLabel>
+
+              <StyledContainerRow>
+                <StyledButton disabled={!isValid} type="button" onClick={handleCalculate}>
+                  Calculer
+                </StyledButton>
+              </StyledContainerRow>
+            </>
+          )}
+        </div>
+        <div>
+          {newRent.rent && newRent.explanation !== '' ? (
+            <StyledButton onClick={handleOpenExplanation}>Explication</StyledButton>
+          ) : null}
+          {!isAnniversaryMonthReached &&
+          agreementStartDate &&
+          contractSignatureDate &&
+          yearOfIndexation ? (
+            <StyledValidation>
+              L'indexation est impossible pour l'instant. Votre propriétaire doit attendre la date
+              anniversaire de votre bail pour vous indexer.
+            </StyledValidation>
+          ) : null}
+        </div>
+        {showExplanation ? (
+          <ExplanationModal setShowExplanationModal={setShowExplanation}>
+            {newRent.explanation}
+          </ExplanationModal>
+        ) : null}
       </form>
     </StyledContainer>
   );
