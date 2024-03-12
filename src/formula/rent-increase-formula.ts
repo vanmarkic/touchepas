@@ -98,28 +98,53 @@ export function calculateRentIndexation({
   if (isRequestedAfterEndOfDecree && region === 'wallonia') {
     if (['A', 'B', 'C'].includes(energyEfficiencyRating)) {
       return {
-        explanation: 'wallonia after end of decree and A B or C',
+        explanation: `wallonia after end of decree and A B or C:
+        
+        La fonction basicFormula est utilisée pour calculer l'indexation de base du loyer. Elle prend en compte trois paramètres : l'indice initial, le loyer initial et le nouvel indice de santé.
+
+        Voici comment elle fonctionne avec des valeurs dynamiques :
+
+        Supposons que l'indice initial soit de ${initialIndex}, le loyer initial soit de ${initialRent} euros et le nouvel indice de santé soit de ${newHealthIndex}.
+
+        La formule de base pour l'indexation du loyer est calculée en multipliant le loyer initial (${initialRent} euros) par le nouvel indice de santé (${newHealthIndex}) et en divisant le résultat par l'indice initial (${initialIndex}). Cela donne un loyer indexé de ${roundToTwoDecimals(
+          basicFormulaWithInitialRentAndIndex(newHealthIndex),
+        )} euros.
+        `,
         rent: basicFormulaWithInitialRentAndIndex(newHealthIndex),
       };
     }
     const agreementMonth = agreementStartDate.toLocaleString('en-US', { month: 'long' });
 
     const ratioEnergetique = ENERGY_RATIOS[region].peb[energyEfficiencyRating];
-    const ecartType = (initialRent / initialIndex) * healthIndexBeforeDecree;
-    const ecartType2 = ecartType - initialRent;
-    const ecartType2Ratio = ecartType2 * ratioEnergetique;
+    const loyerIndexéAvantDécret = (initialRent / initialIndex) * healthIndexBeforeDecree;
+    const ecartType = loyerIndexéAvantDécret - initialRent;
+    const ecartTypeAuProrata = ecartType * ratioEnergetique;
     const october2021Index = findHealthIndex(2021, 'October', indexBaseYear);
 
     const loyerIndexéOctobre2O21 = (initialRent / initialIndex) * october2021Index;
     const loyerAdapté =
       agreementStartDate >= new Date('01/11/2021') && agreementStartDate <= new Date('12/31/2021')
-        ? initialRent + ecartType2Ratio
-        : loyerIndexéOctobre2O21 + ecartType2Ratio;
+        ? initialRent + ecartTypeAuProrata
+        : loyerIndexéOctobre2O21 + ecartTypeAuProrata;
 
     if (!['November', 'December'].includes(agreementMonth)) {
       return {
-        explanation:
-          'after decree except for november and december in wallonia, for rating of D and worse',
+        explanation: `after decree except for november and december in wallonia, for rating of D and worse
+
+              Supposons que le mois de l'accord soit ${agreementMonth}, le ratio énergétique soit ${ratioEnergetique}, loyerIndexéAvantDécret soit ${loyerIndexéAvantDécret}, l'écart type soit ${ecartType}, ecartTypeAuProrata soit ${ecartTypeAuProrata}, l'indice d'octobre 2021 soit ${october2021Index}, le loyer indexé d'octobre 2021 soit ${loyerIndexéOctobre2O21} et le loyer adapté soit ${loyerAdapté}.
+
+            La portion de code commence par déterminer le mois de l'accord (${agreementMonth}) à partir de la date de début du contrat.
+
+            Ensuite, elle calcule le ratio énergétique (${ratioEnergetique}) en fonction de la région et de la cote d'efficacité énergétique.
+
+            Elle calcule ensuite loyerIndexéAvantDécret (${loyerIndexéAvantDécret}) en multipliant le loyer initial par l'indice de santé avant le décret et en divisant le résultat par l'indice initial. L'ecartType (${ecartType}) est calculé en soustrayant le loyer initial du loyerIndexéAvantDécret. L'ecartTypeAuProrata (${ecartTypeAuProrata}) est calculé en multipliant l'ecart type par le ratio énergétique.
+
+            Elle trouve ensuite l'indice de santé pour octobre 2021 (${october2021Index}) et calcule le loyer indexé pour octobre 2021 (${loyerIndexéOctobre2O21}) en multipliant le loyer initial par l'indice d'octobre 2021 et en divisant le résultat par l'indice initial.
+
+            Enfin, elle calcule le loyer adapté (${loyerAdapté}) en fonction de la date de début du contrat. Si la date de début du contrat est entre le 1er novembre 2021 et le 31 décembre 2021, le loyer adapté est le loyer initial plus l'écart type au prorata. Sinon, le loyer adapté est le loyer indexé pour octobre 2021 plus l'écart type au prorata.
+          
+          
+          `,
         rent: roundToTwoDecimals(loyerAdapté),
       };
     }
@@ -132,23 +157,39 @@ export function calculateRentIndexation({
   return wasIndexationRequestedBeforeStartOfEnergyRatingDecree
     ? {
         rent: roundToTwoDecimals(basicFormulaWithInitialRentAndIndex(newHealthIndex)),
-        explanation: 'before decree in wallonia',
+        explanation: `Avant décret en Wallonie
+        La fonction basicFormula est utilisée pour calculer l'indexation de base du loyer. Elle prend en compte trois paramètres : l'indice initial, le loyer initial et le nouvel indice de santé.
+
+        Voici comment elle fonctionne avec des valeurs dynamiques :
+
+        Supposons que l'indice initial soit de ${initialIndex}, le loyer initial soit de ${initialRent} euros et le nouvel indice de santé soit de ${newHealthIndex}.
+
+        La formule de base pour l'indexation du loyer est calculée en multipliant le loyer initial (${initialRent} euros) par le nouvel indice de santé (${newHealthIndex}) et en divisant le résultat par l'indice initial (${initialIndex}). Cela donne un loyer indexé de ${roundToTwoDecimals(
+          basicFormulaWithInitialRentAndIndex(newHealthIndex),
+        )} euros.
+        `,
       }
     : {
-        explanation: `Différence = Loyer potentiel de l'année en cours ${currentYearIndexedRent} - loyer indexé à l'année précédente ${previousYearIndexedRent}
-        Différence soumise au prorata du ratio PEB = différence X ${
+        explanation: `Pendant le décret en Wallonie
+        La fonction calculerIndexationLoyerDurantDécretEnWallonie est utilisée pour calculer l'indexation du loyer en Wallonie pendant la période du décret. Elle prend en compte trois paramètres : le loyer indexé de l'année en cours, le loyer indexé de l'année précédente et le ratio d'efficacité énergétique pour la région et la cote d'efficacité énergétique.
+
+        Voici comment elle fonctionne avec des valeurs dynamiques :
+        
+        Supposons que le loyer indexé de l'année en cours soit de ${currentYearIndexedRent} euros, le loyer indexé de l'année précédente soit de ${previousYearIndexedRent} euros et le ratio d'efficacité énergétique pour la région et la cote d'efficacité énergétique soit de ${
           ENERGY_RATIOS[region].peb[energyEfficiencyRating]
-        } 
-        Loyer indexé final = Loyer indexé précédent ${previousYearIndexedRent} +   Différence soumise au prorata du ratio PEB ${
-          currentYearIndexedRent -
-          previousYearIndexedRent * ENERGY_RATIOS[region].peb[energyEfficiencyRating]
-        } =  ${roundToTwoDecimals(
+        }.
+        
+        La fonction calcule l'indexation du loyer en multipliant le loyer indexé de l'année en cours (${currentYearIndexedRent} euros) par le ratio d'efficacité énergétique (${
+          ENERGY_RATIOS[region].peb[energyEfficiencyRating]
+        }), puis en soustrayant le loyer indexé de l'année précédente (${previousYearIndexedRent} euros). Cela donne un loyer indexé de ${roundToTwoDecimals(
           calculerIndexationLoyerDurantDécretEnWallonie(
             currentYearIndexedRent,
             previousYearIndexedRent,
             ENERGY_RATIOS[region].peb[energyEfficiencyRating],
           ),
-        )}`,
+        )} euros.
+        
+        `,
         rent: roundToTwoDecimals(
           calculerIndexationLoyerDurantDécretEnWallonie(
             currentYearIndexedRent,
