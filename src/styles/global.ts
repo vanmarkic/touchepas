@@ -21,7 +21,7 @@ export const GlobalStyle = createGlobalStyle`
 
 .AccordionItem:focus-within {
   position: relative;
-  z-index: 1;
+  /* z-index: 1; */
 }
 
 .AccordionHeader {
@@ -157,8 +157,8 @@ color:var(--red);
   body {
     transition: all 0.250s cubic-bezier(0.075, 0.82, 0.165, 1);
     --blue: #150d63;
-    --red:#E04843;  
-    --dark-red:#af211d;
+    --red: #E04843;  
+    --dark-red: #af211d;
     --black: #010101;
     --white: #fefefe;
     --radius: 3px;

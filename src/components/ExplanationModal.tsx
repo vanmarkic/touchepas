@@ -1,5 +1,7 @@
 import React, { ReactNode, useState } from 'react';
 import styled from 'styled-components';
+import { StyledCalculatorButton } from './layout';
+import xmark from '../images/xmark.svg';
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -11,7 +13,7 @@ const ModalOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 100;
+  z-index: 7;
 `;
 
 const ModalContent = styled.div`
@@ -36,23 +38,6 @@ const CloseButton = styled.div`
   cursor: pointer;
 `;
 
-const CloseIcon: React.FC = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <line x1="18" y1="6" x2="6" y2="18" />
-    <line x1="6" y1="6" x2="18" y2="18" />
-  </svg>
-);
-
 const ExplanationModal: React.FC<{
   children: ReactNode;
   setShowExplanationModal: (isOpen: boolean) => void;
@@ -67,10 +52,9 @@ const ExplanationModal: React.FC<{
       <ModalOverlay>
         <ModalContent>
           <Title>Formule utilisée</Title>
-
-          <CloseButton onClick={handleClose}>
-            <CloseIcon />
-          </CloseButton>
+          <StyledCalculatorButton onClick={handleClose}>
+            <img style={{ width: '25px' }} src={xmark} alt="Fermer" />
+          </StyledCalculatorButton>
           {children}
         </ModalContent>
       </ModalOverlay>

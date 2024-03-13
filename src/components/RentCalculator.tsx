@@ -14,6 +14,7 @@ import { scrollToSection } from './HeroSection';
 import * as RadioGroup from '@radix-ui/react-radio-group';
 import './RadioGroup.css';
 import ExplanationModal from './ExplanationModal';
+import { createPortal } from 'react-dom';
 
 type TextContentKeys =
   | 'writtenNotification'
@@ -221,7 +222,12 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
       <form style={{ position: 'relative' }}>
         <img
           src={hand}
-          style={{ position: 'absolute', top: '195px', pointerEvents: 'none', objectFit: 'cover' }}
+          style={{
+            position: 'absolute',
+            top: '195px',
+            pointerEvents: 'none',
+            objectFit: 'cover',
+          }}
         />
         <StyledNewRent>
           <StyledLabel style={{ color: 'white', width: '30%' }}>Loyer Maximum Autorisé</StyledLabel>
@@ -417,7 +423,7 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
             </>
           )}
         </div>
-        <div>
+        <StyledContainerRow>
           {newRent.rent && newRent.explanation !== '' ? (
             <StyledButton onClick={handleOpenExplanation}>Explication</StyledButton>
           ) : null}
@@ -430,12 +436,15 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
               anniversaire de votre bail pour vous indexer.
             </StyledValidation>
           ) : null}
-        </div>
-        {showExplanation ? (
-          <ExplanationModal setShowExplanationModal={setShowExplanation}>
-            {newRent.explanation}
-          </ExplanationModal>
-        ) : null}
+        </StyledContainerRow>
+        {showExplanation
+          ? createPortal(
+              <ExplanationModal setShowExplanationModal={setShowExplanation}>
+                {newRent.explanation}
+              </ExplanationModal>,
+              document.body,
+            )
+          : null}
       </form>
     </StyledContainer>
   );
@@ -465,10 +474,11 @@ const StyledContainer = styled.div`
 const StyledContainerRow = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   position: relative;
   margin-top: 10px;
+  width: 220px;
 `;
 
 const StyledNewRent = styled.div`
@@ -494,7 +504,7 @@ const StyledLabel = styled.label`
 `;
 
 export const StyledInput = styled.input`
-  border: 1px solid grey;
+  border: 1px solid transparent;
   box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.1);
   border-radius: var(--radius);
   background-color: #f8f8f8;
@@ -502,21 +512,16 @@ export const StyledInput = styled.input`
   padding: 5px;
   font-size: 14px;
   font-weight: normal;
-
   &:focus {
-    border-color: 2px solid var(--blue);
-    box-shadow: 0 0 0 1px var(--blue);
-    outline: none;
+    outline: orange 2px solid;
   }
   &:hover {
-    border-color: 0px solid var(--blue);
-    box-shadow: 0 0 0 1px var(--blue);
-    outline: none;
+    outline: orange 2px solid;
   }
 `;
 
 const StyledSelect = styled.select`
-  border: 1px solid grey;
+  border: 1px solid transparent;
   border-radius: var(--radius);
   background-color: #ffffff;
   outline: none;
@@ -525,12 +530,10 @@ const StyledSelect = styled.select`
   font-size: 14px;
 
   &:focus {
-    border-color: 0px solid var(--blue);
-    outline: none;
+    outline: orange 2px solid;
   }
   &:hover {
-    border-color: 0px solid var(--blue);
-    outline: none;
+    outline: orange 2px solid;
   }
 `;
 
@@ -569,6 +572,9 @@ export const StyledButton = styled.button`
   &:hover {
     color: var(--dark-red);
     outline: 0;
+  }
+  &:focus {
+    outline: orange 2px solid;
   }
 `;
 const RedSpan = styled.h4`

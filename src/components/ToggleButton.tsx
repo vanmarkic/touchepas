@@ -30,7 +30,7 @@ export const Button = styled.div`
 
 export const ButtonText = styled.button<{ color: string }>`
   text-align: left;
-  z-index: 1000;
+  /* z-index: 1000; */
   border: none;
   box-shadow: none;
   color: ${({ color }) => color};

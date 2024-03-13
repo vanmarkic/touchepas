@@ -97,11 +97,11 @@ const SidePanel = styled.nav`
   ${hideWhenVertical};
 `;
 
-const StyledCalculatorButton = styled.div`
+export const StyledCalculatorButton = styled.div`
   position: fixed;
   bottom: 1rem;
   right: 1rem;
-  z-index: 20;
+  z-index: 5;
   cursor: pointer;
   background-color: white;
   border: none;
@@ -113,12 +113,11 @@ const StyledCalculatorButton = styled.div`
   justify-content: center;
   align-items: center;
   display: flex;
-  ${hideWhenHorizontal};
 `;
 
 const CalculatorMobileWrapper = styled.div<{ showMobileMenu: boolean }>`
   position: absolute;
-  z-index: 10;
+  z-index: 4;
   background-color: rgba(255, 255, 255);
   height: calc(100svh- ${HEADER_HEIGHT});
   display: ${(props) => (props.showMobileMenu ? 'flex' : 'none')};
@@ -231,7 +230,7 @@ const TopSection = styled.div`
   align-items: center;
   gap: 2vh;
 
-  z-index: 5;
+  /* z-index: 5; */
   bottom: 2;
 `;
 const MobileCalculator: React.FC<any> = ({
@@ -243,13 +242,15 @@ const MobileCalculator: React.FC<any> = ({
   return (
     <>
       {showRegionDialog ? null : (
-        <StyledCalculatorButton onClick={handleShowCalculator}>
-          {showCalculator ? (
-            <img style={{ width: '25px' }} src={xmark} alt="Fermer" />
-          ) : (
-            <img style={{ width: '25px' }} src={calculator} alt="Calculateur" />
-          )}
-        </StyledCalculatorButton>
+        <HideWhenHorizontal>
+          <StyledCalculatorButton onClick={handleShowCalculator}>
+            {showCalculator ? (
+              <img style={{ width: '25px' }} src={xmark} alt="Fermer" />
+            ) : (
+              <img style={{ width: '25px' }} src={calculator} alt="Calculatrice" />
+            )}
+          </StyledCalculatorButton>
+        </HideWhenHorizontal>
       )}
       <CalculatorMobileWrapper showMobileMenu={showCalculator && !showRegionDialog}>
         <RentCalculator region={region} />
