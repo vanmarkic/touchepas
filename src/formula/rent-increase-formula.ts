@@ -38,15 +38,8 @@ export function calculateRentIndexation({
   if (region === 'brussels') {
     return {
       // provide detailed process to obtain the rent
-      explanation: `La fonction "calculateRentIndexationForBxl" est utilisée pour calculer l'indexation du loyer pour la région de Bruxelles.
-      
-      Elle prend en compte plusieurs paramètres, tels que le loyer initial, l'indice santé initial, le nouvel indice de santé, la cote d'efficacité énergétique et la date anniversaire.
-
-      Voici comment elle fonctionne avec des valeurs dynamiques :
-      
-      Supposons que le loyer initial soit de ${initialRent} euros, l'indice initial soit de ${initialIndex}, le nouvel indice de santé soit de ${newHealthIndex} et la cote d'efficacité énergétique soit de ${energyEfficiencyRating}.
-      
-      Le loyer indexé est calculé en multipliant le loyer initial (${initialRent} euros) par le nouvel indice de santé (${newHealthIndex}) et en divisant le résultat par l'indice initial (${initialIndex}). Cela donne un loyer indexé.
+      explanation: `
+      À Bruxelles, le loyer indexé est calculé en multipliant le loyer initial (${initialRent} euros) par le nouvel indice de santé (${newHealthIndex}) et en divisant le résultat par l'indice initial (${initialIndex}). Cela donne un loyer indexé.
       
       Ensuite, en fonction de la cote d'efficacité énergétique (${energyEfficiencyRating}), la fonction applique des facteurs de correction spécifiques pour ajuster le loyer indexé. Les cotes A, B, C et D n'ont pas de facteur de correction supplémentaire, tandis que les cotes E, F et G ont des facteurs de correction spécifiques pour chaque mois.
       
@@ -98,15 +91,11 @@ export function calculateRentIndexation({
   if (isRequestedAfterEndOfDecree && region === 'wallonia') {
     if (['A', 'B', 'C'].includes(energyEfficiencyRating)) {
       return {
-        explanation: `wallonia after end of decree and A B or C:
-        
-        La fonction basicFormula est utilisée pour calculer l'indexation de base du loyer. Elle prend en compte trois paramètres : l'indice initial, le loyer initial et le nouvel indice de santé.
+        explanation: `
+        En Wallonie après fin du décret pour les cotes énérgétiques A, B ou C:
+              
 
-        Voici comment elle fonctionne avec des valeurs dynamiques :
-
-        Supposons que l'indice initial soit de ${initialIndex}, le loyer initial soit de ${initialRent} euros et le nouvel indice de santé soit de ${newHealthIndex}.
-
-        La formule de base pour l'indexation du loyer est calculée en multipliant le loyer initial (${initialRent} euros) par le nouvel indice de santé (${newHealthIndex}) et en divisant le résultat par l'indice initial (${initialIndex}). Cela donne un loyer indexé de ${roundToTwoDecimals(
+        L'indexation du loyer est calculée en multipliant le loyer initial (${initialRent} euros) par le nouvel indice de santé (${newHealthIndex}) et en divisant le résultat par l'indice initial (${initialIndex}). Cela donne un loyer indexé de ${roundToTwoDecimals(
           basicFormulaWithInitialRentAndIndex(newHealthIndex),
         )} euros.
         `,
@@ -129,27 +118,77 @@ export function calculateRentIndexation({
 
     if (!['November', 'December'].includes(agreementMonth)) {
       return {
-        explanation: `after decree except for november and december in wallonia, for rating of D and worse
-
-              Supposons que le mois de l'accord soit ${agreementMonth}, le ratio énergétique soit ${ratioEnergetique}, loyerIndexéAvantDécret soit ${loyerIndexéAvantDécret}, l'écart type soit ${ecartType}, ecartTypeAuProrata soit ${ecartTypeAuProrata}, l'indice d'octobre 2021 soit ${october2021Index}, le loyer indexé d'octobre 2021 soit ${loyerIndexéOctobre2O21} et le loyer adapté soit ${loyerAdapté}.
-
-            La portion de code commence par déterminer le mois de l'accord (${agreementMonth}) à partir de la date de début du contrat.
+        explanation: `En Wallonie, après le décret et pour une cote d'efficacité énergétique de D, E, F, G ou aucune cote d'efficacité énergétique sélectionnée.:
+    
+            La formule pour ce cas de figure commence par déterminer le mois de la date d'entrée en vigueur (${agreementStartDate.toLocaleString(
+              'fr-FR',
+              { month: 'long' },
+            )}).
 
             Ensuite, elle calcule le ratio énergétique (${ratioEnergetique}) en fonction de la région et de la cote d'efficacité énergétique.
 
-            Elle calcule ensuite loyerIndexéAvantDécret (${loyerIndexéAvantDécret}) en multipliant le loyer initial par l'indice de santé avant le décret et en divisant le résultat par l'indice initial. L'ecartType (${ecartType}) est calculé en soustrayant le loyer initial du loyerIndexéAvantDécret. L'ecartTypeAuProrata (${ecartTypeAuProrata}) est calculé en multipliant l'ecart type par le ratio énergétique.
+            Elle calcule ensuite le loyer indexé avant décret (${roundToTwoDecimals(
+              loyerIndexéAvantDécret,
+            )}) en multipliant le loyer initial par l'indice de santé avant le décret et en divisant le résultat par l'indice initial. L'écart type (${roundToTwoDecimals(
+              ecartType,
+            )}) est calculé en soustrayant le loyer initial du loyer indexé avant décret. L'écart type au prorata (${roundToTwoDecimals(
+              ecartTypeAuProrata,
+            )}) est calculé en multipliant l'ecart type par le ratio énergétique.
 
-            Elle trouve ensuite l'indice de santé pour octobre 2021 (${october2021Index}) et calcule le loyer indexé pour octobre 2021 (${loyerIndexéOctobre2O21}) en multipliant le loyer initial par l'indice d'octobre 2021 et en divisant le résultat par l'indice initial.
+            Elle trouve ensuite l'indice de santé pour octobre 2021 (${roundToTwoDecimals(
+              october2021Index,
+            )}) et calcule le loyer indexé pour octobre 2021 (${roundToTwoDecimals(
+              loyerIndexéOctobre2O21,
+            )}) en multipliant le loyer initial par l'indice d'octobre 2021 et en divisant le résultat par l'indice initial.
 
-            Enfin, elle calcule le loyer adapté (${loyerAdapté}) en fonction de la date de début du contrat. Si la date de début du contrat est entre le 1er novembre 2021 et le 31 décembre 2021, le loyer adapté est le loyer initial plus l'écart type au prorata. Sinon, le loyer adapté est le loyer indexé pour octobre 2021 plus l'écart type au prorata.
-          
-          
+            Enfin, elle calcule le loyer adapté (${roundToTwoDecimals(
+              loyerAdapté,
+            )}) en fonction de la date de début du contrat. Si la date de début du contrat est entre le 1er novembre 2021 et le 31 décembre 2021, le loyer adapté est le loyer initial plus l'écart type au prorata. Sinon, le loyer adapté est le loyer indexé pour octobre 2021 plus l'écart type au prorata.
+
           `,
         rent: roundToTwoDecimals(loyerAdapté),
       };
     }
     return {
-      explanation: 'after decree for november and december in wallonia, for rating of D and worse',
+      explanation: `
+      Après décret en Wallonie, pour novembre ou décembre, avec un cote énergétique D ou pire.
+      
+            La formule pour ce cas de figure commence par déterminer le mois de la date d'entrée en vigueur (${agreementStartDate.toLocaleString(
+              'fr-FR',
+              { month: 'long' },
+            )}).
+
+            Ensuite, elle calcule le ratio énergétique (${ratioEnergetique}) en fonction de la région et de la cote d'efficacité énergétique.
+
+            Elle calcule ensuite le loyer indexé avant décret (${roundToTwoDecimals(
+              loyerIndexéAvantDécret,
+            )}) en multipliant le loyer initial par l'indice de santé avant le décret et en divisant le résultat par l'indice initial. L'écart type (${roundToTwoDecimals(
+              ecartType,
+            )}) est calculé en soustrayant le loyer initial du loyer indexé avant décret. L'écart type au prorata (${roundToTwoDecimals(
+              ecartTypeAuProrata,
+            )}) est calculé en multipliant l'ecart type par le ratio énergétique.
+
+            Elle trouve ensuite l'indice de santé pour octobre 2021 (${roundToTwoDecimals(
+              october2021Index,
+            )}) et calcule le loyer indexé pour octobre 2021 (${roundToTwoDecimals(
+              loyerIndexéOctobre2O21,
+            )}) en multipliant le loyer initial par l'indice d'octobre 2021 et en divisant le résultat par l'indice initial.
+
+            Elle calcule ensuite le loyer adapté (${roundToTwoDecimals(
+              loyerAdapté,
+            )}) en fonction de la date de début du contrat. Si la date de début du contrat est entre le 1er novembre 2021 et le 31 décembre 2021, le loyer adapté est le loyer initial plus l'écart type au prorata. Sinon, le loyer adapté est le loyer indexé pour octobre 2021 plus l'écart type au prorata.
+      
+            Et finalement elle multiplie le loyer adapté ${roundToTwoDecimals(
+              loyerAdapté,
+            )} par l'indice de santé actuel ${roundToTwoDecimals(
+              newHealthIndex,
+            )}, divisé par l'indice de santé avant le décret ${roundToTwoDecimals(
+              healthIndexBeforeDecree,
+            )}.
+
+
+          `,
+
       rent: roundToTwoDecimals((loyerAdapté * newHealthIndex) / healthIndexBeforeDecree),
     };
   }
@@ -158,28 +197,22 @@ export function calculateRentIndexation({
     ? {
         rent: roundToTwoDecimals(basicFormulaWithInitialRentAndIndex(newHealthIndex)),
         explanation: `Avant décret en Wallonie
-        La fonction basicFormula est utilisée pour calculer l'indexation de base du loyer. Elle prend en compte trois paramètres : l'indice initial, le loyer initial et le nouvel indice de santé.
 
-        Voici comment elle fonctionne avec des valeurs dynamiques :
-
-        Supposons que l'indice initial soit de ${initialIndex}, le loyer initial soit de ${initialRent} euros et le nouvel indice de santé soit de ${newHealthIndex}.
-
-        La formule de base pour l'indexation du loyer est calculée en multipliant le loyer initial (${initialRent} euros) par le nouvel indice de santé (${newHealthIndex}) et en divisant le résultat par l'indice initial (${initialIndex}). Cela donne un loyer indexé de ${roundToTwoDecimals(
+        L'indexation du loyer est calculée en multipliant le loyer initial (${roundToTwoDecimals(
+          initialRent,
+        )} euros) par le nouvel indice de santé (${roundToTwoDecimals(
+          newHealthIndex,
+        )}) et en divisant le résultat par l'indice initial (${roundToTwoDecimals(
+          initialIndex,
+        )}). Cela donne un loyer indexé de ${roundToTwoDecimals(
           basicFormulaWithInitialRentAndIndex(newHealthIndex),
         )} euros.
         `,
       }
     : {
         explanation: `Pendant le décret en Wallonie
-        La fonction calculerIndexationLoyerDurantDécretEnWallonie est utilisée pour calculer l'indexation du loyer en Wallonie pendant la période du décret. Elle prend en compte trois paramètres : le loyer indexé de l'année en cours, le loyer indexé de l'année précédente et le ratio d'efficacité énergétique pour la région et la cote d'efficacité énergétique.
-
-        Voici comment elle fonctionne avec des valeurs dynamiques :
-        
-        Supposons que le loyer indexé de l'année en cours soit de ${currentYearIndexedRent} euros, le loyer indexé de l'année précédente soit de ${previousYearIndexedRent} euros et le ratio d'efficacité énergétique pour la région et la cote d'efficacité énergétique soit de ${
-          ENERGY_RATIOS[region].peb[energyEfficiencyRating]
-        }.
-        
-        La fonction calcule l'indexation du loyer en multipliant le loyer indexé de l'année en cours (${currentYearIndexedRent} euros) par le ratio d'efficacité énergétique (${
+    
+        L'indexation du loyer est calculée en multipliant le loyer indexé de l'année en cours (${currentYearIndexedRent} euros) par le ratio d'efficacité énergétique (${
           ENERGY_RATIOS[region].peb[energyEfficiencyRating]
         }), puis en soustrayant le loyer indexé de l'année précédente (${previousYearIndexedRent} euros). Cela donne un loyer indexé de ${roundToTwoDecimals(
           calculerIndexationLoyerDurantDécretEnWallonie(
