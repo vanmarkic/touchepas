@@ -20,19 +20,11 @@ const IndexPage: React.FC<{}> = () => {
   process.env.TEASER_ENABLED;
   const [region, setRegion] = React.useState<Regions>('wallonia');
 
-  const [showTeaser, setShowTeaser] = React.useState<boolean>(!!process.env.GATSBY_TEASER_ENABLED);
+  const [showTeaser, setShowTeaser] = React.useState<boolean>(false);
 
   return (
     <>
       <GlobalStyle />
-      {process.env.NODE_ENV === 'production' ? null : (
-        <button
-          style={{ fontSize: '8px', border: '1px solid black' }}
-          onClick={() => setShowTeaser((prevState) => !prevState)}
-        >
-          show hide teaser
-        </button>
-      )}
       {showTeaser ? (
         <div
           style={{
