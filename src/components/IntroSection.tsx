@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { StaticImage } from 'gatsby-plugin-image';``
+import { StaticImage } from 'gatsby-plugin-image';
 
 export const Description = styled.p`
   margin-top: 1rem;
@@ -36,7 +36,7 @@ const FlexDiv = styled.div`
 export const navButtonsID = 'navButtonsID';
 const IntroSection: React.FC<any> = ({ children, showRegionDialog }) => {
   return (
-    <div id={navButtonsID} style={{ display: 'flex', justifyContent: 'center', marginTop:"50px" }}>
+    <div id={navButtonsID} style={{ display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
       <div
         style={{
           display: 'flex',
@@ -59,9 +59,8 @@ const IntroSection: React.FC<any> = ({ children, showRegionDialog }) => {
           />
         </FlexDiv>
         <Description>
-        Vérifiez  l’indexation de votre loyer et défendez vos droits en tant que locataire ! 
+          Vérifiez l'indexation de votre loyer et défendez vos droits en tant que locataire !
         </Description>
-       
       </div>
     </div>
   );
