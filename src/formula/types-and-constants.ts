@@ -15,7 +15,7 @@ export const ENERGY_RATIOS: Record<
   { start: Date; end: Date; peb: Record<EnergyEfficiencyRating, number> }
 > = {
   wallonia: {
-    start: new Date('2022-11-01'),
+    start: new Date(Date.UTC(2022, 10, 1)),
     end: new Date('2023-10-31'),
     peb: {
       A: 1,

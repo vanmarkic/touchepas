@@ -2,54 +2,6 @@
   "facts": [
     {
       "Year": "1982",
-      "Month": "August",
-      "Base year": "1988",
-      "Health index": null
-    },
-    {
-      "Year": "1982",
-      "Month": "August",
-      "Base year": "1996",
-      "Health index": null
-    },
-    {
-      "Year": "1982",
-      "Month": "August",
-      "Base year": "2004",
-      "Health index": null
-    },
-    {
-      "Year": "1982",
-      "Month": "August",
-      "Base year": "2013",
-      "Health index": null
-    },
-    {
-      "Year": "1982",
-      "Month": "September",
-      "Base year": "1988",
-      "Health index": null
-    },
-    {
-      "Year": "1982",
-      "Month": "September",
-      "Base year": "1996",
-      "Health index": null
-    },
-    {
-      "Year": "1982",
-      "Month": "September",
-      "Base year": "2004",
-      "Health index": null
-    },
-    {
-      "Year": "1982",
-      "Month": "September",
-      "Base year": "2013",
-      "Health index": null
-    },
-    {
-      "Year": "1982",
       "Month": "October",
       "Base year": "1988",
       "Health index": null
@@ -11999,6 +11951,54 @@
       "Month": "March",
       "Base year": "2013",
       "Health index": 131.75000000000045
+    },
+    {
+      "Year": "2024",
+      "Month": "April",
+      "Base year": "1988",
+      "Health index": 216.77000000000078
+    },
+    {
+      "Year": "2024",
+      "Month": "April",
+      "Base year": "1996",
+      "Health index": 179.79000000000062
+    },
+    {
+      "Year": "2024",
+      "Month": "April",
+      "Base year": "2004",
+      "Health index": 158.03000000000057
+    },
+    {
+      "Year": "2024",
+      "Month": "April",
+      "Base year": "2013",
+      "Health index": 130.85000000000045
+    },
+    {
+      "Year": "2024",
+      "Month": "May",
+      "Base year": "1988",
+      "Health index": 217.71000000000078
+    },
+    {
+      "Year": "2024",
+      "Month": "May",
+      "Base year": "1996",
+      "Health index": 180.57000000000065
+    },
+    {
+      "Year": "2024",
+      "Month": "May",
+      "Base year": "2004",
+      "Health index": 158.72000000000057
+    },
+    {
+      "Year": "2024",
+      "Month": "May",
+      "Base year": "2013",
+      "Health index": 131.42000000000044
     },
     {
       "Year": null,

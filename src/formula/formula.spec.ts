@@ -63,10 +63,84 @@ describe('Formula', () => {
         region,
         yearOfIndexation,
         energyEfficiencyRating,
-      }),
+      }).rent,
     ).toEqual(606.97);
   });
 
+  it('Test case Liège Mont de piété modifié 2022', () => {
+    const agreementStartDate = new Date('2022-02-01');
+    const anniversaryMonth = getAnniversaryMonth(agreementStartDate);
+    expect(anniversaryMonth).toBe('January');
+
+    const indexBaseYear = getIndexBaseYear(agreementStartDate);
+    const contractSignatureDate = new Date('2022-02-01');
+    const initialRent = 500;
+    const initialIndex = getInitialIndex(contractSignatureDate, agreementStartDate, indexBaseYear);
+    const basicFormulaWithInitialRentAndIndex = basicFormula(initialIndex, initialRent);
+    const { currentYearIndexedRent, previousYearIndexedRent } = deriveDataWithPEB({
+      agreementStartDate,
+      region: 'wallonia',
+      anniversaryMonth,
+      indexBaseYear,
+      basicFormulaWithInitialRentAndIndex,
+    });
+
+    expect(previousYearIndexedRent).toBe(500);
+    expect(currentYearIndexedRent).toBe(541.41);
+
+    expect(
+      calculateRentIndexation({
+        contractSignatureDate,
+        agreementStartDate,
+        initialRent: initialRent,
+        yearOfIndexation: 2024,
+        region: 'wallonia',
+        energyEfficiencyRating: 'G',
+      }).rent,
+    ).toEqual(547.91);
+    expect(
+      calculateRentIndexation({
+        contractSignatureDate,
+        agreementStartDate,
+        initialRent: initialRent,
+        yearOfIndexation: 2024,
+        region: 'wallonia',
+        energyEfficiencyRating: 'G',
+      }).rent,
+    ).toBeGreaterThan(initialRent);
+  });
+  it('Test case Liège Mont de piété', () => {
+    const agreementStartDate = new Date('2020-02-01');
+    const anniversaryMonth = getAnniversaryMonth(agreementStartDate);
+    expect(anniversaryMonth).toBe('January');
+
+    const indexBaseYear = getIndexBaseYear(agreementStartDate);
+    const contractSignatureDate = new Date('2020-02-01');
+    const initialRent = 500;
+    const initialIndex = getInitialIndex(contractSignatureDate, agreementStartDate, indexBaseYear);
+    const basicFormulaWithInitialRentAndIndex = basicFormula(initialIndex, initialRent);
+    const { currentYearIndexedRent, previousYearIndexedRent } = deriveDataWithPEB({
+      agreementStartDate,
+      region: 'wallonia',
+      anniversaryMonth,
+      indexBaseYear,
+      basicFormulaWithInitialRentAndIndex,
+    });
+
+    // expect(previousYearIndexedRent).toBe(818.06);
+    // expect(currentYearIndexedRent).toBe(885.81);
+
+    expect(
+      calculateRentIndexation({
+        contractSignatureDate,
+        agreementStartDate,
+        initialRent: 500,
+        yearOfIndexation: 2024,
+        region: 'wallonia',
+        energyEfficiencyRating: 'G',
+      }).rent,
+    ).toEqual(547.91);
+  });
   it('Test case O', () => {
     const agreementStartDate = new Date('2022-02-17');
     const anniversaryMonth = getAnniversaryMonth(agreementStartDate);
@@ -96,7 +170,7 @@ describe('Formula', () => {
         yearOfIndexation: 2023,
         region: 'wallonia',
         energyEfficiencyRating: 'A',
-      }),
+      }).rent,
     ).toEqual(885.81);
   });
 
@@ -110,7 +184,7 @@ describe('Formula', () => {
         yearOfIndexation: 2023,
         region: 'wallonia',
         energyEfficiencyRating: 'A',
-      }),
+      }).rent,
     ).toEqual(1789.36);
   });
 
@@ -150,7 +224,7 @@ describe('Formula', () => {
         region,
         yearOfIndexation,
         energyEfficiencyRating,
-      }),
+      }).rent,
     ).toEqual(665.24);
   });
 
@@ -182,7 +256,7 @@ describe('Formula', () => {
         yearOfIndexation: 2022,
         region: 'wallonia',
         energyEfficiencyRating: 'D',
-      }),
+      }).rent,
     ).toEqual(684.47);
   });
   it('Test case 5', () => {
@@ -234,7 +308,7 @@ describe('Formula', () => {
         yearOfIndexation: 2023,
         region: 'wallonia',
         energyEfficiencyRating: 'D',
-      }),
+      }).rent,
     ).toEqual(662.55);
   });
   it('Test case 6', () => {
@@ -248,7 +322,7 @@ describe('Formula', () => {
         yearOfIndexation: 2023,
         region: 'wallonia',
         energyEfficiencyRating: 'D',
-      }),
+      }).rent,
     ).toEqual(662.55);
   });
 
@@ -261,7 +335,7 @@ describe('Formula', () => {
         yearOfIndexation: 2023,
         region: 'wallonia',
         energyEfficiencyRating: 'E',
-      }),
+      }).rent,
     ).toEqual(642.3);
   });
   it('should be correct when after decree date in brussels', () => {
@@ -273,7 +347,7 @@ describe('Formula', () => {
         yearOfIndexation: 2023,
         region: 'brussels',
         energyEfficiencyRating: 'E',
-      }),
+      }).rent,
     ).toEqual(611.62);
 
     expect(
@@ -284,7 +358,7 @@ describe('Formula', () => {
         yearOfIndexation: 2023,
         region: 'brussels',
         energyEfficiencyRating: 'E',
-      }),
+      }).rent,
     ).toEqual(224.4);
   });
 
@@ -292,6 +366,8 @@ describe('Formula', () => {
     expect(getIsAfterDecree(2023, 'wallonia', new Date('11-01-2023'))).toBe(true);
     expect(getIsAfterDecree(2023, 'wallonia', new Date('11-01-2030'))).toBe(true);
     expect(getIsAfterDecree(2023, 'wallonia', new Date('10-31-2023'))).toBe(false);
+    expect(getIsAfterDecree(2023, 'wallonia', new Date('11-01-2023'))).toBe(true);
+    expect(getIsAfterDecree(2023, 'wallonia', new Date('10-31-2022'))).toBe(false);
     expect(getIsAfterDecree(2023, 'wallonia', new Date('10-31-2022'))).toBe(false);
   });
 });

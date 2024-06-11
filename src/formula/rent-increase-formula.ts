@@ -111,8 +111,10 @@ export function calculateRentIndexation({
     const october2021Index = findHealthIndex(2021, 'October', indexBaseYear);
 
     const loyerIndexéOctobre2O21 = (initialRent / initialIndex) * october2021Index;
+
     const loyerAdapté =
-      agreementStartDate >= new Date('01/11/2021') && agreementStartDate <= new Date('12/31/2021')
+      agreementStartDate >= new Date(Date.UTC(2021, 10, 1)) &&
+      agreementStartDate <= new Date(Date.UTC(2021, 11, 31))
         ? initialRent + ecartTypeAuProrata
         : loyerIndexéOctobre2O21 + ecartTypeAuProrata;
 
