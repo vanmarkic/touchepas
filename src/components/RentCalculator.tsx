@@ -60,15 +60,14 @@ const textContent: Record<TextContentKeys, (region: Regions) => React.ReactEleme
   pebInput: (region) => (
     <>
       <StyledText>
-        Le certificat de performance énergétique des bâtiments (PEB) est obligatoire en Région
-        wallonne pour tous les biens loués depuis le 1er juin 2011. En l'absence de celui-ci, votre
-        bailleur ne peut pas indexer votre loyer entre le 1er novembre 2022 et le 31 octobre 2023.
+        {region === 'wallonia'
+          ? "En l'absence de celui-ci, votre loyer ne pouvait pas être indexé entre le 1er novembre 2022 et le 31 octobre 2023. Le certificat de performance énergétique des bâtiments (PEB) est obligatoire en Région wallonne pour tous les biens loués depuis le 1er juin 2011."
+          : "Votre propriétaire ne peut pas indexer votre loyer s'il ne vous a pas communiqué un certificat PEB valable. Attention, si votre propriétaire a indexé le loyer avant le 14 octobre 2022, c'est valable. Avant cette date, le propriétaire pouvait indexer le loyer même si vous n'aviez pas de certificat PEB."}
         <br />
       </StyledText>
       <StyledA
-        onClick={() => {
-          scrollToSection('pebSection');
-        }}
+        href="https://www.droitsquotidiens.be/fr/question/je-nai-pas-de-certificat-peb-mon-loyer-peut-il-etre-indexe-bruxelles"
+        target="_blank"
       >
         Plus de détails
       </StyledA>
@@ -110,15 +109,16 @@ const textContent: Record<TextContentKeys, (region: Regions) => React.ReactEleme
   unregisteredContract: (region) => (
     <>
       <StyledText>
-        Renseignez-vous auprès de votre bailleur et demandez-lui la preuve de l'enregistrement ou
-        consultez le portail «MyMinfin» pour vérifier.
+        {region === 'brussels'
+          ? "Votre propriétaire ne peut pas indexer le loyer si le bail n'est pas enregistré. Attention, si votre propriétaire a indexé le loyer avant le 14 octobre 2022, c'est valable. Avant cette date, le propriétaire pouvait indexer le loyer même si le bail n'était pas enregistré."
+          : "Votre loyer ne peut pas être indexé tant que votre propriétaire n'a pas enregistré le bail. Attention ! Avant le 1er septembre 2018, votre propriétaire pouvait indexer le loyer même si le bail n'était pas enregistré. Les indexations faites avant le 1er septembre 2018 restent donc valables."}
         <br />
       </StyledText>
       <StyledA
         href={
           region === 'brussels'
             ? 'https://www.droitsquotidiens.be/fr/question/lenregistrement-du-bail-est-il-obligatoire-bruxelles'
-            : 'https://www.droitsquotidiens.be/fr/question/lenregistrement-du-bail-est-il-obligatoire-wallonie'
+            : 'https://www.droitsquotidiens.be/fr/question/mon-bail-nest-pas-enregistre-mon-loyer-peut-il-etre-indexe-wallonie'
         }
         target="_blank"
       >
@@ -354,14 +354,23 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
             </StyledLabel>
           )}
 
-          {contentToShow === 'unregisteredContract' && textContent[contentToShow](region)}
+          {contentToShow === 'unregisteredContract' ? (
+            <>
+              {textContent[contentToShow](region)}
+              <StyledButton onClick={() => setContentToShow('pebInput')}>Continuer</StyledButton>
+            </>
+          ) : null}
           {contentToShow === 'unwritten' && textContent[contentToShow](region)}
           {contentToShow === 'unknownContractRegistration' && textContent[contentToShow](region)}
           {contentToShow === 'pebInput' && energyEfficiencyRating === 'unselected' && null}
           {contentToShow === 'pebInput' &&
-            PEBIsValid === false &&
-            energyEfficiencyRating !== 'unselected' &&
-            textContent[contentToShow](region)}
+          PEBIsValid === false &&
+          energyEfficiencyRating !== 'unselected' ? (
+            <>
+              {textContent[contentToShow](region)}
+              <StyledButton onClick={() => setPEBIsValid(true)}>Continuer</StyledButton>
+            </>
+          ) : null}
 
           {PEBIsValid === true && (
             <>
