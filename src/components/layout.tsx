@@ -131,11 +131,10 @@ const StyledMain = styled.main<{ showRegionDialog: boolean }>`
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
-  max-height: ${({ showRegionDialog }) => (showRegionDialog ? '100vh' : 'auto')};
+  max-height: ${({ showRegionDialog }) => (showRegionDialog ? '90vh' : 'auto')};
   padding-left: 5svw;
   padding-right: 5svw;
-  overflow: scroll;
-  /* scroll-snap-type: y mandatory; */
+  overflow: ${({ showRegionDialog }) => (showRegionDialog ? 'hidden' : 'scroll')};
   width: 100%;
 
   @media (min-aspect-ratio: 1/1) {

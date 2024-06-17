@@ -10,7 +10,7 @@ interface AccordionProps {
 }
 
 const StyledAccordionContent = styled(Accordion.Content)`
-  /* overflow: hidden; */
+  overflow: hidden;
   color: black;
   font-size: 16px;
 `;

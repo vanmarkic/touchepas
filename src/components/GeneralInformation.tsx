@@ -12,7 +12,7 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
       <TwoColumns>
         <Accordion.Root className="AccordionRoot" type="single" defaultValue="item-1" collapsible>
           <Paragraph>
-            <Accordion.Item className="AccordionItem" value="item-2">
+            <Accordion.Item className="AccordionItem" value="item-1">
               <AccordionTrigger>
                 <span>#1 </span>Que signifie l'indexation de mon loyer ?
               </AccordionTrigger>
@@ -28,7 +28,7 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
           </Paragraph>
 
           <Paragraph>
-            <Accordion.Item className="AccordionItem" value="item-3">
+            <Accordion.Item className="AccordionItem" value="item-2">
               <AccordionTrigger>
                 <span>#2 </span>L'indexation de mon loyer est-elle automatique ?
               </AccordionTrigger>
@@ -43,7 +43,7 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
           </Paragraph>
 
           <Paragraph>
-            <Accordion.Item className="AccordionItem" value="item-4">
+            <Accordion.Item className="AccordionItem" value="item-3">
               <AccordionTrigger>
                 <span>#3 </span>Comment se calcule l'indexation et à quelles conditions peut-on
                 indexer mon loyer ?
@@ -74,7 +74,7 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
           </Paragraph>
 
           <Paragraph>
-            <Accordion.Item className="AccordionItem" value="item-5">
+            <Accordion.Item className="AccordionItem" value="item-4">
               <AccordionTrigger>
                 <span>#4 </span>Quelle est la différence entre la date de signature de mon bail et
                 la date d'entrée en vigueur de celui-ci ?
@@ -91,7 +91,7 @@ export const GeneralInformation = ({ region }: { region: Regions }) => {
           </Paragraph>
 
           <Paragraph>
-            <Accordion.Item className="AccordionItem" value="item-6">
+            <Accordion.Item className="AccordionItem" value="item-5">
               <AccordionTrigger>
                 <span>#5 </span>Comment savoir si je suis concerné par les mesures temporaires de de
                 gel de l'indexation?
