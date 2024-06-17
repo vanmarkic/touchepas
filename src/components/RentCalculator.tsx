@@ -368,7 +368,9 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
           energyEfficiencyRating !== 'unselected' ? (
             <>
               {textContent[contentToShow](region)}
-              <StyledButton onClick={() => setPEBIsValid(true)}>Continuer</StyledButton>
+              {region === 'wallonia' && (
+                <StyledButton onClick={() => setPEBIsValid(true)}>Continuer</StyledButton>
+              )}
             </>
           ) : null}
 
