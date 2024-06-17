@@ -7,6 +7,14 @@ export const Description = styled.p`
   font-size: 18px !important;
 `;
 
+export const Motto = styled.p`
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-align: center;
+  margin-top: 1rem;
+`;
+
 const BigTitle = styled.div`
   font-size: 4vw;
   font-weight: 700;
@@ -58,9 +66,9 @@ const IntroSection: React.FC<any> = ({ children, showRegionDialog }) => {
             className="logo"
           />
         </FlexDiv>
-        <Description>
+        <Motto>
           Vérifiez l'indexation de votre loyer et défendez vos droits en tant que locataire !
-        </Description>
+        </Motto>
       </div>
     </div>
   );
