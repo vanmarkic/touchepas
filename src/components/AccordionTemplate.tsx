@@ -5,17 +5,17 @@ import { ChevronDownIcon } from '@radix-ui/react-icons';
 import styled from 'styled-components';
 
 interface AccordionProps {
-  question: string; 
-  answer: string; 
+  question: string;
+  answer: string;
 }
 
 const StyledAccordionContent = styled(Accordion.Content)`
-  overflow: hidden;
+  /* overflow: hidden; */
   color: black;
   font-size: 16px;
 `;
 const StyledH5 = styled.h5`
- text-align:left;
+  text-align: left;
 `;
 
 export const AccordionTrigger: React.FC<{ children: React.ReactNode; className?: string }> = ({

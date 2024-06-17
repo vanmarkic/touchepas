@@ -72,7 +72,7 @@ color:var(--red);
 }
 
 .AccordionContentText {
-  padding: 10px 0px;
+  padding: 10px 20px;
 }
 
 
@@ -108,7 +108,6 @@ color:var(--red);
 
   }
   }
-
 
   .imageArticle{
     margin:auto;
@@ -232,10 +231,14 @@ color:var(--red);
       height: fit-content;
       cursor: pointer;
     }
-   a{
+   a {
     color: var(--blue);
     font-weight:500;
-    text-decoration:none;
+    
+    transition: all 0.1s ease-in-out;
+    &:hover {
+      color: var(--red);
+    }
    }
 `;
 
