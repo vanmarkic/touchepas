@@ -477,7 +477,7 @@ const StyledContainer = styled.div`
   border-radius: var(--radius);
   position: relative;
   width: 100%;
-  height: calc(100vh - 80px);
+  height: 100vh;
   padding: 0.7rem 0.7rem 0rem 0.7rem;
   margin: 0px;
 `;
