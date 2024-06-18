@@ -97,25 +97,16 @@ describe('Formula', () => {
         region: 'wallonia',
         energyEfficiencyRating: 'G',
       }).rent,
-    ).toEqual(547.91);
-    expect(
-      calculateRentIndexation({
-        contractSignatureDate,
-        agreementStartDate,
-        initialRent: initialRent,
-        yearOfIndexation: 2024,
-        region: 'wallonia',
-        energyEfficiencyRating: 'G',
-      }).rent,
-    ).toBeGreaterThan(initialRent);
+    ).toEqual(508.55);
   });
+
   it('Test case Liège Mont de piété', () => {
     const agreementStartDate = new Date('2020-02-01');
+    const contractSignatureDate = new Date('2020-02-01');
     const anniversaryMonth = getAnniversaryMonth(agreementStartDate);
     expect(anniversaryMonth).toBe('January');
 
     const indexBaseYear = getIndexBaseYear(agreementStartDate);
-    const contractSignatureDate = new Date('2020-02-01');
     const initialRent = 500;
     const initialIndex = getInitialIndex(contractSignatureDate, agreementStartDate, indexBaseYear);
     const basicFormulaWithInitialRentAndIndex = basicFormula(initialIndex, initialRent);
@@ -139,7 +130,7 @@ describe('Formula', () => {
         region: 'wallonia',
         energyEfficiencyRating: 'G',
       }).rent,
-    ).toEqual(547.91);
+    ).toEqual(538.69);
   });
   it('Test case O', () => {
     const agreementStartDate = new Date('2022-02-17');

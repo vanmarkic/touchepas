@@ -1,3 +1,4 @@
+import { get } from 'node:http';
 import {
   ENERGY_RATIOS,
   EnergyEfficiencyRating,
@@ -34,6 +35,8 @@ export function calculateRentIndexation({
     wasIndexationRequestedBeforeStartOfEnergyRatingDecree,
     healthIndexBeforeDecree,
   } = deriveData({ agreementStartDate, contractSignatureDate, yearOfIndexation, region });
+
+  const energyRatio = ENERGY_RATIOS[region].peb[energyEfficiencyRating];
 
   if (region === 'brussels') {
     return {
@@ -102,21 +105,84 @@ export function calculateRentIndexation({
         rent: basicFormulaWithInitialRentAndIndex(newHealthIndex),
       };
     }
+
     const agreementMonth = agreementStartDate.toLocaleString('en-US', { month: 'long' });
 
     const ratioEnergetique = ENERGY_RATIOS[region].peb[energyEfficiencyRating];
-    const loyerIndexéAvantDécret = (initialRent / initialIndex) * healthIndexBeforeDecree;
+
+    const getLastHealthIndexDateBeforeDecree = () => {
+      switch (agreementMonth) {
+        case 'February':
+          return findHealthIndex(2022, 'January', indexBaseYear);
+        case 'March':
+          return findHealthIndex(2022, 'February', indexBaseYear);
+        case 'April':
+          return findHealthIndex(2022, 'March', indexBaseYear);
+        case 'May':
+          return findHealthIndex(2022, 'April', indexBaseYear);
+        case 'June':
+          return findHealthIndex(2022, 'May', indexBaseYear);
+        case 'July':
+          return findHealthIndex(2022, 'June', indexBaseYear);
+        case 'August':
+          return findHealthIndex(2022, 'July', indexBaseYear);
+        case 'September':
+          return findHealthIndex(2022, 'August', indexBaseYear);
+        case 'October':
+          return findHealthIndex(2022, 'September', indexBaseYear);
+        case 'November':
+          return findHealthIndex(2021, 'October', indexBaseYear);
+        case 'December':
+          return findHealthIndex(2021, 'November', indexBaseYear);
+        case 'January':
+          return findHealthIndex(2021, 'December', indexBaseYear);
+      }
+    };
+
+    const index =
+      agreementStartDate < new Date(Date.UTC(2021, 10, 1))
+        ? getLastHealthIndexDateBeforeDecree()
+        : findHealthIndex(yearOfIndexation - 1, anniversaryMonth, indexBaseYear);
+
+    const loyerIndexéAvantDécret = (initialRent / initialIndex) * index;
+
     const ecartType = loyerIndexéAvantDécret - initialRent;
+
     const ecartTypeAuProrata = ecartType * ratioEnergetique;
-    const october2021Index = findHealthIndex(2021, 'October', indexBaseYear);
 
-    const loyerIndexéOctobre2O21 = (initialRent / initialIndex) * october2021Index;
+    const lastHealthIndexBeforeDecree = getLastHealthIndexDateBeforeDecree();
 
-    const loyerAdapté =
-      agreementStartDate >= new Date(Date.UTC(2021, 10, 1)) &&
-      agreementStartDate <= new Date(Date.UTC(2021, 11, 31))
-        ? initialRent + ecartTypeAuProrata
-        : loyerIndexéOctobre2O21 + ecartTypeAuProrata;
+    const dernierLoyerIndexéAvantDécret = () =>
+      (initialRent / initialIndex) * lastHealthIndexBeforeDecree;
+
+    const loyerAdapté = () => {
+      if (
+        agreementStartDate >= new Date(Date.UTC(2021, 10, 1)) &&
+        agreementStartDate <= new Date(Date.UTC(2022, 11, 31))
+      ) {
+        const loyerAdaptéPendantDécret = initialRent + ecartTypeAuProrata;
+
+        return (
+          (loyerAdaptéPendantDécret * newHealthIndex) /
+          findHealthIndex(yearOfIndexation - 1, anniversaryMonth, indexBaseYear)
+        );
+      }
+      if (agreementStartDate < new Date(Date.UTC(2021, 10, 1))) {
+        const loyerAdaptéPEBAprèsDécret = loyerIndexéAvantDécret + ecartTypeAuProrata;
+
+        const previousHealthIndex = findHealthIndex(
+          yearOfIndexation - 1,
+          anniversaryMonth,
+          indexBaseYear,
+        );
+        const loyerAdapté = ['November', 'December'].includes(agreementMonth)
+          ? (loyerAdaptéPEBAprèsDécret * newHealthIndex) / previousHealthIndex
+          : loyerAdaptéPEBAprèsDécret;
+
+        return loyerAdapté;
+      }
+      return dernierLoyerIndexéAvantDécret() + ecartTypeAuProrata;
+    };
 
     if (!['November', 'December'].includes(agreementMonth)) {
       return {
@@ -138,19 +204,20 @@ export function calculateRentIndexation({
             )}) est calculé en multipliant l'ecart type par le ratio énergétique.
 
             Elle trouve ensuite l'indice de santé pour octobre 2021 (${roundToTwoDecimals(
-              october2021Index,
+              lastHealthIndexBeforeDecree,
             )}) et calcule le loyer indexé pour octobre 2021 (${roundToTwoDecimals(
-              loyerIndexéOctobre2O21,
+              dernierLoyerIndexéAvantDécret(),
             )}) en multipliant le loyer initial par l'indice d'octobre 2021 et en divisant le résultat par l'indice initial.
 
             Enfin, elle calcule le loyer adapté (${roundToTwoDecimals(
-              loyerAdapté,
+              loyerAdapté(),
             )}) en fonction de la date de début du contrat. Si la date de début du contrat est entre le 1er novembre 2021 et le 31 décembre 2021, le loyer adapté est le loyer initial plus l'écart type au prorata. Sinon, le loyer adapté est le loyer indexé pour octobre 2021 plus l'écart type au prorata.
 
           `,
-        rent: roundToTwoDecimals(loyerAdapté),
+        rent: roundToTwoDecimals(loyerAdapté()),
       };
     }
+
     return {
       explanation: `
       Après décret en Wallonie, pour novembre ou décembre, avec un cote énergétique D ou pire.
@@ -171,17 +238,17 @@ export function calculateRentIndexation({
             )}) est calculé en multipliant l'ecart type par le ratio énergétique.
 
             Elle trouve ensuite l'indice de santé pour octobre 2021 (${roundToTwoDecimals(
-              october2021Index,
+              lastHealthIndexBeforeDecree,
             )}) et calcule le loyer indexé pour octobre 2021 (${roundToTwoDecimals(
-              loyerIndexéOctobre2O21,
+              dernierLoyerIndexéAvantDécret(),
             )}) en multipliant le loyer initial par l'indice d'octobre 2021 et en divisant le résultat par l'indice initial.
 
             Elle calcule ensuite le loyer adapté (${roundToTwoDecimals(
-              loyerAdapté,
+              loyerAdapté(),
             )}) en fonction de la date de début du contrat. Si la date de début du contrat est entre le 1er novembre 2021 et le 31 décembre 2021, le loyer adapté est le loyer initial plus l'écart type au prorata. Sinon, le loyer adapté est le loyer indexé pour octobre 2021 plus l'écart type au prorata.
       
             Et finalement elle multiplie le loyer adapté ${roundToTwoDecimals(
-              loyerAdapté,
+              loyerAdapté(),
             )} par l'indice de santé actuel ${roundToTwoDecimals(
               newHealthIndex,
             )}, divisé par l'indice de santé avant le décret ${roundToTwoDecimals(
@@ -191,7 +258,7 @@ export function calculateRentIndexation({
 
           `,
 
-      rent: roundToTwoDecimals((loyerAdapté * newHealthIndex) / healthIndexBeforeDecree),
+      rent: roundToTwoDecimals(loyerAdapté()),
     };
   }
 
