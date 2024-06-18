@@ -6,9 +6,9 @@ name: Deploy Gatsby site to FTP
 
 on:
   # Runs on pushes targeting the default branch
-  push:
-    branches:
-      - 'staging'
+  # push:
+  #   branches:
+  #     - 'staging'
   schedule:
     - cron: '30 03 28-31 * *'
   # Allows you to run this workflow manually from the Actions tab
