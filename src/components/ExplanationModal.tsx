@@ -23,7 +23,7 @@ const ModalContent = styled.div`
   height: 100%;
   background-color: white;
   border-radius: 8px;
-  padding: 16px;
+  padding: 32px;
   overflow: auto;
 `;
 
@@ -51,6 +51,18 @@ const ExplanationModal: React.FC<{
     <>
       <ModalOverlay>
         <ModalContent>
+          <p>
+            Ce calculateur n'est pas infaillible compte tenu de la complexité de la législation et
+            des nombreux cas particuliers. Nous vous invitons à vérifier le calcul auprès de
+            l'administration compétente si vous pensez que votre indexation est erronée.
+            <br />
+            <br />
+            Notre responsabilité ne pourra être engagée en cas d'erreur.
+            <br />
+            <br />
+            <br />
+            <br />
+          </p>
           <Title>Formule utilisée</Title>
           <StyledCalculatorButton onClick={handleClose}>
             <img style={{ width: '25px' }} src={xmark} alt="Fermer" />

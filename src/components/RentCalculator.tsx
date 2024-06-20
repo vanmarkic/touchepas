@@ -276,6 +276,14 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
                   </label>
                 </div>
               </RadioGroup.Root>
+              <br />
+              <br />
+              Ce calculateur n'est pas infaillible compte tenu de la complexité de la législation et
+              des nombreux cas particuliers. Nous vous invitons à vérifier le calcul auprès de
+              l'administration compétente si vous pensez que votre indexation est erronée.
+              <br />
+              <br />
+              Notre responsabilité ne pourra être engagée en cas d'erreur.
             </StyledLabel>
           ) : null}
           {contentToShow === 'noWrittenNotification' ? (
