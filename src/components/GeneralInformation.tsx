@@ -7,7 +7,7 @@ import { Regions } from '../formula/types-and-constants';
 export const GeneralInformation = ({ region }: { region: Regions }) => {
   return (
     <StyledSection2 id="informations">
-      <SectionTitle>Infos utiles</SectionTitle>
+      <SectionTitle>Mes droits</SectionTitle>
 
       <TwoColumns>
         <Accordion.Root className="AccordionRoot" type="single" defaultValue="item-1" collapsible>
