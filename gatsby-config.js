@@ -28,8 +28,8 @@ module.exports = {
       resolve: 'gatsby-plugin-matomo',
       options: {
         siteId: '183',
-        matomoUrl: 'https://piwik.domainepublic.net/',
-        siteUrl: 'https://touchepasamonloyer.be/',
+        matomoUrl: 'https://piwik.domainepublic.net',
+        siteUrl: 'https://touchepasamonloyer.be',
       },
     },
     {
