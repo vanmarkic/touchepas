@@ -137,4 +137,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local_dir: './public'
           remote_dir: '/www/touchepasamonloyer.be/test'
-          ftp_ssl_allow: false
+          ftp_ssl_allow: 'false'
