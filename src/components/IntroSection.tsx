@@ -1,10 +1,18 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { StaticImage } from 'gatsby-plugin-image';``
+import { StaticImage } from 'gatsby-plugin-image';
 
 export const Description = styled.p`
   margin-top: 1rem;
   font-size: 18px !important;
+`;
+
+export const Motto = styled.p`
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-align: center;
+  margin-top: 1rem;
 `;
 
 const BigTitle = styled.div`
@@ -36,7 +44,7 @@ const FlexDiv = styled.div`
 export const navButtonsID = 'navButtonsID';
 const IntroSection: React.FC<any> = ({ children, showRegionDialog }) => {
   return (
-    <div id={navButtonsID} style={{ display: 'flex', justifyContent: 'center', marginTop:"50px" }}>
+    <div id={navButtonsID} style={{ display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
       <div
         style={{
           display: 'flex',
@@ -58,10 +66,9 @@ const IntroSection: React.FC<any> = ({ children, showRegionDialog }) => {
             className="logo"
           />
         </FlexDiv>
-        <Description>
-        Vérifiez  l’indexation de votre loyer et défendez vos droits en tant que locataire ! 
-        </Description>
-       
+        <Motto>
+          Vérifiez l'indexation de votre loyer et défendez vos droits en tant que locataire !
+        </Motto>
       </div>
     </div>
   );

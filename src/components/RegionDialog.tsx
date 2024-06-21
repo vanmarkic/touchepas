@@ -7,7 +7,7 @@ export const RegionDialog: React.FC<{
 }> = ({ children, setShowRegionDialog }) => {
   return (
     <>
-      <p style={{ fontSize: 'small' }}>Où se situe le bien que je loue ?</p>
+      <p style={{ fontSize: 'medium' }}>Où se situe le logement que je loue ?</p>
 
       {children}
       <StyleButton style={{ marginTop: '2rem' }} onClick={() => setShowRegionDialog(false)}>

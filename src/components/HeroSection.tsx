@@ -4,7 +4,6 @@ import { StyledSection } from '../components/bodyLayout';
 import { StyledButtonBlue, HideWhenHorizontal } from '../components/layout';
 import { NewsletterForm } from './NewsletterForm';
 import { Description } from './IntroSection';
-import { WidthIcon } from '@radix-ui/react-icons';
 
 const ButtonsGroup = styled.div`
   width: 100%;
@@ -16,7 +15,7 @@ const ButtonsGroup = styled.div`
   flex-wrap: wrap;
 `;
 
-const scrollToSection = (sectionId: string) => {
+export const scrollToSection = (sectionId: string) => {
   const section = document.getElementById(sectionId);
   if (section) {
     section.scrollIntoView({ behavior: 'smooth' });
@@ -26,12 +25,11 @@ const scrollToSection = (sectionId: string) => {
 export const NavButtons: React.FC<any> = ({ handleShowCalculator, children }) => (
   <div>
     <Description>
-      Chaque année, votre propriétaire peut exiger une augmentation de votre loyer. C’est son droit
-      mais il ne peut pas le faire à n’importe quelles conditions et doit respecter des règles et
-      vos droits en tant que locataire. Le calculateur « Touche pas à mon loyer » vous permet
-      vérifier facilement si le nouveau loyer demandé par votre propriétaire est conforme à la loi
-      et vous informe sur vos droits en tant que locataire pour éviter de payer des loyers trop
-      chers.
+      Chaque année, votre propriétaire peut réviser votre loyer à la hausse en indexant celui-ci.
+      C'est son droit mais il ne peut pas le faire à n'importe quelles conditions. Le site « Touche
+      pas à mon loyer » vous aide à vérifier facilement si le nouveau loyer demandé par votre
+      propriétaire est conforme à la règlementation et vous informe sur vos droits en tant que
+      locataire.
     </Description>
     <StyledSection>
       <ButtonsGroup>
@@ -41,7 +39,7 @@ export const NavButtons: React.FC<any> = ({ handleShowCalculator, children }) =>
           </StyledButtonBlue>
         </HideWhenHorizontal>
         <StyledButtonBlue onClick={() => scrollToSection('informations')}>
-          Infos utiles
+          Mes droits
         </StyledButtonBlue>
         <StyledButtonBlue onClick={() => scrollToSection('news')}>Actualités</StyledButtonBlue>
       </ButtonsGroup>

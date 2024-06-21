@@ -21,7 +21,7 @@ export const GlobalStyle = createGlobalStyle`
 
 .AccordionItem:focus-within {
   position: relative;
-  z-index: 1;
+  /* z-index: 1; */
 }
 
 .AccordionHeader {
@@ -72,7 +72,7 @@ color:var(--red);
 }
 
 .AccordionContentText {
-  padding: 10px 0px;
+  padding: 10px 20px;
 }
 
 
@@ -108,7 +108,6 @@ color:var(--red);
 
   }
   }
-
 
   .imageArticle{
     margin:auto;
@@ -157,8 +156,8 @@ color:var(--red);
   body {
     transition: all 0.250s cubic-bezier(0.075, 0.82, 0.165, 1);
     --blue: #150d63;
-    --red:#E04843;  
-    --dark-red:#af211d;
+    --red: #E04843;  
+    --dark-red: #af211d;
     --black: #010101;
     --white: #fefefe;
     --radius: 3px;
@@ -197,7 +196,7 @@ color:var(--red);
     flex-direction: column;
     align-items: center;
     width:265px;
-    height:480px;
+    height:530px;
     gap: 6px;
     background-color: var(--blue);
     border-radius:10px;
@@ -232,10 +231,14 @@ color:var(--red);
       height: fit-content;
       cursor: pointer;
     }
-   a{
+   a {
     color: var(--blue);
     font-weight:500;
-    text-decoration:none;
+    
+    transition: all 0.1s ease-in-out;
+    &:hover {
+      color: var(--red);
+    }
    }
 `;
 

@@ -31,9 +31,9 @@ export const SectionTitle = styled.h4`
 `;
 
 export const TwoColumns = styled.div`
-  width: 100%;
+  /* width: 100%;
   font-size: 18px;
-  padding: 10px 0px;
+  padding: 10px 0px; */
 `;
 
 export const Paragraph = styled.div`

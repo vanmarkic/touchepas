@@ -23,19 +23,24 @@ export const StyleButton = styled.button`
 `;
 const StyledH6 = styled.h6`
   padding-right: 5px;
-  top: -18px;
+  top: -24px;
   position: absolute;
   letter-spacing: 0.6px;
   color: var(--blue);
   height: fit-content;
-  font-size: 14px;
+  font-size: 13px;
+  text-transform: uppercase;
+  @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
+    position: static;
+    max-width: 270px;
+  }
 `;
 const StyledText = styled.p`
   bottom: -15px;
   text-align: left;
   width: 350px;
   color: var(--red);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   position: absolute;
   @media (max-aspect-ratio: 1/1) and (max-width: 768px) {
@@ -56,7 +61,6 @@ const FlexEnd = styled.div`
   position: relative;
   ${whenVerticalAspectRatio(`
      align-items:center;
-     margin-bottom:20px;
     `)};
 `;
 
@@ -78,7 +82,7 @@ export const StyledInput = styled.input`
   border-radius: var(--radius);
   background-color: #f8f8f8;
   outline: none;
-  width: 250px;
+  width: 270px;
   padding: 6px;
   font-size: 14px;
   font-weight: normal;

@@ -7,34 +7,35 @@ import { Footer } from '../components/Footer';
 import GlobalStyle from '../styles/global';
 import { NewsletterForm } from '../components/NewsletterForm';
 import { SiteHeading } from '../components/Header';
+import styled from 'styled-components';
+
+const StyledH3 = styled.h3`
+  text-transform: uppercase;
+  color: var(--blue);
+  font-size: 1rem;
+  text-align: center;
+`;
 
 const IndexPage: React.FC<{}> = () => {
   process.env.TEASER_ENABLED;
-  const [region, setRegion] = React.useState<Regions>('brussels');
+  const [region, setRegion] = React.useState<Regions>('wallonia');
 
-  const [showTeaser, setShowTeaser] = React.useState<boolean>(!!process.env.GATSBY_TEASER_ENABLED);
+  const [showTeaser, setShowTeaser] = React.useState<boolean>(false);
 
   return (
     <>
       <GlobalStyle />
-      {process.env.NODE_ENV === 'production' ? null : (
-        <button
-          style={{ fontSize: '8px', border: '1px solid black' }}
-          onClick={() => setShowTeaser((prevState) => !prevState)}
-        >
-          show hide teaser
-        </button>
-      )}
       {showTeaser ? (
         <div
           style={{
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-around',
-            alignItems: 'center !important',
+            alignItems: 'center',
             minHeight: '90vh',
-            margin: '1rem',
-            gap: '3rem',
+            margin: '1rem auto',
+            gap: '1rem',
+            maxWidth: '960px',
           }}
         >
           <div
@@ -46,25 +47,25 @@ const IndexPage: React.FC<{}> = () => {
           >
             <SiteHeading />
           </div>
-          <h3>
+          <StyledH3>
             Vérifiez l'indexation de votre loyer et défendez vos droits en tant que locataire !
-          </h3>
-          <p>
+          </StyledH3>
+          <div style={{ maxWidth: '90vw' }}>
             Vous êtes locataire à Bruxelles ou en Wallonie ? Votre propriétaire veut indexer votre
             loyer ? <br /> <br />
             Vérifiez le loyer maximum autorisé avec notre calculateur et retrouvez toutes les
             informations pour défendre vos droits sur <a>touchepasàmonloyer.be</a>
             <br />
             <br />
-            Bientôt en ligne...
-          </p>
-          <NewsletterForm>Tenez moi au courant</NewsletterForm>
+            <p style={{ textAlign: 'center' }}>Bientôt en ligne...</p>
+          </div>
+          <NewsletterForm>Restez à l'écoute pour notre lancement !</NewsletterForm>
           <Footer />
         </div>
       ) : (
         <Layout handleRegionSwitch={setRegion} region={region}>
           <GeneralInformation region={region} />
-          <Actualités />
+          <Actualités region={region} />
           <Footer />
         </Layout>
       )}
