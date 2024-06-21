@@ -94,7 +94,7 @@ jobs:
   #         path: ./public
 
   Deployment job
-  build and deploy:
+  build-deploy:
     environment:
       name: production
       url: ${{ steps.deployment.outputs.page_url }}
