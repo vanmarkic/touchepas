@@ -30,6 +30,7 @@
     "gatsby-plugin-image": "^3.12.3",
     "gatsby-plugin-mailchimp": "^5.2.2",
     "gatsby-plugin-manifest": "^5.12.3",
+    "gatsby-plugin-matomo": "^0.16.2",
     "gatsby-plugin-offline": "^6.12.3",
     "gatsby-plugin-sitemap": "^6.12.3",
     "gatsby-plugin-styled-components": "^6.12.0",

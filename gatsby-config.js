@@ -25,6 +25,14 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-matomo',
+      options: {
+        siteId: '183',
+        matomoUrl: 'https://piwik.domainepublic.net',
+        siteUrl: 'https://touchepasamonloyer.be',
+      },
+    },
+    {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: 'Touche pas à mon loyer',

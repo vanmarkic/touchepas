@@ -21,16 +21,16 @@ env:
   FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
   GATSBY_TEASER_ENABLED: ${{ vars.TEASER_ENABLED }}
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+# # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+# permissions:
+#   contents: read
+#   pages: write
+#   id-token: write
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
-  group: 'pages'
+  group: 'prod'
   cancel-in-progress: false
 
 # Default to bash
@@ -93,8 +93,8 @@ jobs:
   #       with:
   #         path: ./public
 
-  Deployment job
-  build and deploy:
+  # Deployment job
+  build-deploy:
     environment:
       name: production
       url: ${{ steps.deployment.outputs.page_url }}
@@ -137,3 +137,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local_dir: './public'
           remote_dir: '/www/touchepasamonloyer.be/test'
+          lftp_settings: 'set ftp:ssl-force on;set ssl:verify-certificate true; set ftp:ssl-protect-data true;'
