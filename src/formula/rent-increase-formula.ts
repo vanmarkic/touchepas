@@ -1,4 +1,3 @@
-import { get } from 'node:http';
 import {
   ENERGY_RATIOS,
   EnergyEfficiencyRating,
@@ -36,7 +35,7 @@ export function calculateRentIndexation({
     healthIndexBeforeDecree,
   } = deriveData({ agreementStartDate, contractSignatureDate, yearOfIndexation, region });
 
-  const energyRatio = ENERGY_RATIOS[region].peb[energyEfficiencyRating];
+  // const energyRatio = ENERGY_RATIOS[region].peb[energyEfficiencyRating];
 
   if (region === 'brussels') {
     return {
@@ -48,7 +47,8 @@ export function calculateRentIndexation({
       
       Si la cote d'efficacité énergétique n'est pas sélectionnée ou si une valeur inattendue est fournie, la fonction affiche une alerte demandant de sélectionner une cote valide.
       
-      La fonction renvoie le loyer indexé final (${roundToTwoDecimals(
+      La fonction renvoie le loyer indexé final (
+      ${roundToTwoDecimals(
         calculateRentIndexationForBxl(
           initialRent,
           initialIndex,
@@ -365,6 +365,13 @@ export function calculateRentIndexationForBxl(
 ): number | void {
   let indexedRent: number = (initialRent * newHealthIndex) / initialIndex;
 
+  if (
+    anniversaryDate >= ENERGY_RATIOS.brussels.start &&
+    anniversaryDate <= ENERGY_RATIOS.brussels.end
+  ) {
+    return indexedRent;
+  }
+
   const month: Month = convertDateToMonth(anniversaryDate);
 
   switch (rating) {
@@ -376,6 +383,7 @@ export function calculateRentIndexationForBxl(
     case 'E':
       return (indexedRent *= correctionFactors['E'][month]);
     case 'F':
+      return (indexedRent *= correctionFactors['F'][month]);
     case 'G':
       return (indexedRent *= correctionFactors['F'][month]);
     case 'none':
@@ -409,27 +417,6 @@ function convertDateToMonth(date: Date): Month {
     return day >= 14 && day <= 31 ? '14-31 October' : '1-13 October';
   }
   return monthNames[month];
-}
-
-function calculerIndexationLoyerAprèsFinDuDécretEnWallonie(
-  loyerBase: number,
-  indiceSanteDepart: number,
-  indiceSanteAnniversaire: number,
-  indiceSanteAnniversaireSuivant: number,
-  PEBRatio: number,
-): number {
-  // Étape 1: Calculer le loyer indexé initial
-  let loyerIndexeInitial = (loyerBase * indiceSanteAnniversaire) / indiceSanteDepart;
-
-  // Étape 2: Appliquer la limitation de 75% pour le certificat PEB D
-  let augmentationLoyer = (loyerIndexeInitial - loyerBase) * PEBRatio;
-  let loyerAdaptePEB = loyerBase + augmentationLoyer;
-
-  // Étape 3: Calculer le loyer indexé pour l'année suivante
-  let loyerIndexeSuivant =
-    (loyerAdaptePEB * indiceSanteAnniversaireSuivant) / indiceSanteAnniversaire;
-
-  return roundToTwoDecimals(loyerIndexeSuivant); // Arrondit à deux décimales
 }
 
 function calculerIndexationLoyerDurantDécretEnWallonie(
