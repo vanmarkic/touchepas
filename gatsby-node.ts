@@ -1,5 +1,5 @@
 const axios = require('axios');
-import { Actions } from 'gatsby';
+// import { Actions } from 'gatsby';
 import { writeFile } from 'node:fs';
 
 exports.onPreBootstrap = async () => {
@@ -10,20 +10,17 @@ exports.onPreBootstrap = async () => {
   // console.log(indices.data.facts)
 
   const formattedIndices = {
-    "facts":
-      indices.data.facts.map((index: any) => ({
-        Year: index.Year,
-        Month: index.Month?.split(' ')[0],
-        "Base year": index["Base year"]?.split(' ')[0],
-        "Health index": index["Health index"],
-      }))
-  }
-
+    facts: indices.data.facts.map((index: any) => ({
+      Year: index.Year,
+      Month: index.Month?.split(' ')[0],
+      'Base year': index['Base year']?.split(' ')[0],
+      'Health index': index['Health index'],
+    })),
+  };
 
   writeFile('./src/formula/indices.json', JSON.stringify(formattedIndices, null, 2), (err) => {
-    if (err) throw err;
+    if (err) console.log(err);
     console.log('The file has been saved!');
     console.log('The file has been saved!');
-
   });
 };
