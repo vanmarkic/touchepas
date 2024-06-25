@@ -66,7 +66,11 @@ const textContent: Record<TextContentKeys, (region: Regions) => React.ReactEleme
         <br />
       </StyledText>
       <StyledA
-        href="https://www.droitsquotidiens.be/fr/question/je-nai-pas-de-certificat-peb-mon-loyer-peut-il-etre-indexe-bruxelles"
+        href={
+          region === 'wallonia'
+            ? 'https://www.droitsquotidiens.be/fr/question/je-nai-pas-de-certificat-peb-mon-loyer-peut-il-etre-indexe-partir-du-1er-novembre-2023#'
+            : 'https://www.droitsquotidiens.be/fr/question/je-nai-pas-de-certificat-peb-mon-loyer-peut-il-etre-indexe-bruxelles'
+        }
         target="_blank"
       >
         Plus de détails
