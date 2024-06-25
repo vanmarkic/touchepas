@@ -6,7 +6,7 @@ import Street from '../images/Street.png';
 import Building from '../images/Building.png';
 import { useState, useEffect, useRef } from 'react';
 import { StyledSection2, SectionTitle } from '../components/bodyLayout';
-import { Article1, Article2, Article3, Article4 } from '../components/Article';
+import { Article1, Article2, Article3, Article4, Article5 } from '../components/Article';
 import xmark from '../images/xmark.svg';
 import { Regions } from '../formula/types-and-constants';
 
@@ -16,7 +16,7 @@ interface Article {
   image: string;
   isExpanded: boolean;
   source: string;
-  region: Regions;
+  region: Regions | 'all';
 }
 interface StyledArticleProps extends React.HTMLAttributes<HTMLDivElement> {
   isOpen: boolean;
@@ -133,6 +133,14 @@ export const Actualités = ({ region }: { region: Regions }) => {
       isExpanded: false,
       region: 'wallonia',
     },
+    {
+      id: 5,
+      title: 'Un logement, c’est bien plus que quatre murs',
+      image: Building,
+      source: 'Publié en octobre 2023, Solidaris',
+      isExpanded: false,
+      region: 'all',
+    },
   ];
 
   const [articles, setArticles] = useState(articlesData);
@@ -148,7 +156,8 @@ export const Actualités = ({ region }: { region: Regions }) => {
       <SectionTitle>Actualités</SectionTitle>
       <StyledArticleList className="article-list">
         {articles
-          .filter((article) => article.region === region)
+          .filter((article) => article.region === region || article.region === 'all')
+          .sort((a, b) => (a.id > b.id ? -1 : 1))
           .map((article) => (
             <StyledArticle
               key={article.id}
@@ -191,6 +200,7 @@ export const Actualités = ({ region }: { region: Regions }) => {
                   {article.id === 2 && <Article2 />}
                   {article.id === 3 && <Article3 />}
                   {article.id === 4 && <Article4 />}
+                  {article.id === 5 && <Article5 />}
                 </>
               )}
             </StyledArticle>
