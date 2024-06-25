@@ -146,3 +146,5 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: './public/'
           server-dir: '/www/touchepasamonloyer.be/test/'
+          protocol: ftps
+          port: 21
