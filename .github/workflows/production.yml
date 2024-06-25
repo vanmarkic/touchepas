@@ -101,7 +101,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Detect package manager
         id: detect-package-manager
         run: |
@@ -128,13 +128,21 @@ jobs:
         env:
           PREFIX_PATHS: 'true'
         run: ${{ steps.detect-package-manager.outputs.manager }} run build --prefix-paths
-      - name: Upload from public_html via FTP
-        uses: airvzxf/ftp-deployment-action@latest
-        id: deployment
+      # - name: Upload from public_html via FTP
+      #   uses: airvzxf/ftp-deployment-action@latest
+      #   id: deployment
+      #   with:
+      #     server: ${{ secrets.FTP_SERVER }}
+      #     user: ${{ secrets.FTP_USERNAME }}
+      #     password: ${{ secrets.FTP_PASSWORD }}
+      #     local_dir: './public'
+      #     remote_dir: '/www/touchepasamonloyer.be/test'
+      #     lftp_settings: 'set ftp:ssl-force on;set ssl:verify-certificate true; set ftp:ssl-protect-data true;'
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
-          user: ${{ secrets.FTP_USERNAME }}
+          username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local_dir: './public'
-          remote_dir: '/www/touchepasamonloyer.be/test'
-          lftp_settings: 'set ftp:ssl-force on;set ssl:verify-certificate true; set ftp:ssl-protect-data true;'
+          local-dir: './public'
+          server-dir: '/www/touchepasamonloyer.be/test'
