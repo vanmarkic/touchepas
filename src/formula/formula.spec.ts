@@ -353,6 +353,25 @@ describe('Formula', () => {
     ).toEqual(224.4);
   });
 
+  it('should be correct during decree date in brussels', () => {
+    const contractSignatureDate = new Date('2022-12-20');
+    const agreementStartDate = new Date('2022-12-20');
+    const initialRent = 600;
+    const yearOfIndexation = 2023;
+    const region = 'brussels';
+    const energyEfficiencyRating = 'F';
+    expect(
+      calculateRentIndexation({
+        contractSignatureDate,
+        agreementStartDate,
+        initialRent,
+        yearOfIndexation,
+        region,
+        energyEfficiencyRating,
+      }).rent,
+    ).toBe(605.23);
+  });
+
   it('should check whether is after end of decree', () => {
     expect(getIsAfterDecree(2023, 'wallonia', new Date('11-01-2023'))).toBe(true);
     expect(getIsAfterDecree(2023, 'wallonia', new Date('11-01-2030'))).toBe(true);
@@ -375,7 +394,7 @@ describe('year of indexation within PEB range', () => {
   });
 });
 describe('brussels formula', () => {
-  describe('calculateRentIndexationForBxl', () => {
+  describe('for bx', () => {
     it('should return the original rent when category is A', () => {
       const result = calculateRentIndexationForBxl(1000, 100, 100, 'A', new Date('2022-01-01'));
       expect(result).toBe(1000);
