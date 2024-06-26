@@ -316,6 +316,20 @@ describe('Formula', () => {
       }).rent,
     ).toEqual(662.55);
   });
+  it('Test case 7', () => {
+    // https://logement.wallonie.be/fr/bail/indexation-loyer
+
+    expect(
+      calculateRentIndexation({
+        contractSignatureDate: new Date('2023-01-01'),
+        agreementStartDate: new Date('2023-01-01'),
+        initialRent: 700,
+        yearOfIndexation: 2024,
+        region: 'wallonia',
+        energyEfficiencyRating: 'G',
+      }).rent,
+    ).toEqual(708.98);
+  });
 
   it('should be correct when after decree date in wallonia', () => {
     expect(
