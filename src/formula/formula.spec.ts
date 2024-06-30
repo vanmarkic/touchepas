@@ -330,6 +330,18 @@ describe('Formula', () => {
       }).rent,
     ).toEqual(708.98);
   });
+  it('Test case bxl logement', () => {
+    expect(
+      calculateRentIndexation({
+        contractSignatureDate: new Date('2022-01-01'),
+        agreementStartDate: new Date('2022-11-01'),
+        initialRent: 850,
+        yearOfIndexation: 2024,
+        region: 'brussels',
+        energyEfficiencyRating: 'E',
+      }).rent,
+    ).toEqual(708.98);
+  });
 
   it('should be correct when after decree date in wallonia', () => {
     expect(
