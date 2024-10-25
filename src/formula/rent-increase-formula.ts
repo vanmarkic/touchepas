@@ -181,6 +181,9 @@ export function calculateRentIndexation({
 
         return loyerAdapté;
       }
+      if (agreementStartDate > new Date(Date.UTC(2022, 11, 31))) {
+        return (initialRent * newHealthIndex) / initialIndex;
+      }
       return dernierLoyerIndexéAvantDécret() + ecartTypeAuProrata;
     };
 

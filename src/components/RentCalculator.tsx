@@ -10,11 +10,11 @@ import {
 } from '../formula/types-and-constants';
 import { calculateRentIndexation } from '../formula/rent-increase-formula';
 import hand from '../images/hand.png';
-import { scrollToSection } from './HeroSection';
 import * as RadioGroup from '@radix-ui/react-radio-group';
 import './RadioGroup.css';
 import ExplanationModal from './ExplanationModal';
 import { createPortal } from 'react-dom';
+import { isAnniversaryReached } from '../formula/utils';
 
 type TextContentKeys =
   | 'writtenNotification'
@@ -158,13 +158,17 @@ const RentCalculator: React.FC<{ region: Regions }> = ({ region }) => {
       yearOfIndexation &&
       contractSignatureDate &&
       agreementStartDate &&
-      (agreementStartDate.getMonth() >= new Date().getMonth()
-        ? yearOfIndexation < new Date().getFullYear()
-        : yearOfIndexation <= new Date().getFullYear())
+      isAnniversaryReached(agreementStartDate, yearOfIndexation)
     );
   }, [agreementStartDate, yearOfIndexation]);
 
   const isValid = React.useMemo(() => {
+    console.log('isAnniversaryMonthReached', isAnniversaryMonthReached);
+    console.log('initialRent', initialRent);
+    console.log('contractSignatureDate', contractSignatureDate);
+    console.log('agreementStartDate', agreementStartDate);
+    console.log('PEBIsValid', PEBIsValid);
+    console.log('energyEfficiencyRating', energyEfficiencyRating);
     return (
       yearOfIndexation &&
       initialRent &&

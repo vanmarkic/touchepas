@@ -196,3 +196,16 @@ export const deriveDataWithPEB = ({
     currentYearIndexedRent,
   };
 };
+
+export function isAnniversaryReached(
+  agreementStartDate: Date,
+  yearOfIndexation: number,
+): boolean | 0 | null | undefined {
+  const currentYear = new Date().getFullYear();
+  const currentMonth = new Date().getMonth();
+  const agreementMonth = agreementStartDate.getMonth();
+  debugger;
+  return agreementMonth > currentMonth
+    ? yearOfIndexation < currentYear
+    : yearOfIndexation <= currentYear;
+}

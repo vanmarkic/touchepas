@@ -6,7 +6,7 @@ import Street from '../images/Street.png';
 import Building from '../images/Building.png';
 import { useState, useEffect, useRef } from 'react';
 import { StyledSection2, SectionTitle } from '../components/bodyLayout';
-import { Article1, Article2, Article3, Article4, Article5 } from '../components/Article';
+import { Article1, Article2, Article3, Article4, Article5, Article6 } from '../components/Article';
 import xmark from '../images/xmark.svg';
 import { Regions } from '../formula/types-and-constants';
 
@@ -141,6 +141,15 @@ export const Actualités = ({ region }: { region: Regions }) => {
       isExpanded: false,
       region: 'all',
     },
+    {
+      id: 6,
+      title:
+        'LE GEL DE L’INDEXATION DES LOYERS DES PASSOIRES ÉNERGÉTIQUES VALIDÉ PAR LA COUR CONSTITUTIONNELLE',
+      image: Building,
+      source: 'Publié le 26 juin 2924, rwdh.be',
+      isExpanded: false,
+      region: 'all',
+    },
   ];
 
   const [articles, setArticles] = useState(articlesData);
@@ -201,6 +210,7 @@ export const Actualités = ({ region }: { region: Regions }) => {
                   {article.id === 3 && <Article3 />}
                   {article.id === 4 && <Article4 />}
                   {article.id === 5 && <Article5 />}
+                  {article.id === 6 && <Article6 />}
                 </>
               )}
             </StyledArticle>

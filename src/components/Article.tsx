@@ -492,3 +492,356 @@ export const Article5: React.FC = () => {
     </>
   );
 };
+
+export const Article6: React.FC = () => {
+  return (
+    <>
+      <StyledArticleContent>
+        <article
+          id="post-1884"
+          className="post-1884 post type-post status-publish format-standard has-post-thumbnail hentry category-logements-passoires category-marche-prive"
+        >
+          <header className="entry-header">
+            <div className="entry-meta">
+              <span className="posted-on">
+                <span className="screen-reader-text">Publié le</span>{' '}
+                <time className="entry-date published">26 juin 2024</time>
+                <time className="updated">26 juin 2024</time>
+              </span>
+            </div>
+            <h1 className="entry-title">
+              Le gel de l’indexation des loyers des passoires énergétiques validé par la Cour
+              Constitutionnelle
+            </h1>{' '}
+          </header>
+          <div id="post-thumbnail">
+            <img
+              width="300"
+              height="258"
+              src="https://rwdh.be/wp-content/uploads/2024/06/Screenshot_2024-06-26_14-23-22-300x258.png"
+              className="attachment-medium size-medium wp-post-image"
+              alt=""
+              decoding="async"
+              srcSet="https://rwdh.be/wp-content/uploads/2024/06/Screenshot_2024-06-26_14-23-22-300x258.png 300w, https://rwdh.be/wp-content/uploads/2024/06/Screenshot_2024-06-26_14-23-22.png 353w"
+              sizes="100vw"
+            />
+          </div>
+
+          <div className="entry-content">
+            <div
+              className="fl-builder-content fl-builder-content-1884 fl-builder-content-primary"
+              data-post-id="1884"
+            >
+              <div
+                className="fl-row fl-row-fixed-width fl-row-bg-none fl-node-xdwaobq3i8tp fl-row-default-height fl-row-align-center"
+                data-node="xdwaobq3i8tp"
+              >
+                <div className="fl-row-content-wrap">
+                  <div className="fl-row-content fl-row-fixed-width fl-node-content">
+                    <div className="fl-col-group fl-node-ebhdo8y3cmqu" data-node="ebhdo8y3cmqu">
+                      <div className="fl-col fl-node-utsji45k30wn" data-node="utsji45k30wn">
+                        <div className="fl-col-content fl-node-content">
+                          <div
+                            className="fl-module fl-module-rich-text fl-node-gufmr1hqw6ck"
+                            data-node="gufmr1hqw6ck"
+                          >
+                            <div className="fl-module-content fl-node-content">
+                              <div className="fl-rich-text">
+                                <h4>
+                                  Dans un arrêt rendu le 20 juin 2024, la Cour Constitutionnelle
+                                  examinait le recours en annulation du décret de la Région wallonne
+                                  du 19 octobre 2022 « modifiant l’article 26 du décret du 15 mars
+                                  2018 relatif au bail d’habitation et limitant l’indexation des
+                                  loyers en fonction du certificat de performance énergétique des
+                                  bâtiments ». Retour sur cette décision qui démontre qu'il est
+                                  possible d'agir sur les loyers.
+                                </h4>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="fl-row fl-row-fixed-width fl-row-bg-none fl-node-fzyqhbki7x9n fl-row-default-height fl-row-align-center"
+                data-node="fzyqhbki7x9n"
+              >
+                <div className="fl-row-content-wrap">
+                  <div className="fl-row-content fl-row-fixed-width fl-node-content">
+                    <div className="fl-col-group fl-node-tzujvdmxk24s" data-node="tzujvdmxk24s">
+                      <div className="fl-col fl-node-b0hi2moen57a" data-node="b0hi2moen57a">
+                        <div className="fl-col-content fl-node-content">
+                          <div
+                            className="fl-module fl-module-rich-text fl-node-h7srgxbyel6u"
+                            data-node="h7srgxbyel6u"
+                          >
+                            <div className="fl-module-content fl-node-content">
+                              <div className="fl-rich-text">
+                                <h2>Le contexte</h2>
+                                <p>
+                                  Alors que l'inflation atteignait des niveaux records, le
+                                  gouvernement wallon avait adopté ce décret pour deux raisons
+                                  principales :
+                                </p>
+                                <ul>
+                                  <li>
+                                    éviter aux locataires de payer des loyers démesurés en plus de
+                                    devoir supporter l'augmentation du coût de l'énergie
+                                  </li>
+                                </ul>
+                                <p>
+                                  "B.4. Selon les travaux préparatoires du décret du 19 octobre
+                                  2022, le législateur décrétal est parti du constat d’une hausse
+                                  exceptionnelle de l’inflation, laquelle se structure à partir des
+                                  produits énergétiques. Il met en avant que « l’évolution de
+                                  l’indice santé en raison de l’augmentation des prix des produits
+                                  énergétiques a pour conséquence de faire payer deux fois la hausse
+                                  des coûts de l’énergie aux ménages locataires de leur logement par
+                                  le biais de la hausse de la facture ou de charges énergétiques et
+                                  par le biais de la hausse des loyers indexés » (Doc. parl.,
+                                  Parlement wallon, 2022-2023, n° 1085/1, p. 3). Les auteurs du
+                                  projet de décret chiffrent cette incidence sur le locataire à plus
+                                  d’un 13e mois de loyer supplémentaire (ibid.)."
+                                </p>
+                                <ul>
+                                  <li>
+                                    favoriser une stratégie de rénovation à long terme sur les
+                                    passoires énergétiques
+                                  </li>
+                                </ul>
+                                <p>
+                                  "B.2.3 (...) « § 1er. Le Gouvernement établit une stratégie de
+                                  rénovation à long terme des bâtiments,
+                                  <br />
+                                  pour soutenir la rénovation en vue de la constitution d’un parc
+                                  immobilier à haute efficacité énergétique et décarboné d’ici à
+                                  2050"
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="fl-row fl-row-fixed-width fl-row-bg-none fl-node-w0fx28sen4mp fl-row-default-height fl-row-align-center"
+                data-node="w0fx28sen4mp"
+              >
+                <div className="fl-row-content-wrap">
+                  <div className="fl-row-content fl-row-fixed-width fl-node-content">
+                    <div className="fl-col-group fl-node-m137f0nrpg4u" data-node="m137f0nrpg4u">
+                      <div className="fl-col fl-node-kw4a3g6bl592" data-node="kw4a3g6bl592">
+                        <div className="fl-col-content fl-node-content">
+                          <div
+                            className="fl-module fl-module-rich-text fl-node-24uvlfis5gb6"
+                            data-node="24uvlfis5gb6"
+                          >
+                            <div className="fl-module-content fl-node-content">
+                              <div className="fl-rich-text">
+                                <h2>
+                                  Geler l'indexation des loyers n'est ni discriminatoire ni
+                                  disproportionné
+                                </h2>
+                                <p>
+                                  Suite à l'adoption de ce décret, le Syndicat Nationnal des
+                                  Propriétaires et Copropriétaires (SNPC), fervant défenseur des
+                                  propriétaires bailleurs, avait déposé un recours en annulation
+                                  devant la Cour Constitutionnelle.
+                                </p>
+                                <p>
+                                  Dans leur requête, 4 arguments étaient développés : un défaut de
+                                  compétence dans le chef de la Région wallonne ; une violation du
+                                  principe d'égalité (divisé en 8 sous-partie) ; une violation du
+                                  principe général de sécurité juridique ; une violation du droit de
+                                  propriété privée.
+                                </p>
+                                <h3>
+                                  La Région Wallonne est compétente pour fixer le prix des loyers
+                                </h3>
+                                <p>
+                                  En Belgique, les compétences sont divisées entre plusieurs
+                                  pouvoirs législatifs et exécutifs. Sans rentrer dans les détails,
+                                  la Région Wallonne est notamment compétente en ce qui concerne le
+                                  logement, alors que l'État fédéral est compétent en matière
+                                  d'énergie (’article 6 de la loi spéciale du 8 août 1980).
+                                </p>
+                                <p>
+                                  Dans son arrêt, la Cour Constitutionnelle rappelle que les régions
+                                  ont de nombreuses compétences en matière de logement :
+                                </p>
+                                <p>
+                                  "B.10. (...){' '}
+                                  <strong>
+                                    les régions peuvent, en vertu de cette compétence, adopter des{' '}
+                                  </strong>
+                                  <strong>
+                                    règles spécifiques concernant la fixation du montant du loyer de
+                                    biens destinés à l’habitation,
+                                  </strong>{' '}
+                                  <strong>
+                                    en particulier en ce qui concerne l’adaptation du montant du
+                                    loyer au coût de la vie
+                                  </strong>
+                                  . Ce faisant, les régions peuvent déroger aux règles de droit
+                                  commun relatives à l’indexation des loyers, fixées à l’article
+                                  1728bis de l’ancien Code civil."
+                                </p>
+                                <p>
+                                  Elle rajoute qu'elles doivent "toutefois respecter le principe de
+                                  proportionnalité, qui est inhérent à tout exercice de compétence"
+                                  mais que ce principe était ici respecté.
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            className="fl-module fl-module-rich-text fl-node-u3lmfr4xcova"
+                            data-node="u3lmfr4xcova"
+                          >
+                            <div className="fl-module-content fl-node-content">
+                              <div className="fl-rich-text">
+                                <h3>La propriété privée n'est pas absolue</h3>
+                                <p>
+                                  Dans son 4ème argument, le SNPC argumentait que le gel de
+                                  l'indexation des passoires énergétiques était une violation au
+                                  droit de propriété privée. Mais comme tous les autres droits
+                                  humains, ce droit n'est pas absolu comme le rappelle la Cour
+                                  Constitutionnelle :
+                                </p>
+                                <p>
+                                  "B.60.4. Toute ingérence dans le droit de propriété doit réaliser{' '}
+                                  <span>un juste équilibre</span> entre les{' '}
+                                  <span>impératifs de l’intérêt général</span> et ceux de la{' '}
+                                  <span>protection du droit au respect des biens</span>. Il faut
+                                  qu’existe{' '}
+                                  <strong>
+                                    un rapport raisonnable de proportionnalité entre les moyens
+                                    employés et le but poursuivi"
+                                  </strong>
+                                  .
+                                </p>
+                                <p>
+                                  Or pour la Cour Constitutionnelle, il est clair que le décret
+                                  ménage "un juste équilibre entre les exigences poursuivies de
+                                  l’intérêt général et celles de la protection du droit au respect
+                                  des biens des bailleurs concernés". D'une part, pour protéger des
+                                  locataires plus précaires que des propriétaires bailleurs (IWEPS,
+                                  le portrait-robot des propriétaires bailleurs). D'autre part, pour
+                                  permettre à la région d'atteindre ses objectifs climatiques. (B.59
+                                  à B.62).
+                                </p>
+                                <p>
+                                  La question des loyers et des passoires énergétiques sont des
+                                  enjeux de justice sociale et environementale. Face à de tels
+                                  enjeux, le droit de propriété privée doit-il primer sur le reste
+                                  ?&nbsp; D'un côté, il s'agit d'un besoin fondamental (le droit au
+                                  logement), de l'autre, un droit à faire du profit quand on est
+                                  déjà plus riche que la moyenne (IWEPS).
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            className="fl-module fl-module-rich-text fl-node-y4wno2pq9h8d"
+                            data-node="y4wno2pq9h8d"
+                          >
+                            <div className="fl-module-content fl-node-content">
+                              <div className="fl-rich-text">
+                                <h3>L'égalité pour qui ?</h3>
+                                <p>
+                                  Dans son deuxième argument, le SNPC évoquait une violation du
+                                  principe d'égalité et de non-discrimination (article 10 et 11 de
+                                  notre Constitution). Un argument décliné en 8 situations
+                                  d'inégalité de traitement supposées : entre propriétaires
+                                  bailleurs avec des logements et passoires et ceux avec des bons
+                                  certificats PEB ; entre locataires de passoires énergétiques et
+                                  les autres locataires ; entre locataires et bailleurs, etc.
+                                </p>
+                                <p>
+                                  La Cour Constitutionnelle rappelle que "Le principe d’égalité et
+                                  de non-discrimination n’exclut pas qu’une différence de traitement
+                                  soit établie entre des catégories de personnes, pour autant
+                                  qu’elle repose sur un critère objectif et qu’elle soit
+                                  raisonnablement justifiée" (B.16.).
+                                </p>
+                                <p>
+                                  Elle rajoute que le certificat PEB apparait comme un critère
+                                  objectif qui peut justifier une différence de traitement (B.19.3).
+                                </p>
+                                <p>
+                                  Un peu plus loin, elle justifie également l'intérêt de protéger
+                                  spécifiquement les locataires qui vivent dans des passoires
+                                  énergétiques :
+                                </p>
+                                <p>
+                                  <strong>
+                                    "Il peut être admis que les conséquences de la hausse des prix
+                                    de l’énergie sont les plus importantes pour les locataires de
+                                    logements sans certificat de performance énergétique ou
+                                    labellisés D, E, F ou G et que, par conséquent, seuls ces
+                                    locataires doivent bénéficier d’une limitation de la possibilité
+                                    d’indexer les loyers"
+                                  </strong>{' '}
+                                  (B.21.1.).
+                                </p>
+                                <p>
+                                  Ceci ne veut pas dire que seul les loyers des passoires
+                                  énergétiques peuvent être régulé mais que ici le Gouvernement
+                                  wallon avait respecté le principe d'égalité entre locataires.
+                                </p>
+                                <p>
+                                  En ce qui concerne les autres prétendues violations du principe
+                                  d'égalité et de non-discrimination, la Cour Constitutionnelle les
+                                  a toutes rejetées, en justifiant à chaque fois du caractère
+                                  objectif du critère de la différence de traitement et de la
+                                  proportionnalité des décisions prises dans le décret.
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            className="fl-module fl-module-rich-text fl-node-t0a6cy81rebz"
+                            data-node="t0a6cy81rebz"
+                          >
+                            <div className="fl-module-content fl-node-content">
+                              <div className="fl-rich-text">
+                                <h1>Il est temps de geler l'indexation</h1>
+                                <p>
+                                  Dans un autre arrêt (n° 63/2024) du 20 juin 2024, la Cour
+                                  Constitutionnelle rendait une décision similaire sur le gel de
+                                  l'indexation en Région Bruxelloise. Mais contrairement à la
+                                  Wallonie, Bruxelles a décidé de continuer à geler l'indexation des
+                                  loyers de passoires énergétiques.
+                                </p>
+                                <p>
+                                  On peut regretter que le Ministre du logement wallon n'ait pas
+                                  suivi l'exemple de sa camarade Bruxelloise. Mais ça on vous en
+                                  avait déjà parlé <a href="https://rwdh.be/?p=1313">ici.</a>
+                                </p>
+                                <p>
+                                  Au vu des enjeux sociaux et écologiques, il est temps que la
+                                  Région Wallonne gel définitivement l'indexation des logements
+                                  passoires.
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>{' '}
+          </div>
+        </article>
+      </StyledArticleContent>
+    </>
+  );
+};

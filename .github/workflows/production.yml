@@ -141,8 +141,10 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_SERVER }}
+          server: 'ftp://tumulte.domainepublic.net/'
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: './public'
-          server-dir: '/www/touchepasamonloyer.be/test'
+          local-dir: './public/'
+          server-dir: '/www/touchepasamonloyer.be/test/'
+          protocol: ftps
+          port: 21
