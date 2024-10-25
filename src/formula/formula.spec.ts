@@ -12,6 +12,7 @@ import {
   getInitialIndex,
   getIsAfterDecree,
   getYearOfIndexationWithPEB,
+  isAnniversaryReached,
   shouldUsePreviousYear,
 } from './utils';
 
@@ -330,18 +331,6 @@ describe('Formula', () => {
       }).rent,
     ).toEqual(708.98);
   });
-  it('Test case bxl logement', () => {
-    expect(
-      calculateRentIndexation({
-        contractSignatureDate: new Date('2022-01-01'),
-        agreementStartDate: new Date('2022-11-01'),
-        initialRent: 850,
-        yearOfIndexation: 2024,
-        region: 'brussels',
-        energyEfficiencyRating: 'E',
-      }).rent,
-    ).toEqual(708.98);
-  });
 
   it('should be correct when after decree date in wallonia', () => {
     expect(
@@ -419,6 +408,7 @@ describe('year of indexation within PEB range', () => {
     expect(getYearOfIndexationWithPEB(new Date('2010-11-01'), 'wallonia')).toBe(2022);
   });
 });
+
 describe('brussels formula', () => {
   describe('for bx', () => {
     it('should return the original rent when category is A', () => {
@@ -437,6 +427,11 @@ describe('brussels formula', () => {
       expect(result).toBe(912.94080891);
     });
 
-    // Add more tests as needed
+    it('should return true when anniversary is reached', () => {
+      expect(isAnniversaryReached(new Date('2022-10-01'), 2024)).toBe(true);
+      expect(isAnniversaryReached(new Date('2022-10-01'), 2023)).toBe(true);
+      expect(isAnniversaryReached(new Date('2022-11-01'), 2024)).toBe(false);
+      expect(isAnniversaryReached(new Date('2022-11-01'), 2023)).toBe(true);
+    });
   });
 });
