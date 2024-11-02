@@ -1,0 +1,41 @@
+image: node:18
+
+variables:
+  MAILCHIMP_ENDPOINT: $MAILCHIMP_ENDPOINT
+  FTP_SERVER: $FTP_SERVER
+  FTP_PASSWORD: $FTP_PASSWORD
+  FTP_USERNAME: $FTP_USERNAME
+  GATSBY_TEASER_ENABLED: $TEASER_ENABLED
+
+cache:
+  paths:
+    - node_modules/
+    - .cache/
+    - public/
+
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  script:
+    - |
+      if [ -f "$CI_PROJECT_DIR/yarn.lock" ]; then
+        yarn install
+        yarn build
+      else
+        npm ci
+        npm run build
+      fi
+  artifacts:
+    paths:
+      - public
+
+deploy:
+  stage: deploy
+  only:
+    - master
+  script:
+    - apt-get update -qq && apt-get install -y -qq lftp
+    - lftp -e "set ftp:ssl-force true; set ssl:verify-certificate true; set ftp:ssl-protect-data true; mirror -R public/ /www/touchepasamonloyer.be/test/; quit" -u $FTP_USERNAME,$FTP_PASSWORD $FTP_SERVER
