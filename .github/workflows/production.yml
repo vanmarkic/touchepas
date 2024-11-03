@@ -138,13 +138,7 @@ jobs:
       #     local_dir: './public'
       #     remote_dir: '/www/touchepasamonloyer.be/test'
       #     lftp_settings: 'set ftp:ssl-force on;set ssl:verify-certificate true; set ftp:ssl-protect-data true;'
-      - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: 'ftp://tumulte.domainepublic.net/'
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: './public/'
-          server-dir: '/www/touchepasamonloyer.be/test/'
-          protocol: ftps
-          port: 21
+      - name: install lftp
+        run: apt-get update -qq && apt-get install -y -qq lftp
+      - name: sync files to ftp server
+        run: lftp -e "mirror -R public/ /www/touchepasamonloyer.be/test/ quit" -u touchepasamonloyer.be_github,bsJ6g6oFGo ftp://tumulte.domainepublic.net:21
